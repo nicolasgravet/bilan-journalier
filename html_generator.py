@@ -47,16 +47,10 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
         btn.disabled = true;
         btn.textContent = '⏳ En cours…';
         document.getElementById('refresh-status').textContent = 'Génération en cours (~20 sec)…';
-        fetch('https://api.github.com/repos/nicolasgravet/bilan-journalier/actions/workflows/generate.yml/dispatches', {{
-          method: 'POST',
-          headers: {{
-            'Authorization': 'token __WORKFLOW_TOKEN__',
-            'Accept': 'application/vnd.github.v3+json',
-            'Content-Type': 'application/json'
-          }},
-          body: JSON.stringify({{ref: 'main'}})
+        fetch('https://mecanicus-refresh.nicolas-0ce.workers.dev', {{
+          method: 'POST'
         }}).then(r => {{
-          if (r.status === 204) {{
+          if (r.ok) {{
             document.getElementById('refresh-status').textContent = 'Génération lancée — rechargement dans 25 sec…';
             setTimeout(() => location.reload(), 25000);
           }} else {{

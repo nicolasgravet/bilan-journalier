@@ -47,10 +47,6 @@ jobs:
           AIRTABLE_TOKEN:  ${{ secrets.AIRTABLE_TOKEN }}
         run: python generate_report.py
 
-      - name: Injecter le token dans le rapport
-        run: |
-          sed -i "s/__WORKFLOW_TOKEN__/${{ secrets.WORKFLOW_TOKEN }}/g" public/index.html
-
       - name: Déployer sur GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
