@@ -3,7 +3,10 @@ name: Génération du rapport
 on:
   schedule:
     - cron: '*/30 * * * *'   # toutes les 30 minutes
-  workflow_dispatch:           # bouton manuel sur GitHub
+  workflow_dispatch:           # bouton manuel
+
+permissions:
+  contents: write
 
 jobs:
   generate:
@@ -44,9 +47,9 @@ jobs:
           AIRTABLE_TOKEN:  ${{ secrets.AIRTABLE_TOKEN }}
         run: python generate_report.py
 
-      - name: Déployer sur Netlify
-        run: |
-          npm install -g netlify-cli --silent
-          netlify deploy --prod --dir=public \
-            --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} \
-            --site=${{ secrets.NETLIFY_SITE_ID }}
+      - name: Déployer sur GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          force_orphan: true
