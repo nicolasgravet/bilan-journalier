@@ -39,8 +39,38 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
       </div>
       <div class="header-meta">
         <div class="time-badge">{time_str}</div>
-        <a class="refresh-btn" href="/refresh">↺ Actualiser</a>
+        <button class="refresh-btn" onclick="triggerRefresh(this)">↺ Actualiser</button>
+        <div class="refresh-note" id="refresh-status">Mis à jour le {date_str} à {time_str}</div>
       </div>
+      <script>
+      function triggerRefresh(btn) {{
+        btn.disabled = true;
+        btn.textContent = '⏳ En cours…';
+        document.getElementById('refresh-status').textContent = 'Génération en cours (~20 sec)…';
+        fetch('https://api.github.com/repos/nicolasgravet/bilan-journalier/actions/workflows/generate.yml/dispatches', {{
+          method: 'POST',
+          headers: {{
+            'Authorization': 'token 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',
+            'Accept': 'application/vnd.github.v3+json',
+            'Content-Type': 'application/json'
+          }},
+          body: JSON.stringify({{ref: 'main'}})
+        }}).then(r => {{
+          if (r.status === 204) {{
+            document.getElementById('refresh-status').textContent = 'Génération lancée — rechargement dans 25 sec…';
+            setTimeout(() => location.reload(), 25000);
+          }} else {{
+            btn.disabled = false;
+            btn.textContent = '↺ Actualiser';
+            document.getElementById('refresh-status').textContent = 'Erreur — réessaie dans quelques secondes';
+          }}
+        }}).catch(() => {{
+          btn.disabled = false;
+          btn.textContent = '↺ Actualiser';
+          document.getElementById('refresh-status').textContent = 'Erreur réseau';
+        }});
+      }}
+      </script>
     </div>
   </header>
 
