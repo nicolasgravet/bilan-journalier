@@ -50,7 +50,7 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
         fetch('https://api.github.com/repos/nicolasgravet/bilan-journalier/actions/workflows/generate.yml/dispatches', {{
           method: 'POST',
           headers: {{
-            'Authorization': 'token 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',
+            'Authorization': 'token __WORKFLOW_TOKEN__',
             'Accept': 'application/vnd.github.v3+json',
             'Content-Type': 'application/json'
           }},
