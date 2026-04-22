@@ -1,0 +1,52 @@
+name: Génération du rapport
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'   # toutes les 30 minutes
+  workflow_dispatch:           # bouton manuel sur GitHub
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Installer les dépendances
+        run: pip install -r requirements.txt
+
+      - name: Créer config.py depuis les secrets
+        run: |
+          cat > config.py << 'EOF'
+          import os
+          SLACK_BOT_TOKEN  = os.environ.get("SLACK_BOT_TOKEN", "")
+          SLACK_TEAM_ID    = "TB1T5DZFX"
+          AIRTABLE_TOKEN   = os.environ.get("AIRTABLE_TOKEN", "")
+          AIRTABLE_BASE_ID = "appNb6Bh5KUwwmBXL"
+          REPORT_PATH      = "./public/index.html"
+          CHANNEL_IDS  = {"achat_vente": "C011K41BHUZ", "logistique": "C07L1L861SA"}
+          CHANNEL_NAMES = {"achat_vente": "achat_vente", "logistique": "logistique"}
+          EOF
+
+      - name: Créer le dossier public
+        run: mkdir -p public
+
+      - name: Générer le rapport
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          AIRTABLE_TOKEN:  ${{ secrets.AIRTABLE_TOKEN }}
+        run: python generate_report.py
+
+      - name: Déployer sur Netlify
+        run: |
+          npm install -g netlify-cli --silent
+          netlify deploy --prod --dir=public \
+            --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} \
+            --site=${{ secrets.NETLIFY_SITE_ID }}
