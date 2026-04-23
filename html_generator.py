@@ -815,8 +815,8 @@ def _css():
     /* Section */
     .section { padding: 22px 26px; }
     .section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; min-height: 40px; }
-    .section-search-wrap { display: flex; align-items: center; gap: 8px; background: #f5f7fa; border: 1.5px solid #e5e8ef; border-radius: 10px; padding: 7px 12px; margin-bottom: 14px; transition: border-color 0.15s, background 0.15s; }
-    .section-search-wrap:focus-within { border-color: #2FAEE0; background: #fff; }
+    .section-search-wrap { display: flex; align-items: center; gap: 8px; background: #f5f7fa; border: 1.5px solid #2FAEE0; border-radius: 10px; padding: 7px 12px; margin-bottom: 14px; transition: background 0.15s; }
+    .section-search-wrap:focus-within { background: #fff; }
     .section-search { flex: 1; border: none; background: transparent; font-size: 13px; color: #0a0f1e; outline: none; }
     .section-search::placeholder { color: #c0c6d4; }
     .search-clear-btn { background: none; border: none; cursor: pointer; color: #c0c6d4; font-size: 12px; padding: 0 0 0 4px; line-height: 1; display: none; transition: color 0.15s; }
