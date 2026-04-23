@@ -41,11 +41,21 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
              alt="Mecanicus" class="mecanicus-logo">
       </div>
       <div class="header-meta">
-        <div class="time-badge">{time_str}</div>
+        <div class="time-badge" id="live-clock"></div>
         <button class="refresh-btn" onclick="triggerRefresh(this)">↺ Actualiser</button>
         <div class="refresh-note" id="refresh-status">Mis à jour le {date_str} à {time_str}</div>
       </div>
       <script>
+      (function() {{
+        function updateClock() {{
+          var now = new Date();
+          var h = String(now.getHours()).padStart(2,'0');
+          var m = String(now.getMinutes()).padStart(2,'0');
+          document.getElementById('live-clock').textContent = h + ':' + m;
+        }}
+        updateClock();
+        setInterval(updateClock, 1000);
+      }})();
       function triggerRefresh(btn) {{
         btn.disabled = true;
         btn.textContent = '⏳ En cours…';
