@@ -469,7 +469,7 @@ function toggleSection(id) {
 
 // ── État des filtres ────────────────────────────────────────────────
 var offresState = { days: 0, type: 'tous', commerciaux: new Set() };
-var ctState = { group: 'tous', status: 'tous' };
+var ctState = { group: 'tous', statuses: new Set() };
 
 // ── Filtres Offres ───────────────────────────────────────────────────
 function applyOffresFilter() {
@@ -594,7 +594,7 @@ function applyCTFilter() {
     } else {
       okGroup = (type === 'acompte' || type === 'acompte-ok');
     }
-    okStatus = ctState.status === 'tous' || crit === ctState.status;
+    okStatus = ctState.statuses.size === 0 || ctState.statuses.has(crit);
     var show = okGroup && okStatus;
     row.style.display = show ? '' : 'none';
     if (show) visible++;
@@ -614,9 +614,24 @@ document.querySelectorAll('.ct-filter .filter-btn').forEach(function(btn) {
 
 document.querySelectorAll('.ct-status-filter .filter-btn').forEach(function(btn) {
   btn.addEventListener('click', function() {
-    document.querySelectorAll('.ct-status-filter .filter-btn').forEach(function(b) { b.classList.remove('active'); });
-    btn.classList.add('active');
-    ctState.status = btn.getAttribute('data-ct-status');
+    var val = btn.getAttribute('data-ct-status');
+    if (val === 'tous') {
+      ctState.statuses.clear();
+      document.querySelectorAll('.ct-status-filter .filter-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+    } else {
+      document.querySelector('.ct-status-filter .filter-btn[data-ct-status="tous"]').classList.remove('active');
+      if (btn.classList.contains('active')) {
+        btn.classList.remove('active');
+        ctState.statuses.delete(val);
+        if (ctState.statuses.size === 0) {
+          document.querySelector('.ct-status-filter .filter-btn[data-ct-status="tous"]').classList.add('active');
+        }
+      } else {
+        btn.classList.add('active');
+        ctState.statuses.add(val);
+      }
+    }
     applyCTFilter();
   });
 });
