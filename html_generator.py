@@ -167,6 +167,11 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
         <button class="collapse-btn" id="collapse-frais">▼</button>
       </div>
       <div class="section-body" id="body-frais" style="display:none">
+        <div class="section-search-wrap" onclick="event.stopPropagation()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#adb5c2" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" class="section-search" id="search-frais" placeholder="Rechercher une voiture…" oninput="filterBySearch('frais', this.value)" autocomplete="off">
+          <button class="search-clear-btn" onclick="clearSearch('frais')">✕</button>
+        </div>
         {_render_frais(frais_by_car, car_photos)}
       </div>
     </section>
@@ -186,6 +191,11 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
         <button class="collapse-btn" id="collapse-ct">▼</button>
       </div>
       <div class="section-body" id="body-ct" style="display:none">
+        <div class="section-search-wrap" onclick="event.stopPropagation()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#adb5c2" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" class="section-search" id="search-ct" placeholder="Rechercher une voiture…" oninput="filterBySearch('ct', this.value)" autocomplete="off">
+          <button class="search-clear-btn" onclick="clearSearch('ct')">✕</button>
+        </div>
         <div class="offres-sub-filters">
           <div class="filter-bar ct-status-filter">
             <button class="filter-btn active" data-ct-status="tous">Tous statuts</button>
@@ -209,6 +219,11 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
         <button class="collapse-btn" id="collapse-reservees">▼</button>
       </div>
       <div class="section-body" id="body-reservees" style="display:none">
+        <div class="section-search-wrap" onclick="event.stopPropagation()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#adb5c2" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" class="section-search" id="search-reservees" placeholder="Rechercher une voiture…" oninput="filterBySearch('reservees', this.value)" autocomplete="off">
+          <button class="search-clear-btn" onclick="clearSearch('reservees')">✕</button>
+        </div>
         {_render_reservees(reservees)}
       </div>
     </section>
@@ -231,6 +246,11 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
         <button class="collapse-btn" id="collapse-offres">▼</button>
       </div>
       <div class="section-body" id="body-offres" style="display:none">
+        <div class="section-search-wrap" onclick="event.stopPropagation()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#adb5c2" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" class="section-search" id="search-offres" placeholder="Rechercher une voiture…" oninput="filterBySearch('offres', this.value)" autocomplete="off">
+          <button class="search-clear-btn" onclick="clearSearch('offres')">✕</button>
+        </div>
         <div class="offres-sub-filters">
           {_offres_type_filter(offres)}
           {_offres_commercial_filter(offres)}
@@ -457,6 +477,60 @@ def _render_frais(frais_by_car, car_photos):
 def _js():
     return r"""
 // ── Collapse sections ────────────────────────────────────────────────
+// ── Recherche par voiture dans chaque module ────────────────────────
+var searchQueries = { frais: '', ct: '', reservees: '', offres: '' };
+
+function filterBySearch(section, query) {
+  searchQueries[section] = query.trim().toLowerCase();
+  var clearBtn = document.querySelector('#search-' + section + ' ~ .search-clear-btn, #body-' + section + ' .search-clear-btn');
+  if (clearBtn) clearBtn.classList.toggle('visible', query.length > 0);
+  applySearchFilter(section);
+}
+
+function clearSearch(section) {
+  var input = document.getElementById('search-' + section);
+  if (input) { input.value = ''; input.focus(); }
+  searchQueries[section] = '';
+  var clearBtn = document.querySelector('#body-' + section + ' .search-clear-btn');
+  if (clearBtn) clearBtn.classList.remove('visible');
+  applySearchFilter(section);
+}
+
+function applySearchFilter(section) {
+  var q = searchQueries[section];
+  if (section === 'frais') {
+    document.querySelectorAll('.car-frais-block').forEach(function(block) {
+      var name = (block.querySelector('.car-frais-name-text') || block.querySelector('.car-name') || {textContent:''}).textContent.toLowerCase();
+      block.style.display = (!q || name.includes(q)) ? '' : 'none';
+    });
+  } else if (section === 'ct') {
+    applyCTFilter(); // CT uses its own filter — we override post-hoc
+    if (q) {
+      document.querySelectorAll('#ct-table-body .ct-row').forEach(function(row) {
+        if (row.style.display !== 'none') {
+          var name = (row.querySelector('.car-name') || {textContent:''}).textContent.toLowerCase();
+          if (!name.includes(q)) row.style.display = 'none';
+        }
+      });
+    }
+  } else if (section === 'reservees') {
+    document.querySelectorAll('.res-block').forEach(function(block) {
+      var name = (block.querySelector('.car-name') || {textContent:''}).textContent.toLowerCase();
+      block.style.display = (!q || name.includes(q)) ? '' : 'none';
+    });
+  } else if (section === 'offres') {
+    applyOffresFilter(); // Offres uses its own filter — we override post-hoc
+    if (q) {
+      document.querySelectorAll('[data-section="offres"]').forEach(function(row) {
+        if (row.style.display !== 'none') {
+          var name = (row.querySelector('.car-name') || {textContent:''}).textContent.toLowerCase();
+          if (!name.includes(q)) row.style.display = 'none';
+        }
+      });
+    }
+  }
+}
+
 function toggleSection(id) {
   var body = document.getElementById('body-' + id);
   var btn = document.getElementById('collapse-' + id);
@@ -741,6 +815,13 @@ def _css():
     /* Section */
     .section { padding: 22px 26px; }
     .section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; min-height: 40px; }
+    .section-search-wrap { display: flex; align-items: center; gap: 8px; background: #f5f7fa; border: 1.5px solid #e5e8ef; border-radius: 10px; padding: 7px 12px; margin-bottom: 14px; transition: border-color 0.15s, background 0.15s; }
+    .section-search-wrap:focus-within { border-color: #2FAEE0; background: #fff; }
+    .section-search { flex: 1; border: none; background: transparent; font-size: 13px; color: #0a0f1e; outline: none; }
+    .section-search::placeholder { color: #c0c6d4; }
+    .search-clear-btn { background: none; border: none; cursor: pointer; color: #c0c6d4; font-size: 12px; padding: 0 0 0 4px; line-height: 1; display: none; transition: color 0.15s; }
+    .search-clear-btn:hover { color: #6b7280; }
+    .search-clear-btn.visible { display: block; }
     .section-icon { flex-shrink: 0; display: flex; align-items: center; opacity: 0.7; }
     h2 { font-size: 16px; font-weight: 600; color: #0a0f1e; white-space: nowrap; letter-spacing: -0.2px; }
     .count-badge { background: #eff4ff; border: 1px solid #c3d3f7; color: #2FAEE0; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 980px; }
