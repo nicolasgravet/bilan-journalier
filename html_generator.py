@@ -69,13 +69,26 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
       function triggerRefresh(btn) {{
         btn.disabled = true;
         btn.textContent = '⏳ En cours…';
-        document.getElementById('refresh-status').textContent = 'Génération en cours (~20 sec)…';
-        fetch('https://mecanicus-refresh.nicolas-0ce.workers.dev', {{
-          method: 'POST'
-        }}).then(r => {{
+        document.getElementById('refresh-status').textContent = 'Génération en cours…';
+        var currentTs = {gen_ts};
+        fetch('https://mecanicus-refresh.nicolas-0ce.workers.dev', {{method:'POST'}})
+        .then(r => {{
           if (r.ok) {{
-            document.getElementById('refresh-status').textContent = 'Génération lancée — rechargement dans 25 sec…';
-            setTimeout(() => location.reload(), 25000);
+            var dots = 0;
+            var pollInterval = setInterval(function() {{
+              dots = (dots % 3) + 1;
+              document.getElementById('refresh-status').textContent = 'Mise à jour en cours' + '.'.repeat(dots);
+              fetch(location.href + '?_=' + Date.now(), {{cache:'no-store'}})
+              .then(r => r.text())
+              .then(html => {{
+                var m = html.match(/new Date\((\d+) \* 1000\)/);
+                if (m && parseInt(m[1]) > currentTs) {{
+                  clearInterval(pollInterval);
+                  location.reload();
+                }}
+              }}).catch(() => {{}});
+            }}, 3000);
+            setTimeout(function() {{ clearInterval(pollInterval); location.reload(); }}, 60000);
           }} else {{
             btn.disabled = false;
             btn.textContent = '↺ Actualiser';
