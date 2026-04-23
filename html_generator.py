@@ -1,9 +1,12 @@
 from datetime import datetime
 
+JOURS_FR = ["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"]
+MOIS_FR  = ["janvier","février","mars","avril","mai","juin",
+             "juillet","août","septembre","octobre","novembre","décembre"]
 
 def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None):
     now = datetime.now()
-    date_str = now.strftime("%A %d %B %Y").capitalize()
+    date_str = f"{JOURS_FR[now.weekday()]} {now.day} {MOIS_FR[now.month-1]} {now.year}"
     time_str = now.strftime("%H:%M")
     ct_data = ct_data or []
     car_photos = car_photos or {}
