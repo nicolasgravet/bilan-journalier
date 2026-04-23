@@ -332,7 +332,7 @@ def fetch_frais_airtable(cars_index=None, days_back=30):
         return {}
     cutoff_dt = datetime.now() - timedelta(days=days_back)
     records = _get_records(FRAIS_TABLE, {
-        "fields[]": ["Voiture", "Cout HT", "Cout TTC", "Frais ? ", "Catégorie", "Lien facture"],
+        "fields[]": ["Voiture", "Cout HT", "Cout TTC", "Frais ? ", "Catégorie", "Lien facture", "Statut travaux"],
         "sort[0][field]": "Created time",
         "sort[0][direction]": "desc",
         "maxRecords": 2000,
@@ -367,6 +367,12 @@ def fetch_frais_airtable(cars_index=None, days_back=30):
         else:
             # Si pas dans l'index, on ne peut pas vérifier le statut — on ignore
             continue
+        # Exclure les frais avec statut travaux "Terminé"
+        statut_travaux_raw = f.get("Statut travaux")
+        statut_travaux = statut_travaux_raw.get("name", "") if isinstance(statut_travaux_raw, dict) else str(statut_travaux_raw or "")
+        if statut_travaux == "Terminé":
+            continue
+
         objet = f.get("Frais ? ") or "—"
         cat_raw = f.get("Catégorie")
         categorie = cat_raw.get("name", "—") if isinstance(cat_raw, dict) else "—"
