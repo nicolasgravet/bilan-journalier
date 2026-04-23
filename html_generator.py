@@ -5,7 +5,8 @@ MOIS_FR  = ["janvier","février","mars","avril","mai","juin",
              "juillet","août","septembre","octobre","novembre","décembre"]
 
 def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None):
-    now = datetime.now()
+    now = datetime.utcnow()
+    gen_ts = int(now.timestamp())  # timestamp UTC → JS le convertit en heure locale
     date_str = f"{JOURS_FR[now.weekday()]} {now.day} {MOIS_FR[now.month-1]} {now.year}"
     time_str = now.strftime("%H:%M")
     ct_data = ct_data or []
@@ -43,10 +44,13 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
       <div class="header-meta">
         <div class="time-badge" id="live-clock"></div>
         <button class="refresh-btn" onclick="triggerRefresh(this)">↺ Actualiser</button>
-        <div class="refresh-note" id="refresh-status">Mis à jour le {date_str} à {time_str}</div>
+        <div class="refresh-note" id="refresh-status"></div>
       </div>
       <script>
+      var JOURS = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+      var MOIS  = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
       (function() {{
+        // Horloge live
         function updateClock() {{
           var now = new Date();
           var h = String(now.getHours()).padStart(2,'0');
@@ -55,6 +59,12 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
         }}
         updateClock();
         setInterval(updateClock, 1000);
+        // Timestamp de génération converti en heure locale
+        var gen = new Date({gen_ts} * 1000);
+        var genH = String(gen.getHours()).padStart(2,'0');
+        var genM = String(gen.getMinutes()).padStart(2,'0');
+        var genLabel = 'Mis à jour le ' + JOURS[gen.getDay()] + ' ' + gen.getDate() + ' ' + MOIS[gen.getMonth()] + ' ' + gen.getFullYear() + ' à ' + genH + ':' + genM;
+        document.getElementById('refresh-status').textContent = genLabel;
       }})();
       function triggerRefresh(btn) {{
         btn.disabled = true;
