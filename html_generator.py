@@ -36,7 +36,7 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
 
   <!-- Header -->
   <header class="glass-card header">
-    <div class="header-car-bg"></div>
+    <img class="header-car-bg" src="https://cdn.prod.website-files.com/637dd83cd93444d7a965962c/69b3fc8216369c578418acbc_DSC09651.jpg" alt="" draggable="false">
     <div class="header-content">
       <div>
         <img src="https://cdn.prod.website-files.com/637b81e6d60031889cd403dc/640df2434b3f34dca527d1bb_logo_desktop_black_center.svg"
@@ -774,12 +774,14 @@ def _css():
     /* Header */
     .header { padding: 26px 36px; margin-bottom: 20px; position: relative; overflow: hidden; }
     .header-car-bg {
-      position: absolute; inset: 0;
-      background: url('https://cdn.prod.website-files.com/637dd83cd93444d7a965962c/69b3fc8216369c578418acbc_DSC09651.jpg') 42% 58% / cover no-repeat;
-      opacity: 0.32;
-      -webkit-mask-image: linear-gradient(to right, transparent 8%, black 30%, black 65%, transparent 94%);
-      mask-image: linear-gradient(to right, transparent 8%, black 30%, black 65%, transparent 94%);
-      pointer-events: none; border-radius: inherit;
+      position: absolute;
+      height: 200%; width: auto;
+      top: 50%; left: 50%;
+      transform: translate(-48%, -50%);
+      opacity: 0.38;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 16%, black 76%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 16%, black 76%, transparent 100%);
+      pointer-events: none; user-select: none; z-index: 0;
     }
     .header-content { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1; }
     .mecanicus-logo { height: 72px; width: auto; filter: brightness(0); }
