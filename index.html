@@ -32,7 +32,7 @@
       position: absolute;
       height: 430%; width: auto;
       top: 50%; left: 50%;
-      transform: translate(-50%, -48%);
+      transform: translate(-54%, -50%);
       opacity: 0.38;
       -webkit-mask-image: linear-gradient(to right, transparent 0%, black 16%, black 76%, transparent 100%);
       mask-image: linear-gradient(to right, transparent 0%, black 16%, black 76%, transparent 100%);
@@ -218,7 +218,7 @@
         updateClock();
         setInterval(updateClock, 1000);
         // Timestamp de génération converti en heure locale
-        var gen = new Date(1777124757 * 1000);
+        var gen = new Date(1777124872 * 1000);
         var genH = String(gen.getHours()).padStart(2,'0');
         var genM = String(gen.getMinutes()).padStart(2,'0');
         var genLabel = 'Mis à jour le ' + JOURS[gen.getDay()] + ' ' + gen.getDate() + ' ' + MOIS[gen.getMonth()] + ' ' + gen.getFullYear() + ' à ' + genH + ':' + genM;
@@ -228,7 +228,7 @@
         btn.disabled = true;
         btn.textContent = '⏳ En cours…';
         document.getElementById('refresh-status').textContent = 'Génération en cours…';
-        var currentTs = 1777124757;
+        var currentTs = 1777124872;
         fetch('https://mecanicus-refresh.nicolas-0ce.workers.dev', {method:'POST'})
         .then(r => {
           if (r.ok) {
@@ -2284,7 +2284,7 @@
   </div>
 
   <footer class="footer">
-    Généré le Samedi 25 avril 2026 à 13:45 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
+    Généré le Samedi 25 avril 2026 à 13:47 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
   </footer>
 </div>
 <script>var MARGES_DATA = [{"marge": 4000.0, "ts": 1769884848}, {"marge": 6297.399999999994, "ts": 1774023199}, {"marge": 5583.309999999998, "ts": 1768234979}, {"marge": 7102.220000000001, "ts": 1764326868}, {"marge": 3942.5, "ts": 1772529064}, {"marge": 9090.119999999995, "ts": 1769707897}, {"marge": 9550.0, "ts": 1771423217}, {"marge": -1372.679999999993, "ts": 1765268519}, {"marge": 16600.0, "ts": 1756125321}, {"marge": 29900.0, "ts": 1773745986}, {"marge": 12049.61, "ts": 1768081150}, {"marge": 4842.5, "ts": 1771956283}, {"marge": 17738.33, "ts": 1768845411}, {"marge": 25580.0, "ts": 1763661946}, {"marge": 15900.0, "ts": 1770915028}, {"marge": 10030.0, "ts": 1772882781}, {"marge": 19110.0, "ts": 1772477406}];</script>
