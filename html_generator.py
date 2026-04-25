@@ -775,9 +775,9 @@ def _css():
     .header { padding: 26px 36px; margin-bottom: 20px; position: relative; overflow: hidden; }
     .header-car-bg {
       position: absolute; inset: 0;
-      background: url('https://cdn.prod.website-files.com/637dd83cd93444d7a965962c/69b3fc8216369c578418acbc_DSC09651.jpg') 70% 55% / 75% auto no-repeat;
-      -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 40%, transparent 70%);
-      mask-image: linear-gradient(to left, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 40%, transparent 70%);
+      background: url('https://cdn.prod.website-files.com/637dd83cd93444d7a965962c/69b3fc8216369c578418acbc_DSC09651.jpg') 38% 52% / auto 160% no-repeat;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 20%, rgba(0,0,0,0.6) 55%, transparent 92%);
+      mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 20%, rgba(0,0,0,0.6) 55%, transparent 92%);
       pointer-events: none; border-radius: inherit;
     }
     .header-content { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1; }
