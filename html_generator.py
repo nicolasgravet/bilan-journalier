@@ -775,9 +775,9 @@ def _css():
     .header { padding: 26px 36px; margin-bottom: 20px; position: relative; overflow: hidden; }
     .header-car-bg {
       position: absolute;
-      height: 310%; width: auto;
+      height: 430%; width: auto;
       top: 50%; left: 50%;
-      transform: translate(-48%, -50%);
+      transform: translate(-50%, -48%);
       opacity: 0.38;
       -webkit-mask-image: linear-gradient(to right, transparent 0%, black 16%, black 76%, transparent 100%);
       mask-image: linear-gradient(to right, transparent 0%, black 16%, black 76%, transparent 100%);
