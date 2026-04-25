@@ -777,10 +777,10 @@ def _css():
       position: absolute;
       height: 430%; width: auto;
       top: 50%; left: 50%;
-      transform: translate(-54%, -50%);
+      transform: translate(-54%, -56%);
       opacity: 0.38;
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 16%, black 76%, transparent 100%);
-      mask-image: linear-gradient(to right, transparent 0%, black 16%, black 76%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 88%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 8%, black 88%, transparent 100%);
       pointer-events: none; user-select: none; z-index: 0;
     }
     .header-content { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1; }
