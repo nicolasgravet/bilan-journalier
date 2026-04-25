@@ -84,11 +84,11 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
                 var m = html.match(/new Date\((\d+) \* 1000\)/);
                 if (m && parseInt(m[1]) > currentTs) {{
                   clearInterval(pollInterval);
-                  location.reload();
+                  window.location.href = location.pathname + '?t=' + Date.now();
                 }}
               }}).catch(() => {{}});
             }}, 3000);
-            setTimeout(function() {{ clearInterval(pollInterval); location.reload(); }}, 60000);
+            setTimeout(function() {{ clearInterval(pollInterval); window.location.href = location.pathname + '?t=' + Date.now(); }}, 60000);
           }} else {{
             btn.disabled = false;
             btn.textContent = '↺ Actualiser';
