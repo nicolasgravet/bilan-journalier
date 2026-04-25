@@ -775,7 +775,7 @@ def _css():
     .header { padding: 26px 36px; margin-bottom: 20px; position: relative; overflow: hidden; }
     .header-car-bg {
       position: absolute;
-      height: 200%; width: auto;
+      height: 310%; width: auto;
       top: 50%; left: 50%;
       transform: translate(-48%, -50%);
       opacity: 0.38;
