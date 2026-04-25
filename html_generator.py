@@ -36,6 +36,7 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
 
   <!-- Header -->
   <header class="glass-card header">
+    <div class="header-car-bg"></div>
     <div class="header-content">
       <div>
         <img src="https://cdn.prod.website-files.com/637b81e6d60031889cd403dc/640df2434b3f34dca527d1bb_logo_desktop_black_center.svg"
@@ -771,8 +772,15 @@ def _css():
     .app { max-width: 1440px; margin: 0 auto; padding: 28px; }
 
     /* Header */
-    .header { padding: 26px 36px; margin-bottom: 20px; }
-    .header-content { display: flex; justify-content: space-between; align-items: center; }
+    .header { padding: 26px 36px; margin-bottom: 20px; position: relative; overflow: hidden; }
+    .header-car-bg {
+      position: absolute; inset: 0;
+      background: url('https://cdn.prod.website-files.com/637dd83cd93444d7a965962c/69b3fc8216369c578418acbc_DSC09651.jpg') center 58% / cover no-repeat;
+      -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.10) 45%, transparent 75%);
+      mask-image: linear-gradient(to left, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.10) 45%, transparent 75%);
+      pointer-events: none; border-radius: inherit;
+    }
+    .header-content { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1; }
     .mecanicus-logo { height: 72px; width: auto; filter: brightness(0); }
     .header-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
     .time-badge { font-size: 44px; font-weight: 200; letter-spacing: -2.5px; color: #0a0f1e; font-variant-numeric: tabular-nums; line-height: 1; }
