@@ -148,9 +148,6 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
         <div class="header-filters" onclick="event.stopPropagation()">
           <div class="filter-bar" data-target="frais">
             <button class="filter-btn active" data-days="0">Tout (30j)</button>
-            <button class="filter-btn" data-days="7">7j</button>
-            <button class="filter-btn" data-days="3">3j</button>
-            <button class="filter-btn" data-days="1">1j</button>
           </div>
           <div class="filter-bar frais-statut-filter">
             <button class="filter-btn active" data-frais-statut="tous">Tous</button>
