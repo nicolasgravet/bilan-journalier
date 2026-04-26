@@ -9,7 +9,8 @@ BASE = f"https://api.airtable.com/v0/{AIRTABLE_BASE_ID}"
 GENERAL_TABLE = "tbl2sejmIc7VpQpBx"
 FRAIS_TABLE   = "tblK1cZkrKh8kFysK"
 
-VIEW_URL = "https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/{record_id}?home=pagnonVqycMtn6zK4"
+VIEW_URL    = "https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/{record_id}?home=pagnonVqycMtn6zK4"
+TRAVAUX_URL = "https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/{record_id}?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4"
 
 CT_STATUTS = [
     "A envoyer en travaux ",
@@ -226,6 +227,7 @@ def fetch_reservees_airtable():
             "bc_str": bc_str,
             "photo_url": _photo_url(f),
             "fiche_url": VIEW_URL.format(record_id=rec["id"]),
+            "travaux_url": TRAVAUX_URL.format(record_id=rec["id"]),
             "commerciaux": commerciaux,
             "is_francois": is_francois,
         })

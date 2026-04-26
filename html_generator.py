@@ -289,7 +289,8 @@ def _render_reservees(reservees, francois_cars=None, ct_data=None):
         bc_html = f'<span class="bc-badge">{bc_str}</span>' if bc_str else ''
         photo_src = r.get('photo_url') or ''
         commerciaux_json = _json.dumps(r.get("commerciaux", []))
-        fiche_url = r.get('fiche_url', '#')
+        fiche_url    = r.get('fiche_url', '#')
+        travaux_url  = r.get('travaux_url', fiche_url)
 
         # Badge CT
         ct_info = ct_by_car.get(voiture)
@@ -302,7 +303,7 @@ def _render_reservees(reservees, francois_cars=None, ct_data=None):
             ct_badge = ''
             ct_data_attr = 'data-ct="" data-ct-cls=""'
 
-        items += f"""<div class="reservation-card" data-ts="{ts}" data-voiture="{voiture}" data-fck="{fck_data}" data-bc="{bc_str}" data-prix="{r.get('prix_fmt','—')}" data-marge="{r.get('marge_fmt','—')}" data-fiche="{fiche_url}" data-photo="{photo_src}" data-commerciaux='{commerciaux_json}' {ct_data_attr} onclick="openResModal(this)">
+        items += f"""<div class="reservation-card" data-ts="{ts}" data-voiture="{voiture}" data-fck="{fck_data}" data-bc="{bc_str}" data-prix="{r.get('prix_fmt','—')}" data-marge="{r.get('marge_fmt','—')}" data-fiche="{fiche_url}" data-travaux="{travaux_url}" data-photo="{photo_src}" data-commerciaux='{commerciaux_json}' {ct_data_attr} onclick="openResModal(this)">
           {photo_html}
           <div class="res-info">
             <div class="res-header">
@@ -318,7 +319,7 @@ def _render_reservees(reservees, francois_cars=None, ct_data=None):
             </div>
             <div class="res-footer">
               <a class="fiche-btn" href="{fiche_url}" target="_blank" onclick="event.stopPropagation()">Fiche →</a>
-              <a class="fiche-btn fiche-btn-travaux" href="{fiche_url}" target="_blank" onclick="event.stopPropagation()">🔧 Travaux →</a>
+              <a class="fiche-btn fiche-btn-travaux" href="{travaux_url}" target="_blank" onclick="event.stopPropagation()">🔧 Travaux →</a>
               {commerciaux_html}
             </div>
           </div>
@@ -653,6 +654,7 @@ function openResModal(card) {
   var prix = card.getAttribute('data-prix') || '—';
   var marge = card.getAttribute('data-marge') || '—';
   var fiche = card.getAttribute('data-fiche') || '#';
+  var travaux = card.getAttribute('data-travaux') || fiche;
   var photo = card.getAttribute('data-photo') || '';
   var commerciaux = JSON.parse(card.getAttribute('data-commerciaux') || '[]');
   var ctLabel = card.getAttribute('data-ct') || '';
@@ -669,7 +671,7 @@ function openResModal(card) {
   document.getElementById('res-modal-prix').textContent = prix;
   document.getElementById('res-modal-marge').textContent = marge;
   document.getElementById('res-modal-fiche').href = fiche;
-  document.getElementById('res-modal-travaux').href = fiche;
+  document.getElementById('res-modal-travaux').href = travaux;
 
   var ctEl = document.getElementById('res-modal-ct');
   ctEl.className = 'ct-res-badge ' + (ctCls || '');
