@@ -249,11 +249,16 @@ def _render_reservees(reservees, francois_cars=None):
         voiture = r.get('voiture', '—')
         fck = ' <span class="fck-badge">🖕</span>' if (voiture in francois_cars or r.get("is_francois")) else ''
         ts = r.get('bc_num', 0)
+        bc_str = r.get('bc_str', '')
+        bc_html = f'<span class="bc-badge">{bc_str}</span>' if bc_str else ''
         items += f"""<div class="reservation-card" data-ts="{ts}">
           {photo_html}
           <div class="res-info">
             <div class="res-header">
-              <span class="car-name">{voiture}{fck}</span>
+              <div class="res-header-top">
+                <span class="car-name">{voiture}{fck}</span>
+                {bc_html}
+              </div>
             </div>
             <div class="res-amounts">
               <span class="res-prix">Prix : <strong>{r.get('prix_fmt','—')}</strong></span>
@@ -694,7 +699,9 @@ def _css():
     .res-photo { width: 100%; height: 140px; object-fit: cover; display: block; }
     .res-photo-placeholder { width: 100%; height: 80px; background: #e5e9f0; }
     .res-info { flex: 1; display: flex; flex-direction: column; gap: 8px; padding: 14px; }
-    .res-header .car-name { font-size: 13px; line-height: 1.4; }
+    .res-header-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+    .res-header .car-name { font-size: 13px; line-height: 1.4; flex: 1; }
+    .bc-badge { flex-shrink: 0; font-size: 10px; font-weight: 600; color: #9ca3af; background: #f3f4f6; border: 1px solid #e5e7eb; border-radius: 6px; padding: 2px 7px; letter-spacing: 0.4px; font-family: 'SF Mono', ui-monospace, monospace; white-space: nowrap; margin-top: 1px; }
     .res-footer { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 2px; }
     .commercial-badge { display: inline-block; padding: 3px 11px; border-radius: 980px; background: #eff4ff; border: 1px solid #c3d3f7; color: #2FAEE0; font-size: 11px; font-weight: 600; }
     .fck-badge { font-size: 26px; opacity: 1; margin-left: 6px; display: inline-block; vertical-align: middle; }

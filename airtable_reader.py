@@ -213,7 +213,8 @@ def fetch_reservees_airtable():
         bc_raw = f.get("N° bon commande (from Bon de commande)", "")
         if isinstance(bc_raw, list):
             bc_raw = bc_raw[0] if bc_raw else ""
-        bc_digits = re.sub(r"[^0-9]", "", str(bc_raw))
+        bc_str = str(bc_raw).strip() if bc_raw else ""
+        bc_digits = re.sub(r"[^0-9]", "", bc_str)
         bc_num = int(bc_digits) if bc_digits else 0
         result.append({
             "voiture": f.get("Voiture", "—"),
@@ -222,6 +223,7 @@ def fetch_reservees_airtable():
             "marge_val": marge_val,
             "created_ts": created_ts,
             "bc_num": bc_num,
+            "bc_str": bc_str,
             "photo_url": _photo_url(f),
             "fiche_url": VIEW_URL.format(record_id=rec["id"]),
             "commerciaux": commerciaux,
