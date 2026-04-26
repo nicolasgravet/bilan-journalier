@@ -1821,8 +1821,7 @@ def _css():
     .pf-submit-btn:disabled { opacity: 0.7; cursor: not-allowed; }
 
     /* ── Livraisons ──────────────────────────────────────────── */
-    .livr-section { padding: 0; }
-    .livr-container { padding: 4px 18px 18px; display: flex; flex-direction: column; gap: 0; }
+    .livr-container { display: flex; flex-direction: column; gap: 0; margin-top: 4px; }
 
     .livr-week-sep {
       font-size: 11px; font-weight: 700; text-transform: uppercase;
