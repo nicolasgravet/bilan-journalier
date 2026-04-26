@@ -19,6 +19,7 @@ from airtable_reader import (
     fetch_frais_airtable,
     fetch_prestataires,
     _fetch_all_cars_index,
+    build_plate_index,
 )
 
 # Statuts autorisés pour afficher une offre acceptée
@@ -85,9 +86,20 @@ def main():
         offres = offres_filtrees
         print(f"  ✓ {len(offres)} offres retenues sur {before}")
 
-        # ── Round 3 : photos (lookup sur index, instantané) ──────────────────
+        # ── Round 3 : photos + matching plaque livraisons ────────────────────
         car_photos = fetch_car_photos(set(frais_by_car.keys()), index=cars_index)
         print(f"  ✓ {sum(1 for v in car_photos.values() if v.get('photo_url'))} photos")
+
+        # Enrichir les livraisons avec la fiche Airtable via la plaque
+        if livraisons:
+            plate_idx = build_plate_index(cars_index)
+            matched = 0
+            for ev in livraisons:
+                plate = ev.get("plate", "").upper()
+                if plate and plate in plate_idx:
+                    ev["airtable_url"] = plate_idx[plate]
+                    matched += 1
+            print(f"  ✓ {matched}/{len(livraisons)} livraisons matchées par plaque")
 
         # Voitures dont François Prisset est le seul acheteur
         francois_cars = {row["voiture"] for row in cars_index if row.get("is_francois")}

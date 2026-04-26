@@ -259,7 +259,7 @@ def _fetch_all_cars_index():
     formula = "OR(" + ",".join(f'{{Statut}} = "{s}"' for s in statuts) + ")"
     records = _get_records(GENERAL_TABLE, {
         "filterByFormula": formula,
-        "fields[]": ["Voiture", "Photo", "Statut", "Acheteur meca"],
+        "fields[]": ["Voiture", "Photo", "Statut", "Acheteur meca", "Immatriculation"],
         "maxRecords": 2000,
     })
     index = []
@@ -271,10 +271,12 @@ def _fetch_all_cars_index():
         acheteur_meca_raw = f.get("Acheteur meca", [])
         acheteur_meca = acheteur_meca_raw[0].get("name", "") if acheteur_meca_raw else ""
         is_francois = (len(acheteur_meca_raw) == 1 and "françois" in acheteur_meca.lower())
+        immat = f.get("Immatriculation", "").strip().upper()
         index.append({
             "rec_id": rec["id"],
             "voiture_lower": voiture.lower(),
             "voiture": voiture,
+            "immat": immat,
             "photo_url": _photo_url(f),
             "statut": statut,
             "fiche_url": VIEW_URL.format(record_id=rec["id"]),
@@ -282,6 +284,18 @@ def _fetch_all_cars_index():
             "is_francois": is_francois,
         })
     return index
+
+
+def build_plate_index(cars_index):
+    """
+    Construit un dict {immatriculation_uppercase: fiche_url} depuis l'index voitures.
+    Utilisé pour matcher les livraisons par plaque.
+    """
+    return {
+        row["immat"]: row["fiche_url"]
+        for row in cars_index
+        if row.get("immat")
+    }
 
 
 def _match_car(name, index):
