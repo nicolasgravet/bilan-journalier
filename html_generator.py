@@ -6,7 +6,7 @@ JOURS_FR = ["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"]
 MOIS_FR  = ["janvier","février","mars","avril","mai","juin",
              "juillet","août","septembre","octobre","novembre","décembre"]
 
-def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None, francois_cars=None, prestataires=None):
+def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None, francois_cars=None, prestataires=None, livraisons=None):
     now = datetime.utcnow()
     gen_ts = int(now.timestamp())  # timestamp UTC → JS le convertit en heure locale
     date_str = f"{JOURS_FR[now.weekday()]} {now.day} {MOIS_FR[now.month-1]} {now.year}"
@@ -15,6 +15,7 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
     car_photos = car_photos or {}
     francois_cars = francois_cars or set()
     prestataires = prestataires or []
+    livraisons   = livraisons or []
 
     # Prestataires 5 étoiles uniquement (même filtre que dans _render_prestataires)
     prest_display_count = sum(1 for p in prestataires if p.get("rating", 0) == 5)
@@ -228,6 +229,19 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
     </section>
 
   </div>
+
+  <!-- Livraisons de la semaine -->
+  <section class="glass-card section livr-section" id="section-livr" style="margin-top:18px">
+    <div class="section-header collapsible-header" onclick="toggleSection('livr')">
+      <span class="section-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span>
+      <h2>Livraisons de la semaine</h2>
+      <span class="count-badge" id="livr-count">{len(livraisons)}</span>
+      <button class="collapse-btn" id="collapse-livr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+    </div>
+    <div class="section-body" id="body-livr">
+      {_render_livraisons(livraisons)}
+    </div>
+  </section>
 
   <!-- Prestataires -->
   <section class="glass-card section prest-section" id="section-prest" style="margin-top:18px">
@@ -553,6 +567,120 @@ def _render_frais(frais_by_car, car_photos, francois_cars=None):
 
     return f'<div class="frais-container" id="frais-container">{blocks}</div>'
 
+
+
+def _render_livraisons(livraisons):
+    """Génère le HTML du module Livraisons de la semaine."""
+    from datetime import datetime, timedelta
+
+    if not livraisons:
+        return '<div class="empty-state">Aucune livraison prévue dans les 14 prochains jours 📦</div>'
+
+    JOURS_FR = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"]
+    MOIS_FR  = ["jan", "fév", "mar", "avr", "mai", "juin",
+                "juil", "août", "sep", "oct", "nov", "déc"]
+
+    # Détecter "cette semaine" vs "semaine prochaine"
+    # Semaine courante = lundi → dimanche de la semaine en cours
+    now = datetime.utcnow()
+    # Trouver le lundi de cette semaine
+    week_start = now.replace(hour=0, minute=0, second=0, microsecond=0) - timedelta(days=now.weekday())
+    next_week_start = week_start + timedelta(days=7)
+    week_after_start = next_week_start + timedelta(days=7)
+
+    def _week_label(dt):
+        d = dt.replace(tzinfo=None) if hasattr(dt, 'tzinfo') and dt.tzinfo else dt
+        if d < next_week_start:
+            return "Cette semaine"
+        elif d < week_after_start:
+            return "Semaine prochaine"
+        else:
+            return "Dans 2 semaines"
+
+    # Grouper par jour
+    from collections import OrderedDict
+    days = OrderedDict()
+    for ev in livraisons:
+        start = ev["start"]
+        d = start.replace(tzinfo=None) if hasattr(start, 'tzinfo') and start.tzinfo else start
+        day_key = d.strftime("%Y-%m-%d")
+        days.setdefault(day_key, []).append(ev)
+
+    html_parts = []
+    current_week_label = None
+
+    for day_key, evs in days.items():
+        day_dt = datetime.strptime(day_key, "%Y-%m-%d")
+        week_label = _week_label(day_dt)
+
+        if week_label != current_week_label:
+            current_week_label = week_label
+            _wicon = "📅" if week_label == "Cette semaine" else "🗓️"
+            html_parts.append(f'<div class="livr-week-sep">{_wicon} {week_label}</div>')
+
+        # En-tête du jour
+        jour_fr = JOURS_FR[day_dt.weekday()]
+        mois_fr = MOIS_FR[day_dt.month - 1]
+        html_parts.append(
+            f'<div class="livr-day-header">'
+            f'<span class="livr-day-name">{jour_fr}</span>'
+            f'<span class="livr-day-num">{day_dt.day}</span>'
+            f'<span class="livr-day-month">{mois_fr}</span>'
+            f'</div>'
+        )
+
+        for ev in evs:
+            start = ev["start"]
+            # Heure
+            try:
+                h_start = start.strftime("%Hh%M").replace("h00", "h")
+                if ev["end"]:
+                    end_dt = ev["end"]
+                    end_dt = end_dt.replace(tzinfo=None) if hasattr(end_dt, 'tzinfo') and end_dt.tzinfo else end_dt
+                    h_end = end_dt.strftime("%Hh%M").replace("h00", "h")
+                    h_range = f"{h_start} → {h_end}"
+                else:
+                    h_range = h_start
+            except Exception:
+                h_range = ""
+
+            # Badges
+            badges = []
+            if ev["is_client"]:
+                badges.append('<span class="livr-badge livr-badge-client">🏠 Chez client</span>')
+            else:
+                badges.append('<span class="livr-badge livr-badge-meca">🏢 Mecanicus</span>')
+            if ev["is_inspection"]:
+                badges.append('<span class="livr-badge livr-badge-inspect">🔍 + Inspection</span>')
+
+            # Assignés
+            assignees_html = ""
+            if ev["assignees"]:
+                names = " · ".join(ev["assignees"])
+                assignees_html = f'<span class="livr-assignees">👤 {names}</span>'
+
+            # Plaque
+            plate_html = ""
+            if ev["plate"]:
+                plate_html = f'<span class="livr-plate">{ev["plate"]}</span>'
+
+            # Client
+            client_html = ""
+            if ev["client"]:
+                client_html = f'<span class="livr-client">Client : {ev["client"]}</span>'
+
+            html_parts.append(f"""
+<div class="livr-event">
+  <div class="livr-event-time">{h_range}</div>
+  <div class="livr-event-body">
+    <div class="livr-event-car">{ev["car_name"]}{plate_html}</div>
+    <div class="livr-event-meta">
+      {''.join(badges)}{assignees_html}{client_html}
+    </div>
+  </div>
+</div>""")
+
+    return f'<div class="livr-container">{"".join(html_parts)}</div>'
 
 
 def _render_prestataires(prestataires):
@@ -1691,4 +1819,63 @@ def _css():
     }
     .pf-submit-btn:hover:not(:disabled) { background: #003f7a; transform: translateY(-1px); }
     .pf-submit-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+
+    /* ── Livraisons ──────────────────────────────────────────── */
+    .livr-section { padding: 0; }
+    .livr-container { padding: 4px 18px 18px; display: flex; flex-direction: column; gap: 0; }
+
+    .livr-week-sep {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; color: #6b7280;
+      padding: 18px 0 8px; border-top: 1px solid #e5e7eb; margin-top: 8px;
+    }
+    .livr-week-sep:first-child { margin-top: 0; border-top: none; padding-top: 10px; }
+
+    .livr-day-header {
+      display: flex; align-items: baseline; gap: 6px;
+      padding: 12px 0 6px; border-bottom: 1px solid #f3f4f6;
+    }
+    .livr-day-name { font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .06em; color: #9ca3af; }
+    .livr-day-num  { font-size: 20px; font-weight: 800; color: #111827; line-height: 1; }
+    .livr-day-month { font-size: 12px; font-weight: 500; color: #6b7280; }
+
+    .livr-event {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 10px 0; border-bottom: 1px solid #f3f4f6;
+    }
+    .livr-event:last-child { border-bottom: none; }
+
+    .livr-event-time {
+      min-width: 90px; font-size: 12px; font-weight: 600;
+      color: #4b5563; padding-top: 3px; white-space: nowrap;
+    }
+    .livr-event-body { flex: 1; min-width: 0; }
+    .livr-event-car {
+      font-size: 14px; font-weight: 700; color: #111827;
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+      margin-bottom: 5px;
+    }
+    .livr-plate {
+      font-size: 11px; font-weight: 700; color: #1d4ed8;
+      background: #eff6ff; border: 1px solid #bfdbfe;
+      border-radius: 4px; padding: 1px 6px; letter-spacing: .05em;
+      white-space: nowrap;
+    }
+    .livr-event-meta {
+      display: flex; flex-wrap: wrap; gap: 6px; align-items: center;
+    }
+    .livr-badge {
+      font-size: 11px; font-weight: 600; border-radius: 10px;
+      padding: 2px 8px; white-space: nowrap;
+    }
+    .livr-badge-client  { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
+    .livr-badge-meca    { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+    .livr-badge-inspect { background: #fefce8; color: #a16207; border: 1px solid #fde68a; }
+    .livr-assignees {
+      font-size: 11px; color: #6b7280; font-weight: 500;
+    }
+    .livr-client {
+      font-size: 11px; color: #9ca3af; font-style: italic;
+    }
     """

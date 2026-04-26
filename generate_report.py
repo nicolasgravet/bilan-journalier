@@ -8,8 +8,9 @@ from concurrent.futures import ThreadPoolExecutor
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from config import AIRTABLE_TOKEN, REPORT_PATH
+from config import AIRTABLE_TOKEN, GCAL_ICS_URL, REPORT_PATH
 from slack_reader import fetch_achat_vente
+from calendar_reader import fetch_livraisons
 from airtable_reader import (
     fetch_ct_data,
     fetch_reservees_airtable,
@@ -38,6 +39,7 @@ def main():
     car_photos = {}
     frais_by_car = {}
     prestataires = []
+    livraisons = []
 
     if AIRTABLE_TOKEN:
         # ── Round 1 : tous les appels indépendants en parallèle ──────────────
@@ -50,6 +52,7 @@ def main():
             f_reservees = ex.submit(fetch_reservees_airtable)
             f_ct        = ex.submit(fetch_ct_data)
             f_prest     = ex.submit(fetch_prestataires)
+            f_livr      = ex.submit(fetch_livraisons, GCAL_ICS_URL, 14)
 
             # Dès que l'index est disponible, lancer les frais sans attendre Slack
             cars_index = f_index.result()
@@ -60,6 +63,7 @@ def main():
             ct_data      = f_ct.result()
             frais_by_car = f_frais.result()
             prestataires = f_prest.result()
+            livraisons   = f_livr.result()
 
         print(f"  ✓ {len(offres)} offres Slack, {len(cars_index)} véhicules index, "
               f"{len(reservees)} réservées, {len(ct_data)} CT, "
@@ -97,7 +101,8 @@ def main():
 
     print("Génération HTML...")
     html = generate_html(offres, reservees, frais_by_car, ct_data, car_photos,
-                         francois_cars=francois_cars, prestataires=prestataires)
+                         francois_cars=francois_cars, prestataires=prestataires,
+                         livraisons=livraisons)
 
     with open(REPORT_PATH, "w", encoding="utf-8") as f:
         f.write(html)

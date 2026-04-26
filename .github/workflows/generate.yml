@@ -40,6 +40,7 @@ jobs:
           PRESTATAIRES_TOKEN     = os.environ.get("PRESTATAIRES_TOKEN", os.environ.get("AIRTABLE_TOKEN", ""))
           PRESTATAIRES_BASE_ID   = "appBQnpnbCXZkHnzS"
           PRESTATAIRES_TABLE_ID  = "tbl9Ut5t4NUA9hkoJ"
+          GCAL_ICS_URL           = os.environ.get("GCAL_ICS_URL", "")
           REPORT_PATH            = "./public/index.html"
           CHANNEL_IDS  = {"achat_vente": "C011K41BHUZ", "logistique": "C07L1L861SA"}
           CHANNEL_NAMES = {"achat_vente": "achat_vente", "logistique": "logistique"}
@@ -53,6 +54,7 @@ jobs:
           SLACK_BOT_TOKEN:    ${{ secrets.SLACK_BOT_TOKEN }}
           AIRTABLE_TOKEN:     ${{ secrets.AIRTABLE_TOKEN }}
           PRESTATAIRES_TOKEN: ${{ secrets.PRESTATAIRES_TOKEN }}
+          GCAL_ICS_URL:       ${{ secrets.GCAL_ICS_URL }}
         run: python generate_report.py
 
       - name: Déployer sur GitHub Pages
