@@ -188,7 +188,7 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
           <input type="text" class="section-search" id="search-ct" placeholder="Rechercher une voiture…" oninput="filterBySearch('ct', this.value)" autocomplete="off">
           <button class="search-clear-btn" onclick="clearSearch('ct')">✕</button>
         </div>
-        <div class="offres-sub-filters">
+        <div class="module-sub-filters">
           <div class="filter-bar ct-status-filter">
             <button class="filter-btn active" data-ct-status="tous">Tous statuts</button>
             <button class="filter-btn" data-ct-status="0">Expiré</button>
@@ -220,37 +220,6 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
       </div>
     </section>
 
-    <!-- Offres acceptées -->
-    <section class="glass-card section col-span-3" id="section-offres">
-      <div class="section-header collapsible-header" onclick="toggleSection('offres')">
-        <span class="section-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-        <h2>Offres Acceptées</h2>
-        <span class="count-badge" id="offres-count">{len(offres)}</span>
-        <div class="header-filters" onclick="event.stopPropagation()">
-          <div class="filter-bar" data-target="offres">
-            <button class="filter-btn active" data-days="0">Tout</button>
-            <button class="filter-btn" data-days="1">1j</button>
-            <button class="filter-btn" data-days="7">7j</button>
-            <button class="filter-btn" data-days="30">1m</button>
-            <button class="filter-btn" data-days="90">3m</button>
-          </div>
-        </div>
-        <button class="collapse-btn" id="collapse-offres">▼</button>
-      </div>
-      <div class="section-body" id="body-offres" style="display:none">
-        <div class="section-search-wrap" onclick="event.stopPropagation()">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#adb5c2" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="text" class="section-search" id="search-offres" placeholder="Rechercher une voiture…" oninput="filterBySearch('offres', this.value)" autocomplete="off">
-          <button class="search-clear-btn" onclick="clearSearch('offres')">✕</button>
-        </div>
-        <div class="offres-sub-filters">
-          {_offres_type_filter(offres)}
-          {_offres_commercial_filter(offres)}
-        </div>
-        {_render_offres(offres)}
-      </div>
-    </section>
-
   </div>
 
   <footer class="footer">
@@ -264,72 +233,6 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
 
 
 # ─── Renderers ────────────────────────────────────────────────────────────────
-
-def _offres_type_filter(offres):
-    # Exclure les valeurs qui ressemblent à des bugs (contenant ":", "€", ou chiffres)
-    types = sorted({
-        o.get("type", "").strip() for o in offres
-        if o.get("type", "").strip()
-        and ":" not in o.get("type", "")
-        and "€" not in o.get("type", "")
-        and not any(c.isdigit() for c in o.get("type", ""))
-        and o.get("type", "").strip() != "—"
-    })
-    if not types:
-        return ""
-    btns = '<button class="filter-btn active" data-offre-type="tous">Tous</button>'
-    for t in types:
-        key = t.lower().replace("-", "").replace(" ", "")
-        btns += f'<button class="filter-btn" data-offre-type="{key}">{t}</button>'
-    return f'<div class="sub-filter-group"><span class="sub-filter-label">Type</span><div class="filter-bar offres-type-filter">{btns}</div></div>'
-
-
-def _offres_commercial_filter(offres):
-    # Extraire uniquement le prénom (1er mot), normalisé en Title Case, dédupliqué
-    prenoms = {}
-    for o in offres:
-        nom = o.get("acheteur", "").strip()
-        if not nom or nom == "—":
-            continue
-        prenom = nom.split()[0].capitalize()
-        key = prenom.lower()
-        prenoms[key] = prenom
-    if not prenoms:
-        return ""
-    btns = '<button class="filter-btn active" data-commercial="tous">Tous</button>'
-    for key, prenom in sorted(prenoms.items()):
-        btns += f'<button class="filter-btn" data-commercial="{key}">{prenom}</button>'
-    return f'<div class="sub-filter-group"><span class="sub-filter-label">Commercial</span><div class="filter-bar offres-commercial-filter">{btns}</div></div>'
-
-
-def _render_offres(offres):
-    if not offres:
-        return '<div class="empty-state">Aucune offre acceptée</div>'
-    rows = ""
-    for o in offres:
-        ts = o.get("ts")
-        ts_unix = int(ts.timestamp()) if ts else 0
-        time_str = ts.strftime("%d/%m %H:%M") if ts else "—"
-        fiche_url = o.get("fiche_url", "")
-        fiche_btn = f'<a class="fiche-btn-sm" href="{fiche_url}" target="_blank">Fiche →</a>' if fiche_url else ""
-        type_key = o.get('type', '').lower().replace('-', '').replace(' ', '')
-        commercial_key = (o.get('acheteur', '').strip().split()[0].lower()) if o.get('acheteur', '').strip() else ''
-        rows += f"""<div class="table-row" data-ts="{ts_unix}" data-section="offres" data-offre-type="{type_key}" data-commercial="{commercial_key}">
-          <div class="cell-primary">
-            <span class="car-name">{o.get('voiture','—')}</span>
-            <span class="time-tag">{time_str}</span>
-          </div>
-          <div class="cell">{o.get('acheteur','—')}</div>
-          <div class="cell"><span class="type-badge type-{type_key}">
-            {o.get('type','—')}</span></div>
-          <div class="cell price">{o.get('prix_vente','—')}</div>
-          <div class="cell marge">{o.get('marge','—')}</div>
-          <div class="cell">{fiche_btn}</div>
-        </div>"""
-    return f"""<div class="table-header">
-      <div>Véhicule</div><div>Acheteur</div><div>Type</div><div>Prix vente</div><div>Marge</div><div></div>
-    </div><div class="table-body">{rows}</div>"""
-
 
 def _render_reservees(reservees):
     if not reservees:
@@ -470,7 +373,7 @@ def _js():
     return r"""
 // ── Collapse sections ────────────────────────────────────────────────
 // ── Recherche par voiture dans chaque module ────────────────────────
-var searchQueries = { frais: '', ct: '', reservees: '', offres: '' };
+var searchQueries = { frais: '', ct: '', reservees: '' };
 
 function filterBySearch(section, query) {
   searchQueries[section] = query.trim().toLowerCase();
@@ -510,16 +413,6 @@ function applySearchFilter(section) {
       var name = (block.querySelector('.car-name') || {textContent:''}).textContent.toLowerCase();
       block.style.display = (!q || name.includes(q)) ? '' : 'none';
     });
-  } else if (section === 'offres') {
-    applyOffresFilter(); // Offres uses its own filter — we override post-hoc
-    if (q) {
-      document.querySelectorAll('[data-section="offres"]').forEach(function(row) {
-        if (row.style.display !== 'none') {
-          var name = (row.querySelector('.car-name') || {textContent:''}).textContent.toLowerCase();
-          if (!name.includes(q)) row.style.display = 'none';
-        }
-      });
-    }
   }
 }
 
@@ -534,73 +427,7 @@ function toggleSection(id) {
 
 
 // ── État des filtres ────────────────────────────────────────────────
-var offresState = { days: 0, type: 'tous', commerciaux: new Set() };
 var ctState = { group: 'tous', statuses: new Set() };
-
-// ── Filtres Offres ───────────────────────────────────────────────────
-function applyOffresFilter() {
-  var now = Math.floor(Date.now() / 1000);
-  var cutoff = offresState.days > 0 ? now - offresState.days * 86400 : 0;
-  var visible = 0;
-  document.querySelectorAll('[data-section="offres"]').forEach(function(row) {
-    var ts = parseInt(row.getAttribute('data-ts') || '0', 10);
-    var type = row.getAttribute('data-offre-type') || '';
-    var com = row.getAttribute('data-commercial') || '';
-    var okDate = offresState.days === 0 || (ts > 0 && ts >= cutoff);
-    var okType = offresState.type === 'tous' || type === offresState.type;
-    var okCom = offresState.commerciaux.size === 0 || offresState.commerciaux.has(com);
-    var show = okDate && okType && okCom;
-    row.style.display = show ? '' : 'none';
-    if (show) visible++;
-  });
-  var el = document.getElementById('offres-count');
-  if (el) el.textContent = visible;
-}
-
-// Filtre date offres
-document.querySelectorAll('.filter-bar[data-target="offres"] .filter-btn').forEach(function(btn) {
-  btn.addEventListener('click', function() {
-    document.querySelectorAll('.filter-bar[data-target="offres"] .filter-btn').forEach(function(b) { b.classList.remove('active'); });
-    btn.classList.add('active');
-    offresState.days = parseInt(btn.getAttribute('data-days'), 10);
-    applyOffresFilter();
-  });
-});
-
-// Filtre type offres
-document.querySelectorAll('.offres-type-filter .filter-btn').forEach(function(btn) {
-  btn.addEventListener('click', function() {
-    document.querySelectorAll('.offres-type-filter .filter-btn').forEach(function(b) { b.classList.remove('active'); });
-    btn.classList.add('active');
-    offresState.type = btn.getAttribute('data-offre-type');
-    applyOffresFilter();
-  });
-});
-
-// Filtre commercial offres (multi-sélection)
-document.querySelectorAll('.offres-commercial-filter .filter-btn').forEach(function(btn) {
-  btn.addEventListener('click', function() {
-    var val = btn.getAttribute('data-commercial');
-    if (val === 'tous') {
-      offresState.commerciaux.clear();
-      document.querySelectorAll('.offres-commercial-filter .filter-btn').forEach(function(b) { b.classList.remove('active'); });
-      btn.classList.add('active');
-    } else {
-      // Toggle ce commercial
-      if (offresState.commerciaux.has(val)) {
-        offresState.commerciaux.delete(val);
-        btn.classList.remove('active');
-      } else {
-        offresState.commerciaux.add(val);
-        btn.classList.add('active');
-      }
-      // Gérer le bouton "Tous"
-      var tousBtn = document.querySelector('.offres-commercial-filter .filter-btn[data-commercial="tous"]');
-      if (tousBtn) tousBtn.classList.toggle('active', offresState.commerciaux.size === 0);
-    }
-    applyOffresFilter();
-  });
-});
 
 // ── Filtre Frais (date + statut) ─────────────────────────────────────
 var fraisState = { days: 0, statut: 'tous' };
@@ -800,9 +627,7 @@ def _css():
     .kpi-value { font-size: 40px; font-weight: 700; color: #0a0f1e; letter-spacing: -2px; line-height: 1; font-variant-numeric: tabular-nums; }
     .kpi-label { font-size: 10px; color: #8a94a6; margin-top: 6px; text-transform: uppercase; letter-spacing: 0.09em; font-weight: 600; }
 
-    .offres-sub-filters { display: flex; gap: 20px; flex-wrap: wrap; padding: 0 0 14px 0; border-bottom: 1px solid #f0f2f5; margin-bottom: 6px; }
-    .sub-filter-group { display: flex; align-items: center; gap: 8px; }
-    .sub-filter-label { font-size: 10px; font-weight: 700; color: #adb5c2; text-transform: uppercase; letter-spacing: 0.09em; white-space: nowrap; }
+    .module-sub-filters { display: flex; gap: 20px; flex-wrap: wrap; padding: 0 0 14px 0; border-bottom: 1px solid #f0f2f5; margin-bottom: 6px; }
     .collapsible-header { cursor: pointer; border-radius: 12px; padding: 4px 6px; margin: -4px -6px; transition: background 0.15s; }
     .collapsible-header:hover { background: rgba(0,87,168,0.04); }
     .collapsible-header:hover .collapse-btn { border-color: #2FAEE0; color: #2FAEE0; }
@@ -834,19 +659,6 @@ def _css():
     .filter-btn:hover { background: #f5f7fa; border-color: #c5cad3; }
     .filter-btn.active { background: #2FAEE0; border-color: #2FAEE0; color: #ffffff; box-shadow: 0 1px 4px rgba(0,87,168,0.3); }
 
-    /* Table offres */
-    .table-header { display: grid; grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr 80px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.09em; color: #adb5c2; padding: 0 14px 10px; font-weight: 600; }
-    .table-row { display: grid; grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr 80px; padding: 12px 14px; border-radius: 10px; margin-bottom: 4px; background: #f7f9fc; border: 1px solid #edf0f5; transition: background 0.15s, border-color 0.15s; align-items: center; }
-    .table-row:hover { background: #eff4ff; border-color: #c3d3f7; }
-    .cell-primary { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-    .car-name { font-weight: 600; color: #0a0f1e; font-size: 14px; }
-    .cell { font-size: 13px; color: #6b7280; }
-    .price { color: #059669; font-weight: 700; }
-    .marge { color: #2FAEE0; font-weight: 700; }
-    .time-tag { font-size: 10px; padding: 2px 8px; background: #edf0f5; border-radius: 980px; color: #adb5c2; font-weight: 500; }
-    .type-badge { font-size: 11px; padding: 3px 10px; border-radius: 980px; font-weight: 600; }
-    .type-achat { background: #d1fae5; color: #065f46; }
-    .type-dépôtvente, .type-depôtvente { background: #eff4ff; color: #2FAEE0; }
 
     /* Réservées */
     .reservations-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
@@ -920,6 +732,6 @@ def _css():
     @media (max-width: 640px) {
       .grid, .kpi-row { grid-template-columns: 1fr; }
       .col-span-2, .col-span-3 { grid-column: span 1; }
-      .table-header, .table-row { grid-template-columns: 1fr 1fr; }
+
     }
     """
