@@ -205,7 +205,9 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
         <span class="section-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
         <h2>Voitures Réservées</h2>
         <span class="count-badge">{len(reservees)}</span>
-        <div class="header-filters"></div>
+        <div class="header-filters" onclick="event.stopPropagation()">
+          <button class="sort-toggle-btn" id="sort-reservees" onclick="toggleSortReservees(this)">↓ Plus récent</button>
+        </div>
         <button class="collapse-btn" id="collapse-reservees">▼</button>
       </div>
       <div class="section-body" id="body-reservees" style="display:none">
@@ -246,7 +248,8 @@ def _render_reservees(reservees, francois_cars=None):
         )
         voiture = r.get('voiture', '—')
         fck = ' <span class="fck-badge">🖕</span>' if (voiture in francois_cars or r.get("is_francois")) else ''
-        items += f"""<div class="reservation-card">
+        ts = r.get('created_ts', 0)
+        items += f"""<div class="reservation-card" data-ts="{ts}">
           {photo_html}
           <div class="res-info">
             <div class="res-header">
@@ -429,6 +432,22 @@ function toggleSection(id) {
   var collapsed = body.style.display === 'none';
   body.style.display = collapsed ? '' : 'none';
   if (btn) btn.textContent = collapsed ? '▲' : '▼';
+}
+
+// ── Tri voitures réservées ───────────────────────────────────────────
+var reserveesSortDesc = true; // plus récent en premier par défaut
+function toggleSortReservees(btn) {
+  reserveesSortDesc = !reserveesSortDesc;
+  btn.textContent = reserveesSortDesc ? '↓ Plus récent' : '↑ Plus ancien';
+  var grid = document.querySelector('.reservations-grid');
+  if (!grid) return;
+  var cards = Array.from(grid.querySelectorAll('.reservation-card'));
+  cards.sort(function(a, b) {
+    var ta = parseInt(a.getAttribute('data-ts') || '0', 10);
+    var tb = parseInt(b.getAttribute('data-ts') || '0', 10);
+    return reserveesSortDesc ? tb - ta : ta - tb;
+  });
+  cards.forEach(function(c) { grid.appendChild(c); });
 }
 
 
@@ -664,6 +683,8 @@ def _css():
     .filter-btn { padding: 5px 13px; border-radius: 980px; border: 1px solid #dde1e8; background: #ffffff; color: #374151; font-size: 11px; font-weight: 500; cursor: pointer; transition: all 0.15s ease; white-space: nowrap; }
     .filter-btn:hover { background: #f5f7fa; border-color: #c5cad3; }
     .filter-btn.active { background: #2FAEE0; border-color: #2FAEE0; color: #ffffff; box-shadow: 0 1px 4px rgba(0,87,168,0.3); }
+    .sort-toggle-btn { padding: 5px 13px; border-radius: 980px; border: 1px solid #dde1e8; background: #ffffff; color: #374151; font-size: 11px; font-weight: 500; cursor: pointer; transition: all 0.15s ease; white-space: nowrap; }
+    .sort-toggle-btn:hover { background: #f5f7fa; border-color: #2FAEE0; color: #2FAEE0; }
 
 
     /* Réservées */
