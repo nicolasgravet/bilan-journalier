@@ -182,7 +182,13 @@ def _parse_ics_events(ics_text: str, start_dt: datetime, end_dt: datetime) -> li
                 email = att.strip().replace("mailto:", "")
                 assignees.append(_parse_name_from_email(email))
 
-        # Client : première ligne de la description non vide
+        # URL Airtable dans la description (ex: https://airtable.com/appXXX/pagXXX/recXXX)
+        airtable_url = ""
+        airtable_m = _re.search(r"https://airtable\.com/[^\s\\]+", description)
+        if airtable_m:
+            airtable_url = airtable_m.group(0).rstrip("\\")
+
+        # Client : première ligne de la description non vide (hors URL et téléphone)
         desc_lines = [l.strip() for l in description.split("\n") if l.strip()]
         client = desc_lines[0] if desc_lines else ""
         # Exclure si c'est une URL ou un numéro de tel seul
@@ -202,6 +208,7 @@ def _parse_ics_events(ics_text: str, start_dt: datetime, end_dt: datetime) -> li
             "end":            end,
             "location":       location,
             "client":         client,
+            "airtable_url":   airtable_url,
             "is_client":      is_client_delivery,
             "is_inspection":  is_inspection,
             "assignees":      assignees,

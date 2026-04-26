@@ -664,6 +664,16 @@ def _render_livraisons(livraisons):
             if ev["plate"]:
                 plate_html = f'<span class="livr-plate">{ev["plate"]}</span>'
 
+            # Lien Airtable
+            airtable_html = ""
+            if ev.get("airtable_url"):
+                airtable_html = (
+                    f'<a class="livr-airtable-link" href="{ev["airtable_url"]}" '
+                    f'target="_blank" rel="noopener" title="Ouvrir la fiche Airtable">'
+                    f'<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>'
+                    f'Fiche</a>'
+                )
+
             # Client
             client_html = ""
             if ev["client"]:
@@ -673,7 +683,7 @@ def _render_livraisons(livraisons):
 <div class="livr-event">
   <div class="livr-event-time">{h_range}</div>
   <div class="livr-event-body">
-    <div class="livr-event-car">{ev["car_name"]}{plate_html}</div>
+    <div class="livr-event-car">{ev["car_name"]}{plate_html}{airtable_html}</div>
     <div class="livr-event-meta">
       {''.join(badges)}{assignees_html}{client_html}
     </div>
@@ -1877,4 +1887,13 @@ def _css():
     .livr-client {
       font-size: 11px; color: #9ca3af; font-style: italic;
     }
+    .livr-airtable-link {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 11px; font-weight: 600; color: #0369a1;
+      background: #f0f9ff; border: 1px solid #bae6fd;
+      border-radius: 6px; padding: 2px 8px;
+      text-decoration: none; white-space: nowrap;
+      transition: background 0.15s, color 0.15s;
+    }
+    .livr-airtable-link:hover { background: #0369a1; color: #fff; border-color: #0369a1; }
     """
