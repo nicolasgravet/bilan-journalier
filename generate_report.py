@@ -80,12 +80,18 @@ def main():
         car_photos = fetch_car_photos(set(frais_by_car.keys()), index=cars_index)
         print(f"  ✓ {sum(1 for v in car_photos.values() if v.get('photo_url'))} photos")
 
+        # Voitures dont François Prisset est le seul acheteur
+        francois_cars = {row["voiture"] for row in cars_index if row.get("is_francois")}
+        if francois_cars:
+            print(f"  🖕 {len(francois_cars)} voiture(s) de François détectée(s)")
+
     else:
         print("Token Airtable absent — données Airtable désactivées")
         general_msgs, offres, _ = fetch_achat_vente(days_back=90)
+        francois_cars = set()
 
     print("Génération HTML...")
-    html = generate_html(offres, reservees, frais_by_car, ct_data, car_photos)
+    html = generate_html(offres, reservees, frais_by_car, ct_data, car_photos, francois_cars=francois_cars)
 
     with open(REPORT_PATH, "w", encoding="utf-8") as f:
         f.write(html)

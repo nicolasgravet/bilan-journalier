@@ -208,6 +208,7 @@ def fetch_reservees_airtable():
             created_ts = 0
         acheteurs_raw = f.get("Acheteur meca", [])
         commerciaux = [a.get("name", "").split()[0].capitalize() for a in acheteurs_raw if a.get("name")]
+        is_francois = (len(acheteurs_raw) == 1 and any("françois" in a.get("name", "").lower() for a in acheteurs_raw))
         result.append({
             "voiture": f.get("Voiture", "—"),
             "prix_fmt": prix_fmt,
@@ -217,6 +218,7 @@ def fetch_reservees_airtable():
             "photo_url": _photo_url(f),
             "fiche_url": VIEW_URL.format(record_id=rec["id"]),
             "commerciaux": commerciaux,
+            "is_francois": is_francois,
         })
     result.sort(key=lambda x: x["voiture"])
     return result
@@ -254,6 +256,7 @@ def _fetch_all_cars_index():
         statut = statut_raw.get("name", "") if isinstance(statut_raw, dict) else str(statut_raw)
         acheteur_meca_raw = f.get("Acheteur meca", [])
         acheteur_meca = acheteur_meca_raw[0].get("name", "") if acheteur_meca_raw else ""
+        is_francois = (len(acheteur_meca_raw) == 1 and "françois" in acheteur_meca.lower())
         index.append({
             "rec_id": rec["id"],
             "voiture_lower": voiture.lower(),
@@ -262,6 +265,7 @@ def _fetch_all_cars_index():
             "statut": statut,
             "fiche_url": VIEW_URL.format(record_id=rec["id"]),
             "acheteur_meca": acheteur_meca,
+            "is_francois": is_francois,
         })
     return index
 

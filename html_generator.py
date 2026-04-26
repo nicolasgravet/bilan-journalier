@@ -4,13 +4,14 @@ JOURS_FR = ["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"]
 MOIS_FR  = ["janvier","février","mars","avril","mai","juin",
              "juillet","août","septembre","octobre","novembre","décembre"]
 
-def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None):
+def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None, francois_cars=None):
     now = datetime.utcnow()
     gen_ts = int(now.timestamp())  # timestamp UTC → JS le convertit en heure locale
     date_str = f"{JOURS_FR[now.weekday()]} {now.day} {MOIS_FR[now.month-1]} {now.year}"
     time_str = now.strftime("%H:%M")
     ct_data = ct_data or []
     car_photos = car_photos or {}
+    francois_cars = francois_cars or set()
 
     import json as _json
     # CT global = toutes les voitures non-réservées (visibles dans "Tous")
@@ -164,7 +165,7 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
           <input type="text" class="section-search" id="search-frais" placeholder="Rechercher une voiture…" oninput="filterBySearch('frais', this.value)" autocomplete="off">
           <button class="search-clear-btn" onclick="clearSearch('frais')">✕</button>
         </div>
-        {_render_frais(frais_by_car, car_photos)}
+        {_render_frais(frais_by_car, car_photos, francois_cars)}
       </div>
     </section>
 
@@ -197,7 +198,7 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
             <button class="filter-btn" data-ct-status="3">OK</button>
           </div>
         </div>
-        {_render_ct(ct_data)}
+        {_render_ct(ct_data, francois_cars)}
       </div>
     </section>
 
@@ -216,7 +217,7 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
           <input type="text" class="section-search" id="search-reservees" placeholder="Rechercher une voiture…" oninput="filterBySearch('reservees', this.value)" autocomplete="off">
           <button class="search-clear-btn" onclick="clearSearch('reservees')">✕</button>
         </div>
-        {_render_reservees(reservees)}
+        {_render_reservees(reservees, francois_cars)}
       </div>
     </section>
 
@@ -234,7 +235,8 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
 
 # ─── Renderers ────────────────────────────────────────────────────────────────
 
-def _render_reservees(reservees):
+def _render_reservees(reservees, francois_cars=None):
+    francois_cars = francois_cars or set()
     if not reservees:
         return '<div class="empty-state">Aucune voiture réservée</div>'
     items = ""
@@ -245,11 +247,13 @@ def _render_reservees(reservees):
         commerciaux_html = "".join(
             f'<span class="commercial-badge">{c}</span>' for c in commerciaux
         )
+        voiture = r.get('voiture', '—')
+        fck = ' <span class="fck-badge">🖕</span>' if (voiture in francois_cars or r.get("is_francois")) else ''
         items += f"""<div class="reservation-card">
           {photo_html}
           <div class="res-info">
             <div class="res-header">
-              <span class="car-name">{r.get('voiture','—')}</span>
+              <span class="car-name">{voiture}{fck}</span>
             </div>
             <div class="res-amounts">
               <span class="res-prix">Prix : <strong>{r.get('prix_fmt','—')}</strong></span>
@@ -264,7 +268,8 @@ def _render_reservees(reservees):
     return f'<div class="reservations-grid">{items}</div>'
 
 
-def _render_ct(ct_data):
+def _render_ct(ct_data, francois_cars=None):
+    francois_cars = francois_cars or set()
     if not ct_data:
         return '<div class="empty-state">Aucune alerte CT</div>'
 
@@ -302,8 +307,10 @@ def _render_ct(ct_data):
         fiche_url = c.get("fiche_url", "")
         fiche = f'<a class="fiche-btn-sm" href="{fiche_url}" target="_blank">Fiche →</a>' if fiche_url else ""
 
+        voiture_ct = c.get('voiture', '—')
+        fck_ct = ' <span class="fck-badge">🖕</span>' if voiture_ct in francois_cars else ''
         rows += f"""<div class="ct-row {cls}" data-ct-type="{ct_filter_type}" data-ct-crit="{crit}"{default_hidden}>
-          <div class="ct-car"><span class="car-name">{c.get('voiture','—')}</span></div>
+          <div class="ct-car"><span class="car-name">{voiture_ct}{fck_ct}</span></div>
           <div><span class="statut-pill">{statut}</span></div>
           <div>{ct_badge}</div>
           <div class="ct-date">{date_ct}</div>
@@ -319,7 +326,8 @@ def _render_ct(ct_data):
     <div id="ct-table-body">{rows}</div>"""
 
 
-def _render_frais(frais_by_car, car_photos):
+def _render_frais(frais_by_car, car_photos, francois_cars=None):
+    francois_cars = francois_cars or set()
     if not frais_by_car:
         return '<div class="empty-state">Aucun frais enregistré ce mois</div>'
     blocks = ""
@@ -333,7 +341,8 @@ def _render_frais(frais_by_car, car_photos):
         fiche_url = car_info.get("fiche_url")
 
         photo_html = f'<img class="car-thumb" src="{photo_url}" alt="">' if photo_url else '<div class="car-thumb-placeholder"></div>'
-        car_title = f'<span class="car-frais-name-text">🚗 {car}</span>'
+        fck_frais = ' <span class="fck-badge">🖕</span>' if car in francois_cars else ''
+        car_title = f'<span class="car-frais-name-text">🚗 {car}{fck_frais}</span>'
         fiche_btn_car = f'<a class="fiche-btn-sm" href="{fiche_url}" target="_blank">Fiche →</a>' if fiche_url else ""
 
         rows = ""
@@ -670,6 +679,7 @@ def _css():
     .res-header .car-name { font-size: 13px; line-height: 1.4; }
     .res-footer { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 2px; }
     .commercial-badge { display: inline-block; padding: 3px 11px; border-radius: 980px; background: #eff4ff; border: 1px solid #c3d3f7; color: #2FAEE0; font-size: 11px; font-weight: 600; }
+    .fck-badge { font-size: 13px; opacity: 0.75; margin-left: 3px; display: inline-block; }
     .res-amounts { display: flex; gap: 14px; flex-wrap: wrap; }
     .res-prix { font-size: 12px; color: #6b7280; }
     .res-marge { font-size: 12px; color: #2FAEE0; font-weight: 700; }
