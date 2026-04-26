@@ -418,7 +418,7 @@
         updateClock();
         setInterval(updateClock, 1000);
         // Timestamp de génération converti en heure locale
-        var gen = new Date(1777226772 * 1000);
+        var gen = new Date(1777227485 * 1000);
         var genH = String(gen.getHours()).padStart(2,'0');
         var genM = String(gen.getMinutes()).padStart(2,'0');
         var genLabel = 'Mis à jour le ' + JOURS[gen.getDay()] + ' ' + gen.getDate() + ' ' + MOIS[gen.getMonth()] + ' ' + gen.getFullYear() + ' à ' + genH + ':' + genM;
@@ -428,7 +428,7 @@
         btn.disabled = true;
         btn.textContent = '⏳ En cours…';
         document.getElementById('refresh-status').textContent = 'Génération en cours…';
-        var currentTs = 1777226772;
+        var currentTs = 1777227485;
         fetch('https://mecanicus-refresh.nicolas-0ce.workers.dev', {method:'POST'})
         .then(r => {
           if (r.ok) {
@@ -3129,16 +3129,16 @@ Bentley, Rolls Royce et Jaguar </p>
                 <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
                 
               </div>
-            </div><div class="prest-card" data-types='["Autre"]' data-marques='[]' data-searchtext="ct bagneux  217 avenue henri ravera ">
+            </div><div class="prest-card" data-types='["Autre"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="ct bagneux  217 avenue henri ravera ">
               <div class="prest-card-accent" style="background:#374151"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
                   <div class="prest-card-pills"><span class="prest-type-pill" style="background:#f3f4f6;color:#374151;border-color:#d1d5db">Autre</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
+                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span></span>
                 </div>
                 <div class="prest-card-name">CT Bagneux</div>
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 42 53 50 34" class="pci-link">01 42 53 50 34</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">217 avenue Henri Ravera</span></div></div>
-                
+                <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
                 
               </div>
             </div><div class="prest-card" data-types='["Autre"]' data-marques='[]' data-searchtext="ksf  9 rue des gardes, 91370 verrières-le-buisson ">
@@ -3173,7 +3173,7 @@ Bentley, Rolls Royce et Jaguar </p>
   </section>
 
   <footer class="footer">
-    Généré le Dimanche 26 avril 2026 à 18:06 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
+    Généré le Dimanche 26 avril 2026 à 18:18 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
   </footer>
 </div>
 <div id="res-modal" class="res-modal-overlay" onclick="closeResModal(event)">
