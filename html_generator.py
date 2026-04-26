@@ -108,15 +108,6 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
   <!-- KPI -->
   <div class="kpi-row">
     <div class="glass-card kpi">
-      <div class="kpi-icon-wrap kpi-green">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-      </div>
-      <div class="kpi-body">
-        <div class="kpi-value">{len(offres)}</div>
-        <div class="kpi-label">Offres acceptées</div>
-      </div>
-    </div>
-    <div class="glass-card kpi">
       <div class="kpi-icon-wrap kpi-blue">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2FAEE0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
       </div>
@@ -797,7 +788,7 @@ def _css():
     .refresh-note { font-size: 10px; color: #adb5c2; text-align: right; }
 
     /* KPI */
-    .kpi-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-bottom: 20px; }
+    .kpi-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 20px; }
     .kpi { display: flex; align-items: center; gap: 18px; padding: 26px 28px; }
     .kpi:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(0,0,0,0.09); }
     .kpi-icon-wrap { width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
