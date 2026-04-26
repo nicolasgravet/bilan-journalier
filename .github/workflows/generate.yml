@@ -4,6 +4,8 @@ on:
   schedule:
     - cron: '*/30 * * * *'   # toutes les 30 minutes
   workflow_dispatch:           # bouton manuel
+  push:
+    branches: [main]           # déclenché à chaque push
 
 permissions:
   contents: write
