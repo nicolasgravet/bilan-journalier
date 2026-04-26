@@ -693,9 +693,9 @@ def _css():
 
 
     /* Réservées */
-    .reservations-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
-    .reservation-card { display: flex; flex-direction: column; border-radius: 14px; overflow: hidden; background: #f7f9fc; border: 1px solid #edf0f5; transition: transform 0.22s ease, box-shadow 0.22s ease; }
-    .reservation-card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,0.1); }
+    .reservations-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; padding: 6px; }
+    .reservation-card { display: flex; flex-direction: column; border-radius: 14px; overflow: hidden; background: #f7f9fc; border: 1px solid #edf0f5; transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s ease; }
+    .reservation-card:hover { transform: translateY(-6px) scale(1.04); box-shadow: 0 20px 45px rgba(0,0,0,0.13); }
     .res-photo { width: 100%; height: 140px; object-fit: cover; display: block; }
     .res-photo-placeholder { width: 100%; height: 80px; background: #e5e9f0; }
     .res-info { flex: 1; display: flex; flex-direction: column; gap: 8px; padding: 14px; }
