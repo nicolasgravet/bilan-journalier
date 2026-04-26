@@ -418,7 +418,7 @@
         updateClock();
         setInterval(updateClock, 1000);
         // Timestamp de génération converti en heure locale
-        var gen = new Date(1777227507 * 1000);
+        var gen = new Date(1777227589 * 1000);
         var genH = String(gen.getHours()).padStart(2,'0');
         var genM = String(gen.getMinutes()).padStart(2,'0');
         var genLabel = 'Mis à jour le ' + JOURS[gen.getDay()] + ' ' + gen.getDate() + ' ' + MOIS[gen.getMonth()] + ' ' + gen.getFullYear() + ' à ' + genH + ':' + genM;
@@ -428,7 +428,7 @@
         btn.disabled = true;
         btn.textContent = '⏳ En cours…';
         document.getElementById('refresh-status').textContent = 'Génération en cours…';
-        var currentTs = 1777227507;
+        var currentTs = 1777227589;
         fetch('https://mecanicus-refresh.nicolas-0ce.workers.dev', {method:'POST'})
         .then(r => {
           if (r.ok) {
@@ -2809,9 +2809,21 @@ Bentley, Rolls Royce et Jaguar </p>
         </div><div class="prest-group" data-group-type="Carrosserie">
           <div class="prest-group-header" style="border-left:3px solid #ea580c">
             <span class="prest-group-name" style="color:#ea580c">Carrosserie</span>
-            <span class="prest-group-count">8</span>
+            <span class="prest-group-count">9</span>
           </div>
-          <div class="prest-cards-grid"><div class="prest-card" data-types='["Carrosserie"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="carrosserie gomez  6 rue ambroise croizat, palaiseau restau classiques / modernes / jantes
+          <div class="prest-cards-grid"><div class="prest-card" data-types='["Carrosserie"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="carrosserie de la gare  3 bis rue de seine, 91170 viry-châtillon ">
+              <div class="prest-card-accent" style="background:#ea580c"></div>
+              <div class="prest-card-body">
+                <div class="prest-card-top">
+                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#fff7ed;color:#ea580c;border-color:#fed7aa">Carrosserie</span></div>
+                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span></span>
+                </div>
+                <div class="prest-card-name">Carrosserie de la gare</div>
+                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 39 65 05 08" class="pci-link">01 39 65 05 08</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:carrosdelagare@gmail.com" class="pci-link">carrosdelagare@gmail.com</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">3 bis Rue de Seine, 91170 Viry-Châtillon</span></div></div>
+                <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
+                
+              </div>
+            </div><div class="prest-card" data-types='["Carrosserie"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="carrosserie gomez  6 rue ambroise croizat, palaiseau restau classiques / modernes / jantes
 ">
               <div class="prest-card-accent" style="background:#ea580c"></div>
               <div class="prest-card-body">
@@ -3115,21 +3127,9 @@ Bentley, Rolls Royce et Jaguar </p>
         </div><div class="prest-group" data-group-type="Autre">
           <div class="prest-group-header" style="border-left:3px solid #374151">
             <span class="prest-group-name" style="color:#374151">Autre</span>
-            <span class="prest-group-count">4</span>
+            <span class="prest-group-count">3</span>
           </div>
-          <div class="prest-cards-grid"><div class="prest-card" data-types='["Autre"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="carrosserie de la gare  3 bis rue de seine, 91170 viry-châtillon ">
-              <div class="prest-card-accent" style="background:#374151"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#f3f4f6;color:#374151;border-color:#d1d5db">Autre</span></div>
-                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span></span>
-                </div>
-                <div class="prest-card-name">Carrosserie de la gare</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 39 65 05 08" class="pci-link">01 39 65 05 08</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:carrosdelagare@gmail.com" class="pci-link">carrosdelagare@gmail.com</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">3 bis Rue de Seine, 91170 Viry-Châtillon</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
-                
-              </div>
-            </div><div class="prest-card" data-types='["Autre"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="ct bagneux  217 avenue henri ravera ">
+          <div class="prest-cards-grid"><div class="prest-card" data-types='["Autre"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="ct bagneux  217 avenue henri ravera ">
               <div class="prest-card-accent" style="background:#374151"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -3173,7 +3173,7 @@ Bentley, Rolls Royce et Jaguar </p>
   </section>
 
   <footer class="footer">
-    Généré le Dimanche 26 avril 2026 à 18:18 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
+    Généré le Dimanche 26 avril 2026 à 18:19 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
   </footer>
 </div>
 <div id="res-modal" class="res-modal-overlay" onclick="closeResModal(event)">
