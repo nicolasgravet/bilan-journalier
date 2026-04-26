@@ -107,7 +107,7 @@
     .res-header .car-name { font-size: 13px; line-height: 1.4; }
     .res-footer { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 2px; }
     .commercial-badge { display: inline-block; padding: 3px 11px; border-radius: 980px; background: #eff4ff; border: 1px solid #c3d3f7; color: #2FAEE0; font-size: 11px; font-weight: 600; }
-    .fck-badge { font-size: 18px; opacity: 0.9; margin-left: 5px; display: inline-block; vertical-align: middle; }
+    .fck-badge { font-size: 26px; opacity: 1; margin-left: 6px; display: inline-block; vertical-align: middle; }
     .res-amounts { display: flex; gap: 14px; flex-wrap: wrap; }
     .res-prix { font-size: 12px; color: #6b7280; }
     .res-marge { font-size: 12px; color: #2FAEE0; font-weight: 700; }
@@ -204,7 +204,7 @@
         updateClock();
         setInterval(updateClock, 1000);
         // Timestamp de génération converti en heure locale
-        var gen = new Date(1777198030 * 1000);
+        var gen = new Date(1777198146 * 1000);
         var genH = String(gen.getHours()).padStart(2,'0');
         var genM = String(gen.getMinutes()).padStart(2,'0');
         var genLabel = 'Mis à jour le ' + JOURS[gen.getDay()] + ' ' + gen.getDate() + ' ' + MOIS[gen.getMonth()] + ' ' + gen.getFullYear() + ' à ' + genH + ':' + genM;
@@ -214,7 +214,7 @@
         btn.disabled = true;
         btn.textContent = '⏳ En cours…';
         document.getElementById('refresh-status').textContent = 'Génération en cours…';
-        var currentTs = 1777198030;
+        var currentTs = 1777198146;
         fetch('https://mecanicus-refresh.nicolas-0ce.workers.dev', {method:'POST'})
         .then(r => {
           if (r.ok) {
@@ -1647,7 +1647,7 @@
   </div>
 
   <footer class="footer">
-    Généré le Dimanche 26 avril 2026 à 10:07 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
+    Généré le Dimanche 26 avril 2026 à 10:09 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
   </footer>
 </div>
 <script>var MARGES_DATA = [{"marge": 4000.0, "ts": 1769884848}, {"marge": 6297.399999999994, "ts": 1774023199}, {"marge": 12368.699999999997, "ts": 1770030734}, {"marge": 5583.309999999998, "ts": 1768234979}, {"marge": 7102.220000000001, "ts": 1764326868}, {"marge": 10657.220000000001, "ts": 1771931045}, {"marge": 3942.5, "ts": 1772529064}, {"marge": 9090.119999999995, "ts": 1769707897}, {"marge": 11850.0, "ts": 1773755213}, {"marge": 9550.0, "ts": 1771423217}, {"marge": -1372.679999999993, "ts": 1765268519}, {"marge": 16600.0, "ts": 1756125321}, {"marge": 29900.0, "ts": 1773745986}, {"marge": 12049.61, "ts": 1768081150}, {"marge": 14900.0, "ts": 1771406978}, {"marge": 4842.5, "ts": 1771956283}, {"marge": 17738.33, "ts": 1768845411}, {"marge": 25580.0, "ts": 1763661946}, {"marge": 25850.0, "ts": 1773078266}, {"marge": 18658.70000000001, "ts": 1770801109}, {"marge": 15900.0, "ts": 1770915028}, {"marge": 10030.0, "ts": 1772882781}, {"marge": 19110.0, "ts": 1772477406}];</script>
