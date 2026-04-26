@@ -247,10 +247,7 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
       </div>
       <span id="res-modal-ct" class="ct-res-badge" style="display:none"></span>
       <div id="res-modal-commerciaux" class="res-modal-commerciaux"></div>
-      <div class="res-modal-actions">
-        <a id="res-modal-fiche" class="fiche-btn res-modal-fiche-btn" href="#" target="_blank" onclick="event.stopPropagation()">Accéder à la fiche →</a>
-        <a id="res-modal-travaux" class="fiche-btn fiche-btn-travaux res-modal-fiche-btn" href="#" target="_blank" onclick="event.stopPropagation()">🔧 Travaux →</a>
-      </div>
+      <a id="res-modal-fiche" class="fiche-btn res-modal-fiche-btn" href="#" target="_blank" onclick="event.stopPropagation()">Accéder à la fiche →</a>
     </div>
   </div>
 </div>
@@ -318,8 +315,7 @@ def _render_reservees(reservees, francois_cars=None, ct_data=None):
               <span class="res-marge">Marge : <strong>{r.get('marge_fmt','—')}</strong></span>
             </div>
             <div class="res-footer">
-              <a class="fiche-btn" href="{fiche_url}" target="_blank" onclick="event.stopPropagation()">Fiche →</a>
-              <a class="fiche-btn fiche-btn-travaux" href="{travaux_url}" target="_blank" onclick="event.stopPropagation()">🔧 Travaux →</a>
+              <a class="fiche-btn" href="{fiche_url}" target="_blank" onclick="event.stopPropagation()">Accéder à la fiche →</a>
               {commerciaux_html}
             </div>
           </div>
