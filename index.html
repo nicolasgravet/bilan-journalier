@@ -526,7 +526,7 @@
         updateClock();
         setInterval(updateClock, 1000);
         // Timestamp de génération converti en heure locale
-        var gen = new Date(1777234439 * 1000);
+        var gen = new Date(1777238045 * 1000);
         var genH = String(gen.getHours()).padStart(2,'0');
         var genM = String(gen.getMinutes()).padStart(2,'0');
         var genLabel = 'Mis à jour le ' + JOURS[gen.getDay()] + ' ' + gen.getDate() + ' ' + MOIS[gen.getMonth()] + ' ' + gen.getFullYear() + ' à ' + genH + ':' + genM;
@@ -536,7 +536,7 @@
         btn.disabled = true;
         btn.textContent = '⏳ En cours…';
         document.getElementById('refresh-status').textContent = 'Génération en cours…';
-        var currentTs = 1777234439;
+        var currentTs = 1777238045;
         fetch('https://mecanicus-refresh.nicolas-0ce.workers.dev', {method:'POST'})
         .then(r => {
           if (r.ok) {
@@ -2156,7 +2156,7 @@
                   <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'rectZABN9qNx0BNzH',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
                 </div>
               </div>
-            </div><div class="prest-card" data-id="rec2Rca1NRUKakBp1" data-types='["M\u00e9canique"]' data-marques='["Aston Martin ", "Jaguar", "Multi-marques"]' data-searchtext="atelier ares   3 rue de l'abbé grégoire, 91350 grigny spécialiste aston martin et anglaises anciennes">
+            </div><div class="prest-card" data-id="rec2Rca1NRUKakBp1" data-types='["M\u00e9canique"]' data-marques='["Aston Martin ", "Jaguar", "Multi-marques", "Bentley"]' data-searchtext="atelier ares   3 rue de l'abbé grégoire, 91350 grigny spécialiste aston martin et anglaises anciennes">
               <div class="prest-card-accent" style="background:#2563eb"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2165,7 +2165,7 @@
                 </div>
                 <div class="prest-card-name">Atelier ARES</div>
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:06 08 51 91 94" class="pci-link">06 08 51 91 94</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:atelier-ares@wanadoo.fr" class="pci-link">atelier-ares@wanadoo.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text"> 3 Rue de l'Abbé Grégoire, 91350 Grigny</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Aston Martin </span><span class="prest-marque-pill">Jaguar</span><span class="prest-marque-pill">Multi-marques</span></div>
+                <div class="prest-marques"><span class="prest-marque-pill">Aston Martin </span><span class="prest-marque-pill">Jaguar</span><span class="prest-marque-pill">Multi-marques</span><span class="prest-marque-pill">Bentley</span></div>
                 <p class="prest-notes">Spécialiste Aston Martin et anglaises anciennes</p>
                 <div class="pca-row">
                   <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'rec2Rca1NRUKakBp1',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
@@ -2709,7 +2709,7 @@
   </section>
 
   <footer class="footer">
-    Généré le Dimanche 26 avril 2026 à 20:13 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
+    Généré le Dimanche 26 avril 2026 à 21:14 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
   </footer>
 </div>
 <div id="res-modal" class="res-modal-overlay" onclick="closeResModal(event)">
