@@ -459,7 +459,7 @@
         updateClock();
         setInterval(updateClock, 1000);
         // Timestamp de génération converti en heure locale
-        var gen = new Date(1777231308 * 1000);
+        var gen = new Date(1777231439 * 1000);
         var genH = String(gen.getHours()).padStart(2,'0');
         var genM = String(gen.getMinutes()).padStart(2,'0');
         var genLabel = 'Mis à jour le ' + JOURS[gen.getDay()] + ' ' + gen.getDate() + ' ' + MOIS[gen.getMonth()] + ' ' + gen.getFullYear() + ' à ' + genH + ':' + genM;
@@ -469,7 +469,7 @@
         btn.disabled = true;
         btn.textContent = '⏳ En cours…';
         document.getElementById('refresh-status').textContent = 'Génération en cours…';
-        var currentTs = 1777231308;
+        var currentTs = 1777231439;
         fetch('https://mecanicus-refresh.nicolas-0ce.workers.dev', {method:'POST'})
         .then(r => {
           if (r.ok) {
@@ -1988,7 +1988,7 @@
     <div class="section-header collapsible-header" onclick="toggleSection('prest')">
       <span class="section-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
       <h2>Prestataires</h2>
-      <span class="count-badge" id="prest-count">37</span>
+      <span class="count-badge" id="prest-count">35</span>
       <div class="header-filters" onclick="event.stopPropagation()">
         <button class="prest-add-btn" onclick="openPrestAddModal()">+ Ajouter</button>
       </div>
@@ -2014,7 +2014,7 @@
         <div id="prest-groups"><div class="prest-group" data-group-type="Mécanique">
           <div class="prest-group-header" style="border-left:3px solid #2563eb">
             <span class="prest-group-name" style="color:#2563eb">Mécanique</span>
-            <span class="prest-group-count">23</span>
+            <span class="prest-group-count">21</span>
           </div>
           <div class="prest-cards-grid"><div class="prest-card" data-id="rectZABN9qNx0BNzH" data-types='["M\u00e9canique", "Carrosserie"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="atelier 46  courbevoie  garage généraliste anciennes ">
               <div class="prest-card-accent" style="background:#2563eb"></div>
@@ -2074,36 +2074,6 @@
                 <p class="prest-notes">Garage généraliste anciennes </p>
                 <div class="pca-row">
                   <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'recRvJWF14z4f8Por',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
-                </div>
-              </div>
-            </div><div class="prest-card" data-id="recizPDwdazfJ9yWE" data-types='["M\u00e9canique"]' data-marques='["Alpine"]' data-searchtext="ferry developpement   ">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span></span>
-                </div>
-                <div class="prest-card-name">Ferry Developpement</div>
-                
-                <div class="prest-marques"><span class="prest-marque-pill">Alpine</span></div>
-                
-                <div class="pca-row">
-                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'recizPDwdazfJ9yWE',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
-                </div>
-              </div>
-            </div><div class="prest-card" data-id="recNM03QewbKR3Krt" data-types='["M\u00e9canique"]' data-marques='["Ferrari"]' data-searchtext="fiorano racing  montigny-le-bretonneux (78) spécialiste ferrari et maserati, le boss des boss">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span></span>
-                </div>
-                <div class="prest-card-name">Fiorano Racing</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel: 01 61 38 28 10" class="pci-link"> 01 61 38 28 10</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:dominique@fioranoracing.fr" class="pci-link">dominique@fioranoracing.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Montigny-le-Bretonneux (78)</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Ferrari</span></div>
-                <p class="prest-notes">Spécialiste Ferrari et Maserati, le boss des boss</p>
-                <div class="pca-row">
-                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'recNM03QewbKR3Krt',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
                 </div>
               </div>
             </div><div class="prest-card" data-id="recSrtM7TSTcrcBPX" data-types='["M\u00e9canique"]' data-marques='["Ferrari", "Maserati"]' data-searchtext="fiorano racing  23 avenue des 3 peuples 78180 montigny-le-bretonneux spécialiste ferrari aka le boss">
@@ -2623,13 +2593,13 @@
               </div>
             </div></div>
         </div></div>
-<script>var PREST_MARQUES = ["Alfa Romeo", "Alpine", "Aston Martin ", "BMW", "Ferrari", "G\u00e9n\u00e9raliste", "Jaguar", "Maserati", "Mercedes-Benz", "Multi-marques", "Porsche"];</script>
+<script>var PREST_MARQUES = ["Alfa Romeo", "Aston Martin ", "BMW", "Ferrari", "G\u00e9n\u00e9raliste", "Jaguar", "Maserati", "Mercedes-Benz", "Multi-marques", "Porsche"];</script>
       </div>
     </div>
   </section>
 
   <footer class="footer">
-    Généré le Dimanche 26 avril 2026 à 19:21 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
+    Généré le Dimanche 26 avril 2026 à 19:23 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
   </footer>
 </div>
 <div id="res-modal" class="res-modal-overlay" onclick="closeResModal(event)">
@@ -3288,8 +3258,8 @@ function submitNewPrestataire(e) {
 
   var fields = {};
   if (nom)     fields['Nom du garage'] = nom;
-  if (typeVal) fields['Type'] = [{ name: typeVal }];
-  if (marques.length) fields['Marque'] = marques.map(function(m) { return { name: m }; });
+  if (typeVal) fields['Type'] = [typeVal];
+  if (marques.length) fields['Marque'] = marques;
   if (rating > 0) fields['Rating'] = rating;
   if (tel)     fields['Téléphone'] = tel;
   if (email)   fields['Email']     = email;
