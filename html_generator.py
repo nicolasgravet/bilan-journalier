@@ -1211,9 +1211,7 @@ function submitNewPrestataire(e) {
   var tel     = document.getElementById('pf-tel').value.trim();
   var email   = document.getElementById('pf-email').value.trim();
   var adresse = document.getElementById('pf-adresse').value.trim();
-  var contact = document.getElementById('pf-contact').value.trim();
   var ville   = document.getElementById('pf-ville').value.trim();
-  var site    = document.getElementById('pf-site').value.trim();
   var notes   = document.getElementById('pf-notes').value.trim();
 
   var fields = {};
