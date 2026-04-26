@@ -564,6 +564,11 @@ def _render_prestataires(prestataires):
     if not prestataires:
         return '<div class="empty-state prest-empty">Aucun prestataire chargé — vérifie le token PRESTATAIRES_TOKEN dans config.py</div>'
 
+    # Uniquement les 5 étoiles
+    prestataires = [p for p in prestataires if p.get("rating", 0) == 5]
+    if not prestataires:
+        return '<div class="empty-state prest-empty">Aucun prestataire 5 étoiles</div>'
+
     _TYPE_ORDER = [
         "Mécanique", "Carrosserie", "Pièces détachées",
         "Débosselage", "Sellerie", "Detailling", "Transporteur",
