@@ -783,6 +783,32 @@ def _css():
     .kpi { display: flex; align-items: center; gap: 18px; padding: 26px 28px; }
     .kpi:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(0,0,0,0.09); }
     .kpi-icon-wrap { width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+
+    /* Animation cloche — pivot depuis le haut */
+    @keyframes ring {
+      0%   { transform: rotate(0deg); }
+      8%   { transform: rotate(18deg); }
+      20%  { transform: rotate(-16deg); }
+      32%  { transform: rotate(13deg); }
+      44%  { transform: rotate(-10deg); }
+      56%  { transform: rotate(7deg); }
+      68%  { transform: rotate(-4deg); }
+      80%  { transform: rotate(2deg); }
+      100% { transform: rotate(0deg); }
+    }
+    /* Animation alerte — tremblement latéral */
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      12%  { transform: translateX(-4px) rotate(-2deg); }
+      25%  { transform: translateX(4px) rotate(2deg); }
+      37%  { transform: translateX(-4px) rotate(-1deg); }
+      50%  { transform: translateX(4px) rotate(1deg); }
+      62%  { transform: translateX(-2px); }
+      75%  { transform: translateX(2px); }
+      87%  { transform: translateX(-1px); }
+    }
+    .kpi:hover .kpi-red   svg { transform-origin: 50% 0%; animation: ring  0.7s cubic-bezier(0.36,0.07,0.19,0.97) both; }
+    .kpi:hover .kpi-orange svg { animation: shake 0.6s cubic-bezier(0.36,0.07,0.19,0.97) both; }
     .kpi-green  { background: #d1fae5; }
     .kpi-blue   { background: #dbeafe; }
     .kpi-orange { background: #ffedd5; }
