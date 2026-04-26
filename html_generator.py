@@ -1224,8 +1224,8 @@ function submitNewPrestataire(e) {
 
   var fields = {};
   if (nom)     fields['Nom du garage'] = nom;
-  if (typeVal) fields['Type'] = [{ name: typeVal }];
-  if (marques.length) fields['Marque'] = marques.map(function(m) { return { name: m }; });
+  if (typeVal) fields['Type'] = [typeVal];
+  if (marques.length) fields['Marque'] = marques;
   if (rating > 0) fields['Rating'] = rating;
   if (tel)     fields['Téléphone'] = tel;
   if (email)   fields['Email']     = email;
