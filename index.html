@@ -95,6 +95,8 @@
     .filter-btn { padding: 5px 13px; border-radius: 980px; border: 1px solid #dde1e8; background: #ffffff; color: #374151; font-size: 11px; font-weight: 500; cursor: pointer; transition: all 0.15s ease; white-space: nowrap; }
     .filter-btn:hover { background: #f5f7fa; border-color: #c5cad3; }
     .filter-btn.active { background: #2FAEE0; border-color: #2FAEE0; color: #ffffff; box-shadow: 0 1px 4px rgba(0,87,168,0.3); }
+    .sort-toggle-btn { padding: 5px 13px; border-radius: 980px; border: 1px solid #dde1e8; background: #ffffff; color: #374151; font-size: 11px; font-weight: 500; cursor: pointer; transition: all 0.15s ease; white-space: nowrap; }
+    .sort-toggle-btn:hover { background: #f5f7fa; border-color: #2FAEE0; color: #2FAEE0; }
 
 
     /* Réservées */
@@ -204,7 +206,7 @@
         updateClock();
         setInterval(updateClock, 1000);
         // Timestamp de génération converti en heure locale
-        var gen = new Date(1777198979 * 1000);
+        var gen = new Date(1777199389 * 1000);
         var genH = String(gen.getHours()).padStart(2,'0');
         var genM = String(gen.getMinutes()).padStart(2,'0');
         var genLabel = 'Mis à jour le ' + JOURS[gen.getDay()] + ' ' + gen.getDate() + ' ' + MOIS[gen.getMonth()] + ' ' + gen.getFullYear() + ' à ' + genH + ':' + genM;
@@ -214,7 +216,7 @@
         btn.disabled = true;
         btn.textContent = '⏳ En cours…';
         document.getElementById('refresh-status').textContent = 'Génération en cours…';
-        var currentTs = 1777198979;
+        var currentTs = 1777199389;
         fetch('https://mecanicus-refresh.nicolas-0ce.workers.dev', {method:'POST'})
         .then(r => {
           if (r.ok) {
@@ -1283,7 +1285,9 @@
         <span class="section-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
         <h2>Voitures Réservées</h2>
         <span class="count-badge">23</span>
-        <div class="header-filters"></div>
+        <div class="header-filters" onclick="event.stopPropagation()">
+          <button class="sort-toggle-btn" id="sort-reservees" onclick="toggleSortReservees(this)">↓ Plus récent</button>
+        </div>
         <button class="collapse-btn" id="collapse-reservees">▼</button>
       </div>
       <div class="section-body" id="body-reservees" style="display:none">
@@ -1292,7 +1296,7 @@
           <input type="text" class="section-search" id="search-reservees" placeholder="Rechercher une voiture…" oninput="filterBySearch('reservees', this.value)" autocomplete="off">
           <button class="search-clear-btn" onclick="clearSearch('reservees')">✕</button>
         </div>
-        <div class="reservations-grid"><div class="reservation-card">
+        <div class="reservations-grid"><div class="reservation-card" data-ts="1769884848">
           <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/52/52/1777212000000/ywB09B6cm2HkDrY3SfVB4A/XRufuBZDMsAci6Up7APPX7cx815Z6eBehqvuBDqKYyBZNMMcey-WOiVavUBdfDULDN1LTSFPwrCYKDvGEJTqRQCzK9MTFGJkc871HkHH7Y6Gc1A61-4USjpgV3joNVkldOA8fy86R9YY9eAstDS4wBDM8Y4HFharjjwgbvWriz4/3wdtYWHe88f08hpU8rSZyRyceu2troxGHwJ91l-aI0I" alt="">
           <div class="res-info">
             <div class="res-header">
@@ -1307,7 +1311,7 @@
               <span class="commercial-badge">Matthieu</span>
             </div>
           </div>
-        </div><div class="reservation-card">
+        </div><div class="reservation-card" data-ts="1774023199">
           <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/52/52/1777212000000/JAWiPZ625ZQ5_it2LvoPKQ/_D2zKWGrJk9uKpBFtryxyRA-MRO7QVpNiGCfWeotOrjZEFw0PEiQwr1G5NOPocp8nbkvmTpTnVxfRkwNQ2eKH7cX6ZZcTD0moS6IDRYRVL0r3T8abNCe4DTtuiJaGJiq4y8q8H48deFXpgm0yHJk12_SamJHu0s9Ctskyhm25ZE/xQqNNuGYJLM5QAoj4pGr8pvxGiFgssGETjebZwtcYFg" alt="">
           <div class="res-info">
             <div class="res-header">
@@ -1322,7 +1326,7 @@
               <span class="commercial-badge">Victor</span><span class="commercial-badge">Hadrien</span>
             </div>
           </div>
-        </div><div class="reservation-card">
+        </div><div class="reservation-card" data-ts="1770030734">
           <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/52/52/1777212000000/1Ccra4j1ajSpSsL13ZI5OQ/OLRP4S7xOqoDWzXiEXukVz75PqWETqsuOhYZNeoRFzS2XH6Qpo-nl00MXj_SmluZo92AFuCOXyfw0ualU9q5hj1DECuUTGPn4BwgKpU3wfDKRAZ_grLzXyXyE4yIIa4YXhXIOwRmyu6mExROoNVwouBh0bJVzAYBSzQN6JEN2No/931wAkk6th01Gc0JJPB-APn8dW6HTNjaMSiabHjZQwE" alt="">
           <div class="res-info">
             <div class="res-header">
@@ -1337,7 +1341,7 @@
               <span class="commercial-badge">François</span>
             </div>
           </div>
-        </div><div class="reservation-card">
+        </div><div class="reservation-card" data-ts="1768234979">
           <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/52/52/1777212000000/LU3QEnezmJ1B5-Ug00F4Dg/Hga53ULZnVKQKt14IEBhoOBXM_9toQIp5FrytMc9-1thlbztucdadvZWWnpS9XCBCRHbP3W0eTZ34hjj_B9KLuxRje-pZJ3veU1WnxnJIqKo3xx4u95rdBCMs7-KcADCr949vdxbO2Tg4cS47NoWc5pP4nfjB3rnkMr69cr-RIM/QH94_eyF0wApo1Z_Jum3PwtxDGK7IMWkIFfYv8xKjSs" alt="">
           <div class="res-info">
             <div class="res-header">
@@ -1352,7 +1356,7 @@
               <span class="commercial-badge">François</span>
             </div>
           </div>
-        </div><div class="reservation-card">
+        </div><div class="reservation-card" data-ts="1764326868">
           <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/52/52/1777212000000/HM-NZPQjhkMYhEOs98DJew/uYbj1AWXzMQ7hzIlz_txVQIMNSFtmAibt7J82NvJxuWF2M_JRz0xXkmY7-kULGtASISUEbgmCi6orSJeEg64uFslxjHCJ1_ULySVXyUWjLiK2qiVJaVziyvQOcBDpdHuU5IR5xTsSww_RSq9hVRXOipEGyHriofbcHafRRmrg6U/NYRuzZs2L1Cc-LUS8g4fozfiPbkWrrX1v-BlBFc6LO8" alt="">
           <div class="res-info">
             <div class="res-header">
@@ -1367,7 +1371,7 @@
               <span class="commercial-badge">Victor</span>
             </div>
           </div>
-        </div><div class="reservation-card">
+        </div><div class="reservation-card" data-ts="1771931045">
           <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/52/52/1777212000000/5sxuoI1c04ayzhUwTnV_OQ/yo0zf_TWS8JkX44Hjggx4uVBjHsBHRqDa31SBpRdvHRNJDvU9UFcvwgHlWKu15tQwNlQoUC82pJ-sdC4nlwXH2SmMA44feebdAZjFiCor-S25ztW6D_NChWZWN7l8QTxTNnycTR-8XkyZ6sMCvDMdTjcX9zYob0hwUkcpuBME2c/-XfoCh382tZex398KbHWpOBMZZzqpshtrg7k71_sWok" alt="">
           <div class="res-info">
             <div class="res-header">
@@ -1382,7 +1386,7 @@
               <span class="commercial-badge">Louis</span><span class="commercial-badge">François</span>
             </div>
           </div>
-        </div><div class="reservation-card">
+        </div><div class="reservation-card" data-ts="1772529064">
           <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/52/52/1777212000000/Pd8Z_B5C6C4iTKcNq14wnw/qraBI_kSHGonp49CbIyT17dMs7CphTzGt1oZTVljUeR5YAXL1pWlne49VVl51ewMm9GMlzAVnSdo0-TXG6rQ0oy2AYrr6C2a-T94kcqw8KElrGrlxxNpe-qd_hPf7OOI4npirMqyFc4nUbU6IQrOZLRICqa3fL3JI9aYKhtuID8/khaEGIYLhXpDhIrhzSJyfDvJ73ik0C7GLtgIPjKJYoM" alt="">
           <div class="res-info">
             <div class="res-header">
@@ -1397,7 +1401,7 @@
               <span class="commercial-badge">François</span><span class="commercial-badge">Louis</span>
             </div>
           </div>
-        </div><div class="reservation-card">
+        </div><div class="reservation-card" data-ts="1769707897">
           <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/52/52/1777212000000/6rOad4sh4O23Xqe7fGk0Jw/gu-SdNrwaAzNXEQ1heo9EFydrnmY5vSEsdefzJmxKngnJXWCi9NO-C_w2JMRJJUXo6F0HplL3KaBaeCg_McgvtzYG53SZn7-t9hjXYVR6bF02cUSJtTInb_sjOToTTZdzS0qSbWsGmMSsnEPU6VRZg/dGsZ1P8mIvFvGVI73FbHxF1v8Hp5SgeSLDMSsZIUFUg" alt="">
           <div class="res-info">
             <div class="res-header">
@@ -1412,7 +1416,7 @@
               <span class="commercial-badge">Hadrien</span>
             </div>
           </div>
-        </div><div class="reservation-card">
+        </div><div class="reservation-card" data-ts="1773755213">
           <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/52/52/1777212000000/6R_839VrazXKjM4t8U3cJQ/A_7XO2GoUXK3xyaKwtqO98-i5RLJAi6i9Y4syEzJyv_dRWL9ZdATgsUByHT-s3DvO0-MgimCwfZmqKSX4kZt-57Wskww4au2xWUXwiD3hHC5nWn9go2yUy3pdoDwvFfuJDsqP7wxeENt9d5zTlimK0HQT9_CVJ-xkjma2KSbxDc/bHW_jxgRZRJGmjZoF5hnr9s35-_Ne6A1jAjt8aCVJuE" alt="">
           <div class="res-info">
             <div class="res-header">
@@ -1427,7 +1431,7 @@
               <span class="commercial-badge">Victor</span>
             </div>
           </div>
-        </div><div class="reservation-card">
+        </div><div class="reservation-card" data-ts="1771423217">
           <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/52/52/1777212000000/mKyu1pxT8rDZj95VYvwBjw/RDnl3_zE4f-vIEqgO_GmwqQyclmQ3Oyp-Jk5mU1lYC-TG-Q5FbTfo_2M-tlTH2_O8RhGIKOWLUjLNF671m5iFKYKMLQLnejJ9dCWoZHRJAhFj2KrNNCdsbpFpOxb7Kb4xwOQ8a8J4PnZRHIH5xBZJhT8N31mOi-m8s_Bp1uzcOI/a_KKfCCqlYqdsYFg6uXhyEQpww-RYxfLLPCUIlz4pH0" alt="">
           <div class="res-info">
             <div class="res-header">
@@ -1442,7 +1446,7 @@
               <span class="commercial-badge">Victor</span><span class="commercial-badge">Theodore</span>
             </div>
           </div>
-        </div><div class="reservation-card">
+        </div><div class="reservation-card" data-ts="1765268519">
           <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/52/52/1777212000000/Wrf1iHsweiIVoys-YM32Rw/obN__uAdZT0Oz2rF1RVATdD2Pv0jamt7mZdcUzfhRnEHfTGKKdpglDX0yZLdk5gFdUycnarS7-90YR0X5hmaGQbAWCHIdloSl_--m4g0iJB5sPrLOx6Shb9RZacp0H6ov7n6s8IYqzZgT25POf4dtV8-0koJbN2vNSuHaDd3jTc/-J26IsOTZ1PS2sQc69sELoO5JGAvMJ_Kj7GRvOGNwMs" alt="">
           <div class="res-info">
             <div class="res-header">
@@ -1457,7 +1461,7 @@
               <span class="commercial-badge">Pierre</span><span class="commercial-badge">Léo</span>
             </div>
           </div>
-        </div><div class="reservation-card">
+        </div><div class="reservation-card" data-ts="1756125321">
           <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/52/52/1777212000000/ypHLAovnUsTtveHBj2x6ng/OtzE_ff1GAvIbyg3NnycU-LZVoQBAZhoRHhfABII29kkyN1geNKQEitHuevToJOMbD24df-e4auNWep7VEV9h4R19ddUzgP7u2qnPDiK9M9llWEljF99BOF75drPc1EIP-KQoZ0TPwUq4SSv_2MHiA/PDkC2sGVL479O5XutOe9yK5iJFa6pyO9UrWelwNh5z4" alt="">
           <div class="res-info">
             <div class="res-header">
@@ -1472,7 +1476,7 @@
               <span class="commercial-badge">Victor</span>
             </div>
           </div>
-        </div><div class="reservation-card">
+        </div><div class="reservation-card" data-ts="1773745986">
           <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/52/52/1777212000000/bBMgdMuW1keeYGgeK6Kp1g/VII6INj_C8t6oz_Z0QEW3dqbbVZQrh2zdmKGaKfbRJ9cntLxyPKTtFg-JEQfwvvi4L5MEHsQQmiE_SOZ52bmrPc0AuTHnvejaCZQsmIHueB22dYUg8u9wZ1-hX3u4aeTinD3jwpe2UyDYNFe83lRvDsvFTcZckn_oSLZ1FRVZ3w/eO3HJ7epPxsp-b5OqsjasG8Y836e2xsQkplcZ31hHw8" alt="">
           <div class="res-info">
             <div class="res-header">
@@ -1487,7 +1491,7 @@
               <span class="commercial-badge">Victor</span>
             </div>
           </div>
-        </div><div class="reservation-card">
+        </div><div class="reservation-card" data-ts="1768081150">
           <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/52/52/1777212000000/8_AA3gCfdn3bTk6xj_vn7w/D0540kNhxfvZvLQ-JyyV5WGoQOopy3Z5vcBOS49udj86t2OwA9jpwkkL3VXCugADbZIcdCP8JHvbOsLfjKrM-6z2xZm0SJh-R5GTgvGeuTY0x8dYUq8edgKL043onGbQHaKKAbX6SJISwq02JcmKIGowlhQUfb0dwOi4zEdcIcw/FGh9Difb0EwetG3biMHR3BsQHaLy5caZiaBKDJlalE8" alt="">
           <div class="res-info">
             <div class="res-header">
@@ -1502,7 +1506,7 @@
               <span class="commercial-badge">François</span>
             </div>
           </div>
-        </div><div class="reservation-card">
+        </div><div class="reservation-card" data-ts="1771406978">
           <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/52/52/1777212000000/7cdn8n9pbul4a-2smVpsOQ/54xTNAgyglDY3IHRqxoSGAaSpps-21ynm5V26MPsocG9Zfo4FNUMOESS3Nm7QctoIAqfT7GxZd9tknOsNhvnmnv1IX4XB7p--b5RvvzWiaW8qFcHBr4ruTPv3_cKwWGfTV4imh2PpSqdpMLxrwxKH22xcPj7OOBvHq-uVC61Z0A/k7cAAmQeTKfSwXrFk1g7_CnFD0aXwyfKUgJUeCQzcLE" alt="">
           <div class="res-info">
             <div class="res-header">
@@ -1517,7 +1521,7 @@
               <span class="commercial-badge">Victor</span>
             </div>
           </div>
-        </div><div class="reservation-card">
+        </div><div class="reservation-card" data-ts="1771956283">
           <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/52/52/1777212000000/5BvZQyT1LyRg64BtHfmT3w/kF-W4qhuoQJ7nxz81o-0xSF8_tzhZfFpGe9lj1bNwzuE-0Kvdkv3ron6Y7eTLVi6OZhc2rQIVWnMUYh_x5iGikfZxrK7bnVwGPBTJgasOnBPA-AyfNn5fRfmwn1TtWMkjdfh5mLKuIT4HMQPZgXuRtoYbrWj1pmF5wrB8QQyHhE/s76rpvaPmUXKrWwxA4K_ahLkE3HuqhBeCPyzJs07ikE" alt="">
           <div class="res-info">
             <div class="res-header">
@@ -1532,7 +1536,7 @@
               <span class="commercial-badge">Louis</span><span class="commercial-badge">Victor</span>
             </div>
           </div>
-        </div><div class="reservation-card">
+        </div><div class="reservation-card" data-ts="1768845411">
           <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/52/52/1777212000000/3xGqNY5X5lVobWKVu2Z-uw/V3KjJHXDeVlFR1D7CFz70WS0KzWE_e0Nsa-mDS42-0tTl-clfsa-WMQ-ARyuWnPiIMRXrCBP6j620tkPZ-NtAU5gFFiTtVVR0ovoImgZprpy2EcOA9IHxxaZHZROdJURkm1jqvZzWS-pqH9suyswH2G7ahyFlUFcEtUxsEq78nk/dfS3gnHFZbsB7n-4Gjfq0fJV7gEb3EaVH30WGyeP1nI" alt="">
           <div class="res-info">
             <div class="res-header">
@@ -1547,7 +1551,7 @@
               <span class="commercial-badge">François</span><span class="commercial-badge">Matthieu</span>
             </div>
           </div>
-        </div><div class="reservation-card">
+        </div><div class="reservation-card" data-ts="1763661946">
           <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/52/52/1777212000000/Hz18VWweICDaTgKBqSpHwA/zrzxosXe3_bYmd9W96A5rcdJlPN55WGG-9Ta5KvVRuluyIsdvSGXXAVnFN2UsQbowyzQP25wGp_Iu-SLkbMm4SbNwm3vZKM0lpMVcU-xHWHk4Ly58CS2E7s4qpy6Tp2y1fWSEU5a0XZIrn6WqCeTfhhfDLRZCjgz6b_M2KRqk8A/BNh8EYycRKnFik3YTUGVzekaHxmxNOr9XBe9M7uiNX4" alt="">
           <div class="res-info">
             <div class="res-header">
@@ -1562,7 +1566,7 @@
               <span class="commercial-badge">François</span><span class="commercial-badge">Louis</span>
             </div>
           </div>
-        </div><div class="reservation-card">
+        </div><div class="reservation-card" data-ts="1773078266">
           <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/52/52/1777212000000/quozlHFtBS9BiWgYp-Ju1A/zwRfttjeNlQi9o_OalGzeAIHrrormx7bWyDZdgSHCVRiRP_C-pLXOZpSARC48JwTUp-oJUIWG9bAJHOWCjV0-zwTWw8e0nCDd94WXBYGE-L_MqgZMyOh5Nb_EW2EINnKOGZatC6ir1vifnFpH8uhiCGXq_HqhchWtKLjNXgwoX8ZJvAjuTBMlcETaV1tpGC9/rLjH9f-Q_1EATD7gOLlRtIEUwIgqi03_a0QuYub22Tk" alt="">
           <div class="res-info">
             <div class="res-header">
@@ -1577,7 +1581,7 @@
               <span class="commercial-badge">Victor</span>
             </div>
           </div>
-        </div><div class="reservation-card">
+        </div><div class="reservation-card" data-ts="1770801109">
           <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/52/52/1777212000000/RZ6LrKMdRtBYMjC8XDC_7A/LA89tSARh4NnTZFxt07cVrk01qOBeJfZrzuII7Ic-gjL0KRDiQiDjUaWkkwfjGy-1mPbND-wrHgZlOPr05zLf9DCCpky3Q6HHyDp_C39xBfdw2Kj2EsAXfl_g-0u0bxU60euzCwMT31Amh1b_HTZJ1lE4G2wv_xx6yR3n5sQ0ro/KMYEyFa4rCM3DtzZXGBu_Cd6bceJLekwZmTJDqUFLSM" alt="">
           <div class="res-info">
             <div class="res-header">
@@ -1592,7 +1596,7 @@
               <span class="commercial-badge">François</span>
             </div>
           </div>
-        </div><div class="reservation-card">
+        </div><div class="reservation-card" data-ts="1770915028">
           <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/52/52/1777212000000/hGWCHI1mOP_9_adP5iAllA/fWKFIKMB5xt4q5KtrqpQ5pA38_d1eFSVFCkT1-AmegUDRmvWYkRtBO7GhV3BwXkPGkuWuevLePrCULwoOOpPms-EzWDwNtjep7PVcABMyz1e3UMrdu_riAMoCm5VatMEuTCVl40XqWSuNKETGUYMl_MoxwRWIiTIJQfNdjdJJHM/gYhIZ0jpsHhrl8yXRFWStp_hnO9igfKHE7GfnSNC2UA" alt="">
           <div class="res-info">
             <div class="res-header">
@@ -1607,7 +1611,7 @@
               <span class="commercial-badge">Victor</span>
             </div>
           </div>
-        </div><div class="reservation-card">
+        </div><div class="reservation-card" data-ts="1772882781">
           <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/52/52/1777212000000/XIPVW7r27Vyjj00qjfFl-g/UUkIsNk1CNHjbPsuvTAudrz2Nu8RnZe1hEoneSHduxejaOfv5NIDNIvyqvOGF1VqLQYVesx6rQJbcxLI7WNjLZdC0T18uCirgCukWeMdER92KxT4k1u1Rsp2OLoLzi3Ta3GxJdipbyviHwX9Sxkv0vVZjtnAkcl4-cDHFVtRD_Y/J7n6IbnM7gmDLghmr2PBn7yBDaquadq_mDDEv-Jwwag" alt="">
           <div class="res-info">
             <div class="res-header">
@@ -1622,7 +1626,7 @@
               <span class="commercial-badge">François</span><span class="commercial-badge">Louis</span>
             </div>
           </div>
-        </div><div class="reservation-card">
+        </div><div class="reservation-card" data-ts="1772477406">
           <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/52/52/1777212000000/DlMryvIzyNMO6_L-63ercw/U5Q00Gs2Q0crE_NF3qna4WG3oJjtL4hJiXjgzUvqIkneOnEJuvql4KpFCgZErZ2yMNYVeYLLCqQmDsr_fxPceL8H5pfpxC5Iez09iBmN_dst2wcGZ3ZsrTVqZXvAvG2j5VYK_9DAxePy-gaUM9jXtA2XJwdnHXvv1IJxTqu2t5s/pJ2lfpQrpKm_mMlhz8_ye9xeMM2AIvIsFcCGDgOsrEk" alt="">
           <div class="res-info">
             <div class="res-header">
@@ -1644,7 +1648,7 @@
   </div>
 
   <footer class="footer">
-    Généré le Dimanche 26 avril 2026 à 10:22 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
+    Généré le Dimanche 26 avril 2026 à 10:29 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
   </footer>
 </div>
 <script>var MARGES_DATA = [{"marge": 4000.0, "ts": 1769884848}, {"marge": 6297.399999999994, "ts": 1774023199}, {"marge": 12368.699999999997, "ts": 1770030734}, {"marge": 5583.309999999998, "ts": 1768234979}, {"marge": 7102.220000000001, "ts": 1764326868}, {"marge": 10657.220000000001, "ts": 1771931045}, {"marge": 3942.5, "ts": 1772529064}, {"marge": 9090.119999999995, "ts": 1769707897}, {"marge": 11850.0, "ts": 1773755213}, {"marge": 9550.0, "ts": 1771423217}, {"marge": -1372.679999999993, "ts": 1765268519}, {"marge": 16600.0, "ts": 1756125321}, {"marge": 29900.0, "ts": 1773745986}, {"marge": 12049.61, "ts": 1768081150}, {"marge": 14900.0, "ts": 1771406978}, {"marge": 4842.5, "ts": 1771956283}, {"marge": 17738.33, "ts": 1768845411}, {"marge": 25580.0, "ts": 1763661946}, {"marge": 25850.0, "ts": 1773078266}, {"marge": 18658.70000000001, "ts": 1770801109}, {"marge": 15900.0, "ts": 1770915028}, {"marge": 10030.0, "ts": 1772882781}, {"marge": 19110.0, "ts": 1772477406}];</script>
@@ -1701,6 +1705,22 @@ function toggleSection(id) {
   var collapsed = body.style.display === 'none';
   body.style.display = collapsed ? '' : 'none';
   if (btn) btn.textContent = collapsed ? '▲' : '▼';
+}
+
+// ── Tri voitures réservées ───────────────────────────────────────────
+var reserveesSortDesc = true; // plus récent en premier par défaut
+function toggleSortReservees(btn) {
+  reserveesSortDesc = !reserveesSortDesc;
+  btn.textContent = reserveesSortDesc ? '↓ Plus récent' : '↑ Plus ancien';
+  var grid = document.querySelector('.reservations-grid');
+  if (!grid) return;
+  var cards = Array.from(grid.querySelectorAll('.reservation-card'));
+  cards.sort(function(a, b) {
+    var ta = parseInt(a.getAttribute('data-ts') || '0', 10);
+    var tb = parseInt(b.getAttribute('data-ts') || '0', 10);
+    return reserveesSortDesc ? tb - ta : ta - tb;
+  });
+  cards.forEach(function(c) { grid.appendChild(c); });
 }
 
 
