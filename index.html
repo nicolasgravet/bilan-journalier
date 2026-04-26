@@ -250,7 +250,7 @@
         updateClock();
         setInterval(updateClock, 1000);
         // Timestamp de génération converti en heure locale
-        var gen = new Date(1777211473 * 1000);
+        var gen = new Date(1777211609 * 1000);
         var genH = String(gen.getHours()).padStart(2,'0');
         var genM = String(gen.getMinutes()).padStart(2,'0');
         var genLabel = 'Mis à jour le ' + JOURS[gen.getDay()] + ' ' + gen.getDate() + ' ' + MOIS[gen.getMonth()] + ' ' + gen.getFullYear() + ' à ' + genH + ':' + genM;
@@ -260,7 +260,7 @@
         btn.disabled = true;
         btn.textContent = '⏳ En cours…';
         document.getElementById('refresh-status').textContent = 'Génération en cours…';
-        var currentTs = 1777211473;
+        var currentTs = 1777211609;
         fetch('https://mecanicus-refresh.nicolas-0ce.workers.dev', {method:'POST'})
         .then(r => {
           if (r.ok) {
@@ -319,7 +319,7 @@
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
       </div>
       <div class="kpi-body">
-        <div class="kpi-value">3</div>
+        <div class="kpi-value">5</div>
         <div class="kpi-label">Alertes CT — Réservées</div>
       </div>
     </div>
@@ -663,7 +663,7 @@
           <div class="ct-date">12/03/2025</div>
           <div class="ct-jours"><span class="jours-expire">Expiré (410j)</span></div>
           <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recG4Fx6jFLyqabfl?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="ct-row ct-expire" data-ct-type="acompte-ok" data-ct-crit="0" style="display:none">
+        </div><div class="ct-row ct-expire" data-ct-type="acompte" data-ct-crit="0">
           <div class="ct-car"><span class="car-name">Porsche 911 991.1 CARRERA S BVM BZ-032-ZV</span></div>
           <div><span class="statut-pill">Acompte 👍</span></div>
           <div><span class="ct-status-badge ct-expire-badge">Expiré ⛔️ <span class="jul">✌🏼✌🏼</span></span></div>
@@ -687,7 +687,7 @@
           <div class="ct-date">03/09/2025</div>
           <div class="ct-jours"><span class="jours-expire">Expiré (235j)</span></div>
           <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recM8uAubRoq36y69?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="ct-row ct-expire" data-ct-type="acompte-ok" data-ct-crit="0" style="display:none">
+        </div><div class="ct-row ct-expire" data-ct-type="acompte" data-ct-crit="0">
           <div class="ct-car"><span class="car-name">Porsche 964 3.3 Turbo - Bleu  DD-097-MS</span></div>
           <div><span class="statut-pill">Acompte 👍</span></div>
           <div><span class="ct-status-badge ct-expire-badge">Expiré ⛔️ <span class="jul">✌🏼✌🏼</span></span></div>
@@ -1784,7 +1784,7 @@
   </div>
 
   <footer class="footer">
-    Généré le Dimanche 26 avril 2026 à 13:51 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
+    Généré le Dimanche 26 avril 2026 à 13:53 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
   </footer>
 </div>
 <div id="res-modal" class="res-modal-overlay" onclick="closeResModal(event)">
