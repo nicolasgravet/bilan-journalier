@@ -1,3 +1,4 @@
+import json as _json
 from datetime import datetime
 
 JOURS_FR = ["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"]
@@ -13,7 +14,6 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
     car_photos = car_photos or {}
     francois_cars = francois_cars or set()
 
-    import json as _json
     # CT global = toutes les voitures non-réservées (visibles dans "Tous")
     ct_alert_count = sum(1 for c in ct_data if c.get("ct_filter_type") not in ("acompte", "acompte-ok"))
     # CT réservées = voitures en Acompte avec CT non-OK (manquant, expiré, bientôt)
@@ -226,6 +226,30 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
     Généré le {date_str} à {time_str} · Données Slack & Airtable · Rafraîchissement quotidien à 19h
   </footer>
 </div>
+<div id="res-modal" class="res-modal-overlay" onclick="closeResModal(event)">
+  <div class="res-modal-card">
+    <button class="res-modal-close" onclick="closeResModal()">✕</button>
+    <img id="res-modal-photo" class="res-modal-photo" src="" alt="">
+    <div class="res-modal-body">
+      <div class="res-modal-header">
+        <span id="res-modal-name" class="res-modal-name"></span>
+        <span id="res-modal-bc" class="bc-badge res-modal-bc"></span>
+      </div>
+      <div class="res-modal-amounts">
+        <div class="res-modal-amount-block">
+          <span class="res-modal-label">Prix</span>
+          <span id="res-modal-prix" class="res-modal-value-prix"></span>
+        </div>
+        <div class="res-modal-amount-block">
+          <span class="res-modal-label">Marge</span>
+          <span id="res-modal-marge" class="res-modal-value-marge"></span>
+        </div>
+      </div>
+      <div id="res-modal-commerciaux" class="res-modal-commerciaux"></div>
+      <a id="res-modal-fiche" class="fiche-btn res-modal-fiche-btn" href="#" target="_blank" onclick="event.stopPropagation()">Accéder à la fiche →</a>
+    </div>
+  </div>
+</div>
 <script>var MARGES_DATA = {marges_data};</script>
 <script>{_js()}</script>
 </body>
@@ -248,10 +272,13 @@ def _render_reservees(reservees, francois_cars=None):
         )
         voiture = r.get('voiture', '—')
         fck = ' <span class="fck-badge">🖕</span>' if (voiture in francois_cars or r.get("is_francois")) else ''
+        fck_data = '🖕' if (voiture in francois_cars or r.get("is_francois")) else ''
         ts = r.get('bc_num', 0)
         bc_str = r.get('bc_str', '')
         bc_html = f'<span class="bc-badge">{bc_str}</span>' if bc_str else ''
-        items += f"""<div class="reservation-card" data-ts="{ts}">
+        photo_src = r.get('photo_url') or ''
+        commerciaux_json = _json.dumps(r.get("commerciaux", []))
+        items += f"""<div class="reservation-card" data-ts="{ts}" data-voiture="{voiture}" data-fck="{fck_data}" data-bc="{bc_str}" data-prix="{r.get('prix_fmt','—')}" data-marge="{r.get('marge_fmt','—')}" data-fiche="{r.get('fiche_url','#')}" data-photo="{photo_src}" data-commerciaux='{commerciaux_json}' onclick="openResModal(this)">
           {photo_html}
           <div class="res-info">
             <div class="res-header">
@@ -265,7 +292,7 @@ def _render_reservees(reservees, francois_cars=None):
               <span class="res-marge">Marge : <strong>{r.get('marge_fmt','—')}</strong></span>
             </div>
             <div class="res-footer">
-              <a class="fiche-btn" href="{r.get('fiche_url','#')}" target="_blank">Accéder à la fiche →</a>
+              <a class="fiche-btn" href="{r.get('fiche_url','#')}" target="_blank" onclick="event.stopPropagation()">Accéder à la fiche →</a>
               {commerciaux_html}
             </div>
           </div>
@@ -591,6 +618,46 @@ document.querySelectorAll('.marge-btn').forEach(function(btn) {
 
 // Init marge KPI (3 mois par défaut)
 updateMargeKPI(90);
+
+// ── Modal voiture réservée ──────────────────────────────────────────────
+function openResModal(card) {
+  var voiture = card.getAttribute('data-voiture') || '—';
+  var fck = card.getAttribute('data-fck') || '';
+  var bc = card.getAttribute('data-bc') || '';
+  var prix = card.getAttribute('data-prix') || '—';
+  var marge = card.getAttribute('data-marge') || '—';
+  var fiche = card.getAttribute('data-fiche') || '#';
+  var photo = card.getAttribute('data-photo') || '';
+  var commerciaux = JSON.parse(card.getAttribute('data-commerciaux') || '[]');
+
+  var m = document.getElementById('res-modal');
+  var img = document.getElementById('res-modal-photo');
+  if (photo) { img.src = photo; img.style.display = 'block'; }
+  else { img.style.display = 'none'; }
+
+  document.getElementById('res-modal-name').innerHTML = voiture + (fck ? ' <span class="fck-badge">' + fck + '</span>' : '');
+  var bcEl = document.getElementById('res-modal-bc');
+  bcEl.textContent = bc; bcEl.style.display = bc ? 'inline-block' : 'none';
+  document.getElementById('res-modal-prix').textContent = prix;
+  document.getElementById('res-modal-marge').textContent = marge;
+  document.getElementById('res-modal-fiche').href = fiche;
+
+  var comDiv = document.getElementById('res-modal-commerciaux');
+  comDiv.innerHTML = commerciaux.map(function(c) { return '<span class="commercial-badge">' + c + '</span>'; }).join('');
+
+  m.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeResModal(e) {
+  if (e && e.target !== document.getElementById('res-modal') && !e.target.classList.contains('res-modal-close')) return;
+  document.getElementById('res-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') { document.getElementById('res-modal').classList.remove('open'); document.body.style.overflow = ''; }
+});
 """
 
 
@@ -767,6 +834,42 @@ def _css():
     @media (max-width: 640px) {
       .grid, .kpi-row { grid-template-columns: 1fr; }
       .col-span-2, .col-span-3 { grid-column: span 1; }
-
     }
+
+    /* ── Modal voiture réservée ─────────────────────────────────────── */
+    .res-modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 1000;
+      background: rgba(10,14,26,0.72); backdrop-filter: blur(6px);
+      align-items: center; justify-content: center;
+    }
+    .res-modal-overlay.open { display: flex; animation: modalFadeIn 0.2s ease; }
+    @keyframes modalFadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .res-modal-card {
+      position: relative; background: #fff; border-radius: 22px;
+      overflow: hidden; width: min(560px, 92vw);
+      box-shadow: 0 40px 100px rgba(0,0,0,0.35);
+      animation: modalSlideUp 0.25s cubic-bezier(0.34,1.4,0.64,1);
+    }
+    @keyframes modalSlideUp { from { transform: scale(0.88) translateY(24px); opacity: 0; } to { transform: scale(1) translateY(0); opacity: 1; } }
+    .res-modal-close {
+      position: absolute; top: 14px; right: 14px; z-index: 10;
+      width: 32px; height: 32px; border-radius: 50%; border: none;
+      background: rgba(0,0,0,0.45); color: #fff; font-size: 14px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s;
+    }
+    .res-modal-close:hover { background: rgba(0,0,0,0.65); }
+    .res-modal-photo { width: 100%; height: 300px; object-fit: cover; display: block; }
+    .res-modal-body { padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 16px; }
+    .res-modal-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+    .res-modal-name { font-size: 18px; font-weight: 700; color: #111827; line-height: 1.35; flex: 1; }
+    .res-modal-bc { font-size: 11px; margin-top: 3px; }
+    .res-modal-amounts { display: flex; gap: 20px; }
+    .res-modal-amount-block { display: flex; flex-direction: column; gap: 2px; }
+    .res-modal-label { font-size: 11px; color: #9ca3af; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+    .res-modal-value-prix { font-size: 20px; font-weight: 700; color: #111827; }
+    .res-modal-value-marge { font-size: 20px; font-weight: 700; color: #2FAEE0; }
+    .res-modal-commerciaux { display: flex; gap: 8px; flex-wrap: wrap; }
+    .res-modal-fiche-btn { align-self: flex-start; }
+    .reservation-card { cursor: pointer; }
     """
