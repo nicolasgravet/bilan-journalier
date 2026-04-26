@@ -663,7 +663,6 @@ def _render_prestataires(prestataires):
                 {notes_html}
                 <div class="pca-row">
                   <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'{rec_id}',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
-                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'{rec_id}',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
                 </div>
               </div>
             </div>"""
