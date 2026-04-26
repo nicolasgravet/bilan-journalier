@@ -459,7 +459,7 @@
         updateClock();
         setInterval(updateClock, 1000);
         // Timestamp de génération converti en heure locale
-        var gen = new Date(1777232035 * 1000);
+        var gen = new Date(1777233231 * 1000);
         var genH = String(gen.getHours()).padStart(2,'0');
         var genM = String(gen.getMinutes()).padStart(2,'0');
         var genLabel = 'Mis à jour le ' + JOURS[gen.getDay()] + ' ' + gen.getDate() + ' ' + MOIS[gen.getMonth()] + ' ' + gen.getFullYear() + ' à ' + genH + ':' + genM;
@@ -469,7 +469,7 @@
         btn.disabled = true;
         btn.textContent = '⏳ En cours…';
         document.getElementById('refresh-status').textContent = 'Génération en cours…';
-        var currentTs = 1777232035;
+        var currentTs = 1777233231;
         fetch('https://mecanicus-refresh.nicolas-0ce.workers.dev', {method:'POST'})
         .then(r => {
           if (r.ok) {
@@ -1988,7 +1988,7 @@
     <div class="section-header collapsible-header" onclick="toggleSection('prest')">
       <span class="section-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
       <h2>Prestataires</h2>
-      <span class="count-badge" id="prest-count">35</span>
+      <span class="count-badge" id="prest-count">34</span>
       <div class="header-filters" onclick="event.stopPropagation()">
         <button class="prest-add-btn" onclick="openPrestAddModal()">+ Ajouter</button>
       </div>
@@ -2014,7 +2014,7 @@
         <div id="prest-groups"><div class="prest-group" data-group-type="Mécanique">
           <div class="prest-group-header" style="border-left:3px solid #2563eb">
             <span class="prest-group-name" style="color:#2563eb">Mécanique</span>
-            <span class="prest-group-count">22</span>
+            <span class="prest-group-count">21</span>
           </div>
           <div class="prest-cards-grid"><div class="prest-card" data-id="rectZABN9qNx0BNzH" data-types='["M\u00e9canique", "Carrosserie"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="atelier 46  courbevoie  garage généraliste anciennes ">
               <div class="prest-card-accent" style="background:#2563eb"></div>
@@ -2251,7 +2251,7 @@
                   <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span></span>
                 </div>
                 <div class="prest-card-name">paris pneus.fr</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 46 28 35 25" class="pci-link">01 46 28 35 25</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">57 Bd Poniatowski, 75012 Paris</span></div></div>
+                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 46 28 35 25" class="pci-link">01 46 28 35 25</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:contact@paris-pneus.fr" class="pci-link">contact@paris-pneus.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">57 Bd Poniatowski, 75012 Paris</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
                 
                 <div class="pca-row">
@@ -2316,21 +2316,6 @@
                 <p class="prest-notes">Spécialiste Porsche entretien, atelier, expertise</p>
                 <div class="pca-row">
                   <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'rec52mUtqkPSYvfyH',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
-                </div>
-              </div>
-            </div><div class="prest-card" data-id="rec4pUmOKkNg0BwkG" data-types='["M\u00e9canique"]' data-marques='["Porsche"]' data-searchtext="test  test test">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span></span>
-                </div>
-                <div class="prest-card-name">test</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:0600000000" class="pci-link">0600000000</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">test</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Porsche</span></div>
-                <p class="prest-notes">test</p>
-                <div class="pca-row">
-                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'rec4pUmOKkNg0BwkG',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
                 </div>
               </div>
             </div><div class="prest-card" data-id="rec7cCVgPSHjCabhc" data-types='["M\u00e9canique"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="timeless machines  31 rue roger salengro, 69200 vénissieux mécanique ancienne multi marques
@@ -2599,7 +2584,7 @@
   </section>
 
   <footer class="footer">
-    Généré le Dimanche 26 avril 2026 à 19:33 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
+    Généré le Dimanche 26 avril 2026 à 19:53 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
   </footer>
 </div>
 <div id="res-modal" class="res-modal-overlay" onclick="closeResModal(event)">
