@@ -518,7 +518,7 @@
         updateClock();
         setInterval(updateClock, 1000);
         // Timestamp de génération converti en heure locale
-        var gen = new Date(1777233307 * 1000);
+        var gen = new Date(1777233537 * 1000);
         var genH = String(gen.getHours()).padStart(2,'0');
         var genM = String(gen.getMinutes()).padStart(2,'0');
         var genLabel = 'Mis à jour le ' + JOURS[gen.getDay()] + ' ' + gen.getDate() + ' ' + MOIS[gen.getMonth()] + ' ' + gen.getFullYear() + ' à ' + genH + ':' + genM;
@@ -528,7 +528,7 @@
         btn.disabled = true;
         btn.textContent = '⏳ En cours…';
         document.getElementById('refresh-status').textContent = 'Génération en cours…';
-        var currentTs = 1777233307;
+        var currentTs = 1777233537;
         fetch('https://mecanicus-refresh.nicolas-0ce.workers.dev', {method:'POST'})
         .then(r => {
           if (r.ok) {
@@ -2047,11 +2047,56 @@
     <div class="section-header collapsible-header" onclick="toggleSection('livr')">
       <span class="section-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span>
       <h2>Livraisons de la semaine</h2>
-      <span class="count-badge" id="livr-count">0</span>
+      <span class="count-badge" id="livr-count">5</span>
       <button class="collapse-btn" id="collapse-livr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
     </div>
     <div class="section-body" id="body-livr">
-      <div class="empty-state">Aucune livraison prévue dans les 14 prochains jours 📦</div>
+      <div class="livr-container"><div class="livr-week-sep">🗓️ Semaine prochaine</div><div class="livr-day-header"><span class="livr-day-name">Mar</span><span class="livr-day-num">28</span><span class="livr-day-month">avr</span></div>
+<div class="livr-event">
+  <div class="livr-event-time">14h → 16h</div>
+  <div class="livr-event-body">
+    <div class="livr-event-car">Ferrari 458 Italia Nero<span class="livr-plate">DW-362-TW</span></div>
+    <div class="livr-event-meta">
+      <span class="livr-badge livr-badge-client">🏠 Chez client</span><span class="livr-assignees">👤 Victor · Nicolas</span><span class="livr-client">Client : Laurent Martinetti</span>
+    </div>
+  </div>
+</div><div class="livr-day-header"><span class="livr-day-name">Ven</span><span class="livr-day-num">1</span><span class="livr-day-month">mai</span></div>
+<div class="livr-event">
+  <div class="livr-event-time">10h → 12h</div>
+  <div class="livr-event-body">
+    <div class="livr-event-car">Ferrari F355 GTS Fiorano<span class="livr-plate">HA-213-EN</span></div>
+    <div class="livr-event-meta">
+      <span class="livr-badge livr-badge-meca">🏢 Mecanicus</span><span class="livr-assignees">👤 Victor</span><span class="livr-client">Client : CARETTE Benjamin</span>
+    </div>
+  </div>
+</div><div class="livr-day-header"><span class="livr-day-name">Dim</span><span class="livr-day-num">3</span><span class="livr-day-month">mai</span></div>
+<div class="livr-event">
+  <div class="livr-event-time">11h → 13h</div>
+  <div class="livr-event-body">
+    <div class="livr-event-car">Porsche 911 991.1 CARRERA S BVM<span class="livr-plate">BZ-032-ZV</span></div>
+    <div class="livr-event-meta">
+      <span class="livr-badge livr-badge-client">🏠 Chez client</span><span class="livr-assignees">👤 Nicolas</span><span class="livr-client">Client : Marc Doimo</span>
+    </div>
+  </div>
+</div><div class="livr-week-sep">🗓️ Dans 2 semaines</div><div class="livr-day-header"><span class="livr-day-name">Mar</span><span class="livr-day-num">5</span><span class="livr-day-month">mai</span></div>
+<div class="livr-event">
+  <div class="livr-event-time">11h → 13h</div>
+  <div class="livr-event-body">
+    <div class="livr-event-car">Aston Martin V8 Vantage S Cabriolet<span class="livr-plate">CT-077-LG</span></div>
+    <div class="livr-event-meta">
+      <span class="livr-badge livr-badge-client">🏠 Chez client</span><span class="livr-assignees">👤 Louis</span><span class="livr-client">Client : ALLIO Serge</span>
+    </div>
+  </div>
+</div><div class="livr-day-header"><span class="livr-day-name">Ven</span><span class="livr-day-num">8</span><span class="livr-day-month">mai</span></div>
+<div class="livr-event">
+  <div class="livr-event-time">10h → 12h</div>
+  <div class="livr-event-body">
+    <div class="livr-event-car">Porsche 996 4S Kerguelen / Noir<span class="livr-plate">CD-746-TG</span></div>
+    <div class="livr-event-meta">
+      <span class="livr-badge livr-badge-meca">🏢 Mecanicus</span><span class="livr-assignees">👤 Louis</span><span class="livr-client">Client : Mathilde Mazy et Alexandre Haeberle</span>
+    </div>
+  </div>
+</div></div>
     </div>
   </section>
 
@@ -2656,7 +2701,7 @@
   </section>
 
   <footer class="footer">
-    Généré le Dimanche 26 avril 2026 à 19:55 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
+    Généré le Dimanche 26 avril 2026 à 19:58 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
   </footer>
 </div>
 <div id="res-modal" class="res-modal-overlay" onclick="closeResModal(event)">
