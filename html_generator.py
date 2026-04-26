@@ -216,7 +216,7 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
           <input type="text" class="section-search" id="search-reservees" placeholder="Rechercher une voiture…" oninput="filterBySearch('reservees', this.value)" autocomplete="off">
           <button class="search-clear-btn" onclick="clearSearch('reservees')">✕</button>
         </div>
-        {_render_reservees(reservees, francois_cars)}
+        {_render_reservees(reservees, francois_cars, ct_data)}
       </div>
     </section>
 
@@ -245,8 +245,12 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
           <span id="res-modal-marge" class="res-modal-value-marge"></span>
         </div>
       </div>
+      <span id="res-modal-ct" class="ct-res-badge" style="display:none"></span>
       <div id="res-modal-commerciaux" class="res-modal-commerciaux"></div>
-      <a id="res-modal-fiche" class="fiche-btn res-modal-fiche-btn" href="#" target="_blank" onclick="event.stopPropagation()">Accéder à la fiche →</a>
+      <div class="res-modal-actions">
+        <a id="res-modal-fiche" class="fiche-btn res-modal-fiche-btn" href="#" target="_blank" onclick="event.stopPropagation()">Accéder à la fiche →</a>
+        <a id="res-modal-travaux" class="fiche-btn fiche-btn-travaux res-modal-fiche-btn" href="#" target="_blank" onclick="event.stopPropagation()">🔧 Travaux →</a>
+      </div>
     </div>
   </div>
 </div>
@@ -258,10 +262,17 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
 
 # ─── Renderers ────────────────────────────────────────────────────────────────
 
-def _render_reservees(reservees, francois_cars=None):
+def _render_reservees(reservees, francois_cars=None, ct_data=None):
     francois_cars = francois_cars or set()
+    # Index CT par nom de voiture (réservées = statut "acompte" ou "acompte-ok")
+    ct_by_car = {}
+    for c in (ct_data or []):
+        if c.get("ct_filter_type") in ("acompte", "acompte-ok"):
+            ct_by_car[c["voiture"]] = c
     if not reservees:
         return '<div class="empty-state">Aucune voiture réservée</div>'
+    # Criticité CT → classe CSS et libellé
+    CT_CLS  = {0: "ct-expire-badge", 1: "ct-manquant-badge", 2: "ct-bientot-badge", 3: "ct-ok-badge"}
     items = ""
     for r in reservees:
         photo = r.get("photo_url")
@@ -278,7 +289,20 @@ def _render_reservees(reservees, francois_cars=None):
         bc_html = f'<span class="bc-badge">{bc_str}</span>' if bc_str else ''
         photo_src = r.get('photo_url') or ''
         commerciaux_json = _json.dumps(r.get("commerciaux", []))
-        items += f"""<div class="reservation-card" data-ts="{ts}" data-voiture="{voiture}" data-fck="{fck_data}" data-bc="{bc_str}" data-prix="{r.get('prix_fmt','—')}" data-marge="{r.get('marge_fmt','—')}" data-fiche="{r.get('fiche_url','#')}" data-photo="{photo_src}" data-commerciaux='{commerciaux_json}' onclick="openResModal(this)">
+        fiche_url = r.get('fiche_url', '#')
+
+        # Badge CT
+        ct_info = ct_by_car.get(voiture)
+        if ct_info:
+            ct_cls   = CT_CLS.get(ct_info.get("criticite", 3), "ct-badge-ok")
+            ct_label = ct_info.get("ct_status", "—")
+            ct_badge = f'<span class="ct-res-badge {ct_cls}">{ct_label}</span>'
+            ct_data_attr = f'data-ct="{ct_label}" data-ct-cls="{ct_cls}"'
+        else:
+            ct_badge = ''
+            ct_data_attr = 'data-ct="" data-ct-cls=""'
+
+        items += f"""<div class="reservation-card" data-ts="{ts}" data-voiture="{voiture}" data-fck="{fck_data}" data-bc="{bc_str}" data-prix="{r.get('prix_fmt','—')}" data-marge="{r.get('marge_fmt','—')}" data-fiche="{fiche_url}" data-photo="{photo_src}" data-commerciaux='{commerciaux_json}' {ct_data_attr} onclick="openResModal(this)">
           {photo_html}
           <div class="res-info">
             <div class="res-header">
@@ -286,13 +310,15 @@ def _render_reservees(reservees, francois_cars=None):
                 <span class="car-name">{voiture}{fck}</span>
                 {bc_html}
               </div>
+              {ct_badge}
             </div>
             <div class="res-amounts">
               <span class="res-prix">Prix : <strong>{r.get('prix_fmt','—')}</strong></span>
               <span class="res-marge">Marge : <strong>{r.get('marge_fmt','—')}</strong></span>
             </div>
             <div class="res-footer">
-              <a class="fiche-btn" href="{r.get('fiche_url','#')}" target="_blank" onclick="event.stopPropagation()">Accéder à la fiche →</a>
+              <a class="fiche-btn" href="{fiche_url}" target="_blank" onclick="event.stopPropagation()">Fiche →</a>
+              <a class="fiche-btn fiche-btn-travaux" href="{fiche_url}" target="_blank" onclick="event.stopPropagation()">🔧 Travaux →</a>
               {commerciaux_html}
             </div>
           </div>
@@ -629,6 +655,8 @@ function openResModal(card) {
   var fiche = card.getAttribute('data-fiche') || '#';
   var photo = card.getAttribute('data-photo') || '';
   var commerciaux = JSON.parse(card.getAttribute('data-commerciaux') || '[]');
+  var ctLabel = card.getAttribute('data-ct') || '';
+  var ctCls = card.getAttribute('data-ct-cls') || '';
 
   var m = document.getElementById('res-modal');
   var img = document.getElementById('res-modal-photo');
@@ -641,6 +669,12 @@ function openResModal(card) {
   document.getElementById('res-modal-prix').textContent = prix;
   document.getElementById('res-modal-marge').textContent = marge;
   document.getElementById('res-modal-fiche').href = fiche;
+  document.getElementById('res-modal-travaux').href = fiche;
+
+  var ctEl = document.getElementById('res-modal-ct');
+  ctEl.className = 'ct-res-badge ' + (ctCls || '');
+  ctEl.textContent = ctLabel;
+  ctEl.style.display = ctLabel ? 'inline-flex' : 'none';
 
   var comDiv = document.getElementById('res-modal-commerciaux');
   comDiv.innerHTML = commerciaux.map(function(c) { return '<span class="commercial-badge">' + c + '</span>'; }).join('');
@@ -870,6 +904,12 @@ def _css():
     .res-modal-value-prix { font-size: 20px; font-weight: 700; color: #111827; }
     .res-modal-value-marge { font-size: 20px; font-weight: 700; color: #2FAEE0; }
     .res-modal-commerciaux { display: flex; gap: 8px; flex-wrap: wrap; }
+    .res-modal-actions { display: flex; gap: 10px; flex-wrap: wrap; }
     .res-modal-fiche-btn { align-self: flex-start; }
     .reservation-card { cursor: pointer; }
+    /* Badge CT sur cartes réservées */
+    .ct-res-badge { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 980px; font-size: 11px; font-weight: 600; margin-top: 5px; }
+    /* Bouton Travaux */
+    .fiche-btn-travaux { background: #f3f4f6 !important; color: #374151 !important; border: 1px solid #d1d5db; }
+    .fiche-btn-travaux:hover { background: #e5e7eb !important; color: #111827 !important; transform: translateY(-1px); }
     """
