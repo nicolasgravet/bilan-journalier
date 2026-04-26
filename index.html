@@ -459,7 +459,7 @@
         updateClock();
         setInterval(updateClock, 1000);
         // Timestamp de génération converti en heure locale
-        var gen = new Date(1777231469 * 1000);
+        var gen = new Date(1777231610 * 1000);
         var genH = String(gen.getHours()).padStart(2,'0');
         var genM = String(gen.getMinutes()).padStart(2,'0');
         var genLabel = 'Mis à jour le ' + JOURS[gen.getDay()] + ' ' + gen.getDate() + ' ' + MOIS[gen.getMonth()] + ' ' + gen.getFullYear() + ' à ' + genH + ':' + genM;
@@ -469,7 +469,7 @@
         btn.disabled = true;
         btn.textContent = '⏳ En cours…';
         document.getElementById('refresh-status').textContent = 'Génération en cours…';
-        var currentTs = 1777231469;
+        var currentTs = 1777231610;
         fetch('https://mecanicus-refresh.nicolas-0ce.workers.dev', {method:'POST'})
         .then(r => {
           if (r.ok) {
@@ -2599,7 +2599,7 @@
   </section>
 
   <footer class="footer">
-    Généré le Dimanche 26 avril 2026 à 19:24 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
+    Généré le Dimanche 26 avril 2026 à 19:26 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
   </footer>
 </div>
 <div id="res-modal" class="res-modal-overlay" onclick="closeResModal(event)">
@@ -2687,15 +2687,9 @@
           <input class="pf-input" id="pf-email" type="email" placeholder="contact@garage.fr">
         </div>
       </div>
-      <div class="pf-row pf-row-2">
-        <div>
-          <label class="pf-label">Contact</label>
-          <input class="pf-input" id="pf-contact" type="text" placeholder="Prénom Nom">
-        </div>
-        <div>
-          <label class="pf-label">Ville</label>
-          <input class="pf-input" id="pf-ville" type="text" placeholder="Paris">
-        </div>
+      <div class="pf-row">
+        <label class="pf-label">Ville</label>
+        <input class="pf-input" id="pf-ville" type="text" placeholder="Paris">
       </div>
       <div class="pf-row">
         <label class="pf-label">Adresse</label>
@@ -3041,7 +3035,7 @@ function hidePrestCard(e, recordId, btn) {
   fetch(PREST_API_URL + '/' + recordId, {
     method: 'PATCH',
     headers: { 'Authorization': 'Bearer ' + PREST_TOKEN, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ fields: { Rating: 0 } })
+    body: JSON.stringify({ fields: { Rating: null } })
   })
   .then(function(r) { return r.json(); })
   .then(function(data) {
@@ -3261,13 +3255,11 @@ function submitNewPrestataire(e) {
   if (typeVal) fields['Type'] = [typeVal];
   if (marques.length) fields['Marque'] = marques;
   if (rating > 0) fields['Rating'] = rating;
-  if (tel)     fields['Téléphone'] = tel;
-  if (email)   fields['Email']     = email;
-  if (adresse) fields['Adresse']   = adresse;
-  if (contact) fields['Contact']   = contact;
-  if (ville)   fields['Ville']     = ville;
-  if (site)    fields['Site web']  = site;
-  if (notes)   fields['Notes']     = notes;
+  if (tel)     fields['Téléphone']       = tel;
+  if (email)   fields['Email']           = email;
+  if (adresse) fields['Adresse complète'] = adresse;
+  if (ville)   fields['Ville']           = ville;
+  if (notes)   fields['Notes']           = notes;
 
   if (!PREST_TOKEN || PREST_TOKEN === 'None') {
     btn.disabled = false;
