@@ -16,6 +16,8 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
     francois_cars = francois_cars or set()
     prestataires = prestataires or []
 
+    # Prestataires 5 étoiles uniquement (même filtre que dans _render_prestataires)
+    prest_display_count = sum(1 for p in prestataires if p.get("rating", 0) == 5)
     # CT global = toutes les voitures sans CT valide (expiré + manquant + bientôt), réservées ou non
     ct_alert_count = sum(1 for c in ct_data if c.get("criticite", 3) != 3)
     # CT réservées = voitures en Acompte avec CT non-OK (manquant, expiré, bientôt)
@@ -232,7 +234,7 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
     <div class="section-header collapsible-header" onclick="toggleSection('prest')">
       <span class="section-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
       <h2>Prestataires</h2>
-      <span class="count-badge" id="prest-count">{len(prestataires)}</span>
+      <span class="count-badge" id="prest-count">{prest_display_count}</span>
       <div class="header-filters" onclick="event.stopPropagation()">
         <button class="prest-add-btn" onclick="openPrestAddModal()">+ Ajouter</button>
       </div>
