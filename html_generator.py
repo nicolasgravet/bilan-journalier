@@ -1285,6 +1285,15 @@ def _css():
       75%  { transform: translateX(2px); }
       87%  { transform: translateX(-1px); }
     }
+    /* Animation cadenas — rebond vertical */
+    @keyframes bounce {
+      0%,100% { transform: translateY(0) scale(1); }
+      22%  { transform: translateY(-7px) scale(1.08); }
+      42%  { transform: translateY(-2px) scale(0.97); }
+      62%  { transform: translateY(-5px) scale(1.04); }
+      80%  { transform: translateY(-1px) scale(1); }
+    }
+    .kpi:hover .kpi-blue   svg { animation: bounce 0.65s cubic-bezier(0.36,0.07,0.19,0.97) both; }
     .kpi:hover .kpi-red   svg { transform-origin: 50% 0%; animation: ring  0.7s cubic-bezier(0.36,0.07,0.19,0.97) both; }
     .kpi:hover .kpi-orange svg { animation: shake 0.6s cubic-bezier(0.36,0.07,0.19,0.97) both; }
     .kpi-green  { background: #d1fae5; }
