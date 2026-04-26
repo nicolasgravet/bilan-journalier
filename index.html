@@ -345,6 +345,23 @@
       font-size: 11px; color: #9ca3af; line-height: 1.4;
       overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
     }
+    .pca-row {
+      display: flex; gap: 6px; margin-top: 8px; padding-top: 8px;
+      border-top: 1px solid #f0f2f5;
+      opacity: 0; transform: translateY(4px);
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+    .prest-card:hover .pca-row { opacity: 1; transform: translateY(0); }
+    .pca-btn {
+      flex: 1; padding: 5px 8px; border-radius: 8px; border: none;
+      font-size: 11px; font-weight: 600; cursor: pointer;
+      transition: background 0.15s, transform 0.15s;
+    }
+    .pca-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .pca-hide   { background: #f3f4f6; color: #6b7280; }
+    .pca-hide:hover:not(:disabled)   { background: #e5e7eb; color: #374151; transform: translateY(-1px); }
+    .pca-delete { background: #fee2e2; color: #dc2626; }
+    .pca-delete:hover:not(:disabled) { background: #fecaca; transform: translateY(-1px); }
     .prest-empty { padding: 48px 24px; color: #ea580c; font-size: 13px; font-weight: 500; }
 
     /* ── Modal ajout prestataire ────────────────────────────────────────── */
@@ -442,7 +459,7 @@
         updateClock();
         setInterval(updateClock, 1000);
         // Timestamp de génération converti en heure locale
-        var gen = new Date(1777230858 * 1000);
+        var gen = new Date(1777231097 * 1000);
         var genH = String(gen.getHours()).padStart(2,'0');
         var genM = String(gen.getMinutes()).padStart(2,'0');
         var genLabel = 'Mis à jour le ' + JOURS[gen.getDay()] + ' ' + gen.getDate() + ' ' + MOIS[gen.getMonth()] + ' ' + gen.getFullYear() + ' à ' + genH + ':' + genM;
@@ -452,7 +469,7 @@
         btn.disabled = true;
         btn.textContent = '⏳ En cours…';
         document.getElementById('refresh-status').textContent = 'Génération en cours…';
-        var currentTs = 1777230858;
+        var currentTs = 1777231097;
         fetch('https://mecanicus-refresh.nicolas-0ce.workers.dev', {method:'POST'})
         .then(r => {
           if (r.ok) {
@@ -1999,7 +2016,7 @@
             <span class="prest-group-name" style="color:#2563eb">Mécanique</span>
             <span class="prest-group-count">23</span>
           </div>
-          <div class="prest-cards-grid"><div class="prest-card" data-types='["M\u00e9canique", "Carrosserie"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="atelier 46  courbevoie  garage généraliste anciennes ">
+          <div class="prest-cards-grid"><div class="prest-card" data-id="rectZABN9qNx0BNzH" data-types='["M\u00e9canique", "Carrosserie"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="atelier 46  courbevoie  garage généraliste anciennes ">
               <div class="prest-card-accent" style="background:#2563eb"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2010,8 +2027,12 @@
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:contact@atelier46.fr" class="pci-link">contact@atelier46.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Courbevoie </span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
                 <p class="prest-notes">Garage généraliste anciennes </p>
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'rectZABN9qNx0BNzH',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'rectZABN9qNx0BNzH',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Aston Martin ", "Jaguar", "Multi-marques"]' data-searchtext="atelier ares   3 rue de l'abbé grégoire, 91350 grigny spécialiste aston martin et anglaises anciennes">
+            </div><div class="prest-card" data-id="rec2Rca1NRUKakBp1" data-types='["M\u00e9canique"]' data-marques='["Aston Martin ", "Jaguar", "Multi-marques"]' data-searchtext="atelier ares   3 rue de l'abbé grégoire, 91350 grigny spécialiste aston martin et anglaises anciennes">
               <div class="prest-card-accent" style="background:#2563eb"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2022,8 +2043,12 @@
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:06 08 51 91 94" class="pci-link">06 08 51 91 94</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:atelier-ares@wanadoo.fr" class="pci-link">atelier-ares@wanadoo.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text"> 3 Rue de l'Abbé Grégoire, 91350 Grigny</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Aston Martin </span><span class="prest-marque-pill">Jaguar</span><span class="prest-marque-pill">Multi-marques</span></div>
                 <p class="prest-notes">Spécialiste Aston Martin et anglaises anciennes</p>
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'rec2Rca1NRUKakBp1',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'rec2Rca1NRUKakBp1',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Ferrari", "Porsche"]' data-searchtext="atelier ares  grigny mécaniques anciennes de prestige aston martin (ferrari, porsche...)">
+            </div><div class="prest-card" data-id="recxCgHDoRRJiLNNs" data-types='["M\u00e9canique"]' data-marques='["Ferrari", "Porsche"]' data-searchtext="atelier ares  grigny mécaniques anciennes de prestige aston martin (ferrari, porsche...)">
               <div class="prest-card-accent" style="background:#2563eb"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2034,8 +2059,12 @@
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:0608519194" class="pci-link">0608519194</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:atelier-ares@wanadoo.fr" class="pci-link">atelier-ares@wanadoo.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Grigny</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Ferrari</span><span class="prest-marque-pill">Porsche</span></div>
                 <p class="prest-notes">Mécaniques anciennes de prestige Aston Martin (Ferrari, Porsche...)</p>
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'recxCgHDoRRJiLNNs',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'recxCgHDoRRJiLNNs',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Jaguar"]' data-searchtext="département classic   78910 orgerus garage généraliste anciennes ">
+            </div><div class="prest-card" data-id="recRvJWF14z4f8Por" data-types='["M\u00e9canique"]' data-marques='["Jaguar"]' data-searchtext="département classic   78910 orgerus garage généraliste anciennes ">
               <div class="prest-card-accent" style="background:#2563eb"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2046,8 +2075,12 @@
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:departementclassic@gmail.com" class="pci-link">departementclassic@gmail.com</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">78910 Orgerus</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Jaguar</span></div>
                 <p class="prest-notes">Garage généraliste anciennes </p>
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'recRvJWF14z4f8Por',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'recRvJWF14z4f8Por',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Alpine"]' data-searchtext="ferry developpement   ">
+            </div><div class="prest-card" data-id="recizPDwdazfJ9yWE" data-types='["M\u00e9canique"]' data-marques='["Alpine"]' data-searchtext="ferry developpement   ">
               <div class="prest-card-accent" style="background:#2563eb"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2058,8 +2091,12 @@
                 
                 <div class="prest-marques"><span class="prest-marque-pill">Alpine</span></div>
                 
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'recizPDwdazfJ9yWE',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'recizPDwdazfJ9yWE',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Ferrari"]' data-searchtext="fiorano racing  montigny-le-bretonneux (78) spécialiste ferrari et maserati, le boss des boss">
+            </div><div class="prest-card" data-id="recNM03QewbKR3Krt" data-types='["M\u00e9canique"]' data-marques='["Ferrari"]' data-searchtext="fiorano racing  montigny-le-bretonneux (78) spécialiste ferrari et maserati, le boss des boss">
               <div class="prest-card-accent" style="background:#2563eb"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2070,8 +2107,12 @@
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel: 01 61 38 28 10" class="pci-link"> 01 61 38 28 10</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:dominique@fioranoracing.fr" class="pci-link">dominique@fioranoracing.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Montigny-le-Bretonneux (78)</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Ferrari</span></div>
                 <p class="prest-notes">Spécialiste Ferrari et Maserati, le boss des boss</p>
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'recNM03QewbKR3Krt',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'recNM03QewbKR3Krt',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Ferrari", "Maserati"]' data-searchtext="fiorano racing  23 avenue des 3 peuples 78180 montigny-le-bretonneux spécialiste ferrari aka le boss">
+            </div><div class="prest-card" data-id="recSrtM7TSTcrcBPX" data-types='["M\u00e9canique"]' data-marques='["Ferrari", "Maserati"]' data-searchtext="fiorano racing  23 avenue des 3 peuples 78180 montigny-le-bretonneux spécialiste ferrari aka le boss">
               <div class="prest-card-accent" style="background:#2563eb"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2082,8 +2123,12 @@
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 61 38 28 10 / 06 74 62 86 62 " class="pci-link">01 61 38 28 10 / 06 74 62 86 62 </a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:dominique@fioranoracing.fr" class="pci-link">dominique@fioranoracing.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">23 Avenue des 3 Peuples 78180 Montigny-le-Bretonneux</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Ferrari</span><span class="prest-marque-pill">Maserati</span></div>
                 <p class="prest-notes">Spécialiste Ferrari aka le boss</p>
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'recSrtM7TSTcrcBPX',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'recSrtM7TSTcrcBPX',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique", "Carrosserie"]' data-marques='["Mercedes-Benz"]' data-searchtext="gam 91  morangis (91) spécialiste mercedes & amg">
+            </div><div class="prest-card" data-id="recL6i0ilh1PHfir8" data-types='["M\u00e9canique", "Carrosserie"]' data-marques='["Mercedes-Benz"]' data-searchtext="gam 91  morangis (91) spécialiste mercedes & amg">
               <div class="prest-card-accent" style="background:#2563eb"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2094,8 +2139,12 @@
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 69 28 79 01" class="pci-link">01 69 28 79 01</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:garage.auto.morangis@gmail.com" class="pci-link">garage.auto.morangis@gmail.com</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Morangis (91)</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Mercedes-Benz</span></div>
                 <p class="prest-notes">Spécialiste Mercedes & AMG</p>
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'recL6i0ilh1PHfir8',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'recL6i0ilh1PHfir8',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Ferrari"]' data-searchtext="hmc  paris 17e ">
+            </div><div class="prest-card" data-id="recdzxWoQXcWcEklP" data-types='["M\u00e9canique"]' data-marques='["Ferrari"]' data-searchtext="hmc  paris 17e ">
               <div class="prest-card-accent" style="background:#2563eb"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2106,8 +2155,12 @@
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Paris 17e</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Ferrari</span></div>
                 
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'recdzxWoQXcWcEklP',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'recdzxWoQXcWcEklP',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Porsche"]' data-searchtext="js speed shop  wissous (91) spécialiste porsche wissous ">
+            </div><div class="prest-card" data-id="recChpVTWeRjyek8S" data-types='["M\u00e9canique"]' data-marques='["Porsche"]' data-searchtext="js speed shop  wissous (91) spécialiste porsche wissous ">
               <div class="prest-card-accent" style="background:#2563eb"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2118,8 +2171,12 @@
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:0954-911-912 " class="pci-link">0954-911-912 </a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:contact@jsspeedshop.fr" class="pci-link">contact@jsspeedshop.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Wissous (91)</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Porsche</span></div>
                 <p class="prest-notes">Spécialiste Porsche Wissous </p>
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'recChpVTWeRjyek8S',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'recChpVTWeRjyek8S',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Porsche", "G\u00e9n\u00e9raliste"]' data-searchtext="la clinique des sportives  28 chem. du moulin à vent, 78280 guyancourt spécialiste porsche et sportives">
+            </div><div class="prest-card" data-id="recgbxmOACSOrytkB" data-types='["M\u00e9canique"]' data-marques='["Porsche", "G\u00e9n\u00e9raliste"]' data-searchtext="la clinique des sportives  28 chem. du moulin à vent, 78280 guyancourt spécialiste porsche et sportives">
               <div class="prest-card-accent" style="background:#2563eb"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2130,8 +2187,12 @@
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 30 64 51 39" class="pci-link">01 30 64 51 39</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">28 Chem. du Moulin À Vent, 78280 Guyancourt</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Porsche</span><span class="prest-marque-pill">Généraliste</span></div>
                 <p class="prest-notes">Spécialiste Porsche et sportives</p>
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'recgbxmOACSOrytkB',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'recgbxmOACSOrytkB',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='[]' data-searchtext="lotus paris ouest nanterre  nanterre ">
+            </div><div class="prest-card" data-id="recAVilzwvINI0mKH" data-types='["M\u00e9canique"]' data-marques='[]' data-searchtext="lotus paris ouest nanterre  nanterre ">
               <div class="prest-card-accent" style="background:#2563eb"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2142,8 +2203,12 @@
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01.85.01.68.90" class="pci-link">01.85.01.68.90</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:maxime.Cuvillier@eu.lotuscars.com" class="pci-link">maxime.Cuvillier@eu.lotuscars.com</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Nanterre</span></div></div>
                 
                 
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'recAVilzwvINI0mKH',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'recAVilzwvINI0mKH',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Porsche"]' data-searchtext="marc borie  courbevoie (92) spécialiste porsche puteaux/nanterre">
+            </div><div class="prest-card" data-id="recFDK67ckwck3xPU" data-types='["M\u00e9canique"]' data-marques='["Porsche"]' data-searchtext="marc borie  courbevoie (92) spécialiste porsche puteaux/nanterre">
               <div class="prest-card-accent" style="background:#2563eb"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2154,8 +2219,12 @@
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 41 02 06 50" class="pci-link">01 41 02 06 50</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:marcborieautomobiles@orange.fr" class="pci-link">marcborieautomobiles@orange.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Courbevoie (92)</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Porsche</span></div>
                 <p class="prest-notes">Spécialiste Porsche Puteaux/Nanterre</p>
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'recFDK67ckwck3xPU',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'recFDK67ckwck3xPU',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='[]' data-searchtext="mclaren paris  le vésinet très bon relationnel avec léo qui gère l'atelier ainsi qu'avec thomas qui est au commerce">
+            </div><div class="prest-card" data-id="recIyZsrmK6baA1tj" data-types='["M\u00e9canique"]' data-marques='[]' data-searchtext="mclaren paris  le vésinet très bon relationnel avec léo qui gère l'atelier ainsi qu'avec thomas qui est au commerce">
               <div class="prest-card-accent" style="background:#2563eb"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2168,8 +2237,12 @@
 +33 1 88 33 63 89</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:leo.vandenbergue@paris.mclaren.com" class="pci-link">leo.vandenbergue@paris.mclaren.com</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Le Vésinet</span></div></div>
                 
                 <p class="prest-notes">Très bon relationnel avec Léo qui gère l'atelier ainsi qu'avec Thomas qui est au commerce</p>
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'recIyZsrmK6baA1tj',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'recIyZsrmK6baA1tj',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Mercedes-Benz"]' data-searchtext="mercedes como bercy  246 rue de bercy, 75012 paris mercedes">
+            </div><div class="prest-card" data-id="recBKo4h8lRpauJCj" data-types='["M\u00e9canique"]' data-marques='["Mercedes-Benz"]' data-searchtext="mercedes como bercy  246 rue de bercy, 75012 paris mercedes">
               <div class="prest-card-accent" style="background:#2563eb"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2180,8 +2253,12 @@
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 49 29 28 28" class="pci-link">01 49 29 28 28</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:cchazal@como.fr" class="pci-link">cchazal@como.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">246 Rue de Bercy, 75012 Paris</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Mercedes-Benz</span></div>
                 <p class="prest-notes">Mercedes</p>
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'recBKo4h8lRpauJCj',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'recBKo4h8lRpauJCj',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Porsche"]' data-searchtext="miramond dan auto  paris 14e spécialiste porsche 14e">
+            </div><div class="prest-card" data-id="recQ8ynf4sHsl62zT" data-types='["M\u00e9canique"]' data-marques='["Porsche"]' data-searchtext="miramond dan auto  paris 14e spécialiste porsche 14e">
               <div class="prest-card-accent" style="background:#2563eb"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2192,8 +2269,12 @@
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 45 40 65 71 / rajouter 06 David" class="pci-link">01 45 40 65 71 / rajouter 06 David</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:mda.porsche@gmail.com" class="pci-link">mda.porsche@gmail.com</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Paris 14e</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Porsche</span></div>
                 <p class="prest-notes">Spécialiste Porsche 14e</p>
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'recQ8ynf4sHsl62zT',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'recQ8ynf4sHsl62zT',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Alfa Romeo"]' data-searchtext="nicolas boucé- vec racing  maurecourt (78) spécialiste alfa romeo ">
+            </div><div class="prest-card" data-id="receHQO1a92iyjwB1" data-types='["M\u00e9canique"]' data-marques='["Alfa Romeo"]' data-searchtext="nicolas boucé- vec racing  maurecourt (78) spécialiste alfa romeo ">
               <div class="prest-card-accent" style="background:#2563eb"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2204,8 +2285,12 @@
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:08 92 97 65 03" class="pci-link">08 92 97 65 03</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Maurecourt (78)</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Alfa Romeo</span></div>
                 <p class="prest-notes">Spécialiste Alfa Romeo </p>
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'receHQO1a92iyjwB1',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'receHQO1a92iyjwB1',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="paris pneus.fr  57 bd poniatowski, 75012 paris ">
+            </div><div class="prest-card" data-id="recZI63lYBQwAWKiG" data-types='["M\u00e9canique"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="paris pneus.fr  57 bd poniatowski, 75012 paris ">
               <div class="prest-card-accent" style="background:#2563eb"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2216,8 +2301,12 @@
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 46 28 35 25" class="pci-link">01 46 28 35 25</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">57 Bd Poniatowski, 75012 Paris</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
                 
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'recZI63lYBQwAWKiG',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'recZI63lYBQwAWKiG',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["BMW"]' data-searchtext="pf motorsport  wissous (91) spécialiste bmw ">
+            </div><div class="prest-card" data-id="recquWiceRc1cnPwt" data-types='["M\u00e9canique"]' data-marques='["BMW"]' data-searchtext="pf motorsport  wissous (91) spécialiste bmw ">
               <div class="prest-card-accent" style="background:#2563eb"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2228,8 +2317,12 @@
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:09 50 44 53 15" class="pci-link">09 50 44 53 15</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Wissous (91)</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">BMW</span></div>
                 <p class="prest-notes">Spécialiste BMW </p>
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'recquWiceRc1cnPwt',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'recquWiceRc1cnPwt',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Porsche"]' data-searchtext="porsche poissy  1 rte de quarante sous, 78240 poissy atelier porsche">
+            </div><div class="prest-card" data-id="recxDdl3RgmNgrqYc" data-types='["M\u00e9canique"]' data-marques='["Porsche"]' data-searchtext="porsche poissy  1 rte de quarante sous, 78240 poissy atelier porsche">
               <div class="prest-card-accent" style="background:#2563eb"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2240,8 +2333,12 @@
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 39 04 69 00" class="pci-link">01 39 04 69 00</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:michael.moal@porsche.fr" class="pci-link">michael.moal@porsche.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">1 Rte de Quarante Sous, 78240 Poissy</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Porsche</span></div>
                 <p class="prest-notes">Atelier Porsche</p>
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'recxDdl3RgmNgrqYc',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'recxDdl3RgmNgrqYc',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Ferrari"]' data-searchtext="pozzi  10, rue curnonsky 75017 paris ferrari off">
+            </div><div class="prest-card" data-id="recOCwxu9OmpHMsHA" data-types='["M\u00e9canique"]' data-marques='["Ferrari"]' data-searchtext="pozzi  10, rue curnonsky 75017 paris ferrari off">
               <div class="prest-card-accent" style="background:#2563eb"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2252,8 +2349,12 @@
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 56 07 10 00" class="pci-link">01 56 07 10 00</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">10, rue Curnonsky 75017 Paris</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Ferrari</span></div>
                 <p class="prest-notes">Ferrari Off</p>
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'recOCwxu9OmpHMsHA',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'recOCwxu9OmpHMsHA',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique", "Motoriste"]' data-marques='["Porsche"]' data-searchtext="rso motorsport   5 rue fontenelles, 78920 ecquevilly spécialiste porsche entretien, atelier, expertise">
+            </div><div class="prest-card" data-id="rec52mUtqkPSYvfyH" data-types='["M\u00e9canique", "Motoriste"]' data-marques='["Porsche"]' data-searchtext="rso motorsport   5 rue fontenelles, 78920 ecquevilly spécialiste porsche entretien, atelier, expertise">
               <div class="prest-card-accent" style="background:#2563eb"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2264,8 +2365,12 @@
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:+33 (0)1 30 04 23 96" class="pci-link">+33 (0)1 30 04 23 96</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:porscherso@orange.fr" class="pci-link">porscherso@orange.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">5 Rue Fontenelles, 78920 Ecquevilly</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Porsche</span></div>
                 <p class="prest-notes">Spécialiste Porsche entretien, atelier, expertise</p>
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'rec52mUtqkPSYvfyH',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'rec52mUtqkPSYvfyH',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="timeless machines  31 rue roger salengro, 69200 vénissieux mécanique ancienne multi marques
+            </div><div class="prest-card" data-id="rec7cCVgPSHjCabhc" data-types='["M\u00e9canique"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="timeless machines  31 rue roger salengro, 69200 vénissieux mécanique ancienne multi marques
 ">
               <div class="prest-card-accent" style="background:#2563eb"></div>
               <div class="prest-card-body">
@@ -2278,6 +2383,10 @@
                 <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
                 <p class="prest-notes">Mécanique ancienne multi marques
 </p>
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'rec7cCVgPSHjCabhc',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'rec7cCVgPSHjCabhc',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
             </div></div>
         </div><div class="prest-group" data-group-type="Carrosserie">
@@ -2285,7 +2394,7 @@
             <span class="prest-group-name" style="color:#ea580c">Carrosserie</span>
             <span class="prest-group-count">3</span>
           </div>
-          <div class="prest-cards-grid"><div class="prest-card" data-types='["Carrosserie"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="carrosserie de la gare  3 bis rue de seine, 91170 viry-châtillon ">
+          <div class="prest-cards-grid"><div class="prest-card" data-id="recgfY6Z9I7kRVEst" data-types='["Carrosserie"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="carrosserie de la gare  3 bis rue de seine, 91170 viry-châtillon ">
               <div class="prest-card-accent" style="background:#ea580c"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2296,8 +2405,12 @@
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 39 65 05 08" class="pci-link">01 39 65 05 08</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:carrosdelagare@gmail.com" class="pci-link">carrosdelagare@gmail.com</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">3 bis Rue de Seine, 91170 Viry-Châtillon</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
                 
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'recgfY6Z9I7kRVEst',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'recgfY6Z9I7kRVEst',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
-            </div><div class="prest-card" data-types='["Carrosserie"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="flash repair  2 rue joseph marie jacquard, 78310 coignières spécialiste réfection jantes (peinture de carrossier) + bon carrossier">
+            </div><div class="prest-card" data-id="recrGg9Fil34f8w0o" data-types='["Carrosserie"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="flash repair  2 rue joseph marie jacquard, 78310 coignières spécialiste réfection jantes (peinture de carrossier) + bon carrossier">
               <div class="prest-card-accent" style="background:#ea580c"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2308,8 +2421,12 @@
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:+33 7 88 18 41 43" class="pci-link">+33 7 88 18 41 43</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:contact@flashrepair.eu" class="pci-link">contact@flashrepair.eu</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">2 Rue Joseph Marie Jacquard, 78310 Coignières</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
                 <p class="prest-notes">Spécialiste réfection jantes (peinture de carrossier) + bon carrossier</p>
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'recrGg9Fil34f8w0o',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'recrGg9Fil34f8w0o',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
-            </div><div class="prest-card" data-types='["Carrosserie"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="france pare brise porte d'orléans  paris ">
+            </div><div class="prest-card" data-id="recSQA5LEBSHczia8" data-types='["Carrosserie"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="france pare brise porte d'orléans  paris ">
               <div class="prest-card-accent" style="background:#ea580c"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2320,6 +2437,10 @@
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 45 39 93 90" class="pci-link">01 45 39 93 90</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:paris14@reseau-franceparebrise.fr" class="pci-link">paris14@reseau-franceparebrise.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Paris</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
                 
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'recSQA5LEBSHczia8',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'recSQA5LEBSHczia8',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
             </div></div>
         </div><div class="prest-group" data-group-type="Pièces détachées">
@@ -2327,7 +2448,7 @@
             <span class="prest-group-name" style="color:#7c3aed">Pièces détachées</span>
             <span class="prest-group-count">2</span>
           </div>
-          <div class="prest-cards-grid"><div class="prest-card" data-types='["Pi\u00e8ces d\u00e9tach\u00e9es"]' data-marques='["Porsche"]' data-searchtext="rose passion.com  https://www.rosepassion.com pièces détachées porsche origine 
+          <div class="prest-cards-grid"><div class="prest-card" data-id="recpFm9wyUpiAMHcx" data-types='["Pi\u00e8ces d\u00e9tach\u00e9es"]' data-marques='["Porsche"]' data-searchtext="rose passion.com  https://www.rosepassion.com pièces détachées porsche origine 
 ">
               <div class="prest-card-accent" style="background:#7c3aed"></div>
               <div class="prest-card-body">
@@ -2340,8 +2461,12 @@
                 <div class="prest-marques"><span class="prest-marque-pill">Porsche</span></div>
                 <p class="prest-notes">Pièces détachées Porsche origine 
 </p>
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'recpFm9wyUpiAMHcx',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'recpFm9wyUpiAMHcx',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
-            </div><div class="prest-card" data-types='["Pi\u00e8ces d\u00e9tach\u00e9es"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="smpp montage pneus à domicile  11 rue andré hodebourg montage pneus à domicile, fais toutes les tailles pour les voitures sportives ou luxe
+            </div><div class="prest-card" data-id="recNkZGkRXsMjFBPc" data-types='["Pi\u00e8ces d\u00e9tach\u00e9es"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="smpp montage pneus à domicile  11 rue andré hodebourg montage pneus à domicile, fais toutes les tailles pour les voitures sportives ou luxe
 ">
               <div class="prest-card-accent" style="background:#7c3aed"></div>
               <div class="prest-card-body">
@@ -2354,6 +2479,10 @@
                 <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
                 <p class="prest-notes">Montage pneus à domicile, fais toutes les tailles pour les voitures sportives ou luxe
 </p>
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'recNkZGkRXsMjFBPc',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'recNkZGkRXsMjFBPc',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
             </div></div>
         </div><div class="prest-group" data-group-type="Débosselage">
@@ -2361,7 +2490,7 @@
             <span class="prest-group-name" style="color:#059669">Débosselage</span>
             <span class="prest-group-count">1</span>
           </div>
-          <div class="prest-cards-grid"><div class="prest-card" data-types='["D\u00e9bosselage"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="lh auto  paris débosselage sans peinture à domicile">
+          <div class="prest-cards-grid"><div class="prest-card" data-id="recvBsadashWEFHHQ" data-types='["D\u00e9bosselage"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="lh auto  paris débosselage sans peinture à domicile">
               <div class="prest-card-accent" style="background:#059669"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2372,6 +2501,10 @@
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:06 62 32 85 87" class="pci-link">06 62 32 85 87</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:hadrien.l@lh-debosselage.com" class="pci-link">hadrien.l@lh-debosselage.com</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Paris</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
                 <p class="prest-notes">Débosselage sans peinture à domicile</p>
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'recvBsadashWEFHHQ',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'recvBsadashWEFHHQ',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
             </div></div>
         </div><div class="prest-group" data-group-type="Sellerie">
@@ -2379,7 +2512,7 @@
             <span class="prest-group-name" style="color:#0891b2">Sellerie</span>
             <span class="prest-group-count">1</span>
           </div>
-          <div class="prest-cards-grid"><div class="prest-card" data-types='["Sellerie"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="asci sellerie  27 rue de valence, 78410 flins-sur-seine sellier hyper compétent dans le 78">
+          <div class="prest-cards-grid"><div class="prest-card" data-id="recyb5svirWxfFwhO" data-types='["Sellerie"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="asci sellerie  27 rue de valence, 78410 flins-sur-seine sellier hyper compétent dans le 78">
               <div class="prest-card-accent" style="background:#0891b2"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2390,6 +2523,10 @@
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 30 90 28 00" class="pci-link">01 30 90 28 00</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:asci78@orange.fr" class="pci-link">asci78@orange.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">27 Rue de Valence, 78410 Flins-sur-Seine</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
                 <p class="prest-notes">Sellier hyper compétent dans le 78</p>
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'recyb5svirWxfFwhO',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'recyb5svirWxfFwhO',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
             </div></div>
         </div><div class="prest-group" data-group-type="Detailling">
@@ -2397,7 +2534,7 @@
             <span class="prest-group-name" style="color:#db2777">Detailling</span>
             <span class="prest-group-count">3</span>
           </div>
-          <div class="prest-cards-grid"><div class="prest-card" data-types='["Detailling"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="garches auto clean   116 boulevard du général de gaulle 92380 garches, ">
+          <div class="prest-cards-grid"><div class="prest-card" data-id="recoeLmQ2OLsDtXh4" data-types='["Detailling"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="garches auto clean   116 boulevard du général de gaulle 92380 garches, ">
               <div class="prest-card-accent" style="background:#db2777"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2408,8 +2545,12 @@
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:0652430539" class="pci-link">0652430539</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:garches.auto.clean@gmail.com" class="pci-link">garches.auto.clean@gmail.com</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">116 boulevard du général de Gaulle 92380 Garches,</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
                 
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'recoeLmQ2OLsDtXh4',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'recoeLmQ2OLsDtXh4',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
-            </div><div class="prest-card" data-types='["Detailling"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="heritage detailling  paris 15e detailling - environ 400€">
+            </div><div class="prest-card" data-id="rec7BsCeUSgPSzHFJ" data-types='["Detailling"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="heritage detailling  paris 15e detailling - environ 400€">
               <div class="prest-card-accent" style="background:#db2777"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2420,8 +2561,12 @@
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel: 06 76 44 14 60" class="pci-link"> 06 76 44 14 60</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Paris 15e</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
                 <p class="prest-notes">Detailling - environ 400€</p>
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'rec7BsCeUSgPSzHFJ',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'rec7BsCeUSgPSzHFJ',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
-            </div><div class="prest-card" data-types='["Detailling"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="msirius   coignière (78) detailling haut de gamme">
+            </div><div class="prest-card" data-id="reckNXLqy7ITG9pBC" data-types='["Detailling"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="msirius   coignière (78) detailling haut de gamme">
               <div class="prest-card-accent" style="background:#db2777"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2432,6 +2577,10 @@
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:06 69 54 71 19" class="pci-link">06 69 54 71 19</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:contact@msirius.fr" class="pci-link">contact@msirius.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Coignière (78)</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
                 <p class="prest-notes">Detailling haut de gamme</p>
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'reckNXLqy7ITG9pBC',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'reckNXLqy7ITG9pBC',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
             </div></div>
         </div><div class="prest-group" data-group-type="Transporteur">
@@ -2439,7 +2588,7 @@
             <span class="prest-group-name" style="color:#6b7280">Transporteur</span>
             <span class="prest-group-count">1</span>
           </div>
-          <div class="prest-cards-grid"><div class="prest-card" data-types='["Transporteur"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="2r autos  16 allée des charmes, 77330 ozoir la ferrière notre transporteur attitré, david le boss des boss, fais tous types de voitures, notamment voitures de luxes.">
+          <div class="prest-cards-grid"><div class="prest-card" data-id="rec8kkhS9hFPneVli" data-types='["Transporteur"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="2r autos  16 allée des charmes, 77330 ozoir la ferrière notre transporteur attitré, david le boss des boss, fais tous types de voitures, notamment voitures de luxes.">
               <div class="prest-card-accent" style="background:#6b7280"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2450,6 +2599,10 @@
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:06 68 13 65 63" class="pci-link">06 68 13 65 63</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:2rautos@wanadoo.fr" class="pci-link">2rautos@wanadoo.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">16 Allée des Charmes, 77330 Ozoir la Ferrière</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
                 <p class="prest-notes">Notre transporteur attitré, David le boss des boss, fais tous types de voitures, notamment voitures de luxes.</p>
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'rec8kkhS9hFPneVli',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'rec8kkhS9hFPneVli',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
             </div></div>
         </div><div class="prest-group" data-group-type="Autre">
@@ -2457,7 +2610,7 @@
             <span class="prest-group-name" style="color:#374151">Autre</span>
             <span class="prest-group-count">3</span>
           </div>
-          <div class="prest-cards-grid"><div class="prest-card" data-types='["Autre"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="ct bagneux  217 avenue henri ravera ">
+          <div class="prest-cards-grid"><div class="prest-card" data-id="recrrIjbcme85Asky" data-types='["Autre"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="ct bagneux  217 avenue henri ravera ">
               <div class="prest-card-accent" style="background:#374151"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2468,8 +2621,12 @@
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 42 53 50 34" class="pci-link">01 42 53 50 34</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">217 avenue Henri Ravera</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
                 
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'recrrIjbcme85Asky',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'recrrIjbcme85Asky',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
-            </div><div class="prest-card" data-types='["Autre"]' data-marques='[]' data-searchtext="ksf  9 rue des gardes, 91370 verrières-le-buisson ">
+            </div><div class="prest-card" data-id="recXCWmeHt75RZPYK" data-types='["Autre"]' data-marques='[]' data-searchtext="ksf  9 rue des gardes, 91370 verrières-le-buisson ">
               <div class="prest-card-accent" style="background:#374151"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2480,8 +2637,12 @@
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 69 79 91 53" class="pci-link">01 69 79 91 53</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">9 Rue des Gardes, 91370 Verrières-le-Buisson</span></div></div>
                 
                 
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'recXCWmeHt75RZPYK',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'recXCWmeHt75RZPYK',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
-            </div><div class="prest-card" data-types='["Autre"]' data-marques='[]' data-searchtext="msirius  3 bis rue antoine lavoisier, 78310 coignières ">
+            </div><div class="prest-card" data-id="recyiiwE6x9i1MYc8" data-types='["Autre"]' data-marques='[]' data-searchtext="msirius  3 bis rue antoine lavoisier, 78310 coignières ">
               <div class="prest-card-accent" style="background:#374151"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -2492,6 +2653,10 @@
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 30 49 53 90" class="pci-link">01 30 49 53 90</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">3 bis Rue Antoine Lavoisier, 78310 Coignières</span></div></div>
                 
                 
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'recyiiwE6x9i1MYc8',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'recyiiwE6x9i1MYc8',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
             </div></div>
         </div></div>
@@ -2501,7 +2666,7 @@
   </section>
 
   <footer class="footer">
-    Généré le Dimanche 26 avril 2026 à 19:14 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
+    Généré le Dimanche 26 avril 2026 à 19:18 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
   </footer>
 </div>
 <div id="res-modal" class="res-modal-overlay" onclick="closeResModal(event)">
@@ -2918,6 +3083,72 @@ document.addEventListener('keydown', function(e) {
 
 // Init prestataires filters (après chargement complet du DOM + _js)
 initPrestFilters();
+
+// ── Actions sur les cartes prestataires ──────────────────────────────────────
+function _removeCard(card) {
+  card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+  card.style.opacity = '0';
+  card.style.transform = 'scale(0.88)';
+  setTimeout(function() {
+    card.remove();
+    // Mettre à jour le compteur
+    var total = document.querySelectorAll('.prest-card').length;
+    var el = document.getElementById('prest-count');
+    if (el) el.textContent = total;
+    // Masquer les groupes vides
+    document.querySelectorAll('.prest-group').forEach(function(g) {
+      if (!g.querySelector('.prest-card')) g.style.display = 'none';
+    });
+  }, 300);
+}
+
+function hidePrestCard(e, recordId, btn) {
+  e.stopPropagation();
+  btn.disabled = true; btn.textContent = '…';
+  fetch(PREST_API_URL + '/' + recordId, {
+    method: 'PATCH',
+    headers: { 'Authorization': 'Bearer ' + PREST_TOKEN, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ fields: { Rating: 0 } })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.id) {
+      _removeCard(btn.closest('.prest-card'));
+    } else {
+      btn.disabled = false; btn.textContent = '⭐ Masquer';
+      alert('Erreur : ' + ((data.error && data.error.message) || JSON.stringify(data)));
+    }
+  })
+  .catch(function(err) {
+    btn.disabled = false; btn.textContent = '⭐ Masquer';
+    alert('Erreur réseau : ' + err.message);
+  });
+}
+
+function deletePrestCard(e, recordId, btn) {
+  e.stopPropagation();
+  var nom = btn.closest('.prest-card').querySelector('.prest-card-name');
+  var label = nom ? nom.textContent.trim() : 'ce prestataire';
+  if (!confirm('Supprimer définitivement "' + label + '" de votre CRM Airtable ?\n\nCette action est irréversible.')) return;
+  btn.disabled = true; btn.textContent = '…';
+  fetch(PREST_API_URL + '/' + recordId, {
+    method: 'DELETE',
+    headers: { 'Authorization': 'Bearer ' + PREST_TOKEN }
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.deleted) {
+      _removeCard(btn.closest('.prest-card'));
+    } else {
+      btn.disabled = false; btn.textContent = '🗑 Supprimer';
+      alert('Erreur : ' + JSON.stringify(data));
+    }
+  })
+  .catch(function(err) {
+    btn.disabled = false; btn.textContent = '🗑 Supprimer';
+    alert('Erreur réseau : ' + err.message);
+  });
+}
 
 // ── KPI cliquables ────────────────────────────────────────────────────────────
 function _openSection(id) {
