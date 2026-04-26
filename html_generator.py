@@ -14,8 +14,8 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
     car_photos = car_photos or {}
     francois_cars = francois_cars or set()
 
-    # CT global = toutes les voitures non-réservées (visibles dans "Tous")
-    ct_alert_count = sum(1 for c in ct_data if c.get("ct_filter_type") not in ("acompte", "acompte-ok"))
+    # CT global = toutes les voitures sans CT valide (expiré + manquant + bientôt), réservées ou non
+    ct_alert_count = sum(1 for c in ct_data if c.get("criticite", 3) != 3)
     # CT réservées = voitures en Acompte avec CT non-OK (manquant, expiré, bientôt)
     ct_reservees_count = sum(1 for c in ct_data if c.get("ct_filter_type") == "acompte")
     # Données marge pour JS (voitures réservées Airtable)
