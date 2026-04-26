@@ -1,7 +1,10 @@
 import re
 import requests
 from datetime import datetime, timedelta
-from config import AIRTABLE_TOKEN, AIRTABLE_BASE_ID
+from config import (
+    AIRTABLE_TOKEN, AIRTABLE_BASE_ID,
+    PRESTATAIRES_TOKEN, PRESTATAIRES_BASE_ID, PRESTATAIRES_TABLE_ID,
+)
 
 H = {"Authorization": f"Bearer {AIRTABLE_TOKEN}"}
 BASE = f"https://api.airtable.com/v0/{AIRTABLE_BASE_ID}"
@@ -475,3 +478,100 @@ def search_car_by_name(search_term):
 
 def get_car_url(record_id):
     return VIEW_URL.format(record_id=record_id) if record_id else None
+
+
+# ─── Prestataires (CRM Partenaires) ───────────────────────────────────────────
+
+_PREST_H    = {"Authorization": f"Bearer {PRESTATAIRES_TOKEN}"}
+_PREST_BASE = f"https://api.airtable.com/v0/{PRESTATAIRES_BASE_ID}"
+
+_TYPE_ORDER = [
+    "Mécanique", "Carrosserie", "Pièces détachées",
+    "Débosselage", "Sellerie", "Detailling", "Transporteur",
+]
+
+
+def _get_prest_records(table, params):
+    """Requête Airtable sur la base Prestataires."""
+    records, offset = [], None
+    while True:
+        p = dict(params)
+        if offset:
+            p["offset"] = offset
+        try:
+            r = requests.get(f"{_PREST_BASE}/{table}", headers=_PREST_H, params=p, timeout=15)
+            r.raise_for_status()
+            d = r.json()
+            records.extend(d.get("records", []))
+            offset = d.get("offset")
+            if not offset:
+                break
+        except Exception as e:
+            print(f"Airtable Prestataires error: {e}")
+            break
+    return records
+
+
+def _prest_select(v):
+    """Extrait le nom d'un champ single/multi-select Airtable."""
+    if isinstance(v, dict):
+        return [v.get("name", "")] if v.get("name") else []
+    if isinstance(v, list):
+        out = []
+        for item in v:
+            if isinstance(item, dict):
+                n = item.get("name", "")
+            else:
+                n = str(item)
+            if n:
+                out.append(n)
+        return out
+    if v:
+        return [str(v)]
+    return []
+
+
+def fetch_prestataires():
+    """
+    Retourne la liste complète des prestataires du CRM Partenaires.
+    Chaque entrée est un dict avec toutes les infos connues.
+    """
+    if not PRESTATAIRES_TOKEN:
+        return []
+    records = _get_prest_records(PRESTATAIRES_TABLE_ID, {
+        "sort[0][field]": "Nom du garage",
+        "sort[0][direction]": "asc",
+        "maxRecords": 500,
+    })
+
+    result = []
+    for rec in records:
+        f = rec.get("fields", {})
+
+        types  = _prest_select(f.get("Type", "")) or ["Autre"]
+        marques = _prest_select(f.get("Marque", ""))
+
+        rating_raw = f.get("Rating") or f.get("Note") or 0
+        try:
+            rating = max(0, min(5, int(float(str(rating_raw).strip()))))
+        except Exception:
+            rating = 0
+
+        result.append({
+            "id":        rec["id"],
+            "nom":       f.get("Nom du garage") or f.get("Name") or "—",
+            "types":     types,
+            "marques":   marques,
+            "rating":    rating,
+            "notes":     f.get("Notes") or "",
+            "telephone": (f.get("Téléphone") or f.get("Tel") or
+                          f.get("Phone") or f.get("Tél") or ""),
+            "email":     f.get("Email") or f.get("Mail") or "",
+            "adresse":   f.get("Adresse") or f.get("Address") or "",
+            "contact":   (f.get("Contact") or f.get("Nom contact") or
+                          f.get("Interlocuteur") or f.get("Responsable") or ""),
+            "site":      f.get("Site web") or f.get("Website") or f.get("Site") or "",
+            "ville":     f.get("Ville") or f.get("City") or "",
+        })
+
+    return result

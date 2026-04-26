@@ -31,11 +31,14 @@ jobs:
         run: |
           cat > config.py << 'EOF'
           import os
-          SLACK_BOT_TOKEN  = os.environ.get("SLACK_BOT_TOKEN", "")
-          SLACK_TEAM_ID    = "TB1T5DZFX"
-          AIRTABLE_TOKEN   = os.environ.get("AIRTABLE_TOKEN", "")
-          AIRTABLE_BASE_ID = "appNb6Bh5KUwwmBXL"
-          REPORT_PATH      = "./public/index.html"
+          SLACK_BOT_TOKEN        = os.environ.get("SLACK_BOT_TOKEN", "")
+          SLACK_TEAM_ID          = "TB1T5DZFX"
+          AIRTABLE_TOKEN         = os.environ.get("AIRTABLE_TOKEN", "")
+          AIRTABLE_BASE_ID       = "appNb6Bh5KUwwmBXL"
+          PRESTATAIRES_TOKEN     = os.environ.get("PRESTATAIRES_TOKEN", os.environ.get("AIRTABLE_TOKEN", ""))
+          PRESTATAIRES_BASE_ID   = "appBQnpnbCXZkHnzS"
+          PRESTATAIRES_TABLE_ID  = "tbl9Ut5t4NUA9hkoJ"
+          REPORT_PATH            = "./public/index.html"
           CHANNEL_IDS  = {"achat_vente": "C011K41BHUZ", "logistique": "C07L1L861SA"}
           CHANNEL_NAMES = {"achat_vente": "achat_vente", "logistique": "logistique"}
           EOF
@@ -45,8 +48,9 @@ jobs:
 
       - name: Générer le rapport
         env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-          AIRTABLE_TOKEN:  ${{ secrets.AIRTABLE_TOKEN }}
+          SLACK_BOT_TOKEN:    ${{ secrets.SLACK_BOT_TOKEN }}
+          AIRTABLE_TOKEN:     ${{ secrets.AIRTABLE_TOKEN }}
+          PRESTATAIRES_TOKEN: ${{ secrets.PRESTATAIRES_TOKEN }}
         run: python generate_report.py
 
       - name: Déployer sur GitHub Pages

@@ -1,11 +1,12 @@
 import json as _json
 from datetime import datetime
+from config import PRESTATAIRES_TOKEN, PRESTATAIRES_BASE_ID, PRESTATAIRES_TABLE_ID
 
 JOURS_FR = ["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"]
 MOIS_FR  = ["janvier","février","mars","avril","mai","juin",
              "juillet","août","septembre","octobre","novembre","décembre"]
 
-def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None, francois_cars=None):
+def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None, francois_cars=None, prestataires=None):
     now = datetime.utcnow()
     gen_ts = int(now.timestamp())  # timestamp UTC → JS le convertit en heure locale
     date_str = f"{JOURS_FR[now.weekday()]} {now.day} {MOIS_FR[now.month-1]} {now.year}"
@@ -13,6 +14,7 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
     ct_data = ct_data or []
     car_photos = car_photos or {}
     francois_cars = francois_cars or set()
+    prestataires = prestataires or []
 
     # CT global = toutes les voitures sans CT valide (expiré + manquant + bientôt), réservées ou non
     ct_alert_count = sum(1 for c in ct_data if c.get("criticite", 3) != 3)
@@ -117,7 +119,7 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
         <div class="kpi-label">Voitures réservées</div>
       </div>
     </div>
-    <div class="glass-card kpi">
+    <div class="glass-card kpi kpi-clickable" onclick="jumpToCT()" title="Voir les alertes CT">
       <div class="kpi-icon-wrap kpi-orange">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
       </div>
@@ -125,6 +127,7 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
         <div class="kpi-value">{ct_alert_count}</div>
         <div class="kpi-label">Alertes CT — Global</div>
       </div>
+      <span class="kpi-arrow">→</span>
     </div>
     <div class="glass-card kpi">
       <div class="kpi-icon-wrap kpi-red">
@@ -222,6 +225,39 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
 
   </div>
 
+  <!-- Prestataires -->
+  <section class="glass-card section prest-section" id="section-prest" style="margin-top:18px">
+    <div class="section-header collapsible-header" onclick="toggleSection('prest')">
+      <span class="section-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
+      <h2>Prestataires</h2>
+      <span class="count-badge" id="prest-count">{len(prestataires)}</span>
+      <div class="header-filters" onclick="event.stopPropagation()">
+        <button class="prest-add-btn" onclick="openPrestAddModal()">+ Ajouter</button>
+      </div>
+      <button class="collapse-btn" id="collapse-prest"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+    </div>
+    <div class="section-body" id="body-prest">
+      <div class="prest-controls" onclick="event.stopPropagation()">
+        <div class="section-search-wrap prest-search-wrap">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#adb5c2" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" class="section-search" id="search-prest" placeholder="Rechercher un prestataire, ville, contact…" oninput="applyPrestFilters()" autocomplete="off">
+          <button class="search-clear-btn" onclick="clearPrestSearch()">✕</button>
+        </div>
+        <div class="prest-filter-row">
+          <div class="filter-bar" id="prest-type-filters">
+            <button class="filter-btn active" data-prest-type="tous" onclick="setPrestTypeFilter(this)">Tous</button>
+          </div>
+          <div class="filter-bar" id="prest-marque-filters">
+            <button class="filter-btn active" data-prest-marque="tous" onclick="setPrestMarqueFilter(this)">Toutes marques</button>
+          </div>
+        </div>
+      </div>
+      <div id="prest-content">
+        {_render_prestataires(prestataires)}
+      </div>
+    </div>
+  </section>
+
   <footer class="footer">
     Généré le {date_str} à {time_str} · Données Slack & Airtable · Rafraîchissement quotidien à 19h
   </footer>
@@ -251,7 +287,97 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
     </div>
   </div>
 </div>
+<div id="prest-add-modal" class="prest-modal-overlay" onclick="closePrestAddModal(event)">
+  <div class="prest-modal-card">
+    <div class="prest-modal-header">
+      <h3>Ajouter un prestataire</h3>
+      <button class="prest-modal-close" onclick="closePrestAddModal()">✕</button>
+    </div>
+    <form id="prest-add-form" onsubmit="submitNewPrestataire(event)">
+      <div class="pf-row">
+        <label class="pf-label">Nom du garage *</label>
+        <input class="pf-input" id="pf-nom" type="text" placeholder="Ex : Garage Dupont" required>
+      </div>
+      <div class="pf-row pf-row-2">
+        <div>
+          <label class="pf-label">Spécialité</label>
+          <select class="pf-input" id="pf-type">
+            <option value="">— Choisir —</option>
+            <option>Mécanique</option>
+            <option>Carrosserie</option>
+            <option>Pièces détachées</option>
+            <option>Débosselage</option>
+            <option>Sellerie</option>
+            <option>Detailling</option>
+            <option>Transporteur</option>
+          </select>
+        </div>
+        <div>
+          <label class="pf-label">Marque(s)</label>
+          <div class="pf-marques-wrap" id="pf-marques">
+            <label class="pf-marque-check"><input type="checkbox" value="Généraliste"> Généraliste</label>
+            <label class="pf-marque-check"><input type="checkbox" value="Porsche"> Porsche</label>
+            <label class="pf-marque-check"><input type="checkbox" value="Ferrari"> Ferrari</label>
+            <label class="pf-marque-check"><input type="checkbox" value="BMW"> BMW</label>
+            <label class="pf-marque-check"><input type="checkbox" value="Mercedes-Benz"> Mercedes-Benz</label>
+            <label class="pf-marque-check"><input type="checkbox" value="Aston Martin"> Aston Martin</label>
+            <label class="pf-marque-check"><input type="checkbox" value="Jaguar"> Jaguar</label>
+            <label class="pf-marque-check"><input type="checkbox" value="Austin Healey"> Austin Healey</label>
+          </div>
+        </div>
+      </div>
+      <div class="pf-row">
+        <label class="pf-label">Note</label>
+        <div class="pf-stars-input" id="pf-stars">
+          <span class="pf-star" data-v="1">★</span>
+          <span class="pf-star" data-v="2">★</span>
+          <span class="pf-star" data-v="3">★</span>
+          <span class="pf-star" data-v="4">★</span>
+          <span class="pf-star" data-v="5">★</span>
+        </div>
+        <input type="hidden" id="pf-rating" value="0">
+      </div>
+      <div class="pf-row pf-row-2">
+        <div>
+          <label class="pf-label">Téléphone</label>
+          <input class="pf-input" id="pf-tel" type="tel" placeholder="06 12 34 56 78">
+        </div>
+        <div>
+          <label class="pf-label">Email</label>
+          <input class="pf-input" id="pf-email" type="email" placeholder="contact@garage.fr">
+        </div>
+      </div>
+      <div class="pf-row pf-row-2">
+        <div>
+          <label class="pf-label">Contact</label>
+          <input class="pf-input" id="pf-contact" type="text" placeholder="Prénom Nom">
+        </div>
+        <div>
+          <label class="pf-label">Ville</label>
+          <input class="pf-input" id="pf-ville" type="text" placeholder="Paris">
+        </div>
+      </div>
+      <div class="pf-row">
+        <label class="pf-label">Adresse</label>
+        <input class="pf-input" id="pf-adresse" type="text" placeholder="12 rue de la Paix, 75001 Paris">
+      </div>
+      <div class="pf-row">
+        <label class="pf-label">Site web</label>
+        <input class="pf-input" id="pf-site" type="url" placeholder="https://...">
+      </div>
+      <div class="pf-row">
+        <label class="pf-label">Notes</label>
+        <textarea class="pf-input pf-textarea" id="pf-notes" placeholder="Informations complémentaires…" rows="3"></textarea>
+      </div>
+      <div class="pf-actions">
+        <button type="button" class="pf-cancel-btn" onclick="closePrestAddModal()">Annuler</button>
+        <button type="submit" class="pf-submit-btn" id="pf-submit-btn">Ajouter le prestataire</button>
+      </div>
+    </form>
+  </div>
+</div>
 <script>var MARGES_DATA = {marges_data};</script>
+<script>var PREST_API_URL = "https://api.airtable.com/v0/{PRESTATAIRES_BASE_ID}/{PRESTATAIRES_TABLE_ID}"; var PREST_TOKEN = "{PRESTATAIRES_TOKEN}";</script>
 <script>{_js()}</script>
 </body>
 </html>"""
@@ -429,6 +555,117 @@ def _render_frais(frais_by_car, car_photos, francois_cars=None):
 
     return f'<div class="frais-container" id="frais-container">{blocks}</div>'
 
+
+
+def _render_prestataires(prestataires):
+    """Génère le HTML du répertoire prestataires, groupé par spécialité."""
+    if not prestataires:
+        return '<div class="empty-state prest-empty">Aucun prestataire chargé — vérifie le token PRESTATAIRES_TOKEN dans config.py</div>'
+
+    _TYPE_ORDER = [
+        "Mécanique", "Carrosserie", "Pièces détachées",
+        "Débosselage", "Sellerie", "Detailling", "Transporteur",
+    ]
+    _TYPE_COLORS = {
+        "Mécanique":         ("#2563eb", "#eff6ff", "#bfdbfe"),
+        "Carrosserie":       ("#ea580c", "#fff7ed", "#fed7aa"),
+        "Pièces détachées":  ("#7c3aed", "#f5f3ff", "#ddd6fe"),
+        "Débosselage":       ("#059669", "#f0fdf4", "#bbf7d0"),
+        "Sellerie":          ("#0891b2", "#ecfeff", "#a5f3fc"),
+        "Detailling":        ("#db2777", "#fdf2f8", "#fbcfe8"),
+        "Transporteur":      ("#6b7280", "#f9fafb", "#e5e7eb"),
+        "Autre":             ("#374151", "#f3f4f6", "#d1d5db"),
+    }
+
+    # Grouper par type (premier type de chaque prestataire)
+    groups = {}
+    for p in prestataires:
+        primary_type = p["types"][0] if p["types"] else "Autre"
+        groups.setdefault(primary_type, []).append(p)
+
+    ordered_keys = [k for k in _TYPE_ORDER if k in groups]
+    for k in groups:
+        if k not in ordered_keys:
+            ordered_keys.append(k)
+
+    # Collecte les marques distinctes pour les filtres JS
+    all_marques = sorted({m for p in prestataires for m in p["marques"] if m})
+
+    # Rendre les groupes
+    def stars_html(rating, cls="prest-stars"):
+        s = ""
+        for i in range(1, 6):
+            s += f'<span class="{"star-on" if i <= rating else "star-off"}">★</span>'
+        return f'<span class="{cls}">{s}</span>'
+
+    groups_html = ""
+    for gtype in ordered_keys:
+        items = groups[gtype]
+        color, bg_light, bg_border = _TYPE_COLORS.get(gtype, _TYPE_COLORS["Autre"])
+        cards_html = ""
+        for p in items:
+            type_pills = "".join(
+                f'<span class="prest-type-pill" style="background:{bg_light};color:{color};border-color:{bg_border}">{t}</span>'
+                for t in p["types"]
+            )
+            marque_pills = "".join(
+                f'<span class="prest-marque-pill">{m}</span>'
+                for m in p["marques"]
+            )
+            # Contact info
+            contacts_html = ""
+            if p.get("telephone"):
+                contacts_html += f'<div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:{p["telephone"]}" class="pci-link">{p["telephone"]}</a></div>'
+            if p.get("email"):
+                contacts_html += f'<div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:{p["email"]}" class="pci-link">{p["email"]}</a></div>'
+            if p.get("ville") or p.get("adresse"):
+                loc = p.get("ville") or p.get("adresse", "")
+                contacts_html += f'<div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">{loc}</span></div>'
+            if p.get("contact"):
+                contacts_html += f'<div class="prest-contact-item"><span class="pci-icon">👤</span><span class="pci-text">{p["contact"]}</span></div>'
+            if p.get("site"):
+                site_display = p["site"].replace("https://", "").replace("http://", "").rstrip("/")
+                contacts_html += f'<div class="prest-contact-item"><span class="pci-icon">🌐</span><a href="{p["site"]}" class="pci-link" target="_blank">{site_display}</a></div>'
+
+            notes_html = ""
+            if p.get("notes"):
+                notes_safe = p["notes"].replace("<", "&lt;").replace(">", "&gt;")
+                notes_html = f'<p class="prest-notes">{notes_safe}</p>'
+
+            # Data attrs pour filtrage JS
+            types_json = _json.dumps(p["types"])
+            marques_json = _json.dumps(p["marques"])
+            nom_lower = p["nom"].lower()
+            contact_lower = (p.get("contact") or "").lower()
+            ville_lower = (p.get("ville") or "").lower()
+            notes_lower = (p.get("notes") or "").lower()
+
+            cards_html += f"""<div class="prest-card" data-types='{types_json}' data-marques='{marques_json}' data-searchtext="{nom_lower} {contact_lower} {ville_lower} {notes_lower}">
+              <div class="prest-card-accent" style="background:{color}"></div>
+              <div class="prest-card-body">
+                <div class="prest-card-top">
+                  <div class="prest-card-pills">{type_pills}</div>
+                  {stars_html(p["rating"])}
+                </div>
+                <div class="prest-card-name">{p["nom"]}</div>
+                {f'<div class="prest-contacts">{contacts_html}</div>' if contacts_html else ''}
+                {f'<div class="prest-marques">{marque_pills}</div>' if marque_pills else ''}
+                {notes_html}
+              </div>
+            </div>"""
+
+        groups_html += f"""<div class="prest-group" data-group-type="{gtype}">
+          <div class="prest-group-header" style="border-left:3px solid {color}">
+            <span class="prest-group-name" style="color:{color}">{gtype}</span>
+            <span class="prest-group-count">{len(items)}</span>
+          </div>
+          <div class="prest-cards-grid">{cards_html}</div>
+        </div>"""
+
+    # Injecter les données marques pour les filtres JS (sera lues au démarrage)
+    marques_json_global = _json.dumps(all_marques)
+    return f"""<div id="prest-groups">{groups_html}</div>
+<script>var PREST_MARQUES = {marques_json_global}; initPrestFilters();</script>"""
 
 
 # ─── JavaScript ───────────────────────────────────────────────────────────────
@@ -723,8 +960,230 @@ function closeResModal(e) {
 }
 
 document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') { document.getElementById('res-modal').classList.remove('open'); document.body.style.overflow = ''; }
+  if (e.key === 'Escape') {
+    document.getElementById('res-modal').classList.remove('open');
+    document.body.style.overflow = '';
+    closePrestAddModal();
+  }
 });
+
+// ── KPI CT cliquable ─────────────────────────────────────────────────────────
+function jumpToCT() {
+  // 1. Ouvrir la section CT si fermée
+  var body = document.getElementById('body-ct');
+  if (body && !body.classList.contains('open')) {
+    toggleSection('ct');
+  }
+  // 2. Activer filtres Expiré(0) + Manquant(1) + Bientôt(2), désactiver OK et Tous
+  ctState.statuses = new Set(['0', '1', '2']);
+  document.querySelectorAll('.ct-status-filter .filter-btn').forEach(function(btn) {
+    var v = btn.getAttribute('data-ct-status');
+    btn.classList.toggle('active', v === '0' || v === '1' || v === '2');
+  });
+  applyCTFilter();
+  // 3. Scroll fluide vers la section CT (délai pour laisser l'animation démarrer)
+  var section = document.getElementById('section-ct');
+  if (section) {
+    setTimeout(function() {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 80);
+  }
+}
+
+// ── Prestataires ─────────────────────────────────────────────────────────────
+var prestState = { type: 'tous', marque: 'tous', search: '' };
+
+function initPrestFilters() {
+  // Injecter les boutons de type depuis les groupes présents
+  var typeBar = document.getElementById('prest-type-filters');
+  if (!typeBar) return;
+  var groups = document.querySelectorAll('.prest-group[data-group-type]');
+  groups.forEach(function(g) {
+    var t = g.getAttribute('data-group-type');
+    var btn = document.createElement('button');
+    btn.className = 'filter-btn';
+    btn.setAttribute('data-prest-type', t);
+    btn.textContent = t;
+    btn.onclick = function() { setPrestTypeFilter(btn); };
+    typeBar.appendChild(btn);
+  });
+  // Injecter les boutons de marque
+  var marqueBar = document.getElementById('prest-marque-filters');
+  if (marqueBar && typeof PREST_MARQUES !== 'undefined') {
+    PREST_MARQUES.forEach(function(m) {
+      var btn = document.createElement('button');
+      btn.className = 'filter-btn';
+      btn.setAttribute('data-prest-marque', m);
+      btn.textContent = m;
+      btn.onclick = function() { setPrestMarqueFilter(btn); };
+      marqueBar.appendChild(btn);
+    });
+  }
+}
+
+function setPrestTypeFilter(btn) {
+  document.querySelectorAll('#prest-type-filters .filter-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  prestState.type = btn.getAttribute('data-prest-type');
+  applyPrestFilters();
+}
+
+function setPrestMarqueFilter(btn) {
+  document.querySelectorAll('#prest-marque-filters .filter-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  prestState.marque = btn.getAttribute('data-prest-marque');
+  applyPrestFilters();
+}
+
+function clearPrestSearch() {
+  var inp = document.getElementById('search-prest');
+  if (inp) { inp.value = ''; inp.focus(); }
+  prestState.search = '';
+  var cb = document.querySelector('.prest-search-wrap .search-clear-btn');
+  if (cb) cb.classList.remove('visible');
+  applyPrestFilters();
+}
+
+function applyPrestFilters() {
+  var inp = document.getElementById('search-prest');
+  if (inp) {
+    prestState.search = inp.value.trim().toLowerCase();
+    var cb = document.querySelector('.prest-search-wrap .search-clear-btn');
+    if (cb) cb.classList.toggle('visible', prestState.search.length > 0);
+  }
+  var total = 0;
+  document.querySelectorAll('.prest-group').forEach(function(group) {
+    var gtype = group.getAttribute('data-group-type');
+    var okType = prestState.type === 'tous' || gtype === prestState.type;
+    var groupVisible = 0;
+    group.querySelectorAll('.prest-card').forEach(function(card) {
+      var types = JSON.parse(card.getAttribute('data-types') || '[]');
+      var marques = JSON.parse(card.getAttribute('data-marques') || '[]');
+      var txt = card.getAttribute('data-searchtext') || '';
+      var okT = prestState.type === 'tous' || types.indexOf(prestState.type) !== -1;
+      var okM = prestState.marque === 'tous' || marques.indexOf(prestState.marque) !== -1;
+      var okS = !prestState.search || txt.indexOf(prestState.search) !== -1;
+      var show = okType && okT && okM && okS;
+      card.style.display = show ? '' : 'none';
+      if (show) { groupVisible++; total++; }
+    });
+    group.style.display = (okType && groupVisible > 0) ? '' : 'none';
+  });
+  var countEl = document.getElementById('prest-count');
+  if (countEl) countEl.textContent = total;
+}
+
+// ── Modal ajout prestataire ───────────────────────────────────────────────────
+function openPrestAddModal() {
+  document.getElementById('prest-add-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  // Reset form
+  document.getElementById('prest-add-form').reset();
+  setPfRating(0);
+  document.getElementById('pf-submit-btn').disabled = false;
+  document.getElementById('pf-submit-btn').textContent = 'Ajouter le prestataire';
+  document.getElementById('pf-submit-btn').style.background = '';
+}
+
+function closePrestAddModal(e) {
+  if (e && e.target !== document.getElementById('prest-add-modal') &&
+      !e.target.classList.contains('prest-modal-close')) return;
+  document.getElementById('prest-add-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Star rating dans le formulaire
+var pfRating = 0;
+function setPfRating(v) {
+  pfRating = v;
+  document.getElementById('pf-rating').value = v;
+  document.querySelectorAll('.pf-star').forEach(function(s) {
+    s.classList.toggle('pf-star-on', parseInt(s.getAttribute('data-v')) <= v);
+  });
+}
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.pf-star').forEach(function(s) {
+    s.addEventListener('click', function() { setPfRating(parseInt(s.getAttribute('data-v'))); });
+    s.addEventListener('mouseenter', function() {
+      var v = parseInt(s.getAttribute('data-v'));
+      document.querySelectorAll('.pf-star').forEach(function(ss) {
+        ss.classList.toggle('pf-star-hover', parseInt(ss.getAttribute('data-v')) <= v);
+      });
+    });
+    s.addEventListener('mouseleave', function() {
+      document.querySelectorAll('.pf-star').forEach(function(ss) { ss.classList.remove('pf-star-hover'); });
+    });
+  });
+});
+
+function submitNewPrestataire(e) {
+  e.preventDefault();
+  var btn = document.getElementById('pf-submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Envoi en cours…';
+
+  var nom     = document.getElementById('pf-nom').value.trim();
+  var typeVal = document.getElementById('pf-type').value;
+  var marques = Array.from(document.querySelectorAll('#pf-marques input:checked')).map(function(cb) { return cb.value; });
+  var rating  = parseInt(document.getElementById('pf-rating').value || '0', 10);
+  var tel     = document.getElementById('pf-tel').value.trim();
+  var email   = document.getElementById('pf-email').value.trim();
+  var adresse = document.getElementById('pf-adresse').value.trim();
+  var contact = document.getElementById('pf-contact').value.trim();
+  var ville   = document.getElementById('pf-ville').value.trim();
+  var site    = document.getElementById('pf-site').value.trim();
+  var notes   = document.getElementById('pf-notes').value.trim();
+
+  var fields = {};
+  if (nom)     fields['Nom du garage'] = nom;
+  if (typeVal) fields['Type'] = { name: typeVal };
+  if (marques.length) fields['Marque'] = marques.map(function(m) { return { name: m }; });
+  if (rating > 0) fields['Rating'] = rating;
+  if (tel)     fields['Téléphone'] = tel;
+  if (email)   fields['Email']     = email;
+  if (adresse) fields['Adresse']   = adresse;
+  if (contact) fields['Contact']   = contact;
+  if (ville)   fields['Ville']     = ville;
+  if (site)    fields['Site web']  = site;
+  if (notes)   fields['Notes']     = notes;
+
+  if (!PREST_TOKEN || PREST_TOKEN === 'None') {
+    btn.disabled = false;
+    btn.textContent = 'Ajouter le prestataire';
+    alert('Token Prestataires non configuré — configure PRESTATAIRES_TOKEN dans config.py');
+    return;
+  }
+
+  fetch(PREST_API_URL, {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer ' + PREST_TOKEN,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ fields: fields })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.id) {
+      btn.textContent = '✓ Prestataire ajouté !';
+      btn.style.background = '#22c55e';
+      setTimeout(function() {
+        closePrestAddModal();
+        document.body.style.overflow = '';
+      }, 1800);
+    } else {
+      btn.disabled = false;
+      btn.textContent = 'Ajouter le prestataire';
+      var msg = (data.error && data.error.message) ? data.error.message : JSON.stringify(data);
+      alert('Erreur Airtable : ' + msg);
+    }
+  })
+  .catch(function(err) {
+    btn.disabled = false;
+    btn.textContent = 'Ajouter le prestataire';
+    alert('Erreur réseau : ' + err.message);
+  });
+}
 """
 
 
@@ -782,6 +1241,10 @@ def _css():
     .kpi-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 20px; }
     .kpi { display: flex; align-items: center; gap: 18px; padding: 26px 28px; }
     .kpi:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(0,0,0,0.09); }
+    .kpi-clickable { cursor: pointer; }
+    .kpi-clickable:hover { box-shadow: 0 6px 28px rgba(234,88,12,0.18); border-color: rgba(234,88,12,0.25); }
+    .kpi-arrow { font-size: 16px; color: #d1d5db; margin-left: auto; transition: transform 0.2s ease, color 0.2s ease; align-self: center; }
+    .kpi-clickable:hover .kpi-arrow { transform: translateX(4px); color: #ea580c; }
     .kpi-icon-wrap { width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
 
     /* Animation cloche — pivot depuis le haut */
@@ -975,4 +1438,138 @@ def _css():
     /* Bouton Travaux */
     .fiche-btn-travaux { background: #f3f4f6 !important; color: #374151 !important; border: 1px solid #d1d5db; }
     .fiche-btn-travaux:hover { background: #e5e7eb !important; color: #111827 !important; transform: translateY(-1px); }
+
+    /* ── Prestataires ──────────────────────────────────────────────────── */
+    .prest-section { padding: 22px 26px; }
+    .prest-add-btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 6px 16px; background: #2FAEE0; border: none; border-radius: 980px;
+      color: #fff; font-size: 12px; font-weight: 600; cursor: pointer;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+    .prest-add-btn:hover { background: #003f7a; transform: translateY(-1px); }
+
+    .prest-controls { display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px; }
+    .prest-search-wrap { flex: 1; max-width: 480px; }
+    .prest-filter-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+
+    /* Groupes */
+    .prest-group { margin-bottom: 24px; }
+    .prest-group:last-child { margin-bottom: 0; }
+    .prest-group-header {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 14px; margin-bottom: 12px;
+      background: #f7f9fc; border-radius: 10px;
+      border: 1px solid #edf0f5;
+    }
+    .prest-group-name { font-size: 13px; font-weight: 700; letter-spacing: -0.1px; }
+    .prest-group-count {
+      font-size: 11px; font-weight: 600; padding: 1px 8px;
+      border-radius: 980px; background: rgba(0,0,0,0.06); color: #6b7280;
+    }
+
+    /* Cards */
+    .prest-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .prest-card {
+      position: relative; border-radius: 12px; overflow: hidden;
+      background: #fff; border: 1px solid #edf0f5;
+      transition: transform 0.2s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.2s ease;
+    }
+    .prest-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.1); }
+    .prest-card-accent { position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+    .prest-card-body { padding: 14px 14px 12px; display: flex; flex-direction: column; gap: 8px; }
+    .prest-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 6px; }
+    .prest-card-pills { display: flex; flex-wrap: wrap; gap: 4px; flex: 1; }
+    .prest-type-pill {
+      font-size: 10px; font-weight: 600; padding: 2px 8px;
+      border-radius: 980px; border: 1px solid transparent; white-space: nowrap;
+    }
+    .prest-marque-pill {
+      font-size: 10px; padding: 2px 8px; border-radius: 980px;
+      background: #f3f4f6; color: #6b7280; border: 1px solid #e5e7eb; white-space: nowrap;
+    }
+    .prest-card-name { font-size: 14px; font-weight: 700; color: #111827; line-height: 1.3; }
+    .prest-stars { display: inline-flex; gap: 1px; font-size: 13px; flex-shrink: 0; }
+    .star-on  { color: #f59e0b; }
+    .star-off { color: #e5e7eb; }
+    .prest-contacts { display: flex; flex-direction: column; gap: 4px; }
+    .prest-contact-item { display: flex; align-items: flex-start; gap: 6px; font-size: 11px; line-height: 1.4; }
+    .pci-icon { flex-shrink: 0; font-size: 11px; opacity: 0.7; }
+    .pci-link { color: #2FAEE0; text-decoration: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 160px; }
+    .pci-link:hover { text-decoration: underline; }
+    .pci-text { color: #6b7280; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 160px; }
+    .prest-marques { display: flex; flex-wrap: wrap; gap: 4px; }
+    .prest-notes {
+      font-size: 11px; color: #9ca3af; line-height: 1.4;
+      overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    }
+    .prest-empty { padding: 48px 24px; color: #ea580c; font-size: 13px; font-weight: 500; }
+
+    /* ── Modal ajout prestataire ────────────────────────────────────────── */
+    .prest-modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 1001;
+      background: rgba(10,14,26,0.72); backdrop-filter: blur(6px);
+      align-items: center; justify-content: center; overflow-y: auto; padding: 24px;
+    }
+    .prest-modal-overlay.open { display: flex; animation: modalFadeIn 0.2s ease; }
+    .prest-modal-card {
+      position: relative; background: #fff; border-radius: 20px;
+      width: min(640px, 94vw); max-height: calc(100vh - 48px); overflow-y: auto;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.35);
+      animation: modalSlideUp 0.25s cubic-bezier(0.34,1.4,0.64,1);
+    }
+    .prest-modal-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 22px 24px 0; position: sticky; top: 0; background: #fff;
+      z-index: 2; border-radius: 20px 20px 0 0;
+    }
+    .prest-modal-header h3 { font-size: 17px; font-weight: 700; color: #111827; }
+    .prest-modal-close {
+      width: 30px; height: 30px; border-radius: 50%; border: none;
+      background: #f3f4f6; color: #6b7280; font-size: 13px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s;
+    }
+    .prest-modal-close:hover { background: #e5e7eb; color: #111827; }
+    #prest-add-form { padding: 20px 24px 24px; display: flex; flex-direction: column; gap: 14px; }
+    .pf-row { display: flex; flex-direction: column; gap: 5px; }
+    .pf-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .pf-label { font-size: 11px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; }
+    .pf-input {
+      padding: 9px 12px; border: 1.5px solid #e5e7eb; border-radius: 10px;
+      font-size: 13px; color: #111827; outline: none; background: #f9fafb;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .pf-input:focus { border-color: #2FAEE0; background: #fff; }
+    .pf-textarea { resize: vertical; min-height: 72px; font-family: inherit; }
+    .pf-marques-wrap {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      padding: 10px; background: #f9fafb; border: 1.5px solid #e5e7eb;
+      border-radius: 10px; max-height: 120px; overflow-y: auto;
+    }
+    .pf-marque-check { display: flex; align-items: center; gap: 5px; font-size: 12px; color: #374151; cursor: pointer; white-space: nowrap; }
+    .pf-marque-check input { cursor: pointer; accent-color: #2FAEE0; }
+    /* Stars input form */
+    .pf-stars-input { display: flex; gap: 4px; }
+    .pf-star { font-size: 22px; color: #e5e7eb; cursor: pointer; transition: color 0.1s, transform 0.1s; line-height: 1; }
+    .pf-star:hover, .pf-star-hover { color: #f59e0b; transform: scale(1.15); }
+    .pf-star-on { color: #f59e0b; }
+    .pf-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 6px; padding-top: 14px; border-top: 1px solid #f0f2f5; }
+    .pf-cancel-btn {
+      padding: 10px 20px; border-radius: 980px; border: 1.5px solid #e5e7eb;
+      background: #fff; color: #374151; font-size: 13px; font-weight: 600; cursor: pointer;
+      transition: all 0.15s;
+    }
+    .pf-cancel-btn:hover { background: #f3f4f6; }
+    .pf-submit-btn {
+      padding: 10px 24px; border-radius: 980px; border: none;
+      background: #2FAEE0; color: #fff; font-size: 13px; font-weight: 700; cursor: pointer;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+    .pf-submit-btn:hover:not(:disabled) { background: #003f7a; transform: translateY(-1px); }
+    .pf-submit-btn:disabled { opacity: 0.7; cursor: not-allowed; }
     """

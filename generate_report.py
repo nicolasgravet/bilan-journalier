@@ -16,6 +16,7 @@ from airtable_reader import (
     fetch_car_photos,
     fetch_cars_status,
     fetch_frais_airtable,
+    fetch_prestataires,
     _fetch_all_cars_index,
 )
 
@@ -36,30 +37,34 @@ def main():
     ct_data = []
     car_photos = {}
     frais_by_car = {}
+    prestataires = []
 
     if AIRTABLE_TOKEN:
         # ── Round 1 : tous les appels indépendants en parallèle ──────────────
         # Slack + index + réservées + CT démarrent simultanément.
         # Dès que l'index est prêt, on lance les frais (qui en dépendent).
         print("⚡ Chargement parallèle : Slack / Airtable index / réservées / CT...")
-        with ThreadPoolExecutor(max_workers=6) as ex:
+        with ThreadPoolExecutor(max_workers=7) as ex:
             f_slack     = ex.submit(fetch_achat_vente, 90)
             f_index     = ex.submit(_fetch_all_cars_index)
             f_reservees = ex.submit(fetch_reservees_airtable)
             f_ct        = ex.submit(fetch_ct_data)
+            f_prest     = ex.submit(fetch_prestataires)
 
             # Dès que l'index est disponible, lancer les frais sans attendre Slack
             cars_index = f_index.result()
             f_frais    = ex.submit(fetch_frais_airtable, cars_index, 30)
 
             general_msgs, offres, _ = f_slack.result()
-            reservees  = f_reservees.result()
-            ct_data    = f_ct.result()
+            reservees    = f_reservees.result()
+            ct_data      = f_ct.result()
             frais_by_car = f_frais.result()
+            prestataires = f_prest.result()
 
         print(f"  ✓ {len(offres)} offres Slack, {len(cars_index)} véhicules index, "
               f"{len(reservees)} réservées, {len(ct_data)} CT, "
-              f"{sum(len(v) for v in frais_by_car.values())} frais")
+              f"{sum(len(v) for v in frais_by_car.values())} frais, "
+              f"{len(prestataires)} prestataires")
 
         # ── Round 2 : filtrage offres (rapide, utilise l'index déjà chargé) ──
         car_names_offres = {o.get("voiture", "") for o in offres if o.get("voiture")}
@@ -91,7 +96,8 @@ def main():
         francois_cars = set()
 
     print("Génération HTML...")
-    html = generate_html(offres, reservees, frais_by_car, ct_data, car_photos, francois_cars=francois_cars)
+    html = generate_html(offres, reservees, frais_by_car, ct_data, car_photos,
+                         francois_cars=francois_cars, prestataires=prestataires)
 
     with open(REPORT_PATH, "w", encoding="utf-8") as f:
         f.write(html)
