@@ -351,15 +351,9 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
           <input class="pf-input" id="pf-email" type="email" placeholder="contact@garage.fr">
         </div>
       </div>
-      <div class="pf-row pf-row-2">
-        <div>
-          <label class="pf-label">Contact</label>
-          <input class="pf-input" id="pf-contact" type="text" placeholder="Prénom Nom">
-        </div>
-        <div>
-          <label class="pf-label">Ville</label>
-          <input class="pf-input" id="pf-ville" type="text" placeholder="Paris">
-        </div>
+      <div class="pf-row">
+        <label class="pf-label">Ville</label>
+        <input class="pf-input" id="pf-ville" type="text" placeholder="Paris">
       </div>
       <div class="pf-row">
         <label class="pf-label">Adresse</label>
@@ -1007,7 +1001,7 @@ function hidePrestCard(e, recordId, btn) {
   fetch(PREST_API_URL + '/' + recordId, {
     method: 'PATCH',
     headers: { 'Authorization': 'Bearer ' + PREST_TOKEN, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ fields: { Rating: 0 } })
+    body: JSON.stringify({ fields: { Rating: null } })
   })
   .then(function(r) { return r.json(); })
   .then(function(data) {
@@ -1227,13 +1221,11 @@ function submitNewPrestataire(e) {
   if (typeVal) fields['Type'] = [typeVal];
   if (marques.length) fields['Marque'] = marques;
   if (rating > 0) fields['Rating'] = rating;
-  if (tel)     fields['Téléphone'] = tel;
-  if (email)   fields['Email']     = email;
-  if (adresse) fields['Adresse']   = adresse;
-  if (contact) fields['Contact']   = contact;
-  if (ville)   fields['Ville']     = ville;
-  if (site)    fields['Site web']  = site;
-  if (notes)   fields['Notes']     = notes;
+  if (tel)     fields['Téléphone']       = tel;
+  if (email)   fields['Email']           = email;
+  if (adresse) fields['Adresse complète'] = adresse;
+  if (ville)   fields['Ville']           = ville;
+  if (notes)   fields['Notes']           = notes;
 
   if (!PREST_TOKEN || PREST_TOKEN === 'None') {
     btn.disabled = false;
