@@ -486,11 +486,41 @@ function toggleSection(id) {
   if (!body) return;
   var isOpen = body.classList.contains('open');
   if (isOpen) {
-    body.classList.remove('open');
-    if (btn) btn.classList.remove('rotated');
+    // Fermeture : figer la hauteur actuelle puis animer vers 0
+    body.style.height = body.scrollHeight + 'px';
+    body.style.transition = 'none';
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        body.style.transition = 'height 0.38s cubic-bezier(0.4,0,0.2,1), opacity 0.28s ease';
+        body.style.height = '0';
+        body.style.opacity = '0';
+        body.classList.remove('open');
+        if (btn) btn.classList.remove('rotated');
+      });
+    });
   } else {
+    // Ouverture : mesurer la vraie hauteur et animer vers elle
+    body.style.height = '0';
+    body.style.opacity = '0';
+    body.style.transition = 'none';
     body.classList.add('open');
-    if (btn) btn.classList.add('rotated');
+    var target = body.scrollHeight;
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        body.style.transition = 'height 0.42s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease 0.04s';
+        body.style.height = target + 'px';
+        body.style.opacity = '1';
+        if (btn) btn.classList.add('rotated');
+        // Une fois l'animation terminée, libérer la hauteur (pour le contenu dynamique)
+        body.addEventListener('transitionend', function handler(e) {
+          if (e.propertyName === 'height') {
+            body.style.height = 'auto';
+            body.style.transition = '';
+            body.removeEventListener('transitionend', handler);
+          }
+        });
+      });
+    });
   }
 }
 
@@ -769,9 +799,8 @@ def _css():
     .collapse-btn { background: none; border: 1px solid #dde1e8; border-radius: 8px; color: #adb5c2; padding: 5px 8px; cursor: pointer; transition: all 0.2s ease; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
     .collapse-btn svg { transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1); }
     .collapse-btn.rotated svg { transform: rotate(180deg); }
-    /* Section body — transition fluide */
-    .section-body { max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease; }
-    .section-body.open { max-height: 8000px; opacity: 1; transition: max-height 0.55s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease 0.05s; }
+    /* Section body — géré en JS (hauteur exacte) */
+    .section-body { overflow: hidden; opacity: 0; height: 0; }
 
     /* Grid */
     .grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
