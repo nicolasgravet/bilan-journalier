@@ -110,7 +110,7 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
 
   <!-- KPI -->
   <div class="kpi-row">
-    <div class="glass-card kpi">
+    <div class="glass-card kpi kpi-clickable kpi-clickable-blue" onclick="jumpToReservees()" title="Voir les voitures réservées">
       <div class="kpi-icon-wrap kpi-blue">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2FAEE0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
       </div>
@@ -118,6 +118,7 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
         <div class="kpi-value">{len(reservees)}</div>
         <div class="kpi-label">Voitures réservées</div>
       </div>
+      <span class="kpi-arrow">→</span>
     </div>
     <div class="glass-card kpi kpi-clickable" onclick="jumpToCT()" title="Voir les alertes CT">
       <div class="kpi-icon-wrap kpi-orange">
@@ -129,7 +130,7 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
       </div>
       <span class="kpi-arrow">→</span>
     </div>
-    <div class="glass-card kpi">
+    <div class="glass-card kpi kpi-clickable kpi-clickable-red" onclick="jumpToCTReservees()" title="Voir les alertes CT des voitures réservées">
       <div class="kpi-icon-wrap kpi-red">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
       </div>
@@ -137,6 +138,7 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
         <div class="kpi-value">{ct_reservees_count}</div>
         <div class="kpi-label">Alertes CT — Réservées</div>
       </div>
+      <span class="kpi-arrow">→</span>
     </div>
   </div>
 
@@ -243,13 +245,13 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
           <input type="text" class="section-search" id="search-prest" placeholder="Rechercher un prestataire, ville, contact…" oninput="applyPrestFilters()" autocomplete="off">
           <button class="search-clear-btn" onclick="clearPrestSearch()">✕</button>
         </div>
-        <div class="prest-filter-row">
-          <div class="filter-bar" id="prest-type-filters">
-            <button class="filter-btn active" data-prest-type="tous" onclick="setPrestTypeFilter(this)">Tous</button>
-          </div>
-          <div class="filter-bar" id="prest-marque-filters">
-            <button class="filter-btn active" data-prest-marque="tous" onclick="setPrestMarqueFilter(this)">Toutes marques</button>
-          </div>
+        <div class="prest-dropdowns-row">
+          <select class="prest-select" id="prest-type-select" onchange="applyPrestFilters()">
+            <option value="tous">Toutes spécialités</option>
+          </select>
+          <select class="prest-select" id="prest-marque-select" onchange="applyPrestFilters()">
+            <option value="tous">Toutes marques</option>
+          </select>
         </div>
       </div>
       <div id="prest-content">
@@ -665,7 +667,7 @@ def _render_prestataires(prestataires):
     # Injecter les données marques pour les filtres JS (sera lues au démarrage)
     marques_json_global = _json.dumps(all_marques)
     return f"""<div id="prest-groups">{groups_html}</div>
-<script>var PREST_MARQUES = {marques_json_global}; initPrestFilters();</script>"""
+<script>var PREST_MARQUES = {marques_json_global};</script>"""
 
 
 # ─── JavaScript ───────────────────────────────────────────────────────────────
@@ -967,72 +969,75 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
-// ── KPI CT cliquable ─────────────────────────────────────────────────────────
-function jumpToCT() {
-  // 1. Ouvrir la section CT si fermée
-  var body = document.getElementById('body-ct');
-  if (body && !body.classList.contains('open')) {
-    toggleSection('ct');
-  }
-  // 2. Activer filtres Expiré(0) + Manquant(1) + Bientôt(2), désactiver OK et Tous
-  ctState.statuses = new Set(['0', '1', '2']);
+// Init prestataires filters (après chargement complet du DOM + _js)
+initPrestFilters();
+
+// ── KPI cliquables ────────────────────────────────────────────────────────────
+function _openSection(id) {
+  var body = document.getElementById('body-' + id);
+  if (body && !body.classList.contains('open')) toggleSection(id);
+}
+function _scrollTo(id, delay) {
+  var el = document.getElementById(id);
+  if (el) setTimeout(function() { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, delay || 80);
+}
+function _setCTStatusFilters(vals) {
+  ctState.statuses = new Set(vals);
   document.querySelectorAll('.ct-status-filter .filter-btn').forEach(function(btn) {
     var v = btn.getAttribute('data-ct-status');
-    btn.classList.toggle('active', v === '0' || v === '1' || v === '2');
+    btn.classList.toggle('active', vals.length === 0 || vals.indexOf(v) !== -1);
   });
+}
+function _setCTGroupFilter(val) {
+  ctState.group = val;
+  document.querySelectorAll('.ct-filter .filter-btn').forEach(function(btn) {
+    btn.classList.toggle('active', btn.getAttribute('data-ct') === val);
+  });
+}
+
+function jumpToReservees() {
+  _openSection('reservees');
+  _scrollTo('section-reservees');
+}
+
+function jumpToCT() {
+  _openSection('ct');
+  _setCTGroupFilter('tous');
+  _setCTStatusFilters(['0', '1', '2']);
   applyCTFilter();
-  // 3. Scroll fluide vers la section CT (délai pour laisser l'animation démarrer)
-  var section = document.getElementById('section-ct');
-  if (section) {
-    setTimeout(function() {
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 80);
-  }
+  _scrollTo('section-ct');
+}
+
+function jumpToCTReservees() {
+  _openSection('ct');
+  _setCTGroupFilter('reservees');
+  _setCTStatusFilters(['0', '1', '2']);
+  applyCTFilter();
+  _scrollTo('section-ct');
 }
 
 // ── Prestataires ─────────────────────────────────────────────────────────────
 var prestState = { type: 'tous', marque: 'tous', search: '' };
 
 function initPrestFilters() {
-  // Injecter les boutons de type depuis les groupes présents
-  var typeBar = document.getElementById('prest-type-filters');
-  if (!typeBar) return;
-  var groups = document.querySelectorAll('.prest-group[data-group-type]');
-  groups.forEach(function(g) {
+  var typeSelect = document.getElementById('prest-type-select');
+  var marqueSelect = document.getElementById('prest-marque-select');
+  if (!typeSelect) return;
+  // Peupler les types depuis les groupes présents dans le DOM
+  document.querySelectorAll('.prest-group[data-group-type]').forEach(function(g) {
     var t = g.getAttribute('data-group-type');
-    var btn = document.createElement('button');
-    btn.className = 'filter-btn';
-    btn.setAttribute('data-prest-type', t);
-    btn.textContent = t;
-    btn.onclick = function() { setPrestTypeFilter(btn); };
-    typeBar.appendChild(btn);
+    var opt = document.createElement('option');
+    opt.value = t; opt.textContent = t;
+    typeSelect.appendChild(opt);
   });
-  // Injecter les boutons de marque
-  var marqueBar = document.getElementById('prest-marque-filters');
-  if (marqueBar && typeof PREST_MARQUES !== 'undefined') {
+  // Peupler les marques depuis la variable globale PREST_MARQUES
+  if (marqueSelect && typeof PREST_MARQUES !== 'undefined') {
     PREST_MARQUES.forEach(function(m) {
-      var btn = document.createElement('button');
-      btn.className = 'filter-btn';
-      btn.setAttribute('data-prest-marque', m);
-      btn.textContent = m;
-      btn.onclick = function() { setPrestMarqueFilter(btn); };
-      marqueBar.appendChild(btn);
+      var opt = document.createElement('option');
+      opt.value = m; opt.textContent = m;
+      marqueSelect.appendChild(opt);
     });
   }
-}
-
-function setPrestTypeFilter(btn) {
-  document.querySelectorAll('#prest-type-filters .filter-btn').forEach(function(b) { b.classList.remove('active'); });
-  btn.classList.add('active');
-  prestState.type = btn.getAttribute('data-prest-type');
-  applyPrestFilters();
-}
-
-function setPrestMarqueFilter(btn) {
-  document.querySelectorAll('#prest-marque-filters .filter-btn').forEach(function(b) { b.classList.remove('active'); });
-  btn.classList.add('active');
-  prestState.marque = btn.getAttribute('data-prest-marque');
-  applyPrestFilters();
 }
 
 function clearPrestSearch() {
@@ -1045,6 +1050,12 @@ function clearPrestSearch() {
 }
 
 function applyPrestFilters() {
+  // Lire les selects
+  var typeSelect = document.getElementById('prest-type-select');
+  var marqueSelect = document.getElementById('prest-marque-select');
+  prestState.type   = typeSelect   ? typeSelect.value   : 'tous';
+  prestState.marque = marqueSelect ? marqueSelect.value : 'tous';
+  // Lire la recherche
   var inp = document.getElementById('search-prest');
   if (inp) {
     prestState.search = inp.value.trim().toLowerCase();
@@ -1243,8 +1254,12 @@ def _css():
     .kpi:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(0,0,0,0.09); }
     .kpi-clickable { cursor: pointer; }
     .kpi-clickable:hover { box-shadow: 0 6px 28px rgba(234,88,12,0.18); border-color: rgba(234,88,12,0.25); }
+    .kpi-clickable-blue:hover { box-shadow: 0 6px 28px rgba(47,174,224,0.18); border-color: rgba(47,174,224,0.25); }
+    .kpi-clickable-red:hover { box-shadow: 0 6px 28px rgba(220,38,38,0.18); border-color: rgba(220,38,38,0.25); }
     .kpi-arrow { font-size: 16px; color: #d1d5db; margin-left: auto; transition: transform 0.2s ease, color 0.2s ease; align-self: center; }
     .kpi-clickable:hover .kpi-arrow { transform: translateX(4px); color: #ea580c; }
+    .kpi-clickable-blue:hover .kpi-arrow { color: #2FAEE0; }
+    .kpi-clickable-red:hover .kpi-arrow { color: #dc2626; }
     .kpi-icon-wrap { width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
 
     /* Animation cloche — pivot depuis le haut */
@@ -1451,7 +1466,18 @@ def _css():
 
     .prest-controls { display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px; }
     .prest-search-wrap { flex: 1; max-width: 480px; }
-    .prest-filter-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .prest-dropdowns-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .prest-select {
+      padding: 7px 32px 7px 12px; border-radius: 10px;
+      border: 1.5px solid #e5e7eb; background: #fff;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23adb5c2' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 10px center;
+      color: #374151; font-size: 12px; font-weight: 500;
+      appearance: none; -webkit-appearance: none; cursor: pointer;
+      transition: border-color 0.15s, box-shadow 0.15s; outline: none;
+      min-width: 160px;
+    }
+    .prest-select:focus { border-color: #2FAEE0; box-shadow: 0 0 0 3px rgba(47,174,224,0.12); }
 
     /* Groupes */
     .prest-group { margin-bottom: 24px; }
