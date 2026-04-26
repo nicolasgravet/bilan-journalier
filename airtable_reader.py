@@ -1,3 +1,4 @@
+import re
 import requests
 from datetime import datetime, timedelta
 from config import AIRTABLE_TOKEN, AIRTABLE_BASE_ID
@@ -190,7 +191,7 @@ def fetch_reservees_airtable():
         return []
     records = _get_records(GENERAL_TABLE, {
         "filterByFormula": f'{{Statut}} = "{ACOMPTE_STATUT}"',
-        "fields[]": ["Voiture", "Photo", "Prix vente", "Marge (€)", "Record ID", "Acheteur meca"],
+        "fields[]": ["Voiture", "Photo", "Prix vente", "Marge (€)", "Record ID", "Acheteur meca", "N° bon commande (from Bon de commande)"],
         "maxRecords": 200,
     })
     result = []
@@ -209,12 +210,18 @@ def fetch_reservees_airtable():
         acheteurs_raw = f.get("Acheteur meca", [])
         commerciaux = [a.get("name", "").split()[0].capitalize() for a in acheteurs_raw if a.get("name")]
         is_francois = (len(acheteurs_raw) == 1 and any("françois" in a.get("name", "").lower() for a in acheteurs_raw))
+        bc_raw = f.get("N° bon commande (from Bon de commande)", "")
+        if isinstance(bc_raw, list):
+            bc_raw = bc_raw[0] if bc_raw else ""
+        bc_digits = re.sub(r"[^0-9]", "", str(bc_raw))
+        bc_num = int(bc_digits) if bc_digits else 0
         result.append({
             "voiture": f.get("Voiture", "—"),
             "prix_fmt": prix_fmt,
             "marge_fmt": marge_fmt,
             "marge_val": marge_val,
             "created_ts": created_ts,
+            "bc_num": bc_num,
             "photo_url": _photo_url(f),
             "fiche_url": VIEW_URL.format(record_id=rec["id"]),
             "commerciaux": commerciaux,

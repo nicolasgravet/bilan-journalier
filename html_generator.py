@@ -248,7 +248,7 @@ def _render_reservees(reservees, francois_cars=None):
         )
         voiture = r.get('voiture', '—')
         fck = ' <span class="fck-badge">🖕</span>' if (voiture in francois_cars or r.get("is_francois")) else ''
-        ts = r.get('created_ts', 0)
+        ts = r.get('bc_num', 0)
         items += f"""<div class="reservation-card" data-ts="{ts}">
           {photo_html}
           <div class="res-info">
