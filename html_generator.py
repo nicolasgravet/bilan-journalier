@@ -154,9 +154,9 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
             <button class="filter-btn" data-frais-statut="reservees">Réservées</button>
           </div>
         </div>
-        <button class="collapse-btn" id="collapse-frais">▼</button>
+        <button class="collapse-btn" id="collapse-frais"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
       </div>
-      <div class="section-body" id="body-frais" style="display:none">
+      <div class="section-body" id="body-frais">
         <div class="section-search-wrap" onclick="event.stopPropagation()">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#adb5c2" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           <input type="text" class="section-search" id="search-frais" placeholder="Rechercher une voiture…" oninput="filterBySearch('frais', this.value)" autocomplete="off">
@@ -178,9 +178,9 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
             <button class="filter-btn" data-ct="reservees">Réservées (Acompte)</button>
           </div>
         </div>
-        <button class="collapse-btn" id="collapse-ct">▼</button>
+        <button class="collapse-btn" id="collapse-ct"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
       </div>
-      <div class="section-body" id="body-ct" style="display:none">
+      <div class="section-body" id="body-ct">
         <div class="section-search-wrap" onclick="event.stopPropagation()">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#adb5c2" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           <input type="text" class="section-search" id="search-ct" placeholder="Rechercher une voiture…" oninput="filterBySearch('ct', this.value)" autocomplete="off">
@@ -208,9 +208,9 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
         <div class="header-filters" onclick="event.stopPropagation()">
           <button class="sort-toggle-btn" id="sort-reservees" onclick="toggleSortReservees(this)">↓ Plus récent</button>
         </div>
-        <button class="collapse-btn" id="collapse-reservees">▼</button>
+        <button class="collapse-btn" id="collapse-reservees"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
       </div>
-      <div class="section-body" id="body-reservees" style="display:none">
+      <div class="section-body" id="body-reservees">
         <div class="section-search-wrap" onclick="event.stopPropagation()">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#adb5c2" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           <input type="text" class="section-search" id="search-reservees" placeholder="Rechercher une voiture…" oninput="filterBySearch('reservees', this.value)" autocomplete="off">
@@ -484,9 +484,14 @@ function toggleSection(id) {
   var body = document.getElementById('body-' + id);
   var btn = document.getElementById('collapse-' + id);
   if (!body) return;
-  var collapsed = body.style.display === 'none';
-  body.style.display = collapsed ? '' : 'none';
-  if (btn) btn.textContent = collapsed ? '▲' : '▼';
+  var isOpen = body.classList.contains('open');
+  if (isOpen) {
+    body.classList.remove('open');
+    if (btn) btn.classList.remove('rotated');
+  } else {
+    body.classList.add('open');
+    if (btn) btn.classList.add('rotated');
+  }
 }
 
 // ── Tri voitures réservées ───────────────────────────────────────────
@@ -761,7 +766,12 @@ def _css():
     .collapsible-header:hover { background: rgba(0,87,168,0.04); }
     .collapsible-header:hover .collapse-btn { border-color: #2FAEE0; color: #2FAEE0; }
     .header-filters { display: flex; align-items: center; gap: 6px; margin-left: auto; flex-shrink: 0; }
-    .collapse-btn { background: none; border: 1px solid #dde1e8; border-radius: 8px; color: #adb5c2; font-size: 11px; padding: 4px 10px; cursor: pointer; transition: all 0.15s ease; flex-shrink: 0; }
+    .collapse-btn { background: none; border: 1px solid #dde1e8; border-radius: 8px; color: #adb5c2; padding: 5px 8px; cursor: pointer; transition: all 0.2s ease; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .collapse-btn svg { transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+    .collapse-btn.rotated svg { transform: rotate(180deg); }
+    /* Section body — transition fluide */
+    .section-body { max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease; }
+    .section-body.open { max-height: 8000px; opacity: 1; transition: max-height 0.55s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease 0.05s; }
 
     /* Grid */
     .grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
