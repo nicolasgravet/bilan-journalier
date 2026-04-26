@@ -649,7 +649,8 @@ def _render_prestataires(prestataires):
             ville_lower = (p.get("ville") or "").lower()
             notes_lower = (p.get("notes") or "").lower()
 
-            cards_html += f"""<div class="prest-card" data-types='{types_json}' data-marques='{marques_json}' data-searchtext="{nom_lower} {contact_lower} {ville_lower} {notes_lower}">
+            rec_id = p["id"]
+            cards_html += f"""<div class="prest-card" data-id="{rec_id}" data-types='{types_json}' data-marques='{marques_json}' data-searchtext="{nom_lower} {contact_lower} {ville_lower} {notes_lower}">
               <div class="prest-card-accent" style="background:{color}"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
@@ -660,6 +661,10 @@ def _render_prestataires(prestataires):
                 {f'<div class="prest-contacts">{contacts_html}</div>' if contacts_html else ''}
                 {f'<div class="prest-marques">{marque_pills}</div>' if marque_pills else ''}
                 {notes_html}
+                <div class="pca-row">
+                  <button class="pca-btn pca-hide" onclick="hidePrestCard(event,'{rec_id}',this)" title="Retirer du dashboard (met la note à 0)">⭐ Masquer</button>
+                  <button class="pca-btn pca-delete" onclick="deletePrestCard(event,'{rec_id}',this)" title="Supprimer définitivement de l'Airtable">🗑 Supprimer</button>
+                </div>
               </div>
             </div>"""
 
@@ -978,6 +983,72 @@ document.addEventListener('keydown', function(e) {
 
 // Init prestataires filters (après chargement complet du DOM + _js)
 initPrestFilters();
+
+// ── Actions sur les cartes prestataires ──────────────────────────────────────
+function _removeCard(card) {
+  card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+  card.style.opacity = '0';
+  card.style.transform = 'scale(0.88)';
+  setTimeout(function() {
+    card.remove();
+    // Mettre à jour le compteur
+    var total = document.querySelectorAll('.prest-card').length;
+    var el = document.getElementById('prest-count');
+    if (el) el.textContent = total;
+    // Masquer les groupes vides
+    document.querySelectorAll('.prest-group').forEach(function(g) {
+      if (!g.querySelector('.prest-card')) g.style.display = 'none';
+    });
+  }, 300);
+}
+
+function hidePrestCard(e, recordId, btn) {
+  e.stopPropagation();
+  btn.disabled = true; btn.textContent = '…';
+  fetch(PREST_API_URL + '/' + recordId, {
+    method: 'PATCH',
+    headers: { 'Authorization': 'Bearer ' + PREST_TOKEN, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ fields: { Rating: 0 } })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.id) {
+      _removeCard(btn.closest('.prest-card'));
+    } else {
+      btn.disabled = false; btn.textContent = '⭐ Masquer';
+      alert('Erreur : ' + ((data.error && data.error.message) || JSON.stringify(data)));
+    }
+  })
+  .catch(function(err) {
+    btn.disabled = false; btn.textContent = '⭐ Masquer';
+    alert('Erreur réseau : ' + err.message);
+  });
+}
+
+function deletePrestCard(e, recordId, btn) {
+  e.stopPropagation();
+  var nom = btn.closest('.prest-card').querySelector('.prest-card-name');
+  var label = nom ? nom.textContent.trim() : 'ce prestataire';
+  if (!confirm('Supprimer définitivement "' + label + '" de votre CRM Airtable ?\n\nCette action est irréversible.')) return;
+  btn.disabled = true; btn.textContent = '…';
+  fetch(PREST_API_URL + '/' + recordId, {
+    method: 'DELETE',
+    headers: { 'Authorization': 'Bearer ' + PREST_TOKEN }
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.deleted) {
+      _removeCard(btn.closest('.prest-card'));
+    } else {
+      btn.disabled = false; btn.textContent = '🗑 Supprimer';
+      alert('Erreur : ' + JSON.stringify(data));
+    }
+  })
+  .catch(function(err) {
+    btn.disabled = false; btn.textContent = '🗑 Supprimer';
+    alert('Erreur réseau : ' + err.message);
+  });
+}
 
 // ── KPI cliquables ────────────────────────────────────────────────────────────
 function _openSection(id) {
@@ -1549,6 +1620,23 @@ def _css():
       font-size: 11px; color: #9ca3af; line-height: 1.4;
       overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
     }
+    .pca-row {
+      display: flex; gap: 6px; margin-top: 8px; padding-top: 8px;
+      border-top: 1px solid #f0f2f5;
+      opacity: 0; transform: translateY(4px);
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+    .prest-card:hover .pca-row { opacity: 1; transform: translateY(0); }
+    .pca-btn {
+      flex: 1; padding: 5px 8px; border-radius: 8px; border: none;
+      font-size: 11px; font-weight: 600; cursor: pointer;
+      transition: background 0.15s, transform 0.15s;
+    }
+    .pca-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .pca-hide   { background: #f3f4f6; color: #6b7280; }
+    .pca-hide:hover:not(:disabled)   { background: #e5e7eb; color: #374151; transform: translateY(-1px); }
+    .pca-delete { background: #fee2e2; color: #dc2626; }
+    .pca-delete:hover:not(:disabled) { background: #fecaca; transform: translateY(-1px); }
     .prest-empty { padding: 48px 24px; color: #ea580c; font-size: 13px; font-weight: 500; }
 
     /* ── Modal ajout prestataire ────────────────────────────────────────── */
