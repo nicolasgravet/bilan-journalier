@@ -52,7 +52,7 @@
     .refresh-note { font-size: 10px; color: #adb5c2; text-align: right; }
 
     /* KPI */
-    .kpi-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-bottom: 20px; }
+    .kpi-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 20px; }
     .kpi { display: flex; align-items: center; gap: 18px; padding: 26px 28px; }
     .kpi:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(0,0,0,0.09); }
     .kpi-icon-wrap { width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
@@ -64,9 +64,7 @@
     .kpi-value { font-size: 40px; font-weight: 700; color: #0a0f1e; letter-spacing: -2px; line-height: 1; font-variant-numeric: tabular-nums; }
     .kpi-label { font-size: 10px; color: #8a94a6; margin-top: 6px; text-transform: uppercase; letter-spacing: 0.09em; font-weight: 600; }
 
-    .offres-sub-filters { display: flex; gap: 20px; flex-wrap: wrap; padding: 0 0 14px 0; border-bottom: 1px solid #f0f2f5; margin-bottom: 6px; }
-    .sub-filter-group { display: flex; align-items: center; gap: 8px; }
-    .sub-filter-label { font-size: 10px; font-weight: 700; color: #adb5c2; text-transform: uppercase; letter-spacing: 0.09em; white-space: nowrap; }
+    .module-sub-filters { display: flex; gap: 20px; flex-wrap: wrap; padding: 0 0 14px 0; border-bottom: 1px solid #f0f2f5; margin-bottom: 6px; }
     .collapsible-header { cursor: pointer; border-radius: 12px; padding: 4px 6px; margin: -4px -6px; transition: background 0.15s; }
     .collapsible-header:hover { background: rgba(0,87,168,0.04); }
     .collapsible-header:hover .collapse-btn { border-color: #2FAEE0; color: #2FAEE0; }
@@ -98,19 +96,6 @@
     .filter-btn:hover { background: #f5f7fa; border-color: #c5cad3; }
     .filter-btn.active { background: #2FAEE0; border-color: #2FAEE0; color: #ffffff; box-shadow: 0 1px 4px rgba(0,87,168,0.3); }
 
-    /* Table offres */
-    .table-header { display: grid; grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr 80px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.09em; color: #adb5c2; padding: 0 14px 10px; font-weight: 600; }
-    .table-row { display: grid; grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr 80px; padding: 12px 14px; border-radius: 10px; margin-bottom: 4px; background: #f7f9fc; border: 1px solid #edf0f5; transition: background 0.15s, border-color 0.15s; align-items: center; }
-    .table-row:hover { background: #eff4ff; border-color: #c3d3f7; }
-    .cell-primary { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-    .car-name { font-weight: 600; color: #0a0f1e; font-size: 14px; }
-    .cell { font-size: 13px; color: #6b7280; }
-    .price { color: #059669; font-weight: 700; }
-    .marge { color: #2FAEE0; font-weight: 700; }
-    .time-tag { font-size: 10px; padding: 2px 8px; background: #edf0f5; border-radius: 980px; color: #adb5c2; font-weight: 500; }
-    .type-badge { font-size: 11px; padding: 3px 10px; border-radius: 980px; font-weight: 600; }
-    .type-achat { background: #d1fae5; color: #065f46; }
-    .type-dépôtvente, .type-depôtvente { background: #eff4ff; color: #2FAEE0; }
 
     /* Réservées */
     .reservations-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
@@ -184,7 +169,7 @@
     @media (max-width: 640px) {
       .grid, .kpi-row { grid-template-columns: 1fr; }
       .col-span-2, .col-span-3 { grid-column: span 1; }
-      .table-header, .table-row { grid-template-columns: 1fr 1fr; }
+
     }
     </style>
 </head>
@@ -218,7 +203,7 @@
         updateClock();
         setInterval(updateClock, 1000);
         // Timestamp de génération converti en heure locale
-        var gen = new Date(1777195793 * 1000);
+        var gen = new Date(1777196361 * 1000);
         var genH = String(gen.getHours()).padStart(2,'0');
         var genM = String(gen.getMinutes()).padStart(2,'0');
         var genLabel = 'Mis à jour le ' + JOURS[gen.getDay()] + ' ' + gen.getDate() + ' ' + MOIS[gen.getMonth()] + ' ' + gen.getFullYear() + ' à ' + genH + ':' + genM;
@@ -228,7 +213,7 @@
         btn.disabled = true;
         btn.textContent = '⏳ En cours…';
         document.getElementById('refresh-status').textContent = 'Génération en cours…';
-        var currentTs = 1777195793;
+        var currentTs = 1777196361;
         fetch('https://mecanicus-refresh.nicolas-0ce.workers.dev', {method:'POST'})
         .then(r => {
           if (r.ok) {
@@ -264,15 +249,6 @@
 
   <!-- KPI -->
   <div class="kpi-row">
-    <div class="glass-card kpi">
-      <div class="kpi-icon-wrap kpi-green">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-      </div>
-      <div class="kpi-body">
-        <div class="kpi-value">61</div>
-        <div class="kpi-label">Offres acceptées</div>
-      </div>
-    </div>
     <div class="glass-card kpi">
       <div class="kpi-icon-wrap kpi-blue">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2FAEE0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
@@ -582,7 +558,7 @@
           <input type="text" class="section-search" id="search-ct" placeholder="Rechercher une voiture…" oninput="filterBySearch('ct', this.value)" autocomplete="off">
           <button class="search-clear-btn" onclick="clearSearch('ct')">✕</button>
         </div>
-        <div class="offres-sub-filters">
+        <div class="module-sub-filters">
           <div class="filter-bar ct-status-filter">
             <button class="filter-btn active" data-ct-status="tous">Tous statuts</button>
             <button class="filter-btn" data-ct-status="0">Expiré</button>
@@ -1667,721 +1643,17 @@
       </div>
     </section>
 
-    <!-- Offres acceptées -->
-    <section class="glass-card section col-span-3" id="section-offres">
-      <div class="section-header collapsible-header" onclick="toggleSection('offres')">
-        <span class="section-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-        <h2>Offres Acceptées</h2>
-        <span class="count-badge" id="offres-count">61</span>
-        <div class="header-filters" onclick="event.stopPropagation()">
-          <div class="filter-bar" data-target="offres">
-            <button class="filter-btn active" data-days="0">Tout</button>
-            <button class="filter-btn" data-days="1">1j</button>
-            <button class="filter-btn" data-days="7">7j</button>
-            <button class="filter-btn" data-days="30">1m</button>
-            <button class="filter-btn" data-days="90">3m</button>
-          </div>
-        </div>
-        <button class="collapse-btn" id="collapse-offres">▼</button>
-      </div>
-      <div class="section-body" id="body-offres" style="display:none">
-        <div class="section-search-wrap" onclick="event.stopPropagation()">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#adb5c2" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="text" class="section-search" id="search-offres" placeholder="Rechercher une voiture…" oninput="filterBySearch('offres', this.value)" autocomplete="off">
-          <button class="search-clear-btn" onclick="clearSearch('offres')">✕</button>
-        </div>
-        <div class="offres-sub-filters">
-          <div class="sub-filter-group"><span class="sub-filter-label">Type</span><div class="filter-bar offres-type-filter"><button class="filter-btn active" data-offre-type="tous">Tous</button><button class="filter-btn" data-offre-type="achat">Achat</button><button class="filter-btn" data-offre-type="dépotvente">Dépot vente</button><button class="filter-btn" data-offre-type="recherche">Recherche</button></div></div>
-          <div class="sub-filter-group"><span class="sub-filter-label">Commercial</span><div class="filter-bar offres-commercial-filter"><button class="filter-btn active" data-commercial="tous">Tous</button><button class="filter-btn" data-commercial="alexandre">Alexandre</button><button class="filter-btn" data-commercial="françois">François</button><button class="filter-btn" data-commercial="hadrien">Hadrien</button><button class="filter-btn" data-commercial="louis">Louis</button><button class="filter-btn" data-commercial="matthieu">Matthieu</button><button class="filter-btn" data-commercial="pierre">Pierre</button><button class="filter-btn" data-commercial="theodore">Theodore</button><button class="filter-btn" data-commercial="victor">Victor</button></div></div>
-        </div>
-        <div class="table-header">
-      <div>Véhicule</div><div>Acheteur</div><div>Type</div><div>Prix vente</div><div>Marge</div><div></div>
-    </div><div class="table-body"><div class="table-row" data-ts="1776359951" data-section="offres" data-offre-type="achat" data-commercial="françois">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 997.2 GT3</span>
-            <span class="time-tag">16/04 17:19</span>
-          </div>
-          <div class="cell">François Prisset</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">120 000 €</div>
-          <div class="cell marge">0 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recH4MxlZC7ag4X2T?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1776358195" data-section="offres" data-offre-type="dépotvente" data-commercial="theodore">
-          <div class="cell-primary">
-            <span class="car-name">Aston Martin V12 Vantage EB-222-BW</span>
-            <span class="time-tag">16/04 16:49</span>
-          </div>
-          <div class="cell">theodore colinet</div>
-          <div class="cell"><span class="type-badge type-dépotvente">
-            Dépot vente</span></div>
-          <div class="cell price">109 900 €</div>
-          <div class="cell marge">15 000 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recENuOkbUXpfJnWz?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1776358006" data-section="offres" data-offre-type=":euro::70000€" data-commercial="alexandre">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 991.1 2S Bleue / Tan</span>
-            <span class="time-tag">16/04 16:46</span>
-          </div>
-          <div class="cell">Alexandre Laposse</div>
-          <div class="cell"><span class="type-badge type-:euro::70000€">
-            :euro: : 70000€</span></div>
-          <div class="cell price">70 000 €</div>
-          <div class="cell marge">8 400 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec64zJnBhTcgzbEt?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1776341192" data-section="offres" data-offre-type="dépotvente" data-commercial="victor">
-          <div class="cell-primary">
-            <span class="car-name">Mclaren 570 Spider</span>
-            <span class="time-tag">16/04 12:06</span>
-          </div>
-          <div class="cell">Victor Roney</div>
-          <div class="cell"><span class="type-badge type-dépotvente">
-            Dépot vente</span></div>
-          <div class="cell price">170 000 €</div>
-          <div class="cell marge">9 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec39YNg01gH6HA3Y?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1775838170" data-section="offres" data-offre-type="achat" data-commercial="pierre">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 996 GT2</span>
-            <span class="time-tag">10/04 16:22</span>
-          </div>
-          <div class="cell">Pierre guibert</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">164 000 €</div>
-          <div class="cell marge">35 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recK93cnRs0IwuHnQ?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1775656389" data-section="offres" data-offre-type="dépotvente" data-commercial="pierre">
-          <div class="cell-primary">
-            <span class="car-name">Mercedes-AMG C63 break</span>
-            <span class="time-tag">08/04 13:53</span>
-          </div>
-          <div class="cell">Pierre guibert</div>
-          <div class="cell"><span class="type-badge type-dépotvente">
-            Dépot vente</span></div>
-          <div class="cell price">41 000 €</div>
-          <div class="cell marge">7 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recCvORK9IBmoqhrq?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1775557902" data-section="offres" data-offre-type="achat" data-commercial="theodore">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 964 Carrera 2 cab</span>
-            <span class="time-tag">07/04 10:31</span>
-          </div>
-          <div class="cell">theodore colinet</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">65 000 €</div>
-          <div class="cell marge">15 000 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recD94FQEAqEtpJDu?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1775557854" data-section="offres" data-offre-type="achat" data-commercial="theodore">
-          <div class="cell-primary">
-            <span class="car-name">Ferrari 360 modena Boite F1</span>
-            <span class="time-tag">07/04 10:30</span>
-          </div>
-          <div class="cell">theodore colinet</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">65 000 €</div>
-          <div class="cell marge">15 000 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec98YqzCNc452rbn?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1775550776" data-section="offres" data-offre-type=":euro::75000€" data-commercial="victor">
-          <div class="cell-primary">
-            <span class="car-name">Alfa Romeo 4C - EM-140-TF</span>
-            <span class="time-tag">07/04 08:32</span>
-          </div>
-          <div class="cell">Victor Roney</div>
-          <div class="cell"><span class="type-badge type-:euro::75000€">
-            :euro: : 75000€</span></div>
-          <div class="cell price">75 000 €</div>
-          <div class="cell marge">14 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec754dFxVeITrlRj?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1775139696" data-section="offres" data-offre-type="achat" data-commercial="pierre">
-          <div class="cell-primary">
-            <span class="car-name">BMW Z1 Tour Auto</span>
-            <span class="time-tag">02/04 14:21</span>
-          </div>
-          <div class="cell">Pierre guibert</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">50 000 €</div>
-          <div class="cell marge">8 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recSwg6ZylBHKh2LX?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1774628983" data-section="offres" data-offre-type="achat" data-commercial="victor">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 997.2 Turbo S</span>
-            <span class="time-tag">27/03 16:29</span>
-          </div>
-          <div class="cell">Victor Roney</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">87 500 €</div>
-          <div class="cell marge">12 400 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recv0mHf0g5EcVjUP?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1774367787" data-section="offres" data-offre-type="achat" data-commercial="pierre">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 996 Turbo cabriolet * Boite mécanique - Options Exclusive - 58.000km</span>
-            <span class="time-tag">24/03 15:56</span>
-          </div>
-          <div class="cell">Pierre guibert</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">68 500 €</div>
-          <div class="cell marge">16 400 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recico8dELI4b41pO?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1774003764" data-section="offres" data-offre-type="achat" data-commercial="louis">
-          <div class="cell-primary">
-            <span class="car-name">Porsche Cayenne E-Hybrid Coupé Platinum</span>
-            <span class="time-tag">20/03 10:49</span>
-          </div>
-          <div class="cell">Louis Robino</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">69 000 €</div>
-          <div class="cell marge">6 000 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec2nxKlPbirt69O5?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1773931343" data-section="offres" data-offre-type="achat" data-commercial="françois">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 993 Carrera 2 Aventurine Green</span>
-            <span class="time-tag">19/03 14:42</span>
-          </div>
-          <div class="cell">François Prisset</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">63 500 €</div>
-          <div class="cell marge">14 500 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recAlmNYjiPSmhOMK?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1773929059" data-section="offres" data-offre-type="dépotvente" data-commercial="louis">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 911 997.2 Carrera Allemagne</span>
-            <span class="time-tag">19/03 14:04</span>
-          </div>
-          <div class="cell">Louis Robino</div>
-          <div class="cell"><span class="type-badge type-dépotvente">
-            Dépot vente</span></div>
-          <div class="cell price">60 000 €</div>
-          <div class="cell marge">4 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recbeDU3K3T9k7BGX?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1773680664" data-section="offres" data-offre-type="achat" data-commercial="françois">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 964 Turbo 3.3</span>
-            <span class="time-tag">16/03 17:04</span>
-          </div>
-          <div class="cell">François Prisset</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">178 000 €</div>
-          <div class="cell marge">21 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec7y9DJPTZDg3Y7E?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1773665453" data-section="offres" data-offre-type="dépotvente" data-commercial="victor">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 911 991.1 Carrera 4S</span>
-            <span class="time-tag">16/03 12:50</span>
-          </div>
-          <div class="cell">Victor Roney</div>
-          <div class="cell"><span class="type-badge type-dépotvente">
-            Dépot vente</span></div>
-          <div class="cell price">90 000 €</div>
-          <div class="cell marge">5 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recGdqMSpHKsoQVdc?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1773655397" data-section="offres" data-offre-type="achat" data-commercial="louis">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 911 997 GT3 3.6L 415</span>
-            <span class="time-tag">16/03 10:03</span>
-          </div>
-          <div class="cell">Louis Robino</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">104 000 €</div>
-          <div class="cell marge">16 000 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recbeDU3K3T9k7BGX?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1773418481" data-section="offres" data-offre-type="dépotvente" data-commercial="matthieu">
-          <div class="cell-primary">
-            <span class="car-name">Land Rover Range Rover L405 Autobiography - Cazalières</span>
-            <span class="time-tag">13/03 16:14</span>
-          </div>
-          <div class="cell">Matthieu Vincent</div>
-          <div class="cell"><span class="type-badge type-dépotvente">
-            Dépot vente</span></div>
-          <div class="cell price">50 000 €</div>
-          <div class="cell marge">5 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recG4Fx6jFLyqabfl?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1773326073" data-section="offres" data-offre-type="dépotvente" data-commercial="louis">
-          <div class="cell-primary">
-            <span class="car-name">Porsche Panamera 4 E-Hybrid Sport Turismo</span>
-            <span class="time-tag">12/03 14:34</span>
-          </div>
-          <div class="cell">Louis Robino</div>
-          <div class="cell"><span class="type-badge type-dépotvente">
-            Dépot vente</span></div>
-          <div class="cell price">68 000 €</div>
-          <div class="cell marge">6 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recnrL6gkfCo1tDUa?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1773319292" data-section="offres" data-offre-type="achat" data-commercial="françois">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 997.2 GT3 RS</span>
-            <span class="time-tag">12/03 12:41</span>
-          </div>
-          <div class="cell">François Prisset</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">195 000 €</div>
-          <div class="cell marge">30 000 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recH4MxlZC7ag4X2T?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1773314728" data-section="offres" data-offre-type="achat" data-commercial="victor">
-          <div class="cell-primary">
-            <span class="car-name">Classe G63 AMG - Full black</span>
-            <span class="time-tag">12/03 11:25</span>
-          </div>
-          <div class="cell">Victor Roney</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">63 000 €</div>
-          <div class="cell marge">14 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recPCa3pM8bcxg1Sw?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1773313625" data-section="offres" data-offre-type="achat" data-commercial="alexandre">
-          <div class="cell-primary">
-            <span class="car-name">Ferrari F12 Berlinetta - DE-013-PW #2</span>
-            <span class="time-tag">12/03 11:07</span>
-          </div>
-          <div class="cell">Alexandre Laposse</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">235 000 €</div>
-          <div class="cell marge">14 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recxPpEiqkfR16KDL?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1773224194" data-section="offres" data-offre-type="dépotvente" data-commercial="pierre">
-          <div class="cell-primary">
-            <span class="car-name">Alpine A110R Full Black</span>
-            <span class="time-tag">11/03 10:16</span>
-          </div>
-          <div class="cell">Pierre guibert</div>
-          <div class="cell"><span class="type-badge type-dépotvente">
-            Dépot vente</span></div>
-          <div class="cell price">102 000 €</div>
-          <div class="cell marge">7 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recx8PNpAmCveANB9?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1773223811" data-section="offres" data-offre-type="achat" data-commercial="victor">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 993 Carrera 4 *Faible Kilométrage</span>
-            <span class="time-tag">11/03 10:10</span>
-          </div>
-          <div class="cell">Victor Roney</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">90 000 €</div>
-          <div class="cell marge">14 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recDZIebs8PvH0lvz?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1773223751" data-section="offres" data-offre-type="dépotvente" data-commercial="victor">
-          <div class="cell-primary">
-            <span class="car-name">Cayenne Turbo S E-Hybrid - FS-179-RM #2</span>
-            <span class="time-tag">11/03 10:09</span>
-          </div>
-          <div class="cell">Victor Roney</div>
-          <div class="cell"><span class="type-badge type-dépotvente">
-            Dépot vente</span></div>
-          <div class="cell price">87 000 €</div>
-          <div class="cell marge">5 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recQ5E3u5IgIVNRbL?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1773172425" data-section="offres" data-offre-type="achat" data-commercial="louis">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 911 997.2 C4S</span>
-            <span class="time-tag">10/03 19:53</span>
-          </div>
-          <div class="cell">Louis Robino</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">66 000 €</div>
-          <div class="cell marge">10 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recbeDU3K3T9k7BGX?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1773154226" data-section="offres" data-offre-type="achat" data-commercial="françois">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 911 991.2 GT3 Clubsport</span>
-            <span class="time-tag">10/03 14:50</span>
-          </div>
-          <div class="cell">François Prisset</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">145 000 €</div>
-          <div class="cell marge">17 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recsclaFV7hIZre98?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1773146928" data-section="offres" data-offre-type="achat" data-commercial="françois">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 997.2 C4S Cabriolet</span>
-            <span class="time-tag">10/03 12:48</span>
-          </div>
-          <div class="cell">François Prisset</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">72 000 €</div>
-          <div class="cell marge">12 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recceaK7F7Y820JMY?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1773136981" data-section="offres" data-offre-type="achat" data-commercial="louis">
-          <div class="cell-primary">
-            <span class="car-name">Aston Martin V8 Vantage S Cabriolet</span>
-            <span class="time-tag">10/03 10:03</span>
-          </div>
-          <div class="cell">Louis Robino</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">72 000 €</div>
-          <div class="cell marge">12 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recUMLfeoyoGXcCdZ?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1773079595" data-section="offres" data-offre-type="dépotvente" data-commercial="françois">
-          <div class="cell-primary">
-            <span class="car-name">BMW Z4M e85 roadster</span>
-            <span class="time-tag">09/03 18:06</span>
-          </div>
-          <div class="cell">François Prisset</div>
-          <div class="cell"><span class="type-badge type-dépotvente">
-            Dépot vente</span></div>
-          <div class="cell price">35 000 €</div>
-          <div class="cell marge">4 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recMijbLmKVwekDsB?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1772731690" data-section="offres" data-offre-type="achat" data-commercial="victor">
-          <div class="cell-primary">
-            <span class="car-name">Mercedes-Benz GLC-Klasse GLC 300e 4Matic AMG Line</span>
-            <span class="time-tag">05/03 17:28</span>
-          </div>
-          <div class="cell">Victor Roney</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">34 000 €</div>
-          <div class="cell marge">10 100 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recJGJAbAfzLWGG0E?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1772461380" data-section="offres" data-offre-type="dépotvente" data-commercial="victor">
-          <div class="cell-primary">
-            <span class="car-name">Macan S - GH-352-KK</span>
-            <span class="time-tag">02/03 14:23</span>
-          </div>
-          <div class="cell">Victor Roney</div>
-          <div class="cell"><span class="type-badge type-dépotvente">
-            Dépot vente</span></div>
-          <div class="cell price">45 000 €</div>
-          <div class="cell marge">5 000 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recIJVzCC2uUKunzh?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1772291654" data-section="offres" data-offre-type="achat" data-commercial="françois">
-          <div class="cell-primary">
-            <span class="car-name">Mercedes 190 SL</span>
-            <span class="time-tag">28/02 15:14</span>
-          </div>
-          <div class="cell">François Prisset</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">95 000 €</div>
-          <div class="cell marge">14 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recSdGR4VA2kKSlrQ?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1772215362" data-section="offres" data-offre-type="achat" data-commercial="françois">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 996 4S Cab BVM</span>
-            <span class="time-tag">27/02 18:02</span>
-          </div>
-          <div class="cell">François Prisset</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">44 000 €</div>
-          <div class="cell marge">5 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recrgbd8eIEzz7WvM?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1772127024" data-section="offres" data-offre-type="achat" data-commercial="françois">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 997.2 PDK Carrera S Cabriolet</span>
-            <span class="time-tag">26/02 17:30</span>
-          </div>
-          <div class="cell">François Prisset</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">60 000 €</div>
-          <div class="cell marge">14 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recUXKpTPhnFjqM9k?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1772126381" data-section="offres" data-offre-type="achat" data-commercial="françois">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 997.2 4S</span>
-            <span class="time-tag">26/02 17:19</span>
-          </div>
-          <div class="cell">François Prisset</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">68 000 €</div>
-          <div class="cell marge">11 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recj6WlEPz1KhPa2r?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1772039626" data-section="offres" data-offre-type="dépotvente" data-commercial="louis">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 911 997.2 Carrera 4S</span>
-            <span class="time-tag">25/02 17:13</span>
-          </div>
-          <div class="cell">Louis Robino</div>
-          <div class="cell"><span class="type-badge type-dépotvente">
-            Dépot vente</span></div>
-          <div class="cell price">77 000 €</div>
-          <div class="cell marge">7 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recbeDU3K3T9k7BGX?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1772028747" data-section="offres" data-offre-type="achat" data-commercial="matthieu">
-          <div class="cell-primary">
-            <span class="car-name">LAND ROVER RANGE ROVER SPORT II 5.0 V8 SVR #2</span>
-            <span class="time-tag">25/02 14:12</span>
-          </div>
-          <div class="cell">Matthieu Vincent</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">49 000 €</div>
-          <div class="cell marge">5 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recG4Fx6jFLyqabfl?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1772025314" data-section="offres" data-offre-type="achat" data-commercial="victor">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 993 Carrera 4 - Low Mileage ( 54km ) - GG-621-CC</span>
-            <span class="time-tag">25/02 13:15</span>
-          </div>
-          <div class="cell">Victor Roney</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">99 000 €</div>
-          <div class="cell marge">20 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recDZIebs8PvH0lvz?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1771606077" data-section="offres" data-offre-type="achat" data-commercial="matthieu">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 997.1 turbo cabriolet BVM - 50k km</span>
-            <span class="time-tag">20/02 16:47</span>
-          </div>
-          <div class="cell">Matthieu Vincent</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">85 000 €</div>
-          <div class="cell marge">11 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reckrGfiBZnWSU58Q?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1771601421" data-section="offres" data-offre-type="achat" data-commercial="françois">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 964 C2 Cabriolet 81000 km</span>
-            <span class="time-tag">20/02 15:30</span>
-          </div>
-          <div class="cell">François Prisset</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">79 000 €</div>
-          <div class="cell marge">16 000 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recHBdciPgPAlVKAw?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1771517249" data-section="offres" data-offre-type="achat" data-commercial="victor">
-          <div class="cell-primary">
-            <span class="car-name">Ferrari F355 Berlinetta - CY-586-ST #2</span>
-            <span class="time-tag">19/02 16:07</span>
-          </div>
-          <div class="cell">Victor Roney</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">109 000 €</div>
-          <div class="cell marge">16 000 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recX1IFCpdylTmLaZ?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1771495836" data-section="offres" data-offre-type="achat" data-commercial="françois">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 930 Turbo cabriolet Boite 5 *Francaise - 57.000km</span>
-            <span class="time-tag">19/02 10:10</span>
-          </div>
-          <div class="cell">François Prisset</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">180 000 €</div>
-          <div class="cell marge">19 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recABEhiBdRYeahnB?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1771427693" data-section="offres" data-offre-type="dépotvente" data-commercial="victor">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 911 991.1 CARRERA S BVM</span>
-            <span class="time-tag">18/02 15:14</span>
-          </div>
-          <div class="cell">Victor Roney</div>
-          <div class="cell"><span class="type-badge type-dépotvente">
-            Dépot vente</span></div>
-          <div class="cell price">87 000 €</div>
-          <div class="cell marge">7 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recGdqMSpHKsoQVdc?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1771423935" data-section="offres" data-offre-type="dépotvente" data-commercial="victor">
-          <div class="cell-primary">
-            <span class="car-name">Ferrari 412i BVM Bleu / Tan EP-033-XT</span>
-            <span class="time-tag">18/02 14:12</span>
-          </div>
-          <div class="cell">Victor Roney</div>
-          <div class="cell"><span class="type-badge type-dépotvente">
-            Dépot vente</span></div>
-          <div class="cell price">80 000 €</div>
-          <div class="cell marge">10 000 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec98CfYjnlwnc6st?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1771345493" data-section="offres" data-offre-type="achat" data-commercial="victor">
-          <div class="cell-primary">
-            <span class="car-name">Ferrari F355 GTS Fiorano - HA-213-EN #</span>
-            <span class="time-tag">17/02 16:24</span>
-          </div>
-          <div class="cell">Victor Roney</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">150 000 €</div>
-          <div class="cell marge">17 500 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recnIC4aI5qd8zb6A?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1771320322" data-section="offres" data-offre-type="achat" data-commercial="françois">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 930 Turbo</span>
-            <span class="time-tag">17/02 09:25</span>
-          </div>
-          <div class="cell">François Prisset</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">120 000 €</div>
-          <div class="cell marge">19 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recABEhiBdRYeahnB?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1771258629" data-section="offres" data-offre-type="dépotvente" data-commercial="victor">
-          <div class="cell-primary">
-            <span class="car-name">Ferrari 458 Spider - GM-916-MV</span>
-            <span class="time-tag">16/02 16:17</span>
-          </div>
-          <div class="cell">Victor Roney</div>
-          <div class="cell"><span class="type-badge type-dépotvente">
-            Dépot vente</span></div>
-          <div class="cell price">195 000 €</div>
-          <div class="cell marge">15 000 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec9MZXVgL8XAZ0xO?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1771253632" data-section="offres" data-offre-type="achat" data-commercial="françois">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 993 Carrera S X51 - BJ-438-DV</span>
-            <span class="time-tag">16/02 14:53</span>
-          </div>
-          <div class="cell">François Prisset</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">130 000 €</div>
-          <div class="cell marge">29 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recAlmNYjiPSmhOMK?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1770915951" data-section="offres" data-offre-type="achat" data-commercial="victor">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 993 Carrera 4 - Low Mileage ( 54km )</span>
-            <span class="time-tag">12/02 17:05</span>
-          </div>
-          <div class="cell">Victor Roney</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">90 000 €</div>
-          <div class="cell marge">24 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recDZIebs8PvH0lvz?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1770826075" data-section="offres" data-offre-type="dépotvente" data-commercial="pierre">
-          <div class="cell-primary">
-            <span class="car-name">Lotus Evora GT410 Jaune</span>
-            <span class="time-tag">11/02 16:07</span>
-          </div>
-          <div class="cell">Pierre guibert</div>
-          <div class="cell"><span class="type-badge type-dépotvente">
-            Dépot vente</span></div>
-          <div class="cell price">90 000 €</div>
-          <div class="cell marge">9 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec3EwD9o9uUAkXLy?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1770753591" data-section="offres" data-offre-type="achat" data-commercial="victor">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 911 964 Carrera 4 Horizon Blue Metallic</span>
-            <span class="time-tag">10/02 19:59</span>
-          </div>
-          <div class="cell">Victor Roney</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">70 000 €</div>
-          <div class="cell marge">14 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rechdtR0hDYyVprtK?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1770643690" data-section="offres" data-offre-type="achat" data-commercial="françois">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 997.2 4S Cabriolet</span>
-            <span class="time-tag">09/02 13:28</span>
-          </div>
-          <div class="cell">François Prisset</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">67 900 €</div>
-          <div class="cell marge">10 000 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recj6WlEPz1KhPa2r?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1770490225" data-section="offres" data-offre-type="dépotvente" data-commercial="matthieu">
-          <div class="cell-primary">
-            <span class="car-name">BMW Z3 Coupé 3.0L Topaz Blue</span>
-            <span class="time-tag">07/02 18:50</span>
-          </div>
-          <div class="cell">Matthieu Vincent</div>
-          <div class="cell"><span class="type-badge type-dépotvente">
-            Dépot vente</span></div>
-          <div class="cell price">32 000 €</div>
-          <div class="cell marge">3 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reciOyAwLJT9Jr8W9?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1770394188" data-section="offres" data-offre-type="dépotvente" data-commercial="matthieu">
-          <div class="cell-primary">
-            <span class="car-name">Alpine A110 GT Colors edition</span>
-            <span class="time-tag">06/02 16:09</span>
-          </div>
-          <div class="cell">Matthieu Vincent</div>
-          <div class="cell"><span class="type-badge type-dépotvente">
-            Dépot vente</span></div>
-          <div class="cell price">72 000 €</div>
-          <div class="cell marge">4 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rectL4Q7aK5wvvn4X?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1770226860" data-section="offres" data-offre-type="recherche" data-commercial="pierre">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 996 GT2 Clubsport</span>
-            <span class="time-tag">04/02 17:41</span>
-          </div>
-          <div class="cell">Pierre guibert</div>
-          <div class="cell"><span class="type-badge type-recherche">
-            Recherche</span></div>
-          <div class="cell price">186 000 €</div>
-          <div class="cell marge">2 000 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recK93cnRs0IwuHnQ?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1770222932" data-section="offres" data-offre-type="achat" data-commercial="françois">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 911 991.2 Targa 4 GTS BVM - EY-910-AW</span>
-            <span class="time-tag">04/02 16:35</span>
-          </div>
-          <div class="cell">François Prisset</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">130 000 €</div>
-          <div class="cell marge">24 200 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recsclaFV7hIZre98?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1770042193" data-section="offres" data-offre-type="achat" data-commercial="hadrien">
-          <div class="cell-primary">
-            <span class="car-name">Ferrari 458 Spider Grigio/Cioccolato - Erick Goblet</span>
-            <span class="time-tag">02/02 14:23</span>
-          </div>
-          <div class="cell">Hadrien Voydeville</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">202 000 €</div>
-          <div class="cell marge">24 200 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recWyzqVkG11fKuNY?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1770030811" data-section="offres" data-offre-type="achat" data-commercial="françois">
-          <div class="cell-primary">
-            <span class="car-name">Alpine A110R Tulipe Noire</span>
-            <span class="time-tag">02/02 11:13</span>
-          </div>
-          <div class="cell">François Prisset</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">106 000 €</div>
-          <div class="cell marge">13 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recVPFaZ8MSmsXmIB?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="table-row" data-ts="1769525320" data-section="offres" data-offre-type="achat" data-commercial="françois">
-          <div class="cell-primary">
-            <span class="car-name">Porsche 911 991.2 Targa 4 GTS BVM -</span>
-            <span class="time-tag">27/01 14:48</span>
-          </div>
-          <div class="cell">François Prisset</div>
-          <div class="cell"><span class="type-badge type-achat">
-            Achat</span></div>
-          <div class="cell price">130 000 €</div>
-          <div class="cell marge">19 900 €</div>
-          <div class="cell"><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recsclaFV7hIZre98?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div></div>
-      </div>
-    </section>
-
   </div>
 
   <footer class="footer">
-    Généré le Dimanche 26 avril 2026 à 09:29 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
+    Généré le Dimanche 26 avril 2026 à 09:39 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
   </footer>
 </div>
 <script>var MARGES_DATA = [{"marge": 4000.0, "ts": 1769884848}, {"marge": 6297.399999999994, "ts": 1774023199}, {"marge": 12368.699999999997, "ts": 1770030734}, {"marge": 5583.309999999998, "ts": 1768234979}, {"marge": 7102.220000000001, "ts": 1764326868}, {"marge": 10657.220000000001, "ts": 1771931045}, {"marge": 3942.5, "ts": 1772529064}, {"marge": 9090.119999999995, "ts": 1769707897}, {"marge": 11850.0, "ts": 1773755213}, {"marge": 9550.0, "ts": 1771423217}, {"marge": -1372.679999999993, "ts": 1765268519}, {"marge": 16600.0, "ts": 1756125321}, {"marge": 29900.0, "ts": 1773745986}, {"marge": 12049.61, "ts": 1768081150}, {"marge": 14900.0, "ts": 1771406978}, {"marge": 4842.5, "ts": 1771956283}, {"marge": 17738.33, "ts": 1768845411}, {"marge": 25580.0, "ts": 1763661946}, {"marge": 25850.0, "ts": 1773078266}, {"marge": 18658.70000000001, "ts": 1770801109}, {"marge": 15900.0, "ts": 1770915028}, {"marge": 10030.0, "ts": 1772882781}, {"marge": 19110.0, "ts": 1772477406}];</script>
 <script>
 // ── Collapse sections ────────────────────────────────────────────────
 // ── Recherche par voiture dans chaque module ────────────────────────
-var searchQueries = { frais: '', ct: '', reservees: '', offres: '' };
+var searchQueries = { frais: '', ct: '', reservees: '' };
 
 function filterBySearch(section, query) {
   searchQueries[section] = query.trim().toLowerCase();
@@ -2421,16 +1693,6 @@ function applySearchFilter(section) {
       var name = (block.querySelector('.car-name') || {textContent:''}).textContent.toLowerCase();
       block.style.display = (!q || name.includes(q)) ? '' : 'none';
     });
-  } else if (section === 'offres') {
-    applyOffresFilter(); // Offres uses its own filter — we override post-hoc
-    if (q) {
-      document.querySelectorAll('[data-section="offres"]').forEach(function(row) {
-        if (row.style.display !== 'none') {
-          var name = (row.querySelector('.car-name') || {textContent:''}).textContent.toLowerCase();
-          if (!name.includes(q)) row.style.display = 'none';
-        }
-      });
-    }
   }
 }
 
@@ -2445,73 +1707,7 @@ function toggleSection(id) {
 
 
 // ── État des filtres ────────────────────────────────────────────────
-var offresState = { days: 0, type: 'tous', commerciaux: new Set() };
 var ctState = { group: 'tous', statuses: new Set() };
-
-// ── Filtres Offres ───────────────────────────────────────────────────
-function applyOffresFilter() {
-  var now = Math.floor(Date.now() / 1000);
-  var cutoff = offresState.days > 0 ? now - offresState.days * 86400 : 0;
-  var visible = 0;
-  document.querySelectorAll('[data-section="offres"]').forEach(function(row) {
-    var ts = parseInt(row.getAttribute('data-ts') || '0', 10);
-    var type = row.getAttribute('data-offre-type') || '';
-    var com = row.getAttribute('data-commercial') || '';
-    var okDate = offresState.days === 0 || (ts > 0 && ts >= cutoff);
-    var okType = offresState.type === 'tous' || type === offresState.type;
-    var okCom = offresState.commerciaux.size === 0 || offresState.commerciaux.has(com);
-    var show = okDate && okType && okCom;
-    row.style.display = show ? '' : 'none';
-    if (show) visible++;
-  });
-  var el = document.getElementById('offres-count');
-  if (el) el.textContent = visible;
-}
-
-// Filtre date offres
-document.querySelectorAll('.filter-bar[data-target="offres"] .filter-btn').forEach(function(btn) {
-  btn.addEventListener('click', function() {
-    document.querySelectorAll('.filter-bar[data-target="offres"] .filter-btn').forEach(function(b) { b.classList.remove('active'); });
-    btn.classList.add('active');
-    offresState.days = parseInt(btn.getAttribute('data-days'), 10);
-    applyOffresFilter();
-  });
-});
-
-// Filtre type offres
-document.querySelectorAll('.offres-type-filter .filter-btn').forEach(function(btn) {
-  btn.addEventListener('click', function() {
-    document.querySelectorAll('.offres-type-filter .filter-btn').forEach(function(b) { b.classList.remove('active'); });
-    btn.classList.add('active');
-    offresState.type = btn.getAttribute('data-offre-type');
-    applyOffresFilter();
-  });
-});
-
-// Filtre commercial offres (multi-sélection)
-document.querySelectorAll('.offres-commercial-filter .filter-btn').forEach(function(btn) {
-  btn.addEventListener('click', function() {
-    var val = btn.getAttribute('data-commercial');
-    if (val === 'tous') {
-      offresState.commerciaux.clear();
-      document.querySelectorAll('.offres-commercial-filter .filter-btn').forEach(function(b) { b.classList.remove('active'); });
-      btn.classList.add('active');
-    } else {
-      // Toggle ce commercial
-      if (offresState.commerciaux.has(val)) {
-        offresState.commerciaux.delete(val);
-        btn.classList.remove('active');
-      } else {
-        offresState.commerciaux.add(val);
-        btn.classList.add('active');
-      }
-      // Gérer le bouton "Tous"
-      var tousBtn = document.querySelector('.offres-commercial-filter .filter-btn[data-commercial="tous"]');
-      if (tousBtn) tousBtn.classList.toggle('active', offresState.commerciaux.size === 0);
-    }
-    applyOffresFilter();
-  });
-});
 
 // ── Filtre Frais (date + statut) ─────────────────────────────────────
 var fraisState = { days: 0, statut: 'tous' };
