@@ -162,10 +162,10 @@ def fetch_ct_data():
                 pass
 
         # Type pour le filtre JS
-        if is_acompte and has_ct:
-            ct_filter_type = "acompte-ok"   # Réservée avec CT OK → masqué par défaut
+        if is_acompte and criticite == 3:
+            ct_filter_type = "acompte-ok"   # Réservée avec CT valide → masqué par défaut
         elif is_acompte:
-            ct_filter_type = "acompte"       # Réservée sans CT → toujours visible
+            ct_filter_type = "acompte"       # Réservée avec CT manquant/expiré/bientôt → visible
         else:
             ct_filter_type = "other"
 
