@@ -679,7 +679,7 @@ def _css():
     .res-header .car-name { font-size: 13px; line-height: 1.4; }
     .res-footer { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 2px; }
     .commercial-badge { display: inline-block; padding: 3px 11px; border-radius: 980px; background: #eff4ff; border: 1px solid #c3d3f7; color: #2FAEE0; font-size: 11px; font-weight: 600; }
-    .fck-badge { font-size: 18px; opacity: 0.9; margin-left: 5px; display: inline-block; vertical-align: middle; }
+    .fck-badge { font-size: 26px; opacity: 1; margin-left: 6px; display: inline-block; vertical-align: middle; }
     .res-amounts { display: flex; gap: 14px; flex-wrap: wrap; }
     .res-prix { font-size: 12px; color: #6b7280; }
     .res-marge { font-size: 12px; color: #2FAEE0; font-weight: 700; }
