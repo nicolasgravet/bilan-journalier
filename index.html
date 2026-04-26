@@ -442,7 +442,7 @@
         updateClock();
         setInterval(updateClock, 1000);
         // Timestamp de génération converti en heure locale
-        var gen = new Date(1777230264 * 1000);
+        var gen = new Date(1777230550 * 1000);
         var genH = String(gen.getHours()).padStart(2,'0');
         var genM = String(gen.getMinutes()).padStart(2,'0');
         var genLabel = 'Mis à jour le ' + JOURS[gen.getDay()] + ' ' + gen.getDate() + ' ' + MOIS[gen.getMonth()] + ' ' + gen.getFullYear() + ' à ' + genH + ':' + genM;
@@ -452,7 +452,7 @@
         btn.disabled = true;
         btn.textContent = '⏳ En cours…';
         document.getElementById('refresh-status').textContent = 'Génération en cours…';
-        var currentTs = 1777230264;
+        var currentTs = 1777230550;
         fetch('https://mecanicus-refresh.nicolas-0ce.workers.dev', {method:'POST'})
         .then(r => {
           if (r.ok) {
@@ -1971,7 +1971,7 @@
     <div class="section-header collapsible-header" onclick="toggleSection('prest')">
       <span class="section-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
       <h2>Prestataires</h2>
-      <span class="count-badge" id="prest-count">94</span>
+      <span class="count-badge" id="prest-count">93</span>
       <div class="header-filters" onclick="event.stopPropagation()">
         <button class="prest-add-btn" onclick="openPrestAddModal()">+ Ajouter</button>
       </div>
@@ -1997,62 +1997,14 @@
         <div id="prest-groups"><div class="prest-group" data-group-type="Mécanique">
           <div class="prest-group-header" style="border-left:3px solid #2563eb">
             <span class="prest-group-name" style="color:#2563eb">Mécanique</span>
-            <span class="prest-group-count">68</span>
+            <span class="prest-group-count">23</span>
           </div>
-          <div class="prest-cards-grid"><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Porsche"]' data-searchtext="911 montmartre   20 rue lamarck, 75018 paris réparation, entretien et préparation de tous les modèles porsche">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">911 Montmartre </div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:06 64 88 61 77" class="pci-link">06 64 88 61 77</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">20 Rue Lamarck, 75018 Paris</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Porsche</span></div>
-                <p class="prest-notes">Réparation, Entretien et Préparation de tous les modèles Porsche</p>
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Jaguar", "Austin", "MG"]' data-searchtext="allirol poncet  saint-etienne spécialiste anglaise">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Allirol Poncet</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:04 77 25 87 14" class="pci-link">04 77 25 87 14</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Saint-Etienne</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Jaguar</span><span class="prest-marque-pill">Austin</span><span class="prest-marque-pill">MG</span></div>
-                <p class="prest-notes">Spécialiste Anglaise</p>
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="alternative propulsion  boujan-sur-libron (34) généraliste (porsche) - pas de piwi">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Alternative Propulsion</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:07 67 26 09 82" class="pci-link">07 67 26 09 82</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:sylvain.nivet@alternative-propulsion.com" class="pci-link">sylvain.nivet@alternative-propulsion.com</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Boujan-sur-Libron (34)</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
-                <p class="prest-notes">Généraliste (Porsche) - pas de PIWI</p>
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique", "Carrosserie"]' data-marques='["Rolls Royce", "Bentley"]' data-searchtext="amercio automobile  argenteuil ">
+          <div class="prest-cards-grid"><div class="prest-card" data-types='["M\u00e9canique", "Carrosserie"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="atelier 46  courbevoie  garage généraliste anciennes ">
               <div class="prest-card-accent" style="background:#2563eb"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
                   <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Carrosserie</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Amercio Automobile</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 39 80 88 36" class="pci-link">01 39 80 88 36</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Argenteuil</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Rolls Royce</span><span class="prest-marque-pill">Bentley</span></div>
-                
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique", "Carrosserie"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="atelier 46  courbevoie  garage généraliste anciennes ">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Carrosserie</span></div>
-                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
+                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span></span>
                 </div>
                 <div class="prest-card-name">Atelier 46</div>
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:contact@atelier46.fr" class="pci-link">contact@atelier46.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Courbevoie </span></div></div>
@@ -2064,7 +2016,7 @@
               <div class="prest-card-body">
                 <div class="prest-card-top">
                   <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-off">★</span></span>
+                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span></span>
                 </div>
                 <div class="prest-card-name">Atelier ARES</div>
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:06 08 51 91 94" class="pci-link">06 08 51 91 94</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:atelier-ares@wanadoo.fr" class="pci-link">atelier-ares@wanadoo.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text"> 3 Rue de l'Abbé Grégoire, 91350 Grigny</span></div></div>
@@ -2076,148 +2028,12 @@
               <div class="prest-card-body">
                 <div class="prest-card-top">
                   <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
+                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span></span>
                 </div>
                 <div class="prest-card-name">Atelier Ares</div>
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:0608519194" class="pci-link">0608519194</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:atelier-ares@wanadoo.fr" class="pci-link">atelier-ares@wanadoo.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Grigny</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Ferrari</span><span class="prest-marque-pill">Porsche</span></div>
                 <p class="prest-notes">Mécaniques anciennes de prestige Aston Martin (Ferrari, Porsche...)</p>
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="atelier classic auto  2, impasse de la fonderie, 77127 lieusaint l’atelier classic auto réalise des réparations mineures, des personnalisations, mais aussi des restaurations complète">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Atelier Classic Auto</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:07 68 93 76 22" class="pci-link">07 68 93 76 22</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:atelier-classic-auto@orange.fr" class="pci-link">atelier-classic-auto@orange.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">2, Impasse de la Fonderie, 77127 LIEUSAINT</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
-                <p class="prest-notes">L’Atelier Classic Auto réalise des réparations mineures, des personnalisations, mais aussi des restaurations complète</p>
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Porsche"]' data-searchtext="atelier m8   10 rue du renouveau, 78700 conflans-sainte-honorine spécialiste porsche de la classique à la 991">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">ATELIER M8</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text"> 10 Rue du Renouveau, 78700 Conflans-Sainte-Honorine</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Porsche</span></div>
-                <p class="prest-notes">Spécialiste Porsche de la classique à la 991</p>
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Porsche", "G\u00e9n\u00e9raliste"]' data-searchtext="atelier philippe cabaille  29, rue charles de gaulle 94140 alfortville conseil achat/expertise/atelier ">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Atelier Philippe Cabaille</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel: 01.43.75.97.97" class="pci-link"> 01.43.75.97.97</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:contact@apc94.fr" class="pci-link">contact@apc94.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">29, rue Charles de Gaulle 94140 ALFORTVILLE</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Porsche</span><span class="prest-marque-pill">Généraliste</span></div>
-                <p class="prest-notes">Conseil achat/expertise/atelier </p>
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Chevrolet"]' data-searchtext="auto passion services  houilles (78) maitrise des anciennes corvette selon "franz » - conv 356 quentin">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Auto Passion Services</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:0139252511" class="pci-link">0139252511</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Houilles (78)</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Chevrolet</span></div>
-                <p class="prest-notes">Maitrise des anciennes Corvette selon "Franz » - conv 356 Quentin</p>
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Ferrari"]' data-searchtext="auvergne moteurs  clermont ferrand (63) spécialiste ferrari">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Auvergne Moteurs</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:06 85 30 29 40 / 07 66 82 77 59" class="pci-link">06 85 30 29 40 / 07 66 82 77 59</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Clermont Ferrand (63)</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Ferrari</span></div>
-                <p class="prest-notes">Spécialiste Ferrari</p>
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique", "Carrosserie"]' data-marques='["Porsche"]' data-searchtext="cars & co  avermes (03) spécialiste porsche et ancienne">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Carrosserie</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Cars & Co</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:04 70 44 01 30" class="pci-link">04 70 44 01 30</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:contact@garagecarsandco.fr" class="pci-link">contact@garagecarsandco.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Avermes (03)</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Porsche</span></div>
-                <p class="prest-notes">Spécialiste Porsche et ancienne</p>
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Jaguar", "Aston Martin ", "Ferrari"]' data-searchtext="cecil cars  31 rue de bizon, 91340 ollainville spécialiste des marques anglaise : jaguar, aston martin, mg, triumph, austin healey, morgan, rolls royces, bentley
-et des marques italienne : ferrari, maserati, alfa romeo, lancia et lamborghini">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Cecil Cars</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:+33 (0)1 64 90 21 70" class="pci-link">+33 (0)1 64 90 21 70</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:p.collin@cecil-cars.com / i.collin@cecil-cars.com / ch.collin@cecil-cars.com" class="pci-link">p.collin@cecil-cars.com / i.collin@cecil-cars.com / ch.collin@cecil-cars.com</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">31 rue de Bizon, 91340 Ollainville</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Jaguar</span><span class="prest-marque-pill">Aston Martin </span><span class="prest-marque-pill">Ferrari</span></div>
-                <p class="prest-notes">Spécialiste des marques anglaise : Jaguar, Aston Martin, MG, Triumph, Austin Healey, Morgan, Rolls Royces, Bentley
-et des marques italienne : Ferrari, Maserati, Alfa Romeo, Lancia et Lamborghini</p>
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Jaguar", "Austin Healey"]' data-searchtext="classic garage  18 bis allée de la mare jacob, 91290 la norville spécialiste anglaise, préparateur, et atelier assistance vhc, restauration, entretiens et ventes">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Classic Garage</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 64 92 04 93 / 06 11 25 38 69" class="pci-link">01 64 92 04 93 / 06 11 25 38 69</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:contact@classicgarage.fr" class="pci-link">contact@classicgarage.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">18 bis allée de la Mare Jacob, 91290 La Norville</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Jaguar</span><span class="prest-marque-pill">Austin Healey</span></div>
-                <p class="prest-notes">Spécialiste Anglaise, préparateur, et atelier Assistance VHC, restauration, entretiens et ventes</p>
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Porsche"]' data-searchtext="crubile sport   5 rue maryse bastié, parc d'activités bel air - la forêt, 78125 gazeran ">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Crubile Sport</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text"> 5 rue Maryse Bastié, Parc d'activités Bel air - la Forêt, 78125 Gazeran</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Porsche</span></div>
-                
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Porsche"]' data-searchtext="d.m.a.  2 rue du télégraphe, nanterre spécialiste porsche de la 356 à la 991 + panamera/cayenne
-">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">D.M.A.</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel: 01 41 44 20 00" class="pci-link"> 01 41 44 20 00</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:dma911@yahoo.fr" class="pci-link">dma911@yahoo.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">2 rue du télégraphe, NANTERRE</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Porsche</span></div>
-                <p class="prest-notes">Spécialiste porsche de la 356 à la 991 + panamera/cayenne
-</p>
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Porsche"]' data-searchtext="da cruz motors  lezennes (59) spécialiste porsche">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Da Cruz Motors</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:06 50 88 88 07" class="pci-link">06 50 88 88 07</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:dacruzmotors@gmail.com" class="pci-link">dacruzmotors@gmail.com</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Lezennes (59)</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Porsche</span></div>
-                <p class="prest-notes">Spécialiste Porsche</p>
               </div>
             </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Jaguar"]' data-searchtext="département classic   78910 orgerus garage généraliste anciennes ">
               <div class="prest-card-accent" style="background:#2563eb"></div>
@@ -2230,42 +2046,6 @@ et des marques italienne : Ferrari, Maserati, Alfa Romeo, Lancia et Lamborghini<
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:departementclassic@gmail.com" class="pci-link">departementclassic@gmail.com</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">78910 Orgerus</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Jaguar</span></div>
                 <p class="prest-notes">Garage généraliste anciennes </p>
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="dmotorsport  dijon  garage ferrari aston lamborghini maserati">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Dmotorsport</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:information@dmotorsport.com" class="pci-link">information@dmotorsport.com</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Dijon </span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
-                <p class="prest-notes">Garage Ferrari Aston Lamborghini Maserati</p>
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Mercedes-Benz"]' data-searchtext="etoile tuning 78  le chesnay-rocquencourt (78) spécialiste mercedes">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Etoile Tuning 78</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 39 23 89 89" class="pci-link">01 39 23 89 89</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Le Chesnay-Rocquencourt (78)</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Mercedes-Benz</span></div>
-                <p class="prest-notes">Spécialiste Mercedes</p>
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique", "Carrosserie"]' data-marques='["Porsche"]' data-searchtext="facc atelier porsche  29 rue des cayennes 78700 conflans st honorine spécialisé dans les porsche, de la 911 classic à la moderne, en passant par les boxster, cayman">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Carrosserie</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">FACC Atelier Porsche</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:0170824910" class="pci-link">0170824910</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">29 Rue des cayennes 78700 conflans St honorine</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Porsche</span></div>
-                <p class="prest-notes">spécialisé dans les Porsche, de la 911 Classic à la moderne, en passant par les Boxster, Cayman</p>
               </div>
             </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Alpine"]' data-searchtext="ferry developpement   ">
               <div class="prest-card-accent" style="background:#2563eb"></div>
@@ -2315,153 +2095,17 @@ et des marques italienne : Ferrari, Maserati, Alfa Romeo, Lancia et Lamborghini<
                 <div class="prest-marques"><span class="prest-marque-pill">Mercedes-Benz</span></div>
                 <p class="prest-notes">Spécialiste Mercedes & AMG</p>
               </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["MG", "Triumph", "Morgan"]' data-searchtext="garage de la choletterie   37250 veigné spécialiste anciennes de courses assistance tour auto">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Garage de la Choletterie </div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:garagedelacholetterie@gmail.com" class="pci-link">garagedelacholetterie@gmail.com</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">37250 Veigné</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">MG</span><span class="prest-marque-pill">Triumph</span><span class="prest-marque-pill">Morgan</span></div>
-                <p class="prest-notes">Spécialiste anciennes de courses assistance tour auto</p>
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Jaguar", "Austin Healey"]' data-searchtext="garage des vieilles anglaises  10 rue du moulin à vent, 77166, grisy suisnes restauration, entretient et réparation anglaises
-">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Garage des vieilles anglaises</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:06 82 18 77 42" class="pci-link">06 82 18 77 42</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:johnny.seigneur@gmail.com" class="pci-link">johnny.seigneur@gmail.com</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">10 rue du Moulin à Vent, 77166, Grisy Suisnes</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Jaguar</span><span class="prest-marque-pill">Austin Healey</span></div>
-                <p class="prest-notes">Restauration, entretient et réparation ANGLAISES
-</p>
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Porsche"]' data-searchtext="garage di lima   31130 balma spécialiste porsche / réfection moteur ">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Garage Di Lima </div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:specialiste@de-lima.com" class="pci-link">specialiste@de-lima.com</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">31130 Balma</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Porsche</span></div>
-                <p class="prest-notes">Spécialiste Porsche / réfection moteur </p>
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="garage pouchelon  castres (81) spécialiste voiture de course - généraliste sportive">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Garage Pouchelon</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:06 73 86 150" class="pci-link">06 73 86 150</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:pouchelon.auto@wanadoo.fr" class="pci-link">pouchelon.auto@wanadoo.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Castres (81)</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
-                <p class="prest-notes">Spécialiste voiture de course - généraliste sportive</p>
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique", "Pi\u00e8ces d\u00e9tach\u00e9es"]' data-marques='["Porsche"]' data-searchtext="garage terriou  16 rue des entrepreneurs, z.a. plaine haute, 91560 crosne préparation de moteur pour les véhicules de compétition et les voitures de rallyes, atelier mécanique spécialisé dans la préparation, la rénovation, la vente de pièces détachées">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Pièces détachées</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Garage Terriou</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01.69.48.18.05" class="pci-link">01.69.48.18.05</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">16 rue des entrepreneurs, Z.A. plaine haute, 91560 CROSNE</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Porsche</span></div>
-                <p class="prest-notes">Préparation de moteur pour les véhicules de compétition et les voitures de rallyes, atelier mécanique spécialisé dans la préparation, la rénovation, la vente de pièces détachées</p>
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Porsche", "G\u00e9n\u00e9raliste"]' data-searchtext="gt classic  blazac (16) spécialiste porsche plutôt ancienne">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">GT Classic</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:05 45 68 63 90" class="pci-link">05 45 68 63 90</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:garage.gtclassic@orange.fr" class="pci-link">garage.gtclassic@orange.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Blazac (16)</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Porsche</span><span class="prest-marque-pill">Généraliste</span></div>
-                <p class="prest-notes">Spécialiste Porsche plutôt ancienne</p>
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Lancia", "G\u00e9n\u00e9raliste"]' data-searchtext="hayet motorsport   16100 cognac  spécialiste lancia delta ">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Hayet Motorsport </div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:infos@hayet-sport-auto.com" class="pci-link">infos@hayet-sport-auto.com</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">16100 Cognac </span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Lancia</span><span class="prest-marque-pill">Généraliste</span></div>
-                <p class="prest-notes">Spécialiste Lancia Delta </p>
-              </div>
             </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Ferrari"]' data-searchtext="hmc  paris 17e ">
               <div class="prest-card-accent" style="background:#2563eb"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
                   <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
+                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span></span>
                 </div>
                 <div class="prest-card-name">HMC</div>
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Paris 17e</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Ferrari</span></div>
                 
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="hug motors  montrabé (31) ">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Hug Motors</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:05 34 26 18 86" class="pci-link">05 34 26 18 86</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:montrabe@hugmotors.com" class="pci-link">montrabe@hugmotors.com</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Montrabé (31)</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
-                
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Jaguar", "Rolls Royce", "Bentley"]' data-searchtext="jim auto classic   6 rue de navarre, 78490  montfort-l'amaury spécialiste ancienne 
-bentley, rolls royce et jaguar ">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">JIM Auto Classic </div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:06 73 36 03 07" class="pci-link">06 73 36 03 07</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">6 Rue de Navarre, 78490  Montfort-l'Amaury</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Jaguar</span><span class="prest-marque-pill">Rolls Royce</span><span class="prest-marque-pill">Bentley</span></div>
-                <p class="prest-notes">Spécialiste ancienne 
-Bentley, Rolls Royce et Jaguar </p>
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Porsche"]' data-searchtext="joffroy automobiles  joffroy automobile 1700 chemin du plan d'olive, cassis 13260 ">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Joffroy Automobiles</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Joffroy Automobile 1700 Chemin du Plan d'Olive, Cassis 13260</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Porsche</span></div>
-                
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["G\u00e9n\u00e9raliste", "Alfa Romeo", "Morgan"]' data-searchtext="jp auto passion   21 rue du pont d'amour à clamart spécialiste des voitures anglaises">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">JP AUTO PASSION </div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 46 45 66 04" class="pci-link">01 46 45 66 04</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">21 Rue du Pont d'Amour à CLAMART</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span><span class="prest-marque-pill">Alfa Romeo</span><span class="prest-marque-pill">Morgan</span></div>
-                <p class="prest-notes">spécialiste des voitures anglaises</p>
               </div>
             </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Porsche"]' data-searchtext="js speed shop  wissous (91) spécialiste porsche wissous ">
               <div class="prest-card-accent" style="background:#2563eb"></div>
@@ -2475,24 +2119,12 @@ Bentley, Rolls Royce et Jaguar </p>
                 <div class="prest-marques"><span class="prest-marque-pill">Porsche</span></div>
                 <p class="prest-notes">Spécialiste Porsche Wissous </p>
               </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Porsche"]' data-searchtext="l’autosiaste  courbevoie (92) spécialiste porsche plutôt ancienne courbevoie ">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">L’autosiaste</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 43 33 55 17" class="pci-link">01 43 33 55 17</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:autosiaste@orange.fr" class="pci-link">autosiaste@orange.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Courbevoie (92)</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Porsche</span></div>
-                <p class="prest-notes">Spécialiste Porsche plutôt ancienne Courbevoie </p>
-              </div>
             </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Porsche", "G\u00e9n\u00e9raliste"]' data-searchtext="la clinique des sportives  28 chem. du moulin à vent, 78280 guyancourt spécialiste porsche et sportives">
               <div class="prest-card-accent" style="background:#2563eb"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
                   <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-off">★</span></span>
+                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span></span>
                 </div>
                 <div class="prest-card-name">La Clinique des Sportives</div>
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 30 64 51 39" class="pci-link">01 30 64 51 39</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">28 Chem. du Moulin À Vent, 78280 Guyancourt</span></div></div>
@@ -2528,7 +2160,7 @@ Bentley, Rolls Royce et Jaguar </p>
               <div class="prest-card-body">
                 <div class="prest-card-top">
                   <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-off">★</span></span>
+                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span></span>
                 </div>
                 <div class="prest-card-name">McLaren Paris</div>
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel: +33 6 29 71 10 09 
@@ -2537,24 +2169,12 @@ Bentley, Rolls Royce et Jaguar </p>
                 
                 <p class="prest-notes">Très bon relationnel avec Léo qui gère l'atelier ainsi qu'avec Thomas qui est au commerce</p>
               </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="melun retro passion   60 rue vauchevre, 77115 blandy les tours spécialiste pièces détachées">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Melun retro passion </div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 64 81 31 00" class="pci-link">01 64 81 31 00</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:clients@mrp77.fr" class="pci-link">clients@mrp77.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">60 Rue Vauchevre, 77115 Blandy Les Tours</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
-                <p class="prest-notes">Spécialiste pièces détachées</p>
-              </div>
             </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Mercedes-Benz"]' data-searchtext="mercedes como bercy  246 rue de bercy, 75012 paris mercedes">
               <div class="prest-card-accent" style="background:#2563eb"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
                   <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
+                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span></span>
                 </div>
                 <div class="prest-card-name">Mercedes Como Bercy</div>
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 49 29 28 28" class="pci-link">01 49 29 28 28</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:cchazal@como.fr" class="pci-link">cchazal@como.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">246 Rue de Bercy, 75012 Paris</span></div></div>
@@ -2573,30 +2193,6 @@ Bentley, Rolls Royce et Jaguar </p>
                 <div class="prest-marques"><span class="prest-marque-pill">Porsche</span></div>
                 <p class="prest-notes">Spécialiste Porsche 14e</p>
               </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Porsche"]' data-searchtext="moteurhuger  technoparc des 24 heures du mans motoristes/préparateurs porsche">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">MOTEURHUGER</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:02 43 21 55 55 / 06 74 71 22 52" class="pci-link">02 43 21 55 55 / 06 74 71 22 52</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Technoparc des 24 Heures du Mans</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Porsche</span></div>
-                <p class="prest-notes">Motoristes/Préparateurs PORSCHE</p>
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Porsche", "G\u00e9n\u00e9raliste"]' data-searchtext="nantes prestige auto  nantes (44) spécialiste ancienne & porsche ">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Nantes Prestige Auto</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:02 40 50 64 08" class="pci-link">02 40 50 64 08</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Nantes (44)</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Porsche</span><span class="prest-marque-pill">Généraliste</span></div>
-                <p class="prest-notes">Spécialiste ancienne & Porsche </p>
-              </div>
             </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Alfa Romeo"]' data-searchtext="nicolas boucé- vec racing  maurecourt (78) spécialiste alfa romeo ">
               <div class="prest-card-accent" style="background:#2563eb"></div>
               <div class="prest-card-body">
@@ -2609,38 +2205,12 @@ Bentley, Rolls Royce et Jaguar </p>
                 <div class="prest-marques"><span class="prest-marque-pill">Alfa Romeo</span></div>
                 <p class="prest-notes">Spécialiste Alfa Romeo </p>
               </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Maserati"]' data-searchtext="officina fagot  17 chem. de lance levée, 89150 saint-valérien spécialiste maserati 3200 / turbo / shamal
-">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Officina Fagot</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:0601351987" class="pci-link">0601351987</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:officinafagot@gmail.com" class="pci-link">officinafagot@gmail.com</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">17 Chem. de Lance Levée, 89150 Saint-Valérien</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Maserati</span></div>
-                <p class="prest-notes">Spécialiste Maserati 3200 / turbo / Shamal
-</p>
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Mercedes-Benz"]' data-searchtext="paris pagode   ">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Paris Pagode</div>
-                
-                <div class="prest-marques"><span class="prest-marque-pill">Mercedes-Benz</span></div>
-                
-              </div>
             </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="paris pneus.fr  57 bd poniatowski, 75012 paris ">
               <div class="prest-card-accent" style="background:#2563eb"></div>
               <div class="prest-card-body">
                 <div class="prest-card-top">
                   <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-off">★</span></span>
+                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span></span>
                 </div>
                 <div class="prest-card-name">paris pneus.fr</div>
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 46 28 35 25" class="pci-link">01 46 28 35 25</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">57 Bd Poniatowski, 75012 Paris</span></div></div>
@@ -2659,18 +2229,6 @@ Bentley, Rolls Royce et Jaguar </p>
                 <div class="prest-marques"><span class="prest-marque-pill">BMW</span></div>
                 <p class="prest-notes">Spécialiste BMW </p>
               </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="pn classic  25 avenue du montboulon 77165 saint-soupplets le garage pn classic est spécialisé en restauration et entretien de véhicules de collection.">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">PN Classic</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:06 14 66 89 20" class="pci-link">06 14 66 89 20</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:contact@pn-classic.fr" class="pci-link">contact@pn-classic.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">25 Avenue du Montboulon 77165 Saint-Soupplets</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
-                <p class="prest-notes">Le garage PN Classic est spécialisé en restauration et entretien de véhicules de collection.</p>
-              </div>
             </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Porsche"]' data-searchtext="porsche poissy  1 rte de quarante sous, 78240 poissy atelier porsche">
               <div class="prest-card-accent" style="background:#2563eb"></div>
               <div class="prest-card-body">
@@ -2688,38 +2246,12 @@ Bentley, Rolls Royce et Jaguar </p>
               <div class="prest-card-body">
                 <div class="prest-card-top">
                   <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
+                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span></span>
                 </div>
                 <div class="prest-card-name">Pozzi</div>
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 56 07 10 00" class="pci-link">01 56 07 10 00</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">10, rue Curnonsky 75017 Paris</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Ferrari</span></div>
                 <p class="prest-notes">Ferrari Off</p>
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Rolls Royce", "Bentley"]' data-searchtext="prestige automotiv  pouilly, lyon spécilaiste rr / bentley
-">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Prestige Automotiv</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel: 06 84 32 87 97" class="pci-link"> 06 84 32 87 97</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Pouilly, Lyon</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Rolls Royce</span><span class="prest-marque-pill">Bentley</span></div>
-                <p class="prest-notes">Spécilaiste RR / Bentley
-</p>
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Porsche", "G\u00e9n\u00e9raliste"]' data-searchtext="retro sport racing garage   13 rte de versailles, 78560 le port-marly 911 air, sportives des années 70 et 80 que nous aimons particulièrement, comme les caterham et westfield, ainsi que toutes les répliques de lotus 7">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Retro Sport Racing Garage </div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:06 07 53 73 57" class="pci-link">06 07 53 73 57</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">13 Rte de Versailles, 78560 Le Port-Marly</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Porsche</span><span class="prest-marque-pill">Généraliste</span></div>
-                <p class="prest-notes">911 air, sportives des années 70 et 80 que nous aimons particulièrement, comme les Caterham et Westfield, ainsi que toutes les répliques de Lotus 7</p>
               </div>
             </div><div class="prest-card" data-types='["M\u00e9canique", "Motoriste"]' data-marques='["Porsche"]' data-searchtext="rso motorsport   5 rue fontenelles, 78920 ecquevilly spécialiste porsche entretien, atelier, expertise">
               <div class="prest-card-accent" style="background:#2563eb"></div>
@@ -2732,42 +2264,6 @@ Bentley, Rolls Royce et Jaguar </p>
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:+33 (0)1 30 04 23 96" class="pci-link">+33 (0)1 30 04 23 96</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:porscherso@orange.fr" class="pci-link">porscherso@orange.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">5 Rue Fontenelles, 78920 Ecquevilly</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Porsche</span></div>
                 <p class="prest-notes">Spécialiste Porsche entretien, atelier, expertise</p>
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="stand privé  cassis 13 garage généraliste anciennes ">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Stand Privé</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:06 67 10 97 19" class="pci-link">06 67 10 97 19</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:contact@standpriveauto.fr" class="pci-link">contact@standpriveauto.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Cassis 13</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
-                <p class="prest-notes">Garage généraliste anciennes </p>
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Porsche"]' data-searchtext="technic auto sport  18 rue de l’ormeteau, z.a de la tuilerie, 77500 chelles atelier achat vente, entretien, réparation, restauration ">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Technic Auto Sport</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:0763209224" class="pci-link">0763209224</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:techniqueautosport@orange.fr" class="pci-link">techniqueautosport@orange.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">18 rue de l’Ormeteau, Z.A de la Tuilerie, 77500 Chelles</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Porsche</span></div>
-                <p class="prest-notes">Atelier Achat Vente, entretien, réparation, restauration </p>
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="timeless machine  lyon 69 garage généraliste anciennes ">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Timeless Machine</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:06 21 51 28 58" class="pci-link">06 21 51 28 58</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:contact@timeless-machines.com" class="pci-link">contact@timeless-machines.com</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Lyon 69</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
-                <p class="prest-notes">Garage généraliste anciennes </p>
               </div>
             </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="timeless machines  31 rue roger salengro, 69200 vénissieux mécanique ancienne multi marques
 ">
@@ -2783,59 +2279,11 @@ Bentley, Rolls Royce et Jaguar </p>
                 <p class="prest-notes">Mécanique ancienne multi marques
 </p>
               </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique", "Pi\u00e8ces d\u00e9tach\u00e9es", "Carrosserie"]' data-marques='["Porsche"]' data-searchtext="tkrb racing  202-204 rue de paris, 94190 villeneuve saint georges spécialiste indépendant porsche ">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Pièces détachées</span><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Carrosserie</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">TKRB RACING</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 43 86 88 11" class="pci-link">01 43 86 88 11</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:tkrbracing@gmail.com" class="pci-link">tkrbracing@gmail.com</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">202-204 RUE DE PARIS, 94190 VILLENEUVE SAINT GEORGES</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Porsche</span></div>
-                <p class="prest-notes">Spécialiste indépendant Porsche </p>
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Porsche", "G\u00e9n\u00e9raliste"]' data-searchtext="vintage motor sport   13 rue de la régale 77181 courtry entretiens courant/spécifique ainsi que préparation ">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Vintage Motor Sport </div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 60 20 23 74" class="pci-link">01 60 20 23 74</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">13 rue de la Régale 77181 Courtry</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Porsche</span><span class="prest-marque-pill">Généraliste</span></div>
-                <p class="prest-notes">Entretiens courant/spécifique ainsi que préparation </p>
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="vintage sport cars  nantes (44) ">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Vintage Sport Cars</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:06 07 12 05 22" class="pci-link">06 07 12 05 22</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Nantes (44)</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
-                
-              </div>
-            </div><div class="prest-card" data-types='["M\u00e9canique"]' data-marques='["Porsche"]' data-searchtext="virages automobiles  44 rue du moulin des bruyères, 92400 courbevoie spécialiste porsche, atelier/vente">
-              <div class="prest-card-accent" style="background:#2563eb"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#eff6ff;color:#2563eb;border-color:#bfdbfe">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Virages Automobiles</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 55 70 09 11" class="pci-link">01 55 70 09 11</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">44 Rue du Moulin des Bruyères, 92400 Courbevoie</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Porsche</span></div>
-                <p class="prest-notes">Spécialiste Porsche, Atelier/Vente</p>
-              </div>
             </div></div>
         </div><div class="prest-group" data-group-type="Carrosserie">
           <div class="prest-group-header" style="border-left:3px solid #ea580c">
             <span class="prest-group-name" style="color:#ea580c">Carrosserie</span>
-            <span class="prest-group-count">9</span>
+            <span class="prest-group-count">3</span>
           </div>
           <div class="prest-cards-grid"><div class="prest-card" data-types='["Carrosserie"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="carrosserie de la gare  3 bis rue de seine, 91170 viry-châtillon ">
               <div class="prest-card-accent" style="background:#ea580c"></div>
@@ -2848,44 +2296,6 @@ Bentley, Rolls Royce et Jaguar </p>
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 39 65 05 08" class="pci-link">01 39 65 05 08</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:carrosdelagare@gmail.com" class="pci-link">carrosdelagare@gmail.com</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">3 bis Rue de Seine, 91170 Viry-Châtillon</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
                 
-              </div>
-            </div><div class="prest-card" data-types='["Carrosserie"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="carrosserie gomez  6 rue ambroise croizat, palaiseau restau classiques / modernes / jantes
-">
-              <div class="prest-card-accent" style="background:#ea580c"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#fff7ed;color:#ea580c;border-color:#fed7aa">Carrosserie</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Carrosserie Gomez</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 69 93 88 88" class="pci-link">01 69 93 88 88</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:info@gomesclassic.fr" class="pci-link">info@gomesclassic.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">6 Rue Ambroise Croizat, Palaiseau</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
-                <p class="prest-notes">Restau classiques / modernes / jantes
-</p>
-              </div>
-            </div><div class="prest-card" data-types='["Carrosserie"]' data-marques='["Porsche", "G\u00e9n\u00e9raliste"]' data-searchtext="espace clichy nord  nanterre (92) carrosserie porsche">
-              <div class="prest-card-accent" style="background:#ea580c"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#fff7ed;color:#ea580c;border-color:#fed7aa">Carrosserie</span></div>
-                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Espace Clichy Nord</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 47 39 16 35" class="pci-link">01 47 39 16 35</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Nanterre (92)</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Porsche</span><span class="prest-marque-pill">Généraliste</span></div>
-                <p class="prest-notes">Carrosserie Porsche</p>
-              </div>
-            </div><div class="prest-card" data-types='["Carrosserie"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="espace sud cars  paris 14e carrosserie av jean moulin">
-              <div class="prest-card-accent" style="background:#ea580c"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#fff7ed;color:#ea580c;border-color:#fed7aa">Carrosserie</span></div>
-                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Espace Sud Cars</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel: 01 45 39 14 14" class="pci-link"> 01 45 39 14 14</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Paris 14e</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
-                <p class="prest-notes">Carrosserie av Jean Moulin</p>
               </div>
             </div><div class="prest-card" data-types='["Carrosserie"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="flash repair  2 rue joseph marie jacquard, 78310 coignières spécialiste réfection jantes (peinture de carrossier) + bon carrossier">
               <div class="prest-card-accent" style="background:#ea580c"></div>
@@ -2911,61 +2321,13 @@ Bentley, Rolls Royce et Jaguar </p>
                 <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
                 
               </div>
-            </div><div class="prest-card" data-types='["Carrosserie", "M\u00e9canique"]' data-marques='["Mercedes-Benz"]' data-searchtext="m&w classic  stuttgart restau mercedes (300sl)">
-              <div class="prest-card-accent" style="background:#ea580c"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#fff7ed;color:#ea580c;border-color:#fed7aa">Carrosserie</span><span class="prest-type-pill" style="background:#fff7ed;color:#ea580c;border-color:#fed7aa">Mécanique</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">M&W Classic</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:+49 7145 96070" class="pci-link">+49 7145 96070</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Stuttgart</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Mercedes-Benz</span></div>
-                <p class="prest-notes">Restau Mercedes (300SL)</p>
-              </div>
-            </div><div class="prest-card" data-types='["Carrosserie"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="monster paint  112 av. charles de gaulle, 91420 morangis carrosserie c'est les boss">
-              <div class="prest-card-accent" style="background:#ea580c"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#fff7ed;color:#ea580c;border-color:#fed7aa">Carrosserie</span></div>
-                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Monster Paint</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 60 14 09 27" class="pci-link">01 60 14 09 27</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:contact@monsterpaint.fr" class="pci-link">contact@monsterpaint.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">112 Av. Charles de Gaulle, 91420 Morangis</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
-                <p class="prest-notes">Carrosserie c'est les boss</p>
-              </div>
-            </div><div class="prest-card" data-types='["Carrosserie"]' data-marques='["Ferrari"]' data-searchtext="redparts  montigny le bretonneux (78) spécialiste ferrari (pièces & carrosserie)">
-              <div class="prest-card-accent" style="background:#ea580c"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#fff7ed;color:#ea580c;border-color:#fed7aa">Carrosserie</span></div>
-                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Redparts</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 30 48 90 09" class="pci-link">01 30 48 90 09</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Montigny Le Bretonneux (78)</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Ferrari</span></div>
-                <p class="prest-notes">Spécialiste Ferrari (pièces & carrosserie)</p>
-              </div>
             </div></div>
         </div><div class="prest-group" data-group-type="Pièces détachées">
           <div class="prest-group-header" style="border-left:3px solid #7c3aed">
             <span class="prest-group-name" style="color:#7c3aed">Pièces détachées</span>
-            <span class="prest-group-count">4</span>
+            <span class="prest-group-count">2</span>
           </div>
-          <div class="prest-cards-grid"><div class="prest-card" data-types='["Pi\u00e8ces d\u00e9tach\u00e9es"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="classic and sport cars  etampes  import / export - achat - vente ">
-              <div class="prest-card-accent" style="background:#7c3aed"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#f5f3ff;color:#7c3aed;border-color:#ddd6fe">Pièces détachées</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Classic and Sport Cars</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">Etampes </span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
-                <p class="prest-notes">Import / Export - Achat - Vente </p>
-              </div>
-            </div><div class="prest-card" data-types='["Pi\u00e8ces d\u00e9tach\u00e9es"]' data-marques='["Porsche"]' data-searchtext="rose passion.com  https://www.rosepassion.com pièces détachées porsche origine 
+          <div class="prest-cards-grid"><div class="prest-card" data-types='["Pi\u00e8ces d\u00e9tach\u00e9es"]' data-marques='["Porsche"]' data-searchtext="rose passion.com  https://www.rosepassion.com pièces détachées porsche origine 
 ">
               <div class="prest-card-accent" style="background:#7c3aed"></div>
               <div class="prest-card-body">
@@ -2978,18 +2340,6 @@ Bentley, Rolls Royce et Jaguar </p>
                 <div class="prest-marques"><span class="prest-marque-pill">Porsche</span></div>
                 <p class="prest-notes">Pièces détachées Porsche origine 
 </p>
-              </div>
-            </div><div class="prest-card" data-types='["Pi\u00e8ces d\u00e9tach\u00e9es"]' data-marques='["Porsche"]' data-searchtext="rs diffusion.com  https://rsdiffusion.com spécialiste pièces porsche">
-              <div class="prest-card-accent" style="background:#7c3aed"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#f5f3ff;color:#7c3aed;border-color:#ddd6fe">Pièces détachées</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">RS Diffusion.com</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:04 92 79 75 54" class="pci-link">04 92 79 75 54</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:contact@rsdiffusion.com" class="pci-link">contact@rsdiffusion.com</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">https://rsdiffusion.com</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Porsche</span></div>
-                <p class="prest-notes">Spécialiste pièces Porsche</p>
               </div>
             </div><div class="prest-card" data-types='["Pi\u00e8ces d\u00e9tach\u00e9es"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="smpp montage pneus à domicile  11 rue andré hodebourg montage pneus à domicile, fais toutes les tailles pour les voitures sportives ou luxe
 ">
@@ -3027,7 +2377,7 @@ Bentley, Rolls Royce et Jaguar </p>
         </div><div class="prest-group" data-group-type="Sellerie">
           <div class="prest-group-header" style="border-left:3px solid #0891b2">
             <span class="prest-group-name" style="color:#0891b2">Sellerie</span>
-            <span class="prest-group-count">4</span>
+            <span class="prest-group-count">1</span>
           </div>
           <div class="prest-cards-grid"><div class="prest-card" data-types='["Sellerie"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="asci sellerie  27 rue de valence, 78410 flins-sur-seine sellier hyper compétent dans le 78">
               <div class="prest-card-accent" style="background:#0891b2"></div>
@@ -3040,42 +2390,6 @@ Bentley, Rolls Royce et Jaguar </p>
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 30 90 28 00" class="pci-link">01 30 90 28 00</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:asci78@orange.fr" class="pci-link">asci78@orange.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">27 Rue de Valence, 78410 Flins-sur-Seine</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
                 <p class="prest-notes">Sellier hyper compétent dans le 78</p>
-              </div>
-            </div><div class="prest-card" data-types='["Sellerie"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="espace sellerie 3000  la chatelet en brie (77) sellerie">
-              <div class="prest-card-accent" style="background:#0891b2"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#ecfeff;color:#0891b2;border-color:#a5f3fc">Sellerie</span></div>
-                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Espace Sellerie 3000</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 60 66 66 22" class="pci-link">01 60 66 66 22</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">La Chatelet en Brie (77)</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
-                <p class="prest-notes">Sellerie</p>
-              </div>
-            </div><div class="prest-card" data-types='["Sellerie"]' data-marques='["Porsche"]' data-searchtext="jean-philippe duval  8 rue des petits près, 51200, epernay sellier spécialisée dans l'univers de la porsche classique">
-              <div class="prest-card-accent" style="background:#0891b2"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#ecfeff;color:#0891b2;border-color:#a5f3fc">Sellerie</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Jean-Philippe DUVAL</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:03 26 59 47 61 / 06 80 62 35 98" class="pci-link">03 26 59 47 61 / 06 80 62 35 98</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:automobile-sellerie@orange.fr" class="pci-link">automobile-sellerie@orange.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">8 rue des petits près, 51200, Epernay</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Porsche</span></div>
-                <p class="prest-notes">Sellier spécialisée dans l'univers de la Porsche Classique</p>
-              </div>
-            </div><div class="prest-card" data-types='["Sellerie"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="lemoyne sellerie   ">
-              <div class="prest-card-accent" style="background:#0891b2"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#ecfeff;color:#0891b2;border-color:#a5f3fc">Sellerie</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">Lemoyne Sellerie</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:06 63 45 25 40" class="pci-link">06 63 45 25 40</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:fulcran@lemoyne-sellerie.com" class="pci-link">fulcran@lemoyne-sellerie.com</a></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
-                
               </div>
             </div></div>
         </div><div class="prest-group" data-group-type="Detailling">
@@ -3123,7 +2437,7 @@ Bentley, Rolls Royce et Jaguar </p>
         </div><div class="prest-group" data-group-type="Transporteur">
           <div class="prest-group-header" style="border-left:3px solid #6b7280">
             <span class="prest-group-name" style="color:#6b7280">Transporteur</span>
-            <span class="prest-group-count">2</span>
+            <span class="prest-group-count">1</span>
           </div>
           <div class="prest-cards-grid"><div class="prest-card" data-types='["Transporteur"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="2r autos  16 allée des charmes, 77330 ozoir la ferrière notre transporteur attitré, david le boss des boss, fais tous types de voitures, notamment voitures de luxes.">
               <div class="prest-card-accent" style="background:#6b7280"></div>
@@ -3136,18 +2450,6 @@ Bentley, Rolls Royce et Jaguar </p>
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:06 68 13 65 63" class="pci-link">06 68 13 65 63</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:2rautos@wanadoo.fr" class="pci-link">2rautos@wanadoo.fr</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">16 Allée des Charmes, 77330 Ozoir la Ferrière</span></div></div>
                 <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
                 <p class="prest-notes">Notre transporteur attitré, David le boss des boss, fais tous types de voitures, notamment voitures de luxes.</p>
-              </div>
-            </div><div class="prest-card" data-types='["Transporteur"]' data-marques='["G\u00e9n\u00e9raliste"]' data-searchtext="g.t.3c  48 bis rue henri bretonnet,  78970, mézières-sur seine transporteur de voitures classique et sport en france et europe ">
-              <div class="prest-card-accent" style="background:#6b7280"></div>
-              <div class="prest-card-body">
-                <div class="prest-card-top">
-                  <div class="prest-card-pills"><span class="prest-type-pill" style="background:#f9fafb;color:#6b7280;border-color:#e5e7eb">Transporteur</span></div>
-                  <span class="prest-stars"><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
-                </div>
-                <div class="prest-card-name">G.T.3C</div>
-                <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:06 06 88 16 11" class="pci-link">06 06 88 16 11</a></div><div class="prest-contact-item"><span class="pci-icon">✉</span><a href="mailto:patrice.thepot@gmail.com" class="pci-link">patrice.thepot@gmail.com</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">48 bis rue Henri Bretonnet,  78970, Mézières-sur Seine</span></div></div>
-                <div class="prest-marques"><span class="prest-marque-pill">Généraliste</span></div>
-                <p class="prest-notes">Transporteur de voitures CLASSIQUE ET SPORT en France et EUROPE </p>
               </div>
             </div></div>
         </div><div class="prest-group" data-group-type="Autre">
@@ -3172,7 +2474,7 @@ Bentley, Rolls Royce et Jaguar </p>
               <div class="prest-card-body">
                 <div class="prest-card-top">
                   <div class="prest-card-pills"><span class="prest-type-pill" style="background:#f3f4f6;color:#374151;border-color:#d1d5db">Autre</span></div>
-                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-off">★</span></span>
+                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span></span>
                 </div>
                 <div class="prest-card-name">KSF</div>
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 69 79 91 53" class="pci-link">01 69 79 91 53</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">9 Rue des Gardes, 91370 Verrières-le-Buisson</span></div></div>
@@ -3184,7 +2486,7 @@ Bentley, Rolls Royce et Jaguar </p>
               <div class="prest-card-body">
                 <div class="prest-card-top">
                   <div class="prest-card-pills"><span class="prest-type-pill" style="background:#f3f4f6;color:#374151;border-color:#d1d5db">Autre</span></div>
-                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-off">★</span><span class="star-off">★</span></span>
+                  <span class="prest-stars"><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span><span class="star-on">★</span></span>
                 </div>
                 <div class="prest-card-name">MSirius</div>
                 <div class="prest-contacts"><div class="prest-contact-item"><span class="pci-icon">📞</span><a href="tel:01 30 49 53 90" class="pci-link">01 30 49 53 90</a></div><div class="prest-contact-item"><span class="pci-icon">📍</span><span class="pci-text">3 bis Rue Antoine Lavoisier, 78310 Coignières</span></div></div>
@@ -3193,13 +2495,13 @@ Bentley, Rolls Royce et Jaguar </p>
               </div>
             </div></div>
         </div></div>
-<script>var PREST_MARQUES = ["Alfa Romeo", "Alpine", "Aston Martin ", "Austin", "Austin Healey", "BMW", "Bentley", "Chevrolet", "Ferrari", "G\u00e9n\u00e9raliste", "Jaguar", "Lancia", "MG", "Maserati", "Mercedes-Benz", "Morgan", "Multi-marques", "Porsche", "Rolls Royce", "Triumph"];</script>
+<script>var PREST_MARQUES = ["Alfa Romeo", "Alpine", "Aston Martin ", "BMW", "Ferrari", "G\u00e9n\u00e9raliste", "Jaguar", "Maserati", "Mercedes-Benz", "Multi-marques", "Porsche"];</script>
       </div>
     </div>
   </section>
 
   <footer class="footer">
-    Généré le Dimanche 26 avril 2026 à 19:04 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
+    Généré le Dimanche 26 avril 2026 à 19:09 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
   </footer>
 </div>
 <div id="res-modal" class="res-modal-overlay" onclick="closeResModal(event)">
