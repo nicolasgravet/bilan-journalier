@@ -143,6 +143,16 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
       </div>
       <span class="kpi-arrow">→</span>
     </div>
+    <div class="glass-card kpi kpi-clickable kpi-clickable-green" onclick="jumpToLivraisons()" title="Voir les livraisons de la semaine">
+      <div class="kpi-icon-wrap kpi-green">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      </div>
+      <div class="kpi-body">
+        <div class="kpi-value">{len(livraisons)}</div>
+        <div class="kpi-label">Livraisons de la semaine</div>
+      </div>
+      <span class="kpi-arrow">→</span>
+    </div>
   </div>
 
   <div class="grid">
@@ -1225,6 +1235,11 @@ function jumpToCTReservees() {
   _scrollTo('section-ct');
 }
 
+function jumpToLivraisons() {
+  _openSection('livr');
+  _scrollTo('section-livr');
+}
+
 // ── Prestataires ─────────────────────────────────────────────────────────────
 var prestState = { type: 'tous', marque: 'tous', search: '' };
 
@@ -1454,17 +1469,19 @@ def _css():
     .refresh-note { font-size: 10px; color: #adb5c2; text-align: right; }
 
     /* KPI */
-    .kpi-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 20px; }
+    .kpi-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 20px; }
     .kpi { display: flex; align-items: center; gap: 18px; padding: 26px 28px; }
     .kpi:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(0,0,0,0.09); }
     .kpi-clickable { cursor: pointer; }
     .kpi-clickable:hover { box-shadow: 0 6px 28px rgba(234,88,12,0.18); border-color: rgba(234,88,12,0.25); }
     .kpi-clickable-blue:hover { box-shadow: 0 6px 28px rgba(47,174,224,0.18); border-color: rgba(47,174,224,0.25); }
     .kpi-clickable-red:hover { box-shadow: 0 6px 28px rgba(220,38,38,0.18); border-color: rgba(220,38,38,0.25); }
+    .kpi-clickable-green:hover { box-shadow: 0 6px 28px rgba(5,150,105,0.18); border-color: rgba(5,150,105,0.25); }
     .kpi-arrow { font-size: 16px; color: #d1d5db; margin-left: auto; transition: transform 0.2s ease, color 0.2s ease; align-self: center; }
     .kpi-clickable:hover .kpi-arrow { transform: translateX(4px); color: #ea580c; }
     .kpi-clickable-blue:hover .kpi-arrow { color: #2FAEE0; }
     .kpi-clickable-red:hover .kpi-arrow { color: #dc2626; }
+    .kpi-clickable-green:hover .kpi-arrow { color: #059669; }
     .kpi-icon-wrap { width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
 
     /* Animation cloche — pivot depuis le haut */
@@ -1498,9 +1515,20 @@ def _css():
       62%  { transform: translateY(-5px) scale(1.04); }
       80%  { transform: translateY(-1px) scale(1); }
     }
+    /* Animation camion — avance et revient */
+    @keyframes drive {
+      0%   { transform: translateX(0); }
+      20%  { transform: translateX(6px); }
+      40%  { transform: translateX(2px); }
+      60%  { transform: translateX(8px); }
+      75%  { transform: translateX(3px); }
+      90%  { transform: translateX(6px); }
+      100% { transform: translateX(0); }
+    }
     .kpi:hover .kpi-blue   svg { animation: bounce 0.65s cubic-bezier(0.36,0.07,0.19,0.97) both; }
     .kpi:hover .kpi-red   svg { transform-origin: 50% 0%; animation: ring  0.7s cubic-bezier(0.36,0.07,0.19,0.97) both; }
     .kpi:hover .kpi-orange svg { animation: shake 0.6s cubic-bezier(0.36,0.07,0.19,0.97) both; }
+    .kpi:hover .kpi-green  svg { animation: drive 0.65s cubic-bezier(0.36,0.07,0.19,0.97) both; }
     .kpi-green  { background: #d1fae5; }
     .kpi-blue   { background: #dbeafe; }
     .kpi-orange { background: #ffedd5; }
@@ -1618,7 +1646,7 @@ def _css():
       .grid { grid-template-columns: 1fr 1fr; }
       .col-span-2 { grid-column: span 2; }
       .col-span-3 { grid-column: span 2; }
-      .kpi-row { grid-template-columns: repeat(2,1fr); }
+      .kpi-row { grid-template-columns: repeat(2,1fr); gap: 12px; }
     }
     @media (max-width: 640px) {
       .grid, .kpi-row { grid-template-columns: 1fr; }
