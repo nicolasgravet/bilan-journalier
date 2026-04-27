@@ -539,7 +539,7 @@
         updateClock();
         setInterval(updateClock, 1000);
         // Timestamp de génération converti en heure locale
-        var gen = new Date(1777295334 * 1000);
+        var gen = new Date(1777296451 * 1000);
         var genH = String(gen.getHours()).padStart(2,'0');
         var genM = String(gen.getMinutes()).padStart(2,'0');
         var genLabel = 'Mis à jour le ' + JOURS[gen.getDay()] + ' ' + gen.getDate() + ' ' + MOIS[gen.getMonth()] + ' ' + gen.getFullYear() + ' à ' + genH + ':' + genM;
@@ -549,7 +549,7 @@
         btn.disabled = true;
         btn.textContent = '⏳ En cours…';
         document.getElementById('refresh-status').textContent = 'Génération en cours…';
-        var currentTs = 1777295334;
+        var currentTs = 1777296451;
         fetch('https://mecanicus-refresh.nicolas-0ce.workers.dev', {method:'POST'})
         .then(r => {
           if (r.ok) {
@@ -590,7 +590,7 @@
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2FAEE0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
       </div>
       <div class="kpi-body">
-        <div class="kpi-value">23</div>
+        <div class="kpi-value">24</div>
         <div class="kpi-label">Voitures réservées</div>
       </div>
       <span class="kpi-arrow">→</span>
@@ -610,7 +610,7 @@
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
       </div>
       <div class="kpi-body">
-        <div class="kpi-value">4</div>
+        <div class="kpi-value">5</div>
         <div class="kpi-label">Alertes CT — Réservées</div>
       </div>
       <span class="kpi-arrow">→</span>
@@ -921,9 +921,9 @@
           <div class="ct-date">17/03/2026</div>
           <div class="ct-jours"><span class="jours-expire">Expiré (41j)</span></div>
           <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec2Pzgwku3gkPD9d?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="ct-row ct-expire" data-ct-type="other" data-ct-crit="0">
+        </div><div class="ct-row ct-expire" data-ct-type="acompte" data-ct-crit="0">
           <div class="ct-car"><span class="car-name">Ferrari 360 modena Boite F1</span></div>
-          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="statut-pill">Acompte 👍</span></div>
           <div><span class="ct-status-badge ct-expire-badge">Expiré ⛔️ <span class="jul">✌🏼✌🏼</span></span></div>
           <div class="ct-date">09/10/2024</div>
           <div class="ct-date">09/04/2025</div>
@@ -1618,7 +1618,7 @@
       <div class="section-header collapsible-header" onclick="toggleSection('reservees')">
         <span class="section-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
         <h2>Voitures Réservées</h2>
-        <span class="count-badge">23</span>
+        <span class="count-badge">24</span>
         <div class="header-filters" onclick="event.stopPropagation()">
           <button class="sort-toggle-btn" id="sort-reservees" onclick="toggleSortReservees(this)">↓ Plus récent</button>
         </div>
@@ -1799,6 +1799,25 @@
             <div class="res-footer">
               <a class="fiche-btn" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec6NadRs8BaR3DzH?home=pagnonVqycMtn6zK4" target="_blank" onclick="event.stopPropagation()">Accéder à la fiche →</a>
               <span class="commercial-badge">Victor</span>
+            </div>
+          </div>
+        </div><div class="reservation-card" data-ts="0" data-voiture="Ferrari 360 modena Boite F1" data-fck="" data-bc="" data-prix="79 900 €" data-marge="15 900 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec98YqzCNc452rbn?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec98YqzCNc452rbn?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/52/52/1777305600000/QysCOoDasNrr7TjAPIrbXA/8QpedC_VkcPq0_ApLDsDIaZBgKa-w8glkR1uw78efkSUZDVeuYjaSJJyFgiDo-xyxsjT9xYqdGQa7NJLKWLaWDiWLqNiQnUtImxF6FnvyC3CG9cZ5DGYWBv0q84svCSVRbfXH5duvhRhzt-rhmLbJ7CaWlknwZKuGyzM1ZYQXd8/W9xS_D--tfI-l4BTSSERFubB_u0TygPsiqeu1cE77Xo" data-commerciaux='["Theodore"]' data-ct="Expiré ⛔️" data-ct-cls="ct-expire-badge" onclick="openResModal(this)">
+          <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/52/52/1777305600000/QysCOoDasNrr7TjAPIrbXA/8QpedC_VkcPq0_ApLDsDIaZBgKa-w8glkR1uw78efkSUZDVeuYjaSJJyFgiDo-xyxsjT9xYqdGQa7NJLKWLaWDiWLqNiQnUtImxF6FnvyC3CG9cZ5DGYWBv0q84svCSVRbfXH5duvhRhzt-rhmLbJ7CaWlknwZKuGyzM1ZYQXd8/W9xS_D--tfI-l4BTSSERFubB_u0TygPsiqeu1cE77Xo" alt="">
+          <div class="res-info">
+            <div class="res-header">
+              <div class="res-header-top">
+                <span class="car-name">Ferrari 360 modena Boite F1</span>
+                
+              </div>
+              <span class="ct-res-badge ct-expire-badge">Expiré ⛔️</span>
+            </div>
+            <div class="res-amounts">
+              <span class="res-prix">Prix : <strong>79 900 €</strong></span>
+              <span class="res-marge">Marge : <strong>15 900 €</strong></span>
+            </div>
+            <div class="res-footer">
+              <a class="fiche-btn" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec98YqzCNc452rbn?home=pagnonVqycMtn6zK4" target="_blank" onclick="event.stopPropagation()">Accéder à la fiche →</a>
+              <span class="commercial-badge">Theodore</span>
             </div>
           </div>
         </div><div class="reservation-card" data-ts="937" data-voiture="Ferrari 412i BVM Bleu / Tan EP-033-XT " data-fck="" data-bc="BC000937" data-prix="87 900 €" data-marge="9 550 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec98CfYjnlwnc6st?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec98CfYjnlwnc6st?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/52/52/1777305600000/qBE0uuNLam9eOyxCRHf2Tg/VFVpYNU-mA_FYSCHy182qxd9eH8dqoKYqLSoBu9Mw4TbBK3G6137-DPoU8DFLOd3G01SvFQ6JXZnDBVc_B0CCpxTD1XPJYtGrY0Cs9GlJK8tPXmyAND9kgkICeSLI-60DSQlJwPiajdeR2yoME6GARNexj19pi6aLlzQhIRu8SA/rJzsyMRBJ8TUP5yzlP9_60OAseC0rH1x-69m6Gmq2_w" data-commerciaux='["Victor", "Theodore"]' data-ct="Manquant ❌" data-ct-cls="ct-manquant-badge" onclick="openResModal(this)">
@@ -2741,7 +2760,7 @@
   </section>
 
   <footer class="footer">
-    Généré le Lundi 27 avril 2026 à 13:08 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
+    Généré le Lundi 27 avril 2026 à 13:27 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
   </footer>
 </div>
 <div id="res-modal" class="res-modal-overlay" onclick="closeResModal(event)">
@@ -2852,7 +2871,7 @@
     </form>
   </div>
 </div>
-<script>var MARGES_DATA = [{"marge": 4000.0, "ts": 1769884848}, {"marge": 6297.399999999994, "ts": 1774023199}, {"marge": 12368.699999999997, "ts": 1770030734}, {"marge": 5583.309999999998, "ts": 1768234979}, {"marge": 4706.220000000001, "ts": 1764326868}, {"marge": 10657.220000000001, "ts": 1771931045}, {"marge": 3942.5, "ts": 1772529064}, {"marge": 9090.119999999995, "ts": 1769707897}, {"marge": 11850.0, "ts": 1773755213}, {"marge": 9550.0, "ts": 1771423217}, {"marge": -1372.679999999993, "ts": 1765268519}, {"marge": 16600.0, "ts": 1756125321}, {"marge": 29900.0, "ts": 1773745986}, {"marge": 12049.61, "ts": 1768081150}, {"marge": 14842.5, "ts": 1771406978}, {"marge": 4842.5, "ts": 1771956283}, {"marge": 17738.33, "ts": 1768845411}, {"marge": 25580.0, "ts": 1763661946}, {"marge": 25850.0, "ts": 1773078266}, {"marge": 18658.70000000001, "ts": 1770801109}, {"marge": 15900.0, "ts": 1770915028}, {"marge": 10030.0, "ts": 1772882781}, {"marge": 19110.0, "ts": 1772477406}];</script>
+<script>var MARGES_DATA = [{"marge": 4000.0, "ts": 1769884848}, {"marge": 6297.399999999994, "ts": 1774023199}, {"marge": 12368.699999999997, "ts": 1770030734}, {"marge": 5583.309999999998, "ts": 1768234979}, {"marge": 4706.220000000001, "ts": 1764326868}, {"marge": 10657.220000000001, "ts": 1771931045}, {"marge": 3942.5, "ts": 1772529064}, {"marge": 9090.119999999995, "ts": 1769707897}, {"marge": 11850.0, "ts": 1773755213}, {"marge": 15900.0, "ts": 1774632212}, {"marge": 9550.0, "ts": 1771423217}, {"marge": -1372.679999999993, "ts": 1765268519}, {"marge": 16600.0, "ts": 1756125321}, {"marge": 29900.0, "ts": 1773745986}, {"marge": 12049.61, "ts": 1768081150}, {"marge": 14842.5, "ts": 1771406978}, {"marge": 4842.5, "ts": 1771956283}, {"marge": 17738.33, "ts": 1768845411}, {"marge": 25580.0, "ts": 1763661946}, {"marge": 25850.0, "ts": 1773078266}, {"marge": 18658.70000000001, "ts": 1770801109}, {"marge": 15900.0, "ts": 1770915028}, {"marge": 10030.0, "ts": 1772882781}, {"marge": 19110.0, "ts": 1772477406}];</script>
 <script>var PREST_API_URL = "https://api.airtable.com/v0/appBQnpnbCXZkHnzS/tbl9Ut5t4NUA9hkoJ"; var PREST_TOKEN = "patGeRjMMwScA9naE.e8dc47dbca8bf709c420a7dda84ac086496335648f4163d21976fc0b8f6c8636";</script>
 <script>
 // ── Collapse sections ────────────────────────────────────────────────
