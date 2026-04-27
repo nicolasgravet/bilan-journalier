@@ -246,7 +246,7 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
       <span class="section-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span>
       <h2>Livraisons de la semaine</h2>
       <span class="count-badge" id="livr-count">{len(livraisons)}</span>
-      <button class="collapse-btn" id="collapse-livr" style="margin-left:auto;border-color:#2FAEE0;color:#2FAEE0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+      <button class="collapse-btn" id="collapse-livr" style="margin-left:auto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
     </div>
     <div class="section-body" id="body-livr">
       {_render_livraisons(livraisons)}
@@ -1542,7 +1542,7 @@ def _css():
     .collapsible-header:hover { background: rgba(0,87,168,0.04); }
     .collapsible-header:hover .collapse-btn { border-color: #2FAEE0; color: #2FAEE0; }
     .header-filters { display: flex; align-items: center; gap: 6px; margin-left: auto; flex-shrink: 0; }
-    .collapse-btn { background: none; border: 1px solid #dde1e8; border-radius: 8px; color: #adb5c2; padding: 5px 8px; cursor: pointer; transition: all 0.2s ease; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .collapse-btn { background: none; border: 1px solid #2FAEE0; border-radius: 8px; color: #2FAEE0; padding: 5px 8px; cursor: pointer; transition: all 0.2s ease; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
     .collapse-btn svg { transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1); }
     .collapse-btn.rotated svg { transform: rotate(180deg); }
     /* Section body — géré en JS (hauteur exacte) */
