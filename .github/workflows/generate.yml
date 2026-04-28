@@ -10,6 +10,11 @@ on:
 permissions:
   contents: write
 
+# Un seul run à la fois — annule les runs en attente si un nouveau arrive
+concurrency:
+  group: generate-report
+  cancel-in-progress: true
+
 jobs:
   generate:
     runs-on: ubuntu-latest
