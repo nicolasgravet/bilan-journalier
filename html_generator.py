@@ -6,7 +6,7 @@ JOURS_FR = ["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"]
 MOIS_FR  = ["janvier","février","mars","avril","mai","juin",
              "juillet","août","septembre","octobre","novembre","décembre"]
 
-def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None, francois_cars=None, prestataires=None, livraisons=None):
+def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None, francois_cars=None, prestataires=None, livraisons=None):  # offres conservé pour compatibilité ascendante mais non utilisé
     now = datetime.utcnow()
     gen_ts = int(now.timestamp())  # timestamp UTC → JS le convertit en heure locale
     date_str = f"{JOURS_FR[now.weekday()]} {now.day} {MOIS_FR[now.month-1]} {now.year}"
