@@ -433,37 +433,6 @@ def fetch_frais_airtable(cars_index=None, days_back=30):
     return frais_by_car
 
 
-def enrich_frais_with_costs(frais_by_car):
-    if not AIRTABLE_TOKEN:
-        return frais_by_car
-    cutoff = (datetime.now() - timedelta(days=30)).strftime("%Y-%m-%dT%H:%M:%S.000Z")
-    records = _get_records(FRAIS_TABLE, {
-        "filterByFormula": f"IS_AFTER({{Created time}}, '{cutoff}')",
-        "fields[]": ["Name", "Created time", "Voiture", "Cout HT", "Cout TTC"],
-        "maxRecords": 500,
-    })
-    cost_by_id = {}
-    for rec in records:
-        f = rec.get("fields", {})
-        cost_by_id[rec["id"]] = {
-            "cout_ht": f.get("Cout HT"),
-            "cout_ttc": f.get("Cout TTC"),
-        }
-    for car, frais_list in frais_by_car.items():
-        for frais in frais_list:
-            rec_id = frais.get("airtable_record_id")
-            if rec_id and rec_id in cost_by_id:
-                cost = cost_by_id[rec_id]
-                ttc = cost.get("cout_ttc") or cost.get("cout_ht")
-                if ttc is not None:
-                    try:
-                        frais["montant"] = float(ttc)
-                        frais["montant_fmt"] = f"{float(ttc):,.2f} €".replace(",", "\u202f")
-                    except (ValueError, TypeError):
-                        pass
-    return frais_by_car
-
-
 def search_car_by_name(search_term):
     if not AIRTABLE_TOKEN:
         return None, {}

@@ -4,7 +4,7 @@
 import sys
 import time
 from pathlib import Path
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, Future
 
 sys.path.insert(0, str(Path(__file__).parent))
 
@@ -37,21 +37,26 @@ def main():
         # ── Chargement parallèle : index + réservées + CT + prestataires + calendrier ──
         print("⚡ Chargement parallèle : Airtable index / réservées / CT / prestataires / livraisons...")
         with ThreadPoolExecutor(max_workers=6) as ex:
+            f_frais: list[Future] = []  # sera rempli par le callback ci-dessous
+
+            def _on_index_done(fut):
+                """Soumis automatiquement dès que l'index est prêt — sans bloquer le thread principal."""
+                f_frais.append(ex.submit(fetch_frais_airtable, fut.result(), 30))
+
             f_index     = ex.submit(_fetch_all_cars_index)
+            f_index.add_done_callback(_on_index_done)   # déclenche f_frais sans attendre
             f_reservees = ex.submit(fetch_reservees_airtable)
             f_ct        = ex.submit(fetch_ct_data)
             f_prest     = ex.submit(fetch_prestataires)
             f_livr      = ex.submit(fetch_livraisons, GCAL_ICS_URL, 14)
 
-            # Dès que l'index est disponible, lancer les frais (dépendent de l'index)
+            # Collecte — le thread principal attend chaque résultat dans l'ordre optimal
             cars_index   = f_index.result()
-            f_frais      = ex.submit(fetch_frais_airtable, cars_index, 30)
-
             reservees    = f_reservees.result()
             ct_data      = f_ct.result()
-            frais_by_car = f_frais.result()
             prestataires = f_prest.result()
             livraisons   = f_livr.result()
+            frais_by_car = f_frais[0].result()  # f_frais soumis dès que l'index était prêt
 
         print(f"  ✓ {len(cars_index)} véhicules index, {len(reservees)} réservées, "
               f"{len(ct_data)} CT, {sum(len(v) for v in frais_by_car.values())} frais, "
