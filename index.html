@@ -539,7 +539,7 @@
         updateClock();
         setInterval(updateClock, 1000);
         // Timestamp de génération converti en heure locale
-        var gen = new Date(1785335811 * 1000);
+        var gen = new Date(1785341609 * 1000);
         var genH = String(gen.getHours()).padStart(2,'0');
         var genM = String(gen.getMinutes()).padStart(2,'0');
         var genLabel = 'Mis à jour le ' + JOURS[gen.getDay()] + ' ' + gen.getDate() + ' ' + MOIS[gen.getMonth()] + ' ' + gen.getFullYear() + ' à ' + genH + ':' + genM;
@@ -549,7 +549,7 @@
         btn.disabled = true;
         btn.textContent = '⏳ En cours…';
         document.getElementById('refresh-status').textContent = 'Génération en cours…';
-        var currentTs = 1785335811;
+        var currentTs = 1785341609;
         fetch('https://mecanicus-refresh.nicolas-0ce.workers.dev', {method:'POST'})
         .then(r => {
           if (r.ok) {
@@ -634,7 +634,7 @@
       <div class="section-header collapsible-header" onclick="toggleSection('frais')">
         <span class="section-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
         <h2>Logistique — Frais</h2>
-        <span class="count-badge" id="frais-count">27</span>
+        <span class="count-badge" id="frais-count">29</span>
         <div class="header-filters" onclick="event.stopPropagation()">
           <div class="filter-bar" data-target="frais">
             <button class="filter-btn active" data-days="0">Tout (30j)</button>
@@ -654,7 +654,7 @@
         </div>
         <div class="frais-container" id="frais-container"><div class="car-frais-block" data-max-ts="1785328916" data-statut="Acompte 👍">
           <div class="car-frais-header">
-            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/a0_9Tx6I-SR4UlssMN_LjA/RTY18TNxqp1IKHJ7m5ys6KeuYqBJGuEZ37iggz5laMpo_uAKQg0Mqs3VV2E7FV-oEe7E8wVALtmX32jyROH561tZfO_d8BxlJoJvd1djHXpeYIrQyUa3umQDRcwGZdT6A_PHyZDoCMTRmjD_HQRqeb1g5_LAZwDfXacG-vLpjH8/9OHNYyTpZG4FYYRw_eqpJK__o73lrHBa3SzjpkGvEI0" alt="">
+            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/hZJRoQqIWDMUBcKyK7UtLw/g7Ths30yuG5bfYqvlIXlbRT7AOzfARhk6CEqwjB5A_efgtUzN6H5PzFa_xc-bmXtSdirzdSzEcx7cACDQKM1K_SUNfbB-hJ7S-cHbvIsUfEM0IvQ4MBmz0D-CcrrjbjIgfvM9ugcVMl0e7K8lZnA4IQVOIKBIjAZcdrdYGpjHWU/_b1hppW8dRdLXCgf21gDzsVYac37nGimQOV7jKEczXs" alt="">
             <span class="car-frais-name"><span class="car-frais-name-text">🚗 ALFA ROMEO GT 1600 Junior</span></span>
             <span class="car-frais-total">—</span>
             <a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reciEm3m8JJZaEfeG?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a>
@@ -670,7 +670,7 @@
             </div></div>
         </div><div class="car-frais-block" data-max-ts="1784300973" data-statut="In stock 🚗">
           <div class="car-frais-header">
-            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/M25sone1fRDt2M-mqcYNFQ/t6tz6dOjr8BkuwMxuFduqvoxEhC_hr55HLyiB9825QhCh6oZx2YS2ZftHhrWD7RGqhM12aPbBpS9KqozW1H1wlzXeq_aB7wyheSOhPd_3V4ikGs0w-pm51y_sLmLKUTkSQwQ3v-DaQ2nP95DfiTBXE4EySxP5Bya0fUfofe9i2Q/hNaBEmUM3c18P6G5WQi1UXyxF38oM5do4uje8EamRLE" alt="">
+            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/HGChb7Gx3eNWl7HeDa94hA/-eYE0boYDqSB794b0fOa_d69VkaR8AIX5Mt2tU_t8B400SPpQA5enkGguTinfUNiQzhWiy3JwFmmDnx0zadL-0YzKsGPPK8GnvLbXWAdXvGy2YoisH2eJzehdwxPMlGFWR5XvB9I6ZwMc11UClPgH4WhOc5sc8WvNeF4OySO8p0/yq-WI1ai1bb0oY676cnC2-3WETAcRC8cf3-1OJwKjms" alt="">
             <span class="car-frais-name"><span class="car-frais-name-text">🚗 Alpine A110 S Bleu de France Pack Aero</span></span>
             <span class="car-frais-total">2 400.00 €</span>
             <a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec9J5RzlQYEzrFls?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a>
@@ -686,7 +686,7 @@
             </div></div>
         </div><div class="car-frais-block" data-max-ts="1784552124" data-statut="In stock 🚗">
           <div class="car-frais-header">
-            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/7-k168xQrPCKkfwdsCAyBQ/QfU36QhaLaY36GhIbyEqiDotE96ZLCiGhLysQ-ZrADShhWdanYvUvocEtgfaF_RpJc4omM89ewciJjPjKac8CBx23o9blxFf9O2be_J0_AtxMYJoiSYLXoijqMhLblcD4v2gGdj6LgO_qRzTi7X5RA/lHqE68w6W-cbh04d58uVU8_GFdO13OYlXFKoPMG9QW4" alt="">
+            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/K5CvLby8FEWNzJBNkLRvQg/nNbHcTK-3fTy_Mq2aUHDjsahn48TwT0k-j6yfIPy2lR6L_1nGIVbcz2hv0NhVDIVK4FOf_LJvNau2qYLTKQ9EXEFwFJ8kya7ngkiyAlxaqqSAUdT9vFuXb2LukLhN-xIJmogBv82hDyMt1DxXm8Heg/I3DxUGMtXRNuiEGSriDMlJxD9AGEW67lxZP3VxC27ko" alt="">
             <span class="car-frais-name"><span class="car-frais-name-text">🚗 BMW M3 E36 GT - DT-399-AL</span></span>
             <span class="car-frais-total">600.00 €</span>
             <a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reczef1XQc7Lijfyu?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a>
@@ -702,7 +702,7 @@
             </div></div>
         </div><div class="car-frais-block" data-max-ts="1783680993" data-statut="In stock 🚗">
           <div class="car-frais-header">
-            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/_r6fOUHE0xS4bZfAETLX7g/CnBnuVx3dWGztKdD7XxgLef8oDStcikweHI9xAvrbl-GnrR78u9z8OGqMQD_5JOBPEvp1vPgJ6Qq3P-4JmgJVVeWYbYJ5Wx3EV7hgqBziMy99EPnAXus7VkK5XFecBiH8XBfw_mGGBKYJwGKNAnPUUgHPdNKRF3Q0SdOgNvFRP0/UPFpc4sXB94B2VuHokkIjztbRXn9MZQG5uW0cz9Uous" alt="">
+            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/loPWuahkSBLLKcjtq-aI-A/lQQ6oiifAa-N8-tZzCbYYGegPWd1xpQ3hnfZkM3ZSEsP2qQ2ZgTUZVwUiCPNf8gRJm1DKcKh-Isa3_246PTXpAmbhd-vDWIilIBkWDtL7AKtnEaWvy1DdbkOW29DHac3MWFlGwX2T4wv5n-tTn43sXPe6tZ37wgwOz94O9-X44Q/pw-dksTcOVLPkopsprLw85Z6PafKPdT6iFlnC1knkBA" alt="">
             <span class="car-frais-name"><span class="car-frais-name-text">🚗 BMW Z1</span></span>
             <span class="car-frais-total">360.00 €</span>
             <a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec700JJxZnNaP78E?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a>
@@ -714,7 +714,7 @@
             </div></div>
         </div><div class="car-frais-block" data-max-ts="1782988331" data-statut="In stock 🚗">
           <div class="car-frais-header">
-            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/-D74bdvb8gQO2t7h4PcpbQ/vQO5yJ585WJ2WXQXtYOzzZxeuI08lj5JmWLSKEW0g-ihZrPY6aDn3ge1B2LfFAPU-yNV6AqXf01ius35xSZBAqGqla2VTYVsKHpAHiDu3SR7uWzaCRCgvTN6Xhp6woyZgLun1q_0IcKngLPAVODMuQ/egHVhENdGiv43_WLC_lW6ydZgxVW2LGyWPseTbc7FQU" alt="">
+            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/9xfYQYb1kh6HdkGml6H4Zg/DTyMjo1pjCTjRFdvCVp3yxsLXCqtWGG_j5A2dvyOLcaPPs7SLBen1DztXmHEgnTkt3F-JV8gjIddkyQUi_SMD0JLKI7isMvcKe1If9UAMCJuqEhuKjheGWuXe9KdZJxvCW32DMAm4xGI-5UlmW0zXQ/VYuRSFiCHB1GeQXkfX6m5g_R80pD-jn1BPu2mxan0ow" alt="">
             <span class="car-frais-name"><span class="car-frais-name-text">🚗 Ferrari Testarossa *Monodado / Verde Scuro Metalizzato* -FL-492-RZ</span></span>
             <span class="car-frais-total">1 440.00 €</span>
             <a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recYRmwVxapJesJRa?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a>
@@ -726,7 +726,7 @@
             </div></div>
         </div><div class="car-frais-block" data-max-ts="1784284739" data-statut="Acompte 👍">
           <div class="car-frais-header">
-            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/CdiE1v0HzW4f-vAgbMN2Bg/yYtptaffMDauIRHcZ0evc802OcnTEP4tY7r2DZz57mgH7ML9Eofp-2ynz7Tg9IUgTqtNplgZh6--9uf-CIDy9O9F9_TKgFHnYy6R9JrWF-lkB1V4U1dmnSNihFgTorHOlxYykR0vUAHC_dpHXPamH0ekWQ0HAsGtPscg02Bt2pI/EbeZ58F0mjxBDI1coWjL1S5x4QqrDXNigs7F3Riy3H0" alt="">
+            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/2DLs6A0DQLeXv2LjWZYFhw/38tcED28pPSTLmZxsexRrIwJCvnpPXlAL6E5t4Iedj2uD5aQ8XA52YdkFWBfTCUD2yrrj8df-fDGaISfA6Iiim8H5fqkmYSPZZJdieSWRIHNAAOUJzCRA5YfoE98SgY22lIrTj4ejJIw5CpEIHC6mQn3Yvz_TR0r4dhBOb-kJDw/5zN6zaSiEda4uUxkzhdF1QhQX-BEpIY4QFEVDlp-bgM" alt="">
             <span class="car-frais-name"><span class="car-frais-name-text">🚗 Porsche 911 930 Turbo Cabriolet G50 *Restauration complète - Française * - ET-949-BF</span></span>
             <span class="car-frais-total">—</span>
             <a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec2Pzgwku3gkPD9d?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a>
@@ -742,7 +742,7 @@
             </div></div>
         </div><div class="car-frais-block" data-max-ts="1784887809" data-statut="In stock 🚗">
           <div class="car-frais-header">
-            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/TyewuYti7p8JptJYTEoKgw/6s6AdQWycBft6wT16DLaMOBGT-5p3eBcgXfOup37L6OY1vgu0n9qPTBnHuoAi8HgUIuHioXLbtos5HUp671Yw2ZE_SuDkHzHTFS2uv9r4aAsRBQ2I4-S_nGwFv2UcOCPHvJItlvpTN3mv0uKs5LgeA/Ax5ZGj9cifGrP2JyMNWiDUaQ-j6R17Ml_3L-29IF2wQ" alt="">
+            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/ZQ9CDLRuPsQyenkHWzMYWQ/n-UaSOnTEeWULVbhWDFiwDVAr7izCsXQPNrXqeNZDFc3WAXLogDT6C5jPOx2uMzfZ-BRfuUTVqGxdwNkgaMKMmMI7iAtfGcgowu2kQXakJV3A3d1VbrWy-3N5dDLpF4lF3LQIhN4-5agyo8T_wvERA/rPSPZYzfwkozrMmcllC7v2-Gvk00Zgp4KGrXgWbKNV8" alt="">
             <span class="car-frais-name"><span class="car-frais-name-text">🚗 Porsche 911 964 Cabriolet - noire / verte </span></span>
             <span class="car-frais-total">—</span>
             <a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reccvPDxdkfXysLiB?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a>
@@ -754,7 +754,7 @@
             </div></div>
         </div><div class="car-frais-block" data-max-ts="1784814372" data-statut="In stock 🚗">
           <div class="car-frais-header">
-            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/S9R-ukfiO5_ILh_8Sr7WzA/FQPIa4kLkPMBTRWlcYvMotFO3UIKmeiA-zAmJWBPN3QNNyIeMsYo80Yg59NFz58vxwbywd6MAJaJIWlRsZHKkhH_UgqzN22eR_Wx0-cDbBHi1bi7oGur-lOOcxrN4YXWiS6npm81m0wcC93znZPBAfNkk4GG2UwY4KxmDW2O7gA/fqIy_l3bpFT-5DSUPQ3hY8U55jSGJ3c5esKxKhH78LI" alt="">
+            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/TEEwdNiV-8D8QshoMz8xhg/Nmq1SDgBuALT_VrMZx4Jt08Qw0uqde4jJiMRr-7ex516OJGCeWrEIwrs0GanF1ld2j7UKos7xFSD4iQD9a32uU9ga9pkkjeRa2UjTECKUgKg0OYWBZqqSRCSPJjfp2aZtRCQlZfnQWop0N-kvYEHuu4vGuMjreVHxy9RBkchXss/ZgfNIS2GoRUyyK9hda5Qh5HT-i3qq0lX11OWVvYh2nE" alt="">
             <span class="car-frais-name"><span class="car-frais-name-text">🚗 Porsche 911 991 Carrera S Cirrus - CE-658-YZ</span></span>
             <span class="car-frais-total">1 020.00 €</span>
             <a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recoqgrEmNQ88hWD4?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a>
@@ -776,9 +776,25 @@
               <span class="frais-objet">Jantes </span>
               <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/recDcrNssiofD6mOX" target="_blank">480.00 €</a></span>
             </div></div>
+        </div><div class="car-frais-block" data-max-ts="1785338034" data-statut="In stock 🚗">
+          <div class="car-frais-header">
+            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/waGOHa-Y2ijSRex2YT6Czg/_LpMnLtnW14LWbUw3ite-h9Q-TITAGJGXx71fnMc3cP8dtnB4RnjR1AvC83LyyLfi_BiZoAanTb3q5WW3wswwQIgf1hsvYu-LGZkgAPlTp0BJtVUfvAqQTskzq-TfI1f7j7hg3X8lXu4nO2lxD4cqA/tK3eCyxmWJ9hKepqwNhM9Wlxs02rEhcCQiHEm8ot4JM" alt="">
+            <span class="car-frais-name"><span class="car-frais-name-text">🚗 Porsche 911 991.1 Carrera GTS Cabriolet Gris Argent GT - ES-470-VC</span></span>
+            <span class="car-frais-total">2 400.00 €</span>
+            <a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recp4hSZi8ZOFcWzS?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a>
+          </div>
+          <div class="frais-list"><div class="frais-row" data-ts="1785252643" data-section="frais">
+              <span class="frais-date">28/07/2026</span>
+              <span class="frais-objet">Commission apporteur d'affaire</span>
+              <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/recvCJvnY7nziOYId" target="_blank">2 400.00 €</a></span>
+            </div><div class="frais-row" data-ts="1785338034" data-section="frais">
+              <span class="frais-date">29/07/2026</span>
+              <span class="frais-objet">Entretien Porsche</span>
+              <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/rec34tUoSS94tdbyI" target="_blank">—</a></span>
+            </div></div>
         </div><div class="car-frais-block" data-max-ts="1782810554" data-statut="Acompte 👍">
           <div class="car-frais-header">
-            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/wBRdaz8uzXl2NKpgshdViw/f_IPkuRpK4DgAjeWPGrav3xF2tWPp1P5NSaDk6lha5m5vQ4Z61JmuGC7zm-t_Iq5JisaC8h5HK63s623azYix9WbgPnKb4kSItXSTeWdniLXv_qyBih3jQhZJ5gdDk1uR2dYDOK5ZAbZWJscL84FsdHcgSzCowV8GKf_E23ycGY/PWiJX8nP9UAltZXpQCnig0WPTWXYUI9dw4SPuyB2HNg" alt="">
+            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/HvEanUWFUPcUO2YpVlXJCg/ui0y3ME8vPx3_MnqqegOj__9tiACrPYK75fpDLctMPfSwvfmJcFLo7gKyB45J0iiaZj9iH-0z6ra-M0_JFRwbnwT5hQXYYmdlG33CviYeSo69AqynoGa534xJWETN7gWxDyMBcPWJWa8yt5RfmacPukU7gQBI2hNTCkICalRpUg/FNP0_slWnhJG37DgWc4FMFhtfyJG3CkoFGdABiIdJyw" alt="">
             <span class="car-frais-name"><span class="car-frais-name-text">🚗 Porsche 911 991.2 Turbo S - EP-296-ZP</span></span>
             <span class="car-frais-total">6 840.00 €</span>
             <a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recLgpM0VDe2wzxEV?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a>
@@ -798,7 +814,7 @@
             </div></div>
         </div><div class="car-frais-block" data-max-ts="1784887968" data-statut="In stock 🚗">
           <div class="car-frais-header">
-            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/_4DdgXfQQQZXTBRFuw2X4Q/BRRht0xp-nLG15Hee4oaIDMWyc7N9zbXuoDwI3Ivsmqg5sTwbwCPGesQxsOEyyDiaRgblmvNTco8AU3mxaseJ-dQFfcyi9N4_GvatPyI_OfHSdZhX5p8cjfHR1Ob3qxlZC_EDrHwuyNQtUHQgkz3jA/Uugp4fejKo97yTqGdJhK8MuHQsfNWfjMLgsJa2KSCAI" alt="">
+            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/iHj8argSylzAsWRskl3EiA/iQnKzOv6r4XlnPoeJVKSN_FihpR76YBKLOfz7Ax8DbvmyTRoifaNxzyvL3dlIJZ79fjqHcoMaZaRP5At8mQeEc0spaOHbxtvgOHBxlFd87nR1YOKgcGTs-mVUoOhDJDhM6kQP1VIx-CNLTYrDaDjrA/L6jb6egm6pM-QocxH0WlHIhThVwkh4o68seYn132qUQ" alt="">
             <span class="car-frais-name"><span class="car-frais-name-text">🚗 Porsche 911 996 GT2 - CV-364-AE </span></span>
             <span class="car-frais-total">—</span>
             <a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recd6cWckm32GjMLd?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a>
@@ -810,7 +826,7 @@
             </div></div>
         </div><div class="car-frais-block" data-max-ts="1784299663" data-statut="Acompte 👍">
           <div class="car-frais-header">
-            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/ni9-52Ta5QWDa5AteUSG0w/nD05bSpPwwdgo_jyB0VCmSArH_lhLIXDlWovAfIrgccCAfWJzRPId6Rfc0kSa4I8qKViA5x7Zr61UMlj4sAL6-8a2XoH1DFlwZXf3BivnMg7qpV0hPqcsB3O49jkmiKvSIwjX-KvUapRCeL_LxMOkhBELkhj_3cJhWD8Z60HUd8/DnW8mH4KTIlNh70rxQxtk4bZKPM0MMOtGjCz3Ggm8ck" alt="">
+            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/F97tx8JgIw3tdCJ_cLvXPA/WcacM3-dI-jKo_Y5qtu0EhCTn7GWLmwxvyWt_9-CXDM-YyWkBhVCwO5f2T6so37NZh9-vJW708VTUlZC0d0kzKEa-E7WbWjX5onKoxYfuQ1UY_TU41sP2IbrV6sLXweMWKHMhwilqNs6j3heZ_i6SdCpQ6aGO5aXD3cStW722xA/gftJTLwQtxOn5V9K-S5jJW6kj1Jg7yQXQGhxcUJVz7k" alt="">
             <span class="car-frais-name"><span class="car-frais-name-text">🚗 Porsche 911 997.1 Turbo BVM Macadamia FX-245-FT</span></span>
             <span class="car-frais-total">2 160.00 €</span>
             <a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reczFWGEzgvb2HXXO?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a>
@@ -826,7 +842,7 @@
             </div></div>
         </div><div class="car-frais-block" data-max-ts="1782813965" data-statut="In stock 🚗">
           <div class="car-frais-header">
-            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/7RcnL6Cwuwbt6GyT6_OcvA/0zaQ6SkZvfK6rV1lEnXVU9Lq1ICZlpu4u9k5JxIiaSs6TQqFsfZaGrPQHBUK-1wrAedVK_N0qlgmMKkwhi3lr2JH0yx_x7mWihng2NXS1peqmQePwDzOXhxj9lNEv6buN2vnNjF_v8Fe097ixQxMog/3DI9-6J3hFpP2WxPtCluQu0z0HGJdaS3wMOvrplWMBg" alt="">
+            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/j76SAgMnrUH5_sB5TuBx2w/jO49ljFiYA6UrVdO32jQ14amkLLDavdndz-r4nAysLsELGaGjc3u1zjIC1r9HOGJdeteTHaGz6CupaF2Z5N2xxxDVvDAizgUAcrJaih5F9vCUo-FSqNngAVqaaYhSvJoaPX6LqQLaaC-1K5yQtsG5g/zfKvbawxmoU9cBsm_IRVa-d96l1xmzS4pmZ-3Kf8UOc" alt="">
             <span class="car-frais-name"><span class="car-frais-name-text">🚗 Porsche 911 997.2 Carrera S Cabriolet - BC-061-YN</span></span>
             <span class="car-frais-total">600.00 €</span>
             <a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recbhTrSbwbNuMTLw?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a>
@@ -838,7 +854,7 @@
             </div></div>
         </div><div class="car-frais-block" data-max-ts="1784736658" data-statut="Acompte 👍">
           <div class="car-frais-header">
-            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/IpWl3RUA9KdyEDT6df3_pg/mPuCNfRXgax5ug-iHosc0JwjLTl_8AokJ8KAS4F247rnPI9xP63wUkFShLarZUdff1dbEr-u8AAusOMJ5LBQYP_toNNQx-FVjQd7NFK5gGe2o5QSUhsdJrjAkTjpm6iZ-XMfuxqC2kR2MI8cK50yIEUrRJbnZ_Bie6bSo2N8r6s/2fgbOlv2lvpq7GdbQbBp2wK1-6eUpyKtMRf1RSdAUPY" alt="">
+            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/cu1DI52AhXGYIuTTMLXICA/DCWlIZDvai4XZjc7n1KC_7loG4HWmf4YxwcOB-iDbkCqg_SMrSQHrxExrqtQBgGFkxc_BpNFLPe1WvQFARM9JXeHCmKBDPBbXubWHGnj3hEWiqLg6D-b3HMoWDV44hNFgeCantvJW8PSHAuInJ_Wckc8QIuzsCltz4ddQ_T2o64/c-bKa7RtfQ555FLJJXgXiGndj8Wdp8SXPS0_kDTdt0w" alt="">
             <span class="car-frais-name"><span class="car-frais-name-text">🚗 Porsche 964 Turbo 3.6 - FS-046-DY</span></span>
             <span class="car-frais-total">—</span>
             <a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recuGtJv8Y9XhioAH?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a>
@@ -858,7 +874,7 @@
             </div></div>
         </div><div class="car-frais-block" data-max-ts="1783500091" data-statut="In stock 🚗">
           <div class="car-frais-header">
-            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/_hUC2OcQQgzVwcFxqTPKAg/UVbf196KOKnRUEaaefH_iZjLK4-oNIYjs1yifTcnNfl-4b5GTefbJyg5v6AvzFZfrcCxpkFNJpHqRcMls5jr0k3Kdxm3baaHjsmigm8BQ3U10ANywSMYXmxzw1ZLpsBuL7TEnPaXu6y5f9TS53SfFnC5MZtkxEQ3oGhyXraigas/RZ3j4_qQZZAcAeCpa5hD9TrBszph87uYjAcaPka2gMI" alt="">
+            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/GfMBX5r4bASf-PW5-MdTbA/1Qxma39qRNY6TI1ptcHoR2QAW5cZtb_qBAow26VGLFMcXrTGuFY10TLEtfwPqeIvH2KLJW-zAgXRlf7ZFSbWNfvkrYka34KLwB3aLDJbNkwzAtnihrKWTjtnIXJ6v9PS0CXk5pO7Wc1UMAhUzKsBAhz1A1Ln9n2aozbBLBJKzg8/-H9LNLMtackyMC6ZIM75g8nbxZ891_KFr8uMpH1-5ww" alt="">
             <span class="car-frais-name"><span class="car-frais-name-text">🚗 Porsche 991.2 Turbo S Cabriolet *Options Exclusive - Burmester - Lift*</span></span>
             <span class="car-frais-total">960.00 €</span>
             <a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recjGlmrLdKKIBn19?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a>
@@ -870,7 +886,7 @@
             </div></div>
         </div><div class="car-frais-block" data-max-ts="1784887829" data-statut="In stock 🚗">
           <div class="car-frais-header">
-            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/AXu0L63snXxFnskYYyVkSg/DlakjGwmcjStFI4VkOfeYFqjuyO30ijX3j5HV3e5D0bm_LZRk57apR0-exK39RrxPAlz8HI4JY7T_ZQQ4hpMk7-kXtsYEbuEV3TLOyVz-CsT3huzk5EVf4MF0_6zlUYksaWCTxy3PEG0UWSQCslgSVV2C-i6OVvITI8dKVwDlnE/36HB8NszZTRH8szos0zPsN7zQmXq9t0XuZxbbf4ZJLo" alt="">
+            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/2l48mfppsrUFCtVnWdRDPg/uNkj-z1vagult5B1oEryg0uSkjhg1pgBvkGt8n56kkimTNOSMkRSi1jkxMwyqJX2bxUqgHRscxKSRVQlWF5b-3WSLDQ12ULTDBdl10ddjyzdM6-cfJmSYvW9Rh0dpJk0pjYqyU-6SXZxqIU48KElr9qV_izQ_b_Cr-DBkfgmj7o/f5oSGKGZc6PBM0G0sg-o78xXGC5BnR6VSDfOe3y3fHM" alt="">
             <span class="car-frais-name"><span class="car-frais-name-text">🚗 Porsche 993 Targa - BY-208-VG #2</span></span>
             <span class="car-frais-total">—</span>
             <a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recAcgqaZ55bcX0CY?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a>
@@ -1626,8 +1642,8 @@
           <input type="text" class="section-search" id="search-reservees" placeholder="Rechercher une voiture…" oninput="filterBySearch('reservees', this.value)" autocomplete="off">
           <button class="search-clear-btn" onclick="clearSearch('reservees')">✕</button>
         </div>
-        <div class="reservations-grid"><div class="reservation-card" data-ts="1008" data-voiture="ALFA ROMEO GT 1600 Junior" data-fck="" data-bc="BC0001008" data-prix="50 000 €" data-marge="10 000 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reciEm3m8JJZaEfeG?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reciEm3m8JJZaEfeG?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/a0_9Tx6I-SR4UlssMN_LjA/RTY18TNxqp1IKHJ7m5ys6KeuYqBJGuEZ37iggz5laMpo_uAKQg0Mqs3VV2E7FV-oEe7E8wVALtmX32jyROH561tZfO_d8BxlJoJvd1djHXpeYIrQyUa3umQDRcwGZdT6A_PHyZDoCMTRmjD_HQRqeb1g5_LAZwDfXacG-vLpjH8/9OHNYyTpZG4FYYRw_eqpJK__o73lrHBa3SzjpkGvEI0" data-commerciaux='["Victor"]' data-ct="Manquant ❌" data-ct-cls="ct-manquant-badge" onclick="openResModal(this)">
-          <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/a0_9Tx6I-SR4UlssMN_LjA/RTY18TNxqp1IKHJ7m5ys6KeuYqBJGuEZ37iggz5laMpo_uAKQg0Mqs3VV2E7FV-oEe7E8wVALtmX32jyROH561tZfO_d8BxlJoJvd1djHXpeYIrQyUa3umQDRcwGZdT6A_PHyZDoCMTRmjD_HQRqeb1g5_LAZwDfXacG-vLpjH8/9OHNYyTpZG4FYYRw_eqpJK__o73lrHBa3SzjpkGvEI0" alt="">
+        <div class="reservations-grid"><div class="reservation-card" data-ts="1008" data-voiture="ALFA ROMEO GT 1600 Junior" data-fck="" data-bc="BC0001008" data-prix="50 000 €" data-marge="10 000 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reciEm3m8JJZaEfeG?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reciEm3m8JJZaEfeG?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/hZJRoQqIWDMUBcKyK7UtLw/g7Ths30yuG5bfYqvlIXlbRT7AOzfARhk6CEqwjB5A_efgtUzN6H5PzFa_xc-bmXtSdirzdSzEcx7cACDQKM1K_SUNfbB-hJ7S-cHbvIsUfEM0IvQ4MBmz0D-CcrrjbjIgfvM9ugcVMl0e7K8lZnA4IQVOIKBIjAZcdrdYGpjHWU/_b1hppW8dRdLXCgf21gDzsVYac37nGimQOV7jKEczXs" data-commerciaux='["Victor"]' data-ct="Manquant ❌" data-ct-cls="ct-manquant-badge" onclick="openResModal(this)">
+          <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/hZJRoQqIWDMUBcKyK7UtLw/g7Ths30yuG5bfYqvlIXlbRT7AOzfARhk6CEqwjB5A_efgtUzN6H5PzFa_xc-bmXtSdirzdSzEcx7cACDQKM1K_SUNfbB-hJ7S-cHbvIsUfEM0IvQ4MBmz0D-CcrrjbjIgfvM9ugcVMl0e7K8lZnA4IQVOIKBIjAZcdrdYGpjHWU/_b1hppW8dRdLXCgf21gDzsVYac37nGimQOV7jKEczXs" alt="">
           <div class="res-info">
             <div class="res-header">
               <div class="res-header-top">
@@ -1645,8 +1661,8 @@
               <span class="commercial-badge">Victor</span>
             </div>
           </div>
-        </div><div class="reservation-card" data-ts="1019" data-voiture="Aston Martin V12 Vantage -  EB-222-BW Bacquets carbone" data-fck="" data-bc="BC0001019" data-prix="127 500 €" data-marge="11 144 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recKoGAH8LbJvShsw?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recKoGAH8LbJvShsw?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/HJpSqh8V8t51pGm24m_vUA/8fPEIhlVgM88Cdj168NmoN_mIPrCG_cWCXkQyQJw5c_dlnhTmE9yG-qAR8FSyS9Z6wcS181hz-ZUIfwTdtdN6P20MY1iP-hop6OLMfNeV1JiHmOwvxm6SEb_3bKW2cr6P3de45EzAxxCs5ZRA2FwFldAATy6cfc0Is_3NtCk4Bg/Au1cf6s-vY_0o-ZQu6WL4fM0_goKvxu4iFADbLdwSSM" data-commerciaux='["Victor"]' data-ct="OK ✅" data-ct-cls="ct-ok-badge" onclick="openResModal(this)">
-          <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/HJpSqh8V8t51pGm24m_vUA/8fPEIhlVgM88Cdj168NmoN_mIPrCG_cWCXkQyQJw5c_dlnhTmE9yG-qAR8FSyS9Z6wcS181hz-ZUIfwTdtdN6P20MY1iP-hop6OLMfNeV1JiHmOwvxm6SEb_3bKW2cr6P3de45EzAxxCs5ZRA2FwFldAATy6cfc0Is_3NtCk4Bg/Au1cf6s-vY_0o-ZQu6WL4fM0_goKvxu4iFADbLdwSSM" alt="">
+        </div><div class="reservation-card" data-ts="1019" data-voiture="Aston Martin V12 Vantage -  EB-222-BW Bacquets carbone" data-fck="" data-bc="BC0001019" data-prix="127 500 €" data-marge="11 144 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recKoGAH8LbJvShsw?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recKoGAH8LbJvShsw?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/w5xdR5X1FWTNtPCdQ4DTHA/Re2Q9h-4Q0mmUyD5B28flZ4VXsQXJJ6j0w_dTAXQ3UVRaPqurYRniLspw0tsAHdXATtTJWJRwPvvspg0wdPXUinRvqKnZVv15PvXUKdGIARdmiupz0KBX717uwAEwY7FSUQVkGkC_lZMx_ktVeL2Y1taw0T4C4nx3omRJ6Zf0e0/1vSO9M2VcxOgmDPSwNMC9m4yw4nU2hHxCYpG3SRg18E" data-commerciaux='["Victor"]' data-ct="OK ✅" data-ct-cls="ct-ok-badge" onclick="openResModal(this)">
+          <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/w5xdR5X1FWTNtPCdQ4DTHA/Re2Q9h-4Q0mmUyD5B28flZ4VXsQXJJ6j0w_dTAXQ3UVRaPqurYRniLspw0tsAHdXATtTJWJRwPvvspg0wdPXUinRvqKnZVv15PvXUKdGIARdmiupz0KBX717uwAEwY7FSUQVkGkC_lZMx_ktVeL2Y1taw0T4C4nx3omRJ6Zf0e0/1vSO9M2VcxOgmDPSwNMC9m4yw4nU2hHxCYpG3SRg18E" alt="">
           <div class="res-info">
             <div class="res-header">
               <div class="res-header-top">
@@ -1664,8 +1680,8 @@
               <span class="commercial-badge">Victor</span>
             </div>
           </div>
-        </div><div class="reservation-card" data-ts="937" data-voiture="Ferrari 412i BVM Bleu / Tan EP-033-XT " data-fck="" data-bc="BC000937" data-prix="87 900 €" data-marge="9 550 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec98CfYjnlwnc6st?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec98CfYjnlwnc6st?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/G_NjtoSysu7urnU1DtGtJQ/jc8f_5ZyIylxFc9X-Xf0KA56zRXIENzTl1HiE3BldzrmkCs3rUIQ8ZxYPqvfFVFwWygKspMPtsdBPl7k19GHEcEHz27XMZJfMhFWg15CahqroNbpNbaTBKFQMwEXjYbceY7Ltrhr2fbQxW86mDgHyV8kBIudDzwXcxBNonN1MBo/1oH70z3faMeuZPAxq-dLhJ1DvhyMby6CSnSS_L_UQfA" data-commerciaux='["Victor", "Theodore"]' data-ct="OK ✅" data-ct-cls="ct-ok-badge" onclick="openResModal(this)">
-          <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/G_NjtoSysu7urnU1DtGtJQ/jc8f_5ZyIylxFc9X-Xf0KA56zRXIENzTl1HiE3BldzrmkCs3rUIQ8ZxYPqvfFVFwWygKspMPtsdBPl7k19GHEcEHz27XMZJfMhFWg15CahqroNbpNbaTBKFQMwEXjYbceY7Ltrhr2fbQxW86mDgHyV8kBIudDzwXcxBNonN1MBo/1oH70z3faMeuZPAxq-dLhJ1DvhyMby6CSnSS_L_UQfA" alt="">
+        </div><div class="reservation-card" data-ts="937" data-voiture="Ferrari 412i BVM Bleu / Tan EP-033-XT " data-fck="" data-bc="BC000937" data-prix="87 900 €" data-marge="9 550 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec98CfYjnlwnc6st?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec98CfYjnlwnc6st?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/Hn06-YneAcARE-R_PBG-AA/5h7uNPHsHF84bs4A2DViDlhVcXsKfTOpaeUDK1XxsEz6IOwcgp37O8-X7EXGd903vlBw6rwgUK_HQZz3BIrx6i3cha-05fAR4nqorjbS2KgOFqsXhVqIZuASo8kZkOyxc5cMtdQc5TDn8hxeUY6o3yk6ffDZelJAiEV7tVmaSQk/n0DTlUgyrMEuQSY7XWRpXg5lnqxq7vUVx6xM58DgFWA" data-commerciaux='["Victor", "Theodore"]' data-ct="OK ✅" data-ct-cls="ct-ok-badge" onclick="openResModal(this)">
+          <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/Hn06-YneAcARE-R_PBG-AA/5h7uNPHsHF84bs4A2DViDlhVcXsKfTOpaeUDK1XxsEz6IOwcgp37O8-X7EXGd903vlBw6rwgUK_HQZz3BIrx6i3cha-05fAR4nqorjbS2KgOFqsXhVqIZuASo8kZkOyxc5cMtdQc5TDn8hxeUY6o3yk6ffDZelJAiEV7tVmaSQk/n0DTlUgyrMEuQSY7XWRpXg5lnqxq7vUVx6xM58DgFWA" alt="">
           <div class="res-info">
             <div class="res-header">
               <div class="res-header-top">
@@ -1683,8 +1699,8 @@
               <span class="commercial-badge">Victor</span><span class="commercial-badge">Theodore</span>
             </div>
           </div>
-        </div><div class="reservation-card" data-ts="1002" data-voiture="Ferrari F360  Spider Noir/Tan  - FX-044-GM #2" data-fck="" data-bc="BC0001002" data-prix="70 000 €" data-marge="-50 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recCTR7SQvmwKzk5I?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recCTR7SQvmwKzk5I?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/8idkOMDC6o7e6NXqN6isZg/Cr52x_3nUxh0ox4LuH0xvlHV02rVxMQc9mu0Lo4ZAh0kJ0ndk9RE6rQXeWkj9K2M0ycXJFEcSZ3qGhA1FzWN_-ngjSbsHvo1dLoRPW3YxTlHCFT_fDiFheDyKoBJKuuDn5aKqdcpiktsIC-XwimNgggsovZqlP9-5gZ9YRc-olsVvKN3GYAj0gZ3FNXSpgKkHOQG2pkZKSl3gpabIwO3ww/ZDrjd7qoXrmb_eM3kjCYWoyjjWUnJrEqK99HEEcozh0" data-commerciaux='["Victor", "Theodore"]' data-ct="OK ✅" data-ct-cls="ct-ok-badge" onclick="openResModal(this)">
-          <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/8idkOMDC6o7e6NXqN6isZg/Cr52x_3nUxh0ox4LuH0xvlHV02rVxMQc9mu0Lo4ZAh0kJ0ndk9RE6rQXeWkj9K2M0ycXJFEcSZ3qGhA1FzWN_-ngjSbsHvo1dLoRPW3YxTlHCFT_fDiFheDyKoBJKuuDn5aKqdcpiktsIC-XwimNgggsovZqlP9-5gZ9YRc-olsVvKN3GYAj0gZ3FNXSpgKkHOQG2pkZKSl3gpabIwO3ww/ZDrjd7qoXrmb_eM3kjCYWoyjjWUnJrEqK99HEEcozh0" alt="">
+        </div><div class="reservation-card" data-ts="1002" data-voiture="Ferrari F360  Spider Noir/Tan  - FX-044-GM #2" data-fck="" data-bc="BC0001002" data-prix="70 000 €" data-marge="-50 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recCTR7SQvmwKzk5I?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recCTR7SQvmwKzk5I?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/akxxKGQeGxAyCWF8IAl7tg/DMWwgNjSlmsOUH9UlwuwGQsRhFAF5n5MMVLTs5XxtdQzp3J8b60zPsM_imx-rysWRpODmwYDHHt1xEGCXN6KIPIL3uWPasCKj4_TZWMlC5IWvVcMjrm8wE6GLNTSeWQ3ApzcLnWsehi2m98RVNoI4BjIN19AxwUdIo3XcdC3SXTElXB6SYY_F4HltlWzjvvQ4Gc0g1EbR4LiV-5M7-jrxA/6BLCQJU0mE4df_4PTsYtC5jZ5v8Vn47r5xGTdJKtAMo" data-commerciaux='["Victor", "Theodore"]' data-ct="OK ✅" data-ct-cls="ct-ok-badge" onclick="openResModal(this)">
+          <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/akxxKGQeGxAyCWF8IAl7tg/DMWwgNjSlmsOUH9UlwuwGQsRhFAF5n5MMVLTs5XxtdQzp3J8b60zPsM_imx-rysWRpODmwYDHHt1xEGCXN6KIPIL3uWPasCKj4_TZWMlC5IWvVcMjrm8wE6GLNTSeWQ3ApzcLnWsehi2m98RVNoI4BjIN19AxwUdIo3XcdC3SXTElXB6SYY_F4HltlWzjvvQ4Gc0g1EbR4LiV-5M7-jrxA/6BLCQJU0mE4df_4PTsYtC5jZ5v8Vn47r5xGTdJKtAMo" alt="">
           <div class="res-info">
             <div class="res-header">
               <div class="res-header-top">
@@ -1702,8 +1718,8 @@
               <span class="commercial-badge">Victor</span><span class="commercial-badge">Theodore</span>
             </div>
           </div>
-        </div><div class="reservation-card" data-ts="0" data-voiture="Porsche 911 930 Turbo Cabriolet G50 *Restauration complète - Française * - ET-949-BF" data-fck="" data-bc="" data-prix="219 900 €" data-marge="37 702 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec2Pzgwku3gkPD9d?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec2Pzgwku3gkPD9d?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/CdiE1v0HzW4f-vAgbMN2Bg/yYtptaffMDauIRHcZ0evc802OcnTEP4tY7r2DZz57mgH7ML9Eofp-2ynz7Tg9IUgTqtNplgZh6--9uf-CIDy9O9F9_TKgFHnYy6R9JrWF-lkB1V4U1dmnSNihFgTorHOlxYykR0vUAHC_dpHXPamH0ekWQ0HAsGtPscg02Bt2pI/EbeZ58F0mjxBDI1coWjL1S5x4QqrDXNigs7F3Riy3H0" data-commerciaux='["Pierre"]' data-ct="Expiré ⛔️" data-ct-cls="ct-expire-badge" onclick="openResModal(this)">
-          <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/CdiE1v0HzW4f-vAgbMN2Bg/yYtptaffMDauIRHcZ0evc802OcnTEP4tY7r2DZz57mgH7ML9Eofp-2ynz7Tg9IUgTqtNplgZh6--9uf-CIDy9O9F9_TKgFHnYy6R9JrWF-lkB1V4U1dmnSNihFgTorHOlxYykR0vUAHC_dpHXPamH0ekWQ0HAsGtPscg02Bt2pI/EbeZ58F0mjxBDI1coWjL1S5x4QqrDXNigs7F3Riy3H0" alt="">
+        </div><div class="reservation-card" data-ts="0" data-voiture="Porsche 911 930 Turbo Cabriolet G50 *Restauration complète - Française * - ET-949-BF" data-fck="" data-bc="" data-prix="219 900 €" data-marge="37 702 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec2Pzgwku3gkPD9d?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec2Pzgwku3gkPD9d?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/2DLs6A0DQLeXv2LjWZYFhw/38tcED28pPSTLmZxsexRrIwJCvnpPXlAL6E5t4Iedj2uD5aQ8XA52YdkFWBfTCUD2yrrj8df-fDGaISfA6Iiim8H5fqkmYSPZZJdieSWRIHNAAOUJzCRA5YfoE98SgY22lIrTj4ejJIw5CpEIHC6mQn3Yvz_TR0r4dhBOb-kJDw/5zN6zaSiEda4uUxkzhdF1QhQX-BEpIY4QFEVDlp-bgM" data-commerciaux='["Pierre"]' data-ct="Expiré ⛔️" data-ct-cls="ct-expire-badge" onclick="openResModal(this)">
+          <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/2DLs6A0DQLeXv2LjWZYFhw/38tcED28pPSTLmZxsexRrIwJCvnpPXlAL6E5t4Iedj2uD5aQ8XA52YdkFWBfTCUD2yrrj8df-fDGaISfA6Iiim8H5fqkmYSPZZJdieSWRIHNAAOUJzCRA5YfoE98SgY22lIrTj4ejJIw5CpEIHC6mQn3Yvz_TR0r4dhBOb-kJDw/5zN6zaSiEda4uUxkzhdF1QhQX-BEpIY4QFEVDlp-bgM" alt="">
           <div class="res-info">
             <div class="res-header">
               <div class="res-header-top">
@@ -1721,8 +1737,8 @@
               <span class="commercial-badge">Pierre</span>
             </div>
           </div>
-        </div><div class="reservation-card" data-ts="1026" data-voiture="Porsche 911 991.2 Turbo S - EP-296-ZP" data-fck="" data-bc="BC0001026" data-prix="144 900 €" data-marge="10 900 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recLgpM0VDe2wzxEV?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recLgpM0VDe2wzxEV?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/wBRdaz8uzXl2NKpgshdViw/f_IPkuRpK4DgAjeWPGrav3xF2tWPp1P5NSaDk6lha5m5vQ4Z61JmuGC7zm-t_Iq5JisaC8h5HK63s623azYix9WbgPnKb4kSItXSTeWdniLXv_qyBih3jQhZJ5gdDk1uR2dYDOK5ZAbZWJscL84FsdHcgSzCowV8GKf_E23ycGY/PWiJX8nP9UAltZXpQCnig0WPTWXYUI9dw4SPuyB2HNg" data-commerciaux='["Pierre"]' data-ct="Manquant ❌" data-ct-cls="ct-manquant-badge" onclick="openResModal(this)">
-          <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/wBRdaz8uzXl2NKpgshdViw/f_IPkuRpK4DgAjeWPGrav3xF2tWPp1P5NSaDk6lha5m5vQ4Z61JmuGC7zm-t_Iq5JisaC8h5HK63s623azYix9WbgPnKb4kSItXSTeWdniLXv_qyBih3jQhZJ5gdDk1uR2dYDOK5ZAbZWJscL84FsdHcgSzCowV8GKf_E23ycGY/PWiJX8nP9UAltZXpQCnig0WPTWXYUI9dw4SPuyB2HNg" alt="">
+        </div><div class="reservation-card" data-ts="1026" data-voiture="Porsche 911 991.2 Turbo S - EP-296-ZP" data-fck="" data-bc="BC0001026" data-prix="144 900 €" data-marge="10 900 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recLgpM0VDe2wzxEV?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recLgpM0VDe2wzxEV?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/HvEanUWFUPcUO2YpVlXJCg/ui0y3ME8vPx3_MnqqegOj__9tiACrPYK75fpDLctMPfSwvfmJcFLo7gKyB45J0iiaZj9iH-0z6ra-M0_JFRwbnwT5hQXYYmdlG33CviYeSo69AqynoGa534xJWETN7gWxDyMBcPWJWa8yt5RfmacPukU7gQBI2hNTCkICalRpUg/FNP0_slWnhJG37DgWc4FMFhtfyJG3CkoFGdABiIdJyw" data-commerciaux='["Pierre"]' data-ct="Manquant ❌" data-ct-cls="ct-manquant-badge" onclick="openResModal(this)">
+          <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/HvEanUWFUPcUO2YpVlXJCg/ui0y3ME8vPx3_MnqqegOj__9tiACrPYK75fpDLctMPfSwvfmJcFLo7gKyB45J0iiaZj9iH-0z6ra-M0_JFRwbnwT5hQXYYmdlG33CviYeSo69AqynoGa534xJWETN7gWxDyMBcPWJWa8yt5RfmacPukU7gQBI2hNTCkICalRpUg/FNP0_slWnhJG37DgWc4FMFhtfyJG3CkoFGdABiIdJyw" alt="">
           <div class="res-info">
             <div class="res-header">
               <div class="res-header-top">
@@ -1740,8 +1756,8 @@
               <span class="commercial-badge">Pierre</span>
             </div>
           </div>
-        </div><div class="reservation-card" data-ts="1014" data-voiture="Porsche 911 997.1 Turbo BVM Macadamia FX-245-FT" data-fck="" data-bc="BC0001014" data-prix="102 500 €" data-marge="13 700 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reczFWGEzgvb2HXXO?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reczFWGEzgvb2HXXO?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/ni9-52Ta5QWDa5AteUSG0w/nD05bSpPwwdgo_jyB0VCmSArH_lhLIXDlWovAfIrgccCAfWJzRPId6Rfc0kSa4I8qKViA5x7Zr61UMlj4sAL6-8a2XoH1DFlwZXf3BivnMg7qpV0hPqcsB3O49jkmiKvSIwjX-KvUapRCeL_LxMOkhBELkhj_3cJhWD8Z60HUd8/DnW8mH4KTIlNh70rxQxtk4bZKPM0MMOtGjCz3Ggm8ck" data-commerciaux='["Victor"]' data-ct="Expiré ⛔️" data-ct-cls="ct-expire-badge" onclick="openResModal(this)">
-          <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/ni9-52Ta5QWDa5AteUSG0w/nD05bSpPwwdgo_jyB0VCmSArH_lhLIXDlWovAfIrgccCAfWJzRPId6Rfc0kSa4I8qKViA5x7Zr61UMlj4sAL6-8a2XoH1DFlwZXf3BivnMg7qpV0hPqcsB3O49jkmiKvSIwjX-KvUapRCeL_LxMOkhBELkhj_3cJhWD8Z60HUd8/DnW8mH4KTIlNh70rxQxtk4bZKPM0MMOtGjCz3Ggm8ck" alt="">
+        </div><div class="reservation-card" data-ts="1014" data-voiture="Porsche 911 997.1 Turbo BVM Macadamia FX-245-FT" data-fck="" data-bc="BC0001014" data-prix="102 500 €" data-marge="13 700 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reczFWGEzgvb2HXXO?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reczFWGEzgvb2HXXO?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/F97tx8JgIw3tdCJ_cLvXPA/WcacM3-dI-jKo_Y5qtu0EhCTn7GWLmwxvyWt_9-CXDM-YyWkBhVCwO5f2T6so37NZh9-vJW708VTUlZC0d0kzKEa-E7WbWjX5onKoxYfuQ1UY_TU41sP2IbrV6sLXweMWKHMhwilqNs6j3heZ_i6SdCpQ6aGO5aXD3cStW722xA/gftJTLwQtxOn5V9K-S5jJW6kj1Jg7yQXQGhxcUJVz7k" data-commerciaux='["Victor"]' data-ct="Expiré ⛔️" data-ct-cls="ct-expire-badge" onclick="openResModal(this)">
+          <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/F97tx8JgIw3tdCJ_cLvXPA/WcacM3-dI-jKo_Y5qtu0EhCTn7GWLmwxvyWt_9-CXDM-YyWkBhVCwO5f2T6so37NZh9-vJW708VTUlZC0d0kzKEa-E7WbWjX5onKoxYfuQ1UY_TU41sP2IbrV6sLXweMWKHMhwilqNs6j3heZ_i6SdCpQ6aGO5aXD3cStW722xA/gftJTLwQtxOn5V9K-S5jJW6kj1Jg7yQXQGhxcUJVz7k" alt="">
           <div class="res-info">
             <div class="res-header">
               <div class="res-header-top">
@@ -1759,8 +1775,8 @@
               <span class="commercial-badge">Victor</span>
             </div>
           </div>
-        </div><div class="reservation-card" data-ts="780" data-voiture="Porsche 964 Turbo 3.3 * Moteur refait - Peinture neuve - Parfait état *" data-fck="" data-bc="BC000780" data-prix="192 900 €" data-marge="14 950 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reccGH1r0pkqBh3E1?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reccGH1r0pkqBh3E1?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/AwzNYZ1_AHEQbvquSvIpEQ/XxjLFeKUk-Tq2iQllvq7c0HKaQWdJhGoFYDzphwhug8jepxGc-gQkIwermo88sJySWwbWe8LbFhsbb_HncohEoVK6H4K_pvowuxeGNywV_YMwJckKSbFK24fi1bcxkiPh52Ou7caboAyTv6FHwEkYx_juoVwhXGDCeVc_OP6gfQ/HNMDMpLvp1j2HmBabZiAz1Cb1i0Td-m0XrxvwNUqvWU" data-commerciaux='["Pierre"]' data-ct="Expiré ⛔️" data-ct-cls="ct-expire-badge" onclick="openResModal(this)">
-          <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/AwzNYZ1_AHEQbvquSvIpEQ/XxjLFeKUk-Tq2iQllvq7c0HKaQWdJhGoFYDzphwhug8jepxGc-gQkIwermo88sJySWwbWe8LbFhsbb_HncohEoVK6H4K_pvowuxeGNywV_YMwJckKSbFK24fi1bcxkiPh52Ou7caboAyTv6FHwEkYx_juoVwhXGDCeVc_OP6gfQ/HNMDMpLvp1j2HmBabZiAz1Cb1i0Td-m0XrxvwNUqvWU" alt="">
+        </div><div class="reservation-card" data-ts="780" data-voiture="Porsche 964 Turbo 3.3 * Moteur refait - Peinture neuve - Parfait état *" data-fck="" data-bc="BC000780" data-prix="192 900 €" data-marge="14 950 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reccGH1r0pkqBh3E1?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reccGH1r0pkqBh3E1?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/GOEhHC7abCDaoLBn9L0ozA/mBKae3bspf6vP9qeKXN47KcpsZlKHWHzhyKT4eQmLWMR7wUvVViN9O-Y65lPRoZEba-eZE3a-r8dmC4FYoB11JHyftGN7x5JJkFUk-AhhI5QdsRjt34R0QHwEWCAITmmF6YfPaMMjDKXNYAqZjizxyvDOIDtpz7DZUoTWF292pk/tdibeG9arV20k145cCit9Ic4_dL8my8w-U_xwBGH0es" data-commerciaux='["Pierre"]' data-ct="Expiré ⛔️" data-ct-cls="ct-expire-badge" onclick="openResModal(this)">
+          <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/GOEhHC7abCDaoLBn9L0ozA/mBKae3bspf6vP9qeKXN47KcpsZlKHWHzhyKT4eQmLWMR7wUvVViN9O-Y65lPRoZEba-eZE3a-r8dmC4FYoB11JHyftGN7x5JJkFUk-AhhI5QdsRjt34R0QHwEWCAITmmF6YfPaMMjDKXNYAqZjizxyvDOIDtpz7DZUoTWF292pk/tdibeG9arV20k145cCit9Ic4_dL8my8w-U_xwBGH0es" alt="">
           <div class="res-info">
             <div class="res-header">
               <div class="res-header-top">
@@ -1778,8 +1794,8 @@
               <span class="commercial-badge">Pierre</span>
             </div>
           </div>
-        </div><div class="reservation-card" data-ts="1025" data-voiture="Porsche 964 Turbo 3.6 - FS-046-DY" data-fck="" data-bc="BC0001025" data-prix="303 500 €" data-marge="-17 678 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recuGtJv8Y9XhioAH?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recuGtJv8Y9XhioAH?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/IpWl3RUA9KdyEDT6df3_pg/mPuCNfRXgax5ug-iHosc0JwjLTl_8AokJ8KAS4F247rnPI9xP63wUkFShLarZUdff1dbEr-u8AAusOMJ5LBQYP_toNNQx-FVjQd7NFK5gGe2o5QSUhsdJrjAkTjpm6iZ-XMfuxqC2kR2MI8cK50yIEUrRJbnZ_Bie6bSo2N8r6s/2fgbOlv2lvpq7GdbQbBp2wK1-6eUpyKtMRf1RSdAUPY" data-commerciaux='["Victor"]' data-ct="Manquant ❌" data-ct-cls="ct-manquant-badge" onclick="openResModal(this)">
-          <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/55/55/1785348000000/IpWl3RUA9KdyEDT6df3_pg/mPuCNfRXgax5ug-iHosc0JwjLTl_8AokJ8KAS4F247rnPI9xP63wUkFShLarZUdff1dbEr-u8AAusOMJ5LBQYP_toNNQx-FVjQd7NFK5gGe2o5QSUhsdJrjAkTjpm6iZ-XMfuxqC2kR2MI8cK50yIEUrRJbnZ_Bie6bSo2N8r6s/2fgbOlv2lvpq7GdbQbBp2wK1-6eUpyKtMRf1RSdAUPY" alt="">
+        </div><div class="reservation-card" data-ts="1025" data-voiture="Porsche 964 Turbo 3.6 - FS-046-DY" data-fck="" data-bc="BC0001025" data-prix="303 500 €" data-marge="-17 678 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recuGtJv8Y9XhioAH?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recuGtJv8Y9XhioAH?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/cu1DI52AhXGYIuTTMLXICA/DCWlIZDvai4XZjc7n1KC_7loG4HWmf4YxwcOB-iDbkCqg_SMrSQHrxExrqtQBgGFkxc_BpNFLPe1WvQFARM9JXeHCmKBDPBbXubWHGnj3hEWiqLg6D-b3HMoWDV44hNFgeCantvJW8PSHAuInJ_Wckc8QIuzsCltz4ddQ_T2o64/c-bKa7RtfQ555FLJJXgXiGndj8Wdp8SXPS0_kDTdt0w" data-commerciaux='["Victor"]' data-ct="Manquant ❌" data-ct-cls="ct-manquant-badge" onclick="openResModal(this)">
+          <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/55/55/1785355200000/cu1DI52AhXGYIuTTMLXICA/DCWlIZDvai4XZjc7n1KC_7loG4HWmf4YxwcOB-iDbkCqg_SMrSQHrxExrqtQBgGFkxc_BpNFLPe1WvQFARM9JXeHCmKBDPBbXubWHGnj3hEWiqLg6D-b3HMoWDV44hNFgeCantvJW8PSHAuInJ_Wckc8QIuzsCltz4ddQ_T2o64/c-bKa7RtfQ555FLJJXgXiGndj8Wdp8SXPS0_kDTdt0w" alt="">
           <div class="res-info">
             <div class="res-header">
               <div class="res-header-top">
@@ -2420,7 +2436,7 @@
   </section>
 
   <footer class="footer">
-    Généré le Mercredi 29 juillet 2026 à 14:36 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
+    Généré le Mercredi 29 juillet 2026 à 16:13 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
   </footer>
 </div>
 <div id="res-modal" class="res-modal-overlay" onclick="closeResModal(event)">
