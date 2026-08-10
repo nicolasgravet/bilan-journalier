@@ -539,7 +539,7 @@
         updateClock();
         setInterval(updateClock, 1000);
         // Timestamp de génération converti en heure locale
-        var gen = new Date(1786378426 * 1000);
+        var gen = new Date(1786382082 * 1000);
         var genH = String(gen.getHours()).padStart(2,'0');
         var genM = String(gen.getMinutes()).padStart(2,'0');
         var genLabel = 'Mis à jour le ' + JOURS[gen.getDay()] + ' ' + gen.getDate() + ' ' + MOIS[gen.getMonth()] + ' ' + gen.getFullYear() + ' à ' + genH + ':' + genM;
@@ -549,7 +549,7 @@
         btn.disabled = true;
         btn.textContent = '⏳ En cours…';
         document.getElementById('refresh-status').textContent = 'Génération en cours…';
-        var currentTs = 1786378426;
+        var currentTs = 1786382082;
         fetch('https://mecanicus-refresh.nicolas-0ce.workers.dev', {method:'POST'})
         .then(r => {
           if (r.ok) {
@@ -590,7 +590,7 @@
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2FAEE0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
       </div>
       <div class="kpi-body">
-        <div class="kpi-value">15</div>
+        <div class="kpi-value">14</div>
         <div class="kpi-label">Voitures réservées</div>
       </div>
       <span class="kpi-arrow">→</span>
@@ -790,7 +790,7 @@
             </div></div>
         </div><div class="car-frais-block" data-max-ts="1786008695" data-statut="In stock 🚗">
           <div class="car-frais-header">
-            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/56/56/1786392000000/iRLUbet0JYalesx5f9N6oQ/PzKokSHg63RoCAytOazbNI9DtHhRTfJGfox7SEGrVtEl4Yclyst-fylHMVTPbKjUh-78as_tua9-ynVaH-RmxVoIB57O5pr6NdO6zraShN_dvBbzFUsq4zlL3pbtq5SdeM2-4ixdgfP_0sk3onldntDGAh8LjJiE0ZrcAEYcqgA/cpfUhTq1phBUVNz1LJWwFF7WMXIZSlap3j6rsp5vc04" alt="">
+            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/56/56/1786392000000/-CO0gIfXEU2p7yFSpRVXrw/PpfnZuWzzs6CSj_LKRuCfkMBzpupz-s-ZnDsF7-VE2RMB9iF9xSsO-MjpRumpfuwDrf4kRA4A-_iyzRIA8aWwCPv3ifAz0dzSeWAvVEkE2kgqgV2NqPf5yy62uTMf4tUBZmu9IiffTSgNDsvD8_xI9qQPrLCbDcN-W7jzG4cgb4/pRsSUMc20f-3vc4XdmKJd-_vGk2n16Mc0jD4aQG8jCI" alt="">
             <span class="car-frais-name"><span class="car-frais-name-text">🚗 Porsche 911 991.1 Carrera S *Gris agate/blanc* - CW-202-AS</span></span>
             <span class="car-frais-total">159.00 €</span>
             <a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recaeqAjUGdnHGqIU?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a>
@@ -1473,9 +1473,9 @@
           <div class="ct-date">21/10/2026</div>
           <div class="ct-jours"><span class="jours-ok">72j</span></div>
           <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recUXKpTPhnFjqM9k?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="ct-row ct-ok" data-ct-type="acompte-ok" data-ct-crit="3" style="display:none">
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
           <div class="ct-car"><span class="car-name">Honda NSX 1991 - DM-511-NS</span></div>
-          <div><span class="statut-pill">Acompte 👍</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
           <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
           <div class="ct-date">16/06/2026</div>
           <div class="ct-date">16/12/2026</div>
@@ -1610,7 +1610,7 @@
       <div class="section-header collapsible-header" onclick="toggleSection('reservees')">
         <span class="section-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
         <h2>Voitures Réservées</h2>
-        <span class="count-badge">15</span>
+        <span class="count-badge">14</span>
         <div class="header-filters" onclick="event.stopPropagation()">
           <button class="sort-toggle-btn" id="sort-reservees" onclick="toggleSortReservees(this)">↓ Plus récent</button>
         </div>
@@ -1734,25 +1734,6 @@
             <div class="res-footer">
               <a class="fiche-btn" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec1L8HgqTYLTMHON?home=pagnonVqycMtn6zK4" target="_blank" onclick="event.stopPropagation()">Accéder à la fiche →</a>
               <span class="commercial-badge">Victor</span>
-            </div>
-          </div>
-        </div><div class="reservation-card" data-ts="1041" data-voiture="Honda NSX 1991 - DM-511-NS" data-fck="" data-bc="BC0001041" data-prix="99 900 €" data-marge="17 000 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recXxhTV9YcAKEW1f?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recXxhTV9YcAKEW1f?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/56/56/1786392000000/Iip3pn_9YYAhvZXZeUpKdA/dXQLrRBv5BWRqhJ0gZqJ22BhlE49h0kbyoD070adJv_dv6OIHBcIuU-wZofjnzfmir6ZJtMcicW4HkkR3Ur1V673rXSb3uVGlWSg1nFXfuCuImIv_Z38vKadNbeBWzDjzqw9dLYUhEgx2py0R01QjQ/OhtmF2j020IzGUtpEo0bW9WAEm7w2zlX3uVNjmBpmc0" data-commerciaux='["Pierre"]' data-ct="OK ✅" data-ct-cls="ct-ok-badge" onclick="openResModal(this)">
-          <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/56/56/1786392000000/Iip3pn_9YYAhvZXZeUpKdA/dXQLrRBv5BWRqhJ0gZqJ22BhlE49h0kbyoD070adJv_dv6OIHBcIuU-wZofjnzfmir6ZJtMcicW4HkkR3Ur1V673rXSb3uVGlWSg1nFXfuCuImIv_Z38vKadNbeBWzDjzqw9dLYUhEgx2py0R01QjQ/OhtmF2j020IzGUtpEo0bW9WAEm7w2zlX3uVNjmBpmc0" alt="">
-          <div class="res-info">
-            <div class="res-header">
-              <div class="res-header-top">
-                <span class="car-name">Honda NSX 1991 - DM-511-NS</span>
-                <span class="bc-badge">BC0001041</span>
-              </div>
-              <span class="ct-res-badge ct-ok-badge">OK ✅</span>
-            </div>
-            <div class="res-amounts">
-              <span class="res-prix">Prix : <strong>99 900 €</strong></span>
-              <span class="res-marge">Marge : <strong>17 000 €</strong></span>
-            </div>
-            <div class="res-footer">
-              <a class="fiche-btn" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recXxhTV9YcAKEW1f?home=pagnonVqycMtn6zK4" target="_blank" onclick="event.stopPropagation()">Accéder à la fiche →</a>
-              <span class="commercial-badge">Pierre</span>
             </div>
           </div>
         </div><div class="reservation-card" data-ts="0" data-voiture="Porsche 911 930 Turbo Cabriolet G50 *Restauration complète - Française * - ET-949-BF" data-fck="" data-bc="" data-prix="219 900 €" data-marge="37 702 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec2Pzgwku3gkPD9d?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec2Pzgwku3gkPD9d?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/56/56/1786392000000/laM0Mr3eYX8xTKmp-4-Phw/r85x_42rfTpGcF4g_k2AxA7d7GEdkVWPOq-7ZpdszIWM6UauRRawgUE_yS-6P3OnxGl6e4o8GVJfOSGOfJDbml3ZEgnO1JEHoZSgVew8uq93rzyGcA03jWH8oe8IcJfy4e8MrdQYo1c8h0bi_WIq5RfC79NpfbHIdcris7N6mm8/Z8z6Z9iitl-ey0ooyQzYonyqKBLdaM59YbjkDDQLFy0" data-commerciaux='["Pierre"]' data-ct="Expiré ⛔️" data-ct-cls="ct-expire-badge" onclick="openResModal(this)">
@@ -2530,7 +2511,7 @@
   </section>
 
   <footer class="footer">
-    Généré le Lundi 10 août 2026 à 16:13 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
+    Généré le Lundi 10 août 2026 à 17:14 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
   </footer>
 </div>
 <div id="res-modal" class="res-modal-overlay" onclick="closeResModal(event)">
@@ -2641,7 +2622,7 @@
     </form>
   </div>
 </div>
-<script>var MARGES_DATA = [{"marge": 10000.0, "ts": 1775579498}, {"marge": 11143.850000000006, "ts": 1776357099}, {"marge": 3900.0, "ts": 1781626468}, {"marge": 9600.0, "ts": 1780935421}, {"marge": 9550.0, "ts": 1771423217}, {"marge": 18000.0, "ts": 1781087991}, {"marge": 17000.0, "ts": 1785303463}, {"marge": 37702.390000000014, "ts": 1771495638}, {"marge": 4900.0, "ts": 1781704713}, {"marge": 6942.5, "ts": 1771406978}, {"marge": 10900.0, "ts": 1781793862}, {"marge": 13264.5, "ts": 1783496020}, {"marge": -17756.27000000002, "ts": 1754057751}, {"marge": 0, "ts": 1782738817}, {"marge": 7900.0, "ts": 1780934462}];</script>
+<script>var MARGES_DATA = [{"marge": 10000.0, "ts": 1775579498}, {"marge": 11143.850000000006, "ts": 1776357099}, {"marge": 3900.0, "ts": 1781626468}, {"marge": 9600.0, "ts": 1780935421}, {"marge": 9550.0, "ts": 1771423217}, {"marge": 18000.0, "ts": 1781087991}, {"marge": 37702.390000000014, "ts": 1771495638}, {"marge": 4900.0, "ts": 1781704713}, {"marge": 6942.5, "ts": 1771406978}, {"marge": 10900.0, "ts": 1781793862}, {"marge": 13264.5, "ts": 1783496020}, {"marge": -17756.27000000002, "ts": 1754057751}, {"marge": 0, "ts": 1782738817}, {"marge": 7900.0, "ts": 1780934462}];</script>
 <script>var PREST_API_URL = "https://api.airtable.com/v0/appBQnpnbCXZkHnzS/tbl9Ut5t4NUA9hkoJ"; var PREST_TOKEN = "patGeRjMMwScA9naE.e8dc47dbca8bf709c420a7dda84ac086496335648f4163d21976fc0b8f6c8636";</script>
 <script>
 // ── Collapse sections ────────────────────────────────────────────────
