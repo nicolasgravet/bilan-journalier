@@ -539,7 +539,7 @@
         updateClock();
         setInterval(updateClock, 1000);
         // Timestamp de génération converti en heure locale
-        var gen = new Date(1786716362 * 1000);
+        var gen = new Date(1786720296 * 1000);
         var genH = String(gen.getHours()).padStart(2,'0');
         var genM = String(gen.getMinutes()).padStart(2,'0');
         var genLabel = 'Mis à jour le ' + JOURS[gen.getDay()] + ' ' + gen.getDate() + ' ' + MOIS[gen.getMonth()] + ' ' + gen.getFullYear() + ' à ' + genH + ':' + genM;
@@ -549,7 +549,7 @@
         btn.disabled = true;
         btn.textContent = '⏳ En cours…';
         document.getElementById('refresh-status').textContent = 'Génération en cours…';
-        var currentTs = 1786716362;
+        var currentTs = 1786720296;
         fetch('https://mecanicus-refresh.nicolas-0ce.workers.dev', {method:'POST'})
         .then(r => {
           if (r.ok) {
@@ -600,7 +600,7 @@
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
       </div>
       <div class="kpi-body">
-        <div class="kpi-value">53</div>
+        <div class="kpi-value">52</div>
         <div class="kpi-label">Alertes CT — Global</div>
       </div>
       <span class="kpi-arrow">→</span>
@@ -610,7 +610,7 @@
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
       </div>
       <div class="kpi-body">
-        <div class="kpi-value">7</div>
+        <div class="kpi-value">6</div>
         <div class="kpi-label">Alertes CT — Réservées</div>
       </div>
       <span class="kpi-arrow">→</span>
@@ -634,7 +634,7 @@
       <div class="section-header collapsible-header" onclick="toggleSection('frais')">
         <span class="section-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
         <h2>Logistique — Frais</h2>
-        <span class="count-badge" id="frais-count">24</span>
+        <span class="count-badge" id="frais-count">23</span>
         <div class="header-filters" onclick="event.stopPropagation()">
           <div class="filter-bar" data-target="frais">
             <button class="filter-btn active" data-days="0">Tout (30j)</button>
@@ -668,11 +668,11 @@
               <span class="frais-objet">Fuite pompe à essence + Fumée à l'échappement</span>
               <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/rec5AVSLG0x9yQmjq" target="_blank">—</a></span>
             </div></div>
-        </div><div class="car-frais-block" data-max-ts="1785426758" data-statut="In stock 🚗">
+        </div><div class="car-frais-block" data-max-ts="1784300973" data-statut="In stock 🚗">
           <div class="car-frais-header">
             <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/56/56/1786730400000/nh-cP_EZg9hoiUSq_bZxNQ/uRAFLWHq8xYh0DXLQU-PP_8R9E8D203n9Q9rYsY46M3FDo7bcFAo6xVRNW1XIbNFat_PJ_xuqanXYAStJ4HcKG9V-0oYprKPmy2awhqnJ6Op8hCtMsQ98yCaEvL9cS7vF2Fhyp8C8vbqJ7ESVwvRoB8RSgrLsYkhGvFqbaDxZbY/PuPxXb7KwJxz-8Cos2bn1DG41m3VgLQM8wErf4dastk" alt="">
             <span class="car-frais-name"><span class="car-frais-name-text">🚗 Alpine A110 S Bleu de France Pack Aero</span></span>
-            <span class="car-frais-total">3 000.00 €</span>
+            <span class="car-frais-total">2 400.00 €</span>
             <a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec9J5RzlQYEzrFls?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a>
           </div>
           <div class="frais-list"><div class="frais-row" data-ts="1784300792" data-section="frais">
@@ -683,10 +683,6 @@
               <span class="frais-date">17/07/2026</span>
               <span class="frais-objet">—</span>
               <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/recSbPlJ0yy6rv313" target="_blank">—</a></span>
-            </div><div class="frais-row" data-ts="1785426758" data-section="frais">
-              <span class="frais-date">30/07/2026</span>
-              <span class="frais-objet">Entretien</span>
-              <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/recdH1CDOa6k2oYwr" target="_blank">600.00 €</a></span>
             </div></div>
         </div><div class="car-frais-block" data-max-ts="1786007582" data-statut="In stock 🚗">
           <div class="car-frais-header">
@@ -845,7 +841,7 @@
       <div class="section-header collapsible-header" onclick="toggleSection('ct')">
         <span class="section-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
         <h2>Contrôle Technique</h2>
-        <span class="count-badge" id="ct-count">53</span>
+        <span class="count-badge" id="ct-count">52</span>
         <div class="header-filters" onclick="event.stopPropagation()">
           <div class="filter-bar ct-filter">
             <button class="filter-btn active" data-ct="tous">Tous</button>
@@ -1201,14 +1197,6 @@
           <div class="ct-date">—</div>
           <div class="ct-jours"><span class="jours-manquant">—</span></div>
           <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rece8kCR6sqitjR1u?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="ct-row ct-manquant" data-ct-type="acompte" data-ct-crit="1">
-          <div class="ct-car"><span class="car-name">Macan Turbo - GB-793-CB</span></div>
-          <div><span class="statut-pill">Acompte 👍</span></div>
-          <div><span class="ct-status-badge ct-manquant-badge">Manquant ❌</span></div>
-          <div class="ct-date">—</div>
-          <div class="ct-date">—</div>
-          <div class="ct-jours"><span class="jours-manquant">—</span></div>
-          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recetu3QlzhpeyvDh?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
         </div><div class="ct-row ct-manquant" data-ct-type="other" data-ct-crit="1">
           <div class="ct-car"><span class="car-name">Porsche 991 carrera T - EX-165-XJ</span></div>
           <div><span class="statut-pill">In stock 🚗</span></div>
@@ -1481,6 +1469,14 @@
           <div class="ct-date">—</div>
           <div class="ct-jours"><span class="jours-manquant">—</span></div>
           <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recedIMHEHjGML34k?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="acompte-ok" data-ct-crit="3" style="display:none">
+          <div class="ct-car"><span class="car-name">Macan Turbo - GB-793-CB</span></div>
+          <div><span class="statut-pill">Acompte 👍</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
+          <div class="ct-date">14/08/2026</div>
+          <div class="ct-date">14/02/2027</div>
+          <div class="ct-jours"><span class="jours-ok">184j</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recetu3QlzhpeyvDh?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
         </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
           <div class="ct-car"><span class="car-name">Porsche 991.1 Carrera 4S - DB-234-SB</span></div>
           <div><span class="statut-pill">In stock 🚗</span></div>
@@ -1747,7 +1743,7 @@
               <span class="commercial-badge">Victor</span>
             </div>
           </div>
-        </div><div class="reservation-card" data-ts="1044" data-voiture="Macan Turbo - GB-793-CB" data-fck="" data-bc="BC0001044" data-prix="41 500 €" data-marge="4 000 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recetu3QlzhpeyvDh?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recetu3QlzhpeyvDh?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/56/56/1786730400000/c4vUUMgHeWK3uIaFIbSKzg/UVmKQ0m9oF5jObNjw-SWNsnl7obhcazvYUZQZnV3yDXBp0b8WXljjfzH-7JBgu9OKOE2JTIJukw4UOR8ANm4_4kvolnm8KmsPS78NjYv3F0pAyTfqSDAibp_O5SsdibRNdmJfZvsvQiH4K7ut77WVo03SwX7MDf6_woi8gbOLgA/sQN2q6LztE8WjyuBQriCDg1P-FGulMlWdZhFrex0MWQ" data-commerciaux='["Victor"]' data-ct="Manquant ❌" data-ct-cls="ct-manquant-badge" onclick="openResModal(this)">
+        </div><div class="reservation-card" data-ts="1044" data-voiture="Macan Turbo - GB-793-CB" data-fck="" data-bc="BC0001044" data-prix="41 500 €" data-marge="3 942 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recetu3QlzhpeyvDh?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recetu3QlzhpeyvDh?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/56/56/1786730400000/c4vUUMgHeWK3uIaFIbSKzg/UVmKQ0m9oF5jObNjw-SWNsnl7obhcazvYUZQZnV3yDXBp0b8WXljjfzH-7JBgu9OKOE2JTIJukw4UOR8ANm4_4kvolnm8KmsPS78NjYv3F0pAyTfqSDAibp_O5SsdibRNdmJfZvsvQiH4K7ut77WVo03SwX7MDf6_woi8gbOLgA/sQN2q6LztE8WjyuBQriCDg1P-FGulMlWdZhFrex0MWQ" data-commerciaux='["Victor"]' data-ct="OK ✅" data-ct-cls="ct-ok-badge" onclick="openResModal(this)">
           <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/56/56/1786730400000/c4vUUMgHeWK3uIaFIbSKzg/UVmKQ0m9oF5jObNjw-SWNsnl7obhcazvYUZQZnV3yDXBp0b8WXljjfzH-7JBgu9OKOE2JTIJukw4UOR8ANm4_4kvolnm8KmsPS78NjYv3F0pAyTfqSDAibp_O5SsdibRNdmJfZvsvQiH4K7ut77WVo03SwX7MDf6_woi8gbOLgA/sQN2q6LztE8WjyuBQriCDg1P-FGulMlWdZhFrex0MWQ" alt="">
           <div class="res-info">
             <div class="res-header">
@@ -1755,11 +1751,11 @@
                 <span class="car-name">Macan Turbo - GB-793-CB</span>
                 <span class="bc-badge">BC0001044</span>
               </div>
-              <span class="ct-res-badge ct-manquant-badge">Manquant ❌</span>
+              <span class="ct-res-badge ct-ok-badge">OK ✅</span>
             </div>
             <div class="res-amounts">
               <span class="res-prix">Prix : <strong>41 500 €</strong></span>
-              <span class="res-marge">Marge : <strong>4 000 €</strong></span>
+              <span class="res-marge">Marge : <strong>3 942 €</strong></span>
             </div>
             <div class="res-footer">
               <a class="fiche-btn" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recetu3QlzhpeyvDh?home=pagnonVqycMtn6zK4" target="_blank" onclick="event.stopPropagation()">Accéder à la fiche →</a>
@@ -1918,7 +1914,7 @@
               <span class="commercial-badge">Victor</span>
             </div>
           </div>
-        </div><div class="reservation-card" data-ts="1028" data-voiture="Range Rover SDV8 - FF-397-YB" data-fck="" data-bc="BC0001028" data-prix="51 000 €" data-marge="7 942 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recWkvXGEkD9JMFoK?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recWkvXGEkD9JMFoK?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/56/56/1786730400000/D39_d9O4kT0-EhjIXogosA/-XLrUVDhRZK6__BlxFR605_CB_SAk-vVI-lMcOQEOKoeizw6vClyGwDODzRXKTqPPMqfKLSu-0USVJJyrVeAxUWFEvOOLRX39Rm-GRaFhikXlReKzPvsX8pau0K9hspoYeYUsv7D95D__UjVsn60GwDns47O48m1risSI75GogkKNayg815YFIEOtOfR1xpw/Jr7n4faXgwNRg6WSaq7gD-daaW-M1nedxnD-wR4PgfU" data-commerciaux='["Victor"]' data-ct="OK ✅" data-ct-cls="ct-ok-badge" onclick="openResModal(this)">
+        </div><div class="reservation-card" data-ts="1028" data-voiture="Range Rover SDV8 - FF-397-YB" data-fck="" data-bc="BC0001028" data-prix="51 000 €" data-marge="7 839 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recWkvXGEkD9JMFoK?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recWkvXGEkD9JMFoK?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/56/56/1786730400000/D39_d9O4kT0-EhjIXogosA/-XLrUVDhRZK6__BlxFR605_CB_SAk-vVI-lMcOQEOKoeizw6vClyGwDODzRXKTqPPMqfKLSu-0USVJJyrVeAxUWFEvOOLRX39Rm-GRaFhikXlReKzPvsX8pau0K9hspoYeYUsv7D95D__UjVsn60GwDns47O48m1risSI75GogkKNayg815YFIEOtOfR1xpw/Jr7n4faXgwNRg6WSaq7gD-daaW-M1nedxnD-wR4PgfU" data-commerciaux='["Victor"]' data-ct="OK ✅" data-ct-cls="ct-ok-badge" onclick="openResModal(this)">
           <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/56/56/1786730400000/D39_d9O4kT0-EhjIXogosA/-XLrUVDhRZK6__BlxFR605_CB_SAk-vVI-lMcOQEOKoeizw6vClyGwDODzRXKTqPPMqfKLSu-0USVJJyrVeAxUWFEvOOLRX39Rm-GRaFhikXlReKzPvsX8pau0K9hspoYeYUsv7D95D__UjVsn60GwDns47O48m1risSI75GogkKNayg815YFIEOtOfR1xpw/Jr7n4faXgwNRg6WSaq7gD-daaW-M1nedxnD-wR4PgfU" alt="">
           <div class="res-info">
             <div class="res-header">
@@ -1930,7 +1926,7 @@
             </div>
             <div class="res-amounts">
               <span class="res-prix">Prix : <strong>51 000 €</strong></span>
-              <span class="res-marge">Marge : <strong>7 942 €</strong></span>
+              <span class="res-marge">Marge : <strong>7 839 €</strong></span>
             </div>
             <div class="res-footer">
               <a class="fiche-btn" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recWkvXGEkD9JMFoK?home=pagnonVqycMtn6zK4" target="_blank" onclick="event.stopPropagation()">Accéder à la fiche →</a>
@@ -2606,7 +2602,7 @@
   </section>
 
   <footer class="footer">
-    Généré le Vendredi 14 août 2026 à 14:06 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
+    Généré le Vendredi 14 août 2026 à 15:11 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
   </footer>
 </div>
 <div id="res-modal" class="res-modal-overlay" onclick="closeResModal(event)">
@@ -2717,7 +2713,7 @@
     </form>
   </div>
 </div>
-<script>var MARGES_DATA = [{"marge": 10000.0, "ts": 1775579498}, {"marge": 4100.0, "ts": 1782724355}, {"marge": 11143.850000000006, "ts": 1776357099}, {"marge": 3900.0, "ts": 1781626468}, {"marge": 9600.0, "ts": 1780935421}, {"marge": 9550.0, "ts": 1771423217}, {"marge": 18000.0, "ts": 1781087991}, {"marge": 4000.0, "ts": 1759136470}, {"marge": 37702.390000000014, "ts": 1771495638}, {"marge": 4900.0, "ts": 1781704713}, {"marge": 6942.5, "ts": 1771406978}, {"marge": 10900.0, "ts": 1781793862}, {"marge": 13044.5, "ts": 1783496020}, {"marge": -17756.27000000002, "ts": 1754057751}, {"marge": 4600.0, "ts": 1766571018}, {"marge": 0, "ts": 1782738817}, {"marge": 7942.5, "ts": 1784307128}, {"marge": 7900.0, "ts": 1780934462}];</script>
+<script>var MARGES_DATA = [{"marge": 10000.0, "ts": 1775579498}, {"marge": 4100.0, "ts": 1782724355}, {"marge": 11143.850000000006, "ts": 1776357099}, {"marge": 3900.0, "ts": 1781626468}, {"marge": 9600.0, "ts": 1780935421}, {"marge": 9550.0, "ts": 1771423217}, {"marge": 18000.0, "ts": 1781087991}, {"marge": 3942.5, "ts": 1759136470}, {"marge": 37702.390000000014, "ts": 1771495638}, {"marge": 4900.0, "ts": 1781704713}, {"marge": 6942.5, "ts": 1771406978}, {"marge": 10900.0, "ts": 1781793862}, {"marge": 13044.5, "ts": 1783496020}, {"marge": -17756.27000000002, "ts": 1754057751}, {"marge": 4600.0, "ts": 1766571018}, {"marge": 0, "ts": 1782738817}, {"marge": 7839.169999999998, "ts": 1784307128}, {"marge": 7900.0, "ts": 1780934462}];</script>
 <script>var PREST_API_URL = "https://api.airtable.com/v0/appBQnpnbCXZkHnzS/tbl9Ut5t4NUA9hkoJ"; var PREST_TOKEN = "patGeRjMMwScA9naE.e8dc47dbca8bf709c420a7dda84ac086496335648f4163d21976fc0b8f6c8636";</script>
 <script>
 // ── Collapse sections ────────────────────────────────────────────────
