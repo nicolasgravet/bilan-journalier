@@ -539,7 +539,7 @@
         updateClock();
         setInterval(updateClock, 1000);
         // Timestamp de génération converti en heure locale
-        var gen = new Date(1787065048 * 1000);
+        var gen = new Date(1787066640 * 1000);
         var genH = String(gen.getHours()).padStart(2,'0');
         var genM = String(gen.getMinutes()).padStart(2,'0');
         var genLabel = 'Mis à jour le ' + JOURS[gen.getDay()] + ' ' + gen.getDate() + ' ' + MOIS[gen.getMonth()] + ' ' + gen.getFullYear() + ' à ' + genH + ':' + genM;
@@ -549,7 +549,7 @@
         btn.disabled = true;
         btn.textContent = '⏳ En cours…';
         document.getElementById('refresh-status').textContent = 'Génération en cours…';
-        var currentTs = 1787065048;
+        var currentTs = 1787066640;
         fetch('https://mecanicus-refresh.nicolas-0ce.workers.dev', {method:'POST'})
         .then(r => {
           if (r.ok) {
@@ -1730,7 +1730,7 @@
               <span class="commercial-badge">Victor</span>
             </div>
           </div>
-        </div><div class="reservation-card" data-ts="1044" data-voiture="Macan Turbo - GB-793-CB" data-fck="" data-bc="BC0001044" data-prix="41 500 €" data-marge="3 942 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recetu3QlzhpeyvDh?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recetu3QlzhpeyvDh?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/56/56/1787076000000/BaTToRZBEiBs1WAXau17_Q/T5zhmD_dZlb1xwIKRU_vfB7qkuVk5duQXs8RxJUGthRvT8H8dglpoMcLYnKk4GpF08GAr1Wo2MBc5cjrLBW9Zva0-UD5M8ilPCnjfskNtHxIJ5i0DH0tYB3pJXulT3ahmX-XunMXoBPF6TUyHMZzR_NRGqTwqU2-kb-qYGj06a0/oYDolqgOtJw21LHrKdN3eiS8bs_PjQZZqcZ6e56cGZI" data-commerciaux='["Victor"]' data-ct="OK ✅" data-ct-cls="ct-ok-badge" onclick="openResModal(this)">
+        </div><div class="reservation-card" data-ts="1044" data-voiture="Macan Turbo - GB-793-CB" data-fck="" data-bc="BC0001044" data-prix="41 500 €" data-marge="4 000 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recetu3QlzhpeyvDh?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recetu3QlzhpeyvDh?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/56/56/1787076000000/BaTToRZBEiBs1WAXau17_Q/T5zhmD_dZlb1xwIKRU_vfB7qkuVk5duQXs8RxJUGthRvT8H8dglpoMcLYnKk4GpF08GAr1Wo2MBc5cjrLBW9Zva0-UD5M8ilPCnjfskNtHxIJ5i0DH0tYB3pJXulT3ahmX-XunMXoBPF6TUyHMZzR_NRGqTwqU2-kb-qYGj06a0/oYDolqgOtJw21LHrKdN3eiS8bs_PjQZZqcZ6e56cGZI" data-commerciaux='["Victor"]' data-ct="OK ✅" data-ct-cls="ct-ok-badge" onclick="openResModal(this)">
           <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/56/56/1787076000000/BaTToRZBEiBs1WAXau17_Q/T5zhmD_dZlb1xwIKRU_vfB7qkuVk5duQXs8RxJUGthRvT8H8dglpoMcLYnKk4GpF08GAr1Wo2MBc5cjrLBW9Zva0-UD5M8ilPCnjfskNtHxIJ5i0DH0tYB3pJXulT3ahmX-XunMXoBPF6TUyHMZzR_NRGqTwqU2-kb-qYGj06a0/oYDolqgOtJw21LHrKdN3eiS8bs_PjQZZqcZ6e56cGZI" alt="">
           <div class="res-info">
             <div class="res-header">
@@ -1742,7 +1742,7 @@
             </div>
             <div class="res-amounts">
               <span class="res-prix">Prix : <strong>41 500 €</strong></span>
-              <span class="res-marge">Marge : <strong>3 942 €</strong></span>
+              <span class="res-marge">Marge : <strong>4 000 €</strong></span>
             </div>
             <div class="res-footer">
               <a class="fiche-btn" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recetu3QlzhpeyvDh?home=pagnonVqycMtn6zK4" target="_blank" onclick="event.stopPropagation()">Accéder à la fiche →</a>
@@ -2589,7 +2589,7 @@
   </section>
 
   <footer class="footer">
-    Généré le Mardi 18 août 2026 à 14:57 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
+    Généré le Mardi 18 août 2026 à 15:24 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
   </footer>
 </div>
 <div id="res-modal" class="res-modal-overlay" onclick="closeResModal(event)">
@@ -2700,7 +2700,7 @@
     </form>
   </div>
 </div>
-<script>var MARGES_DATA = [{"marge": 10000.0, "ts": 1775579498}, {"marge": 4100.0, "ts": 1782724355}, {"marge": 11143.850000000006, "ts": 1776357099}, {"marge": 4900.0, "ts": 1784203731}, {"marge": 3900.0, "ts": 1781626468}, {"marge": 9600.0, "ts": 1780935421}, {"marge": 9550.0, "ts": 1771423217}, {"marge": 18000.0, "ts": 1781087991}, {"marge": 3942.5, "ts": 1759136470}, {"marge": 37702.390000000014, "ts": 1771495638}, {"marge": 4900.0, "ts": 1781704713}, {"marge": 6942.5, "ts": 1771406978}, {"marge": 10900.0, "ts": 1781793862}, {"marge": 13044.5, "ts": 1783496020}, {"marge": -17756.27000000002, "ts": 1754057751}, {"marge": 4600.0, "ts": 1766571018}, {"marge": 0, "ts": 1782738817}, {"marge": 7839.169999999998, "ts": 1784307128}, {"marge": 7900.0, "ts": 1780934462}];</script>
+<script>var MARGES_DATA = [{"marge": 10000.0, "ts": 1775579498}, {"marge": 4100.0, "ts": 1782724355}, {"marge": 11143.850000000006, "ts": 1776357099}, {"marge": 4900.0, "ts": 1784203731}, {"marge": 3900.0, "ts": 1781626468}, {"marge": 9600.0, "ts": 1780935421}, {"marge": 9550.0, "ts": 1771423217}, {"marge": 18000.0, "ts": 1781087991}, {"marge": 4000.0, "ts": 1759136470}, {"marge": 37702.390000000014, "ts": 1771495638}, {"marge": 4900.0, "ts": 1781704713}, {"marge": 6942.5, "ts": 1771406978}, {"marge": 10900.0, "ts": 1781793862}, {"marge": 13044.5, "ts": 1783496020}, {"marge": -17756.27000000002, "ts": 1754057751}, {"marge": 4600.0, "ts": 1766571018}, {"marge": 0, "ts": 1782738817}, {"marge": 7839.169999999998, "ts": 1784307128}, {"marge": 7900.0, "ts": 1780934462}];</script>
 <script>var PREST_API_URL = "https://api.airtable.com/v0/appBQnpnbCXZkHnzS/tbl9Ut5t4NUA9hkoJ"; var PREST_TOKEN = "patGeRjMMwScA9naE.e8dc47dbca8bf709c420a7dda84ac086496335648f4163d21976fc0b8f6c8636";</script>
 <script>
 // ── Collapse sections ────────────────────────────────────────────────
