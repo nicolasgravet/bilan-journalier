@@ -539,7 +539,7 @@
         updateClock();
         setInterval(updateClock, 1000);
         // Timestamp de génération converti en heure locale
-        var gen = new Date(1787141893 * 1000);
+        var gen = new Date(1787145706 * 1000);
         var genH = String(gen.getHours()).padStart(2,'0');
         var genM = String(gen.getMinutes()).padStart(2,'0');
         var genLabel = 'Mis à jour le ' + JOURS[gen.getDay()] + ' ' + gen.getDate() + ' ' + MOIS[gen.getMonth()] + ' ' + gen.getFullYear() + ' à ' + genH + ':' + genM;
@@ -549,7 +549,7 @@
         btn.disabled = true;
         btn.textContent = '⏳ En cours…';
         document.getElementById('refresh-status').textContent = 'Génération en cours…';
-        var currentTs = 1787141893;
+        var currentTs = 1787145706;
         fetch('https://mecanicus-refresh.nicolas-0ce.workers.dev', {method:'POST'})
         .then(r => {
           if (r.ok) {
@@ -634,7 +634,7 @@
       <div class="section-header collapsible-header" onclick="toggleSection('frais')">
         <span class="section-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
         <h2>Logistique — Frais</h2>
-        <span class="count-badge" id="frais-count">18</span>
+        <span class="count-badge" id="frais-count">16</span>
         <div class="header-filters" onclick="event.stopPropagation()">
           <div class="filter-bar" data-target="frais">
             <button class="filter-btn active" data-days="0">Tout (30j)</button>
@@ -687,22 +687,6 @@
               <span class="frais-date">06/08/2026</span>
               <span class="frais-objet">Bruit accélération AR</span>
               <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/recpBOFNGf6AebA0g" target="_blank">—</a></span>
-            </div></div>
-        </div><div class="car-frais-block" data-max-ts="1784552124" data-statut="In stock 🚗">
-          <div class="car-frais-header">
-            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/56/56/1787155200000/d6BaSOiSrtv_2jIzoc_RFQ/QfIBmGRK0jt9xDMbDg4EEp-m9U7FF7Z1BV5RNTsa_NW5dO4jOsnYtSvIzSzVY2haY9TD7Yt8OTDEeZPUZVRArUv-27SlewyERVK7_sF1frC9RNx33TJ6QwnX4hf3gZsLf35Sd-UrFtCx8tuVcKQXMg/5NQbU7ltRT-xnuLg219UGwyFAZieoIY-I8H9oiSRE0E" alt="">
-            <span class="car-frais-name"><span class="car-frais-name-text">🚗 BMW M3 E36 GT - DT-399-AL</span></span>
-            <span class="car-frais-total">600.00 €</span>
-            <a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reczef1XQc7Lijfyu?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a>
-          </div>
-          <div class="frais-list"><div class="frais-row" data-ts="1784552087" data-section="frais">
-              <span class="frais-date">20/07/2026</span>
-              <span class="frais-objet">—</span>
-              <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/recbl9WVeHeJ9jzYV" target="_blank">—</a></span>
-            </div><div class="frais-row" data-ts="1784552124" data-section="frais">
-              <span class="frais-date">20/07/2026</span>
-              <span class="frais-objet">Bruit moteur à check (clinique des sportives)</span>
-              <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/recybV26q45h3oCGw" target="_blank">600.00 €</a></span>
             </div></div>
         </div><div class="car-frais-block" data-max-ts="1786531305" data-statut="In stock 🚗">
           <div class="car-frais-header">
@@ -2585,7 +2569,7 @@
   </section>
 
   <footer class="footer">
-    Généré le Mercredi 19 août 2026 à 12:18 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
+    Généré le Mercredi 19 août 2026 à 13:21 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
   </footer>
 </div>
 <div id="res-modal" class="res-modal-overlay" onclick="closeResModal(event)">
