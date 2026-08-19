@@ -539,7 +539,7 @@
         updateClock();
         setInterval(updateClock, 1000);
         // Timestamp de génération converti en heure locale
-        var gen = new Date(1787134519 * 1000);
+        var gen = new Date(1787136641 * 1000);
         var genH = String(gen.getHours()).padStart(2,'0');
         var genM = String(gen.getMinutes()).padStart(2,'0');
         var genLabel = 'Mis à jour le ' + JOURS[gen.getDay()] + ' ' + gen.getDate() + ' ' + MOIS[gen.getMonth()] + ' ' + gen.getFullYear() + ' à ' + genH + ':' + genM;
@@ -549,7 +549,7 @@
         btn.disabled = true;
         btn.textContent = '⏳ En cours…';
         document.getElementById('refresh-status').textContent = 'Génération en cours…';
-        var currentTs = 1787134519;
+        var currentTs = 1787136641;
         fetch('https://mecanicus-refresh.nicolas-0ce.workers.dev', {method:'POST'})
         .then(r => {
           if (r.ok) {
@@ -634,7 +634,7 @@
       <div class="section-header collapsible-header" onclick="toggleSection('frais')">
         <span class="section-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
         <h2>Logistique — Frais</h2>
-        <span class="count-badge" id="frais-count">19</span>
+        <span class="count-badge" id="frais-count">18</span>
         <div class="header-filters" onclick="event.stopPropagation()">
           <div class="filter-bar" data-target="frais">
             <button class="filter-btn active" data-days="0">Tout (30j)</button>
@@ -708,14 +708,10 @@
           <div class="car-frais-header">
             <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/56/56/1787148000000/T8ZMrt2frKNubRslgQaH6w/WUqlGJENe4zcL4q0BIID23NnvnGolIC-JJTCqTsN0A5vRf25A5qtavOzZhjWHWC8-8i8toT_qwvHwmugqTwFHIOmfMXSYS5uq5COk_xkOl3dxWo-FG-3lgiepfg_hY_hkx1aS1BNHA0f4s30079esg/-Q2RXcYI6UbGqlIhirmrliBDk0Dpkr5oRXtyBg47Ce4" alt="">
             <span class="car-frais-name"><span class="car-frais-name-text">🚗 Land Rover Range Rover P400E Autobiography SWB - FP-579-XW #2</span></span>
-            <span class="car-frais-total">60.00 €</span>
+            <span class="car-frais-total">—</span>
             <a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recpbdnZbcSlms5F6?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a>
           </div>
-          <div class="frais-list"><div class="frais-row" data-ts="1785770555" data-section="frais">
-              <span class="frais-date">03/08/2026</span>
-              <span class="frais-objet">Poc sur la portiere ( débosselage ) </span>
-              <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/recW8hZT4gbAOxOMT" target="_blank">60.00 €</a></span>
-            </div><div class="frais-row" data-ts="1786531305" data-section="frais">
+          <div class="frais-list"><div class="frais-row" data-ts="1786531305" data-section="frais">
               <span class="frais-date">12/08/2026</span>
               <span class="frais-objet">Entretien</span>
               <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/recR0DMeiMX2y0or0" target="_blank">—</a></span>
@@ -1480,10 +1476,10 @@
         </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
           <div class="ct-car"><span class="car-name">Land Rover Range Rover P400E Autobiography SWB - FP-579-XW #2</span></div>
           <div><span class="statut-pill">In stock 🚗</span></div>
-          <div><span class="ct-status-badge ct-ok-badge">Non renseigné ❌</span></div>
-          <div class="ct-date">—</div>
-          <div class="ct-date">—</div>
-          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
+          <div class="ct-date">14/08/2026</div>
+          <div class="ct-date">14/02/2027</div>
+          <div class="ct-jours"><span class="jours-ok">179j</span></div>
           <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recpbdnZbcSlms5F6?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
         </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
           <div class="ct-car"><span class="car-name">Porsche 911 991.2 4 GTS</span></div>
@@ -1749,7 +1745,7 @@
               <span class="commercial-badge">Victor</span>
             </div>
           </div>
-        </div><div class="reservation-card" data-ts="0" data-voiture="Porsche 911 930 Turbo Cabriolet G50 *Restauration complète - Française * - ET-949-BF" data-fck="" data-bc="" data-prix="219 900 €" data-marge="37 702 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec2Pzgwku3gkPD9d?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec2Pzgwku3gkPD9d?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/56/56/1787148000000/gItg36X0vk9f08uiDR5Hpg/SItbsTdkGBrDVOjrwfCORhAXJAMclhOo4gGjdA-2xleJENputt-Oq-d5Ewiu7ndVk0XVY5bddE9j5amnVZ9czl1PUXYgC7F5Y8Qk2MHrJllkwDxT1A7kwv0H40Mlc-Ov-O99PRWyKwcO8pNOkyFOAEYLYJLhFobKhYioq7Zr4Tw/VaSiXFuzXWN4ETqc2AZlqHPMM5mknZnuBC-nfca73mM" data-commerciaux='["Pierre"]' data-ct="Expiré ⛔️" data-ct-cls="ct-expire-badge" onclick="openResModal(this)">
+        </div><div class="reservation-card" data-ts="0" data-voiture="Porsche 911 930 Turbo Cabriolet G50 *Restauration complète - Française * - ET-949-BF" data-fck="" data-bc="" data-prix="219 900 €" data-marge="36 502 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec2Pzgwku3gkPD9d?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec2Pzgwku3gkPD9d?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/56/56/1787148000000/gItg36X0vk9f08uiDR5Hpg/SItbsTdkGBrDVOjrwfCORhAXJAMclhOo4gGjdA-2xleJENputt-Oq-d5Ewiu7ndVk0XVY5bddE9j5amnVZ9czl1PUXYgC7F5Y8Qk2MHrJllkwDxT1A7kwv0H40Mlc-Ov-O99PRWyKwcO8pNOkyFOAEYLYJLhFobKhYioq7Zr4Tw/VaSiXFuzXWN4ETqc2AZlqHPMM5mknZnuBC-nfca73mM" data-commerciaux='["Pierre"]' data-ct="Expiré ⛔️" data-ct-cls="ct-expire-badge" onclick="openResModal(this)">
           <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/56/56/1787148000000/gItg36X0vk9f08uiDR5Hpg/SItbsTdkGBrDVOjrwfCORhAXJAMclhOo4gGjdA-2xleJENputt-Oq-d5Ewiu7ndVk0XVY5bddE9j5amnVZ9czl1PUXYgC7F5Y8Qk2MHrJllkwDxT1A7kwv0H40Mlc-Ov-O99PRWyKwcO8pNOkyFOAEYLYJLhFobKhYioq7Zr4Tw/VaSiXFuzXWN4ETqc2AZlqHPMM5mknZnuBC-nfca73mM" alt="">
           <div class="res-info">
             <div class="res-header">
@@ -1761,7 +1757,7 @@
             </div>
             <div class="res-amounts">
               <span class="res-prix">Prix : <strong>219 900 €</strong></span>
-              <span class="res-marge">Marge : <strong>37 702 €</strong></span>
+              <span class="res-marge">Marge : <strong>36 502 €</strong></span>
             </div>
             <div class="res-footer">
               <a class="fiche-btn" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec2Pzgwku3gkPD9d?home=pagnonVqycMtn6zK4" target="_blank" onclick="event.stopPropagation()">Accéder à la fiche →</a>
@@ -1863,7 +1859,7 @@
               <span class="commercial-badge">Victor</span>
             </div>
           </div>
-        </div><div class="reservation-card" data-ts="1049" data-voiture="Porsche Cayenne E-Hybrid Coupé Platinum" data-fck="" data-bc="BC0001049" data-prix="74 000 €" data-marge="4 600 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec2nxKlPbirt69O5?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec2nxKlPbirt69O5?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/56/56/1787148000000/D8KKGZ12lRZRGxaXEUMS0Q/zcBj7NYiQ5JCNW77A376ONkKRk1tKvLrh790Ro_e24Tbyk9AHTKbPmiDs8vqeIAe18Ih0Vj1f1JukBIsCLzQ06CNSYeogMJlAJ85q8e7gXoPSeea4nygd-7Cx3xHsp-s-3BqkwF1EkHiG6SdmISTWB8hIBYdPRQU0Wiv7AOUqeg5ArqbCZ9cKAHX61BYmM5H/KT_ydsPyOFgvD1Avi1m_VNstbm0vRbOqUqzNySdWQeA" data-commerciaux='["Victor"]' data-ct="" data-ct-cls="" onclick="openResModal(this)">
+        </div><div class="reservation-card" data-ts="1049" data-voiture="Porsche Cayenne E-Hybrid Coupé Platinum" data-fck="" data-bc="BC0001049" data-prix="74 000 €" data-marge="4 621 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec2nxKlPbirt69O5?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec2nxKlPbirt69O5?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/56/56/1787148000000/D8KKGZ12lRZRGxaXEUMS0Q/zcBj7NYiQ5JCNW77A376ONkKRk1tKvLrh790Ro_e24Tbyk9AHTKbPmiDs8vqeIAe18Ih0Vj1f1JukBIsCLzQ06CNSYeogMJlAJ85q8e7gXoPSeea4nygd-7Cx3xHsp-s-3BqkwF1EkHiG6SdmISTWB8hIBYdPRQU0Wiv7AOUqeg5ArqbCZ9cKAHX61BYmM5H/KT_ydsPyOFgvD1Avi1m_VNstbm0vRbOqUqzNySdWQeA" data-commerciaux='["Victor"]' data-ct="" data-ct-cls="" onclick="openResModal(this)">
           <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/56/56/1787148000000/D8KKGZ12lRZRGxaXEUMS0Q/zcBj7NYiQ5JCNW77A376ONkKRk1tKvLrh790Ro_e24Tbyk9AHTKbPmiDs8vqeIAe18Ih0Vj1f1JukBIsCLzQ06CNSYeogMJlAJ85q8e7gXoPSeea4nygd-7Cx3xHsp-s-3BqkwF1EkHiG6SdmISTWB8hIBYdPRQU0Wiv7AOUqeg5ArqbCZ9cKAHX61BYmM5H/KT_ydsPyOFgvD1Avi1m_VNstbm0vRbOqUqzNySdWQeA" alt="">
           <div class="res-info">
             <div class="res-header">
@@ -1875,7 +1871,7 @@
             </div>
             <div class="res-amounts">
               <span class="res-prix">Prix : <strong>74 000 €</strong></span>
-              <span class="res-marge">Marge : <strong>4 600 €</strong></span>
+              <span class="res-marge">Marge : <strong>4 621 €</strong></span>
             </div>
             <div class="res-footer">
               <a class="fiche-btn" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec2nxKlPbirt69O5?home=pagnonVqycMtn6zK4" target="_blank" onclick="event.stopPropagation()">Accéder à la fiche →</a>
@@ -2589,7 +2585,7 @@
   </section>
 
   <footer class="footer">
-    Généré le Mercredi 19 août 2026 à 10:15 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
+    Généré le Mercredi 19 août 2026 à 10:50 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
   </footer>
 </div>
 <div id="res-modal" class="res-modal-overlay" onclick="closeResModal(event)">
@@ -2700,7 +2696,7 @@
     </form>
   </div>
 </div>
-<script>var MARGES_DATA = [{"marge": 10000.0, "ts": 1775579498}, {"marge": 4100.0, "ts": 1782724355}, {"marge": 11143.850000000006, "ts": 1776357099}, {"marge": 4900.0, "ts": 1784203731}, {"marge": 3900.0, "ts": 1781626468}, {"marge": 9600.0, "ts": 1780935421}, {"marge": 9550.0, "ts": 1771423217}, {"marge": 18000.0, "ts": 1781087991}, {"marge": 4000.0, "ts": 1759136470}, {"marge": 37702.390000000014, "ts": 1771495638}, {"marge": 4900.0, "ts": 1781704713}, {"marge": 6942.5, "ts": 1771406978}, {"marge": 10900.0, "ts": 1781793862}, {"marge": 13044.5, "ts": 1783496020}, {"marge": -17756.27000000002, "ts": 1754057751}, {"marge": 4600.0, "ts": 1766571018}, {"marge": 0, "ts": 1782738817}, {"marge": 7839.169999999998, "ts": 1784307128}, {"marge": 7900.0, "ts": 1780934462}];</script>
+<script>var MARGES_DATA = [{"marge": 10000.0, "ts": 1775579498}, {"marge": 4100.0, "ts": 1782724355}, {"marge": 11143.850000000006, "ts": 1776357099}, {"marge": 4900.0, "ts": 1784203731}, {"marge": 3900.0, "ts": 1781626468}, {"marge": 9600.0, "ts": 1780935421}, {"marge": 9550.0, "ts": 1771423217}, {"marge": 18000.0, "ts": 1781087991}, {"marge": 4000.0, "ts": 1759136470}, {"marge": 36502.390000000014, "ts": 1771495638}, {"marge": 4900.0, "ts": 1781704713}, {"marge": 6942.5, "ts": 1771406978}, {"marge": 10900.0, "ts": 1781793862}, {"marge": 13044.5, "ts": 1783496020}, {"marge": -17756.27000000002, "ts": 1754057751}, {"marge": 4621.210000000006, "ts": 1766571018}, {"marge": 0, "ts": 1782738817}, {"marge": 7839.169999999998, "ts": 1784307128}, {"marge": 7900.0, "ts": 1780934462}];</script>
 <script>var PREST_API_URL = "https://api.airtable.com/v0/appBQnpnbCXZkHnzS/tbl9Ut5t4NUA9hkoJ"; var PREST_TOKEN = "patGeRjMMwScA9naE.e8dc47dbca8bf709c420a7dda84ac086496335648f4163d21976fc0b8f6c8636";</script>
 <script>
 // ── Collapse sections ────────────────────────────────────────────────
