@@ -539,7 +539,7 @@
         updateClock();
         setInterval(updateClock, 1000);
         // Timestamp de génération converti en heure locale
-        var gen = new Date(1787310878 * 1000);
+        var gen = new Date(1787312884 * 1000);
         var genH = String(gen.getHours()).padStart(2,'0');
         var genM = String(gen.getMinutes()).padStart(2,'0');
         var genLabel = 'Mis à jour le ' + JOURS[gen.getDay()] + ' ' + gen.getDate() + ' ' + MOIS[gen.getMonth()] + ' ' + gen.getFullYear() + ' à ' + genH + ':' + genM;
@@ -549,7 +549,7 @@
         btn.disabled = true;
         btn.textContent = '⏳ En cours…';
         document.getElementById('refresh-status').textContent = 'Génération en cours…';
-        var currentTs = 1787310878;
+        var currentTs = 1787312884;
         fetch('https://mecanicus-refresh.nicolas-0ce.workers.dev', {method:'POST'})
         .then(r => {
           if (r.ok) {
@@ -1485,9 +1485,9 @@
           <div class="ct-car"><span class="car-name">Porsche 911 991.2 Targa 4S *Configuration parfaite / PPF / Parfait état* #2</span></div>
           <div><span class="statut-pill">In stock 🚗</span></div>
           <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
-          <div class="ct-date">26/05/2026</div>
-          <div class="ct-date">26/11/2026</div>
-          <div class="ct-jours"><span class="jours-ok">97j</span></div>
+          <div class="ct-date">21/08/2026</div>
+          <div class="ct-date">21/02/2027</div>
+          <div class="ct-jours"><span class="jours-ok">184j</span></div>
           <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recwGRllZ4KTCxJpH?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
         </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
           <div class="ct-car"><span class="car-name">Audi RS6 C7 Performance *Prisma SiIver - Full suivi Audi* </span></div>
@@ -2616,7 +2616,7 @@
   </section>
 
   <footer class="footer">
-    Généré le Vendredi 21 août 2026 à 11:14 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
+    Généré le Vendredi 21 août 2026 à 11:48 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
   </footer>
 </div>
 <div id="res-modal" class="res-modal-overlay" onclick="closeResModal(event)">
