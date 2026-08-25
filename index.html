@@ -539,7 +539,7 @@
         updateClock();
         setInterval(updateClock, 1000);
         // Timestamp de génération converti en heure locale
-        var gen = new Date(1787667010 * 1000);
+        var gen = new Date(1787670630 * 1000);
         var genH = String(gen.getHours()).padStart(2,'0');
         var genM = String(gen.getMinutes()).padStart(2,'0');
         var genLabel = 'Mis à jour le ' + JOURS[gen.getDay()] + ' ' + gen.getDate() + ' ' + MOIS[gen.getMonth()] + ' ' + gen.getFullYear() + ' à ' + genH + ':' + genM;
@@ -549,7 +549,7 @@
         btn.disabled = true;
         btn.textContent = '⏳ En cours…';
         document.getElementById('refresh-status').textContent = 'Génération en cours…';
-        var currentTs = 1787667010;
+        var currentTs = 1787670630;
         fetch('https://mecanicus-refresh.nicolas-0ce.workers.dev', {method:'POST'})
         .then(r => {
           if (r.ok) {
@@ -590,7 +590,7 @@
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2FAEE0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
       </div>
       <div class="kpi-body">
-        <div class="kpi-value">22</div>
+        <div class="kpi-value">20</div>
         <div class="kpi-label">Voitures réservées</div>
       </div>
       <span class="kpi-arrow">→</span>
@@ -1270,14 +1270,6 @@
           <div class="ct-jours"><span class="jours-ok">178j</span></div>
           <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recK4OV6YHMihSy8b?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
         </div><div class="ct-row ct-ok" data-ct-type="acompte-ok" data-ct-crit="3" style="display:none">
-          <div class="ct-car"><span class="car-name">Aston Martin V12 Vantage -  EB-222-BW Bacquets carbone</span></div>
-          <div><span class="statut-pill">Acompte 👍</span></div>
-          <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
-          <div class="ct-date">17/04/2026</div>
-          <div class="ct-date">17/10/2026</div>
-          <div class="ct-jours"><span class="jours-ok">53j</span></div>
-          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recKoGAH8LbJvShsw?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="ct-row ct-ok" data-ct-type="acompte-ok" data-ct-crit="3" style="display:none">
           <div class="ct-car"><span class="car-name">Porsche 911 991.2 Turbo S - EP-296-ZP</span></div>
           <div><span class="statut-pill">Acompte 👍</span></div>
           <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
@@ -1309,9 +1301,9 @@
           <div class="ct-date">—</div>
           <div class="ct-jours"><span class="jours-manquant">—</span></div>
           <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recTGfsARiUIMafDb?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
-        </div><div class="ct-row ct-ok" data-ct-type="acompte-ok" data-ct-crit="3" style="display:none">
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
           <div class="ct-car"><span class="car-name">BMW 745E Peninsula Hotel</span></div>
-          <div><span class="statut-pill">Acompte 👍</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
           <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
           <div class="ct-date">17/06/2026</div>
           <div class="ct-date">17/12/2026</div>
@@ -1510,7 +1502,7 @@
       <div class="section-header collapsible-header" onclick="toggleSection('reservees')">
         <span class="section-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
         <h2>Voitures Réservées</h2>
-        <span class="count-badge">22</span>
+        <span class="count-badge">20</span>
         <div class="header-filters" onclick="event.stopPropagation()">
           <button class="sort-toggle-btn" id="sort-reservees" onclick="toggleSortReservees(this)">↓ Plus récent</button>
         </div>
@@ -1577,44 +1569,6 @@
             <div class="res-footer">
               <a class="fiche-btn" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recwPtIxmUlWBXjxX?home=pagnonVqycMtn6zK4" target="_blank" onclick="event.stopPropagation()">Accéder à la fiche →</a>
               <span class="commercial-badge">Alexandre</span>
-            </div>
-          </div>
-        </div><div class="reservation-card" data-ts="1019" data-voiture="Aston Martin V12 Vantage -  EB-222-BW Bacquets carbone" data-fck="" data-bc="BC0001019" data-prix="127 500 €" data-marge="11 144 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recKoGAH8LbJvShsw?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recKoGAH8LbJvShsw?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/56/56/1787680800000/7W2eE0T-GoCvG8TFEsNtUA/N_8UzGigxxbzmG2NOmsCmc1pKl5W29YPBwTkt3a7oAcH74-xnGyCOc7NsZ_jN4mDnnGUz2ketWLQsiHWeb-NCd8pnnsXasO7P2aFw7c2Hl7ojPvtzX6qXZmmxyN13acrIzyJX8zwa-RSVJXFOI8dJQzpnOVaUwKHHeddbh7-Cig/tXkCgzkV_WsRRNmcrfqN6hRuB9YA8iDnp7wentaa8g8" data-commerciaux='["Victor"]' data-ct="OK ✅" data-ct-cls="ct-ok-badge" onclick="openResModal(this)">
-          <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/56/56/1787680800000/7W2eE0T-GoCvG8TFEsNtUA/N_8UzGigxxbzmG2NOmsCmc1pKl5W29YPBwTkt3a7oAcH74-xnGyCOc7NsZ_jN4mDnnGUz2ketWLQsiHWeb-NCd8pnnsXasO7P2aFw7c2Hl7ojPvtzX6qXZmmxyN13acrIzyJX8zwa-RSVJXFOI8dJQzpnOVaUwKHHeddbh7-Cig/tXkCgzkV_WsRRNmcrfqN6hRuB9YA8iDnp7wentaa8g8" alt="">
-          <div class="res-info">
-            <div class="res-header">
-              <div class="res-header-top">
-                <span class="car-name">Aston Martin V12 Vantage -  EB-222-BW Bacquets carbone</span>
-                <span class="bc-badge">BC0001019</span>
-              </div>
-              <span class="ct-res-badge ct-ok-badge">OK ✅</span>
-            </div>
-            <div class="res-amounts">
-              <span class="res-prix">Prix : <strong>127 500 €</strong></span>
-              <span class="res-marge">Marge : <strong>11 144 €</strong></span>
-            </div>
-            <div class="res-footer">
-              <a class="fiche-btn" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recKoGAH8LbJvShsw?home=pagnonVqycMtn6zK4" target="_blank" onclick="event.stopPropagation()">Accéder à la fiche →</a>
-              <span class="commercial-badge">Victor</span>
-            </div>
-          </div>
-        </div><div class="reservation-card" data-ts="0" data-voiture="BMW 745E Peninsula Hotel" data-fck="" data-bc="" data-prix="64 900 €" data-marge="4 900 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recTjH5WKzqMHudDI?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recTjH5WKzqMHudDI?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/56/56/1787680800000/21mY9u0AvK4EtDYazDLfPQ/Xozziv1HhrfPKOR_UHq327JoS4YyBE0jpmXw_jxR5xBcnSgvqwfwTdJ8gVJJ6Cl9-VqPyGDbTybuA6EE8WjVH8bQ9aCmOp3fwGOoPnfkvIXym092Tp058U9s4vCZBqbfWdo5KF2X_Jvdqt8jm67A9A/gUCvSp5QDq8bvocwcFvpwspbc1TCusG6RNXun4MkRGk" data-commerciaux='["Pierre"]' data-ct="OK ✅" data-ct-cls="ct-ok-badge" onclick="openResModal(this)">
-          <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/56/56/1787680800000/21mY9u0AvK4EtDYazDLfPQ/Xozziv1HhrfPKOR_UHq327JoS4YyBE0jpmXw_jxR5xBcnSgvqwfwTdJ8gVJJ6Cl9-VqPyGDbTybuA6EE8WjVH8bQ9aCmOp3fwGOoPnfkvIXym092Tp058U9s4vCZBqbfWdo5KF2X_Jvdqt8jm67A9A/gUCvSp5QDq8bvocwcFvpwspbc1TCusG6RNXun4MkRGk" alt="">
-          <div class="res-info">
-            <div class="res-header">
-              <div class="res-header-top">
-                <span class="car-name">BMW 745E Peninsula Hotel</span>
-                
-              </div>
-              <span class="ct-res-badge ct-ok-badge">OK ✅</span>
-            </div>
-            <div class="res-amounts">
-              <span class="res-prix">Prix : <strong>64 900 €</strong></span>
-              <span class="res-marge">Marge : <strong>4 900 €</strong></span>
-            </div>
-            <div class="res-footer">
-              <a class="fiche-btn" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recTjH5WKzqMHudDI?home=pagnonVqycMtn6zK4" target="_blank" onclick="event.stopPropagation()">Accéder à la fiche →</a>
-              <span class="commercial-badge">Pierre</span>
             </div>
           </div>
         </div><div class="reservation-card" data-ts="1039" data-voiture="BMW M2 - EH-899-WP" data-fck="" data-bc="BC0001039" data-prix="44 900 €" data-marge="3 842 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recK4OV6YHMihSy8b?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recK4OV6YHMihSy8b?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/56/56/1787680800000/weDKpR5YMWTiCTD92wpC0A/xdTYrFO8YZfNcUVRRa7klDi7ff9-EOyffw-w4jKpl8LFHJuxzo0Djk5ppuO4SWvN5qwhfQc5oy55-aG9AKAVCyUyojD9EIJqhXtnXEd6AMAtYfwKDZ9QklyBrCS8MBc7AVfcUkl5N8zgoEN85nvr_9ImbAg0r13PadWZslfuuGo/gme-a2CDzMAZ1eNhwn6Nan7idG4L_Z2EcmsxytT8XsY" data-commerciaux='["Matthieu"]' data-ct="OK ✅" data-ct-cls="ct-ok-badge" onclick="openResModal(this)">
@@ -2581,7 +2535,7 @@
   </section>
 
   <footer class="footer">
-    Généré le Mardi 25 août 2026 à 14:10 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
+    Généré le Mardi 25 août 2026 à 15:10 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
   </footer>
 </div>
 <div id="res-modal" class="res-modal-overlay" onclick="closeResModal(event)">
@@ -2692,7 +2646,7 @@
     </form>
   </div>
 </div>
-<script>var MARGES_DATA = [{"marge": 10000.0, "ts": 1775579498}, {"marge": 4100.0, "ts": 1782724355}, {"marge": 400.0, "ts": 1778886149}, {"marge": 11143.850000000006, "ts": 1776357099}, {"marge": 4900.0, "ts": 1784203731}, {"marge": 3842.5, "ts": 1781626468}, {"marge": 9600.0, "ts": 1780935421}, {"marge": 5500.0, "ts": 1786636437}, {"marge": 9550.0, "ts": 1771423217}, {"marge": 18000.0, "ts": 1781087991}, {"marge": 4000.0, "ts": 1759136470}, {"marge": 36502.390000000014, "ts": 1771495638}, {"marge": 4900.0, "ts": 1781704713}, {"marge": 6942.5, "ts": 1771406978}, {"marge": 10900.0, "ts": 1781793862}, {"marge": 13044.5, "ts": 1783496020}, {"marge": -17756.27000000002, "ts": 1754057751}, {"marge": 8881.229999999996, "ts": 1779807883}, {"marge": 4913.710000000006, "ts": 1766571018}, {"marge": 0, "ts": 1782738817}, {"marge": 7839.169999999998, "ts": 1784307128}, {"marge": 7900.0, "ts": 1780934462}];</script>
+<script>var MARGES_DATA = [{"marge": 10000.0, "ts": 1775579498}, {"marge": 4100.0, "ts": 1782724355}, {"marge": 400.0, "ts": 1778886149}, {"marge": 3842.5, "ts": 1781626468}, {"marge": 9600.0, "ts": 1780935421}, {"marge": 5500.0, "ts": 1786636437}, {"marge": 9550.0, "ts": 1771423217}, {"marge": 18000.0, "ts": 1781087991}, {"marge": 4000.0, "ts": 1759136470}, {"marge": 36502.390000000014, "ts": 1771495638}, {"marge": 4900.0, "ts": 1781704713}, {"marge": 6942.5, "ts": 1771406978}, {"marge": 10900.0, "ts": 1781793862}, {"marge": 13044.5, "ts": 1783496020}, {"marge": -17756.27000000002, "ts": 1754057751}, {"marge": 8881.229999999996, "ts": 1779807883}, {"marge": 4913.710000000006, "ts": 1766571018}, {"marge": 0, "ts": 1782738817}, {"marge": 7839.169999999998, "ts": 1784307128}, {"marge": 7900.0, "ts": 1780934462}];</script>
 <script>var PREST_API_URL = "https://api.airtable.com/v0/appBQnpnbCXZkHnzS/tbl9Ut5t4NUA9hkoJ"; var PREST_TOKEN = "patGeRjMMwScA9naE.e8dc47dbca8bf709c420a7dda84ac086496335648f4163d21976fc0b8f6c8636";</script>
 <script>
 // ── Collapse sections ────────────────────────────────────────────────
