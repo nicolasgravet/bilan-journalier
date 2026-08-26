@@ -539,7 +539,7 @@
         updateClock();
         setInterval(updateClock, 1000);
         // Timestamp de génération converti en heure locale
-        var gen = new Date(1787753467 * 1000);
+        var gen = new Date(1787759779 * 1000);
         var genH = String(gen.getHours()).padStart(2,'0');
         var genM = String(gen.getMinutes()).padStart(2,'0');
         var genLabel = 'Mis à jour le ' + JOURS[gen.getDay()] + ' ' + gen.getDate() + ' ' + MOIS[gen.getMonth()] + ' ' + gen.getFullYear() + ' à ' + genH + ':' + genM;
@@ -549,7 +549,7 @@
         btn.disabled = true;
         btn.textContent = '⏳ En cours…';
         document.getElementById('refresh-status').textContent = 'Génération en cours…';
-        var currentTs = 1787753467;
+        var currentTs = 1787759779;
         fetch('https://mecanicus-refresh.nicolas-0ce.workers.dev', {method:'POST'})
         .then(r => {
           if (r.ok) {
@@ -1583,7 +1583,7 @@
               <span class="commercial-badge">Alexandre</span>
             </div>
           </div>
-        </div><div class="reservation-card" data-ts="1039" data-voiture="BMW M2 - EH-899-WP" data-fck="" data-bc="BC0001039" data-prix="44 900 €" data-marge="3 900 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recK4OV6YHMihSy8b?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recK4OV6YHMihSy8b?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/56/56/1787767200000/VKZECfytLUgSgu1wO2-TaQ/SSvlZtRKnzQb7ZF0XFwuDbA0Dbyu-AuO86K7tpQr8MoXNW4uz1wROllCZcRFpCCdIYtkMsY6vXof4-rlInvEtrV_uu_2G3WveMePjLdGQmjEu_nwUj_OD8gM0x3iqUR5XBscq6mlQ5kmjlJ9OJF-vAUXlZlvMpw1mq_gSSo5Qkk/0yy4djqGJa9qRL8liLRxRsG8P5CEjI_0CXAMxwwGBb0" data-commerciaux='["Matthieu"]' data-ct="OK ✅" data-ct-cls="ct-ok-badge" onclick="openResModal(this)">
+        </div><div class="reservation-card" data-ts="1039" data-voiture="BMW M2 - EH-899-WP" data-fck="" data-bc="BC0001039" data-prix="44 900 €" data-marge="6 994 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recK4OV6YHMihSy8b?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recK4OV6YHMihSy8b?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/56/56/1787767200000/VKZECfytLUgSgu1wO2-TaQ/SSvlZtRKnzQb7ZF0XFwuDbA0Dbyu-AuO86K7tpQr8MoXNW4uz1wROllCZcRFpCCdIYtkMsY6vXof4-rlInvEtrV_uu_2G3WveMePjLdGQmjEu_nwUj_OD8gM0x3iqUR5XBscq6mlQ5kmjlJ9OJF-vAUXlZlvMpw1mq_gSSo5Qkk/0yy4djqGJa9qRL8liLRxRsG8P5CEjI_0CXAMxwwGBb0" data-commerciaux='["Matthieu"]' data-ct="OK ✅" data-ct-cls="ct-ok-badge" onclick="openResModal(this)">
           <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/56/56/1787767200000/VKZECfytLUgSgu1wO2-TaQ/SSvlZtRKnzQb7ZF0XFwuDbA0Dbyu-AuO86K7tpQr8MoXNW4uz1wROllCZcRFpCCdIYtkMsY6vXof4-rlInvEtrV_uu_2G3WveMePjLdGQmjEu_nwUj_OD8gM0x3iqUR5XBscq6mlQ5kmjlJ9OJF-vAUXlZlvMpw1mq_gSSo5Qkk/0yy4djqGJa9qRL8liLRxRsG8P5CEjI_0CXAMxwwGBb0" alt="">
           <div class="res-info">
             <div class="res-header">
@@ -1595,7 +1595,7 @@
             </div>
             <div class="res-amounts">
               <span class="res-prix">Prix : <strong>44 900 €</strong></span>
-              <span class="res-marge">Marge : <strong>3 900 €</strong></span>
+              <span class="res-marge">Marge : <strong>6 994 €</strong></span>
             </div>
             <div class="res-footer">
               <a class="fiche-btn" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recK4OV6YHMihSy8b?home=pagnonVqycMtn6zK4" target="_blank" onclick="event.stopPropagation()">Accéder à la fiche →</a>
@@ -1921,13 +1921,13 @@
       <button class="collapse-btn" id="collapse-livr" style="margin-left:auto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
     </div>
     <div class="section-body" id="body-livr">
-      <div class="livr-container"><div class="livr-week-sep">📅 Cette semaine</div><div class="livr-day-header"><span class="livr-day-name">Mer</span><span class="livr-day-num">26</span><span class="livr-day-month">août</span></div>
+      <div class="livr-container"><div class="livr-week-sep">📅 Cette semaine</div><div class="livr-day-header"><span class="livr-day-name">Jeu</span><span class="livr-day-num">27</span><span class="livr-day-month">août</span></div>
 <div class="livr-event">
-  <div class="livr-event-time">14h30 → 16h30</div>
+  <div class="livr-event-time">14h → 15h</div>
   <div class="livr-event-body">
-    <div class="livr-event-car">BMW M2<span class="livr-plate">EH-899-WP</span><a class="livr-airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recK4OV6YHMihSy8b?home=pagnonVqycMtn6zK4" target="_blank" rel="noopener" title="Ouvrir la fiche Airtable"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Fiche</a></div>
+    <div class="livr-event-car">SDV8</div>
     <div class="livr-event-meta">
-      <span class="livr-badge livr-badge-meca">🏢 Mecanicus</span><span class="livr-assignees">👤 Yann</span><span class="livr-client">Client : Laurendeau Alexandre</span>
+      <span class="livr-badge livr-badge-meca">🏢 Mecanicus</span>
     </div>
   </div>
 </div><div class="livr-day-header"><span class="livr-day-name">Ven</span><span class="livr-day-num">28</span><span class="livr-day-month">août</span></div>
@@ -2538,7 +2538,7 @@
   </section>
 
   <footer class="footer">
-    Généré le Mercredi 26 août 2026 à 14:11 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
+    Généré le Mercredi 26 août 2026 à 15:56 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
   </footer>
 </div>
 <div id="res-modal" class="res-modal-overlay" onclick="closeResModal(event)">
@@ -2649,7 +2649,7 @@
     </form>
   </div>
 </div>
-<script>var MARGES_DATA = [{"marge": 10000.0, "ts": 1775579498}, {"marge": 4100.0, "ts": 1782724355}, {"marge": 400.0, "ts": 1778886149}, {"marge": 3900.0, "ts": 1781626468}, {"marge": 9600.0, "ts": 1780935421}, {"marge": 5500.0, "ts": 1786636437}, {"marge": 9550.0, "ts": 1771423217}, {"marge": 16398.229999999996, "ts": 1781087991}, {"marge": 4000.0, "ts": 1759136470}, {"marge": 36502.390000000014, "ts": 1771495638}, {"marge": 4900.0, "ts": 1781704713}, {"marge": 6942.5, "ts": 1771406978}, {"marge": 17002.64, "ts": 1781793862}, {"marge": 13044.5, "ts": 1783496020}, {"marge": -17756.27000000002, "ts": 1754057751}, {"marge": 8881.229999999996, "ts": 1779807883}, {"marge": 4913.710000000006, "ts": 1766571018}, {"marge": 0, "ts": 1782738817}, {"marge": 7648.3399999999965, "ts": 1784307128}, {"marge": 7900.0, "ts": 1780934462}];</script>
+<script>var MARGES_DATA = [{"marge": 10000.0, "ts": 1775579498}, {"marge": 4100.0, "ts": 1782724355}, {"marge": 400.0, "ts": 1778886149}, {"marge": 6994.0, "ts": 1781626468}, {"marge": 9600.0, "ts": 1780935421}, {"marge": 5500.0, "ts": 1786636437}, {"marge": 9550.0, "ts": 1771423217}, {"marge": 16398.229999999996, "ts": 1781087991}, {"marge": 4000.0, "ts": 1759136470}, {"marge": 36502.390000000014, "ts": 1771495638}, {"marge": 4900.0, "ts": 1781704713}, {"marge": 6942.5, "ts": 1771406978}, {"marge": 17002.64, "ts": 1781793862}, {"marge": 13044.5, "ts": 1783496020}, {"marge": -17756.27000000002, "ts": 1754057751}, {"marge": 8881.229999999996, "ts": 1779807883}, {"marge": 4913.710000000006, "ts": 1766571018}, {"marge": 0, "ts": 1782738817}, {"marge": 7648.3399999999965, "ts": 1784307128}, {"marge": 7900.0, "ts": 1780934462}];</script>
 <script>var PREST_API_URL = "https://api.airtable.com/v0/appBQnpnbCXZkHnzS/tbl9Ut5t4NUA9hkoJ"; var PREST_TOKEN = "patGeRjMMwScA9naE.e8dc47dbca8bf709c420a7dda84ac086496335648f4163d21976fc0b8f6c8636";</script>
 <script>
 // ── Collapse sections ────────────────────────────────────────────────
