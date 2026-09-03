@@ -76,36 +76,13 @@ def generate_html(offres, reservees, frais_by_car, ct_data=None, car_photos=None
       function triggerRefresh(btn) {{
         btn.disabled = true;
         btn.textContent = '⏳ En cours…';
-        document.getElementById('refresh-status').textContent = 'Génération en cours…';
-        var currentTs = {gen_ts};
-        fetch('https://mecanicus-refresh.nicolas-0ce.workers.dev', {{method:'POST'}})
-        .then(r => {{
-          if (r.ok) {{
-            var dots = 0;
-            var pollInterval = setInterval(function() {{
-              dots = (dots % 3) + 1;
-              document.getElementById('refresh-status').textContent = 'Mise à jour en cours' + '.'.repeat(dots);
-              fetch(location.href + '?_=' + Date.now(), {{cache:'no-store'}})
-              .then(r => r.text())
-              .then(html => {{
-                var m = html.match(/new Date\((\d+) \* 1000\)/);
-                if (m && parseInt(m[1]) > currentTs) {{
-                  clearInterval(pollInterval);
-                  window.location.href = location.pathname + '?t=' + Date.now();
-                }}
-              }}).catch(() => {{}});
-            }}, 3000);
-            setTimeout(function() {{ clearInterval(pollInterval); window.location.href = location.pathname + '?t=' + Date.now(); }}, 60000);
-          }} else {{
-            btn.disabled = false;
-            btn.textContent = '↺ Actualiser';
-            document.getElementById('refresh-status').textContent = 'Erreur — réessaie dans quelques secondes';
-          }}
-        }}).catch(() => {{
-          btn.disabled = false;
-          btn.textContent = '↺ Actualiser';
-          document.getElementById('refresh-status').textContent = 'Erreur réseau';
-        }});
+        document.getElementById('refresh-status').textContent = 'Actualisation…';
+        // Déclenche le worker en arrière-plan (génération prochaine version)
+        fetch('https://mecanicus-refresh.nicolas-0ce.workers.dev', {{method:'POST'}}).catch(() => {{}});
+        // Redirige immédiatement vers une URL sans cache pour afficher la version actuelle
+        setTimeout(function() {{
+          window.location.href = location.pathname + '?t=' + Date.now();
+        }}, 800);
       }}
       </script>
     </div>
