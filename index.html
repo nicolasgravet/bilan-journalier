@@ -539,7 +539,7 @@
         updateClock();
         setInterval(updateClock, 1000);
         // Timestamp de génération converti en heure locale
-        var gen = new Date(1789262214 * 1000);
+        var gen = new Date(1789280491 * 1000);
         var genH = String(gen.getHours()).padStart(2,'0');
         var genM = String(gen.getMinutes()).padStart(2,'0');
         var genLabel = 'Mis à jour le ' + JOURS[gen.getDay()] + ' ' + gen.getDate() + ' ' + MOIS[gen.getMonth()] + ' ' + gen.getFullYear() + ' à ' + genH + ':' + genM;
@@ -567,7 +567,7 @@
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2FAEE0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
       </div>
       <div class="kpi-body">
-        <div class="kpi-value">0</div>
+        <div class="kpi-value">10</div>
         <div class="kpi-label">Voitures réservées</div>
       </div>
       <span class="kpi-arrow">→</span>
@@ -577,7 +577,7 @@
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
       </div>
       <div class="kpi-body">
-        <div class="kpi-value">0</div>
+        <div class="kpi-value">45</div>
         <div class="kpi-label">Alertes CT — Global</div>
       </div>
       <span class="kpi-arrow">→</span>
@@ -587,7 +587,7 @@
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
       </div>
       <div class="kpi-body">
-        <div class="kpi-value">0</div>
+        <div class="kpi-value">3</div>
         <div class="kpi-label">Alertes CT — Réservées</div>
       </div>
       <span class="kpi-arrow">→</span>
@@ -611,7 +611,7 @@
       <div class="section-header collapsible-header" onclick="toggleSection('frais')">
         <span class="section-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
         <h2>Logistique — Frais</h2>
-        <span class="count-badge" id="frais-count">0</span>
+        <span class="count-badge" id="frais-count">22</span>
         <div class="header-filters" onclick="event.stopPropagation()">
           <div class="filter-bar" data-target="frais">
             <button class="filter-btn active" data-days="0">Tout (30j)</button>
@@ -629,7 +629,183 @@
           <input type="text" class="section-search" id="search-frais" placeholder="Rechercher une voiture…" oninput="filterBySearch('frais', this.value)" autocomplete="off">
           <button class="search-clear-btn" onclick="clearSearch('frais')">✕</button>
         </div>
-        <div class="empty-state">Aucun frais enregistré ce mois</div>
+        <div class="frais-container" id="frais-container"><div class="car-frais-block" data-max-ts="1789141857" data-statut="In stock 🚗">
+          <div class="car-frais-header">
+            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/57/57/1789293600000/I0Ubq_-ITCQwghgKKKKG-w/GQT_c_PLY0I9hM2pIiJP3BSiRqgF879hGEiHzJ3SnFxKpRdB2XCycdq6HrHtI1k0IhFmtyxztZ0omSl3VsB2BU_memILLTKkRtESJ1LOpFXx0wcSeHxS-BMLNOeJ4aE9d3XQjbfKqNPPMxoKyhl8nA/cnw3S0nzkBY0DN3aBWg73lwaJKleKO0XQy3kPw64MC8" alt="">
+            <span class="car-frais-name"><span class="car-frais-name-text">🚗 Alpina B5 Biturbo Touring AzurSchwarz/Chocolat - HJ-748-JT #2</span></span>
+            <span class="car-frais-total">1 200.00 €</span>
+            <a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rechGRz7kpAU4g1yr?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a>
+          </div>
+          <div class="frais-list"><div class="frais-row" data-ts="1789141857" data-section="frais">
+              <span class="frais-date">11/09/2026</span>
+              <span class="frais-objet">Entretien courant</span>
+              <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/recdonyfXnHzJEs54" target="_blank">1 200.00 €</a></span>
+            </div></div>
+        </div><div class="car-frais-block" data-max-ts="1788516710" data-statut="Acompte 👍">
+          <div class="car-frais-header">
+            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/57/57/1789293600000/0UYuBML3hZYOtIJ4vrZDWw/FY1RHj-MVpXcFbdHlaYJNR2ASaDrw8XnTd7zlPJMUMNFkEHy6-RqyAhKH2KlrVoSSConpSeIZjdaEpo2PKdGKbA78m5jDnq2iRXRMC3ia9o5iJZRp9tx5rDzJS0eTCIdPdfOTvi1ei3PLQmtKF0Itw/DbQHoDO7mCdik1ztoBcBwpiAmZ_odaKmLmMwZkdlw8o" alt="">
+            <span class="car-frais-name"><span class="car-frais-name-text">🚗 Aston Martin V8 Vantage - GT-752-WY</span></span>
+            <span class="car-frais-total">600.00 €</span>
+            <a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec3AbmdkQy293inO?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a>
+          </div>
+          <div class="frais-list"><div class="frais-row" data-ts="1788516710" data-section="frais">
+              <span class="frais-date">04/09/2026</span>
+              <span class="frais-objet">Pneus AV </span>
+              <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/reclJuXBCKFoVBtDr" target="_blank">600.00 €</a></span>
+            </div></div>
+        </div><div class="car-frais-block" data-max-ts="1788358552" data-statut="In stock 🚗">
+          <div class="car-frais-header">
+            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/57/57/1789293600000/LriP47YmQd3iuhUDMYmb9w/8hZqEm21DpNyzPyNKt8N53qumKxZeNbGA3ofVRaz-bx5pEmn1BFwTB3hB-5Dor9wBXY-l2pQ0xGIFwqJeKrgVYHnXdOtf2IuuFLN2dBWvXI7QYWL8b9mLn8iwWwj8-yTaBclFkvRtQqsbZMP-DqTsQ/74vEwRSaY4Vktdxf2VSrCEDfZ6wSr6pZ2Yl2oRugbqM" alt="">
+            <span class="car-frais-name"><span class="car-frais-name-text">🚗 Chevrolet Camaro 50th Anniversary GG-762-FJ</span></span>
+            <span class="car-frais-total">2 040.00 €</span>
+            <a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rectuGyHm9wM98i22?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a>
+          </div>
+          <div class="frais-list"><div class="frais-row" data-ts="1788358512" data-section="frais">
+              <span class="frais-date">02/09/2026</span>
+              <span class="frais-objet">Révision</span>
+              <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/reccfsoMVqFYO2Vbm" target="_blank">1 800.00 €</a></span>
+            </div><div class="frais-row" data-ts="1788358552" data-section="frais">
+              <span class="frais-date">02/09/2026</span>
+              <span class="frais-objet">Une Jante</span>
+              <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/recEOOhhLgDCuPoHO" target="_blank">240.00 €</a></span>
+            </div></div>
+        </div><div class="car-frais-block" data-max-ts="1788423904" data-statut="In stock 🚗">
+          <div class="car-frais-header">
+            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/57/57/1789293600000/Om33NYAxg4jlGk2TJ2hzOQ/A2xv0CRgaXTI5IDzKp9bLdpQeqc_sqCfrNWSFvaG2J3IWeR5jellOPedc02LIcjhvbzLl5dIUuWyXTsClv0yZ9QBHSL6ch3iMpqbuiIHwFib0TeiX84aYiMbcDqBUiWUIa6vaZKv7i8SEXeNgHj07JSI15JsezEQJKEc6i1ot0yeEYoGWnDzX5B5ZMGXhS7K/T6IIMtaOrEnPSyJ-4IA-tqxVLWf9aDIK9WwdpMWDVb8" alt="">
+            <span class="car-frais-name"><span class="car-frais-name-text">🚗 Ferrari 612 Scaglietti BVM — Fiche Quentin</span></span>
+            <span class="car-frais-total">13 500.00 €</span>
+            <a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reckETeR4UPDHQ4gJ?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a>
+          </div>
+          <div class="frais-list"><div class="frais-row" data-ts="1787320684" data-section="frais">
+              <span class="frais-date">21/08/2026</span>
+              <span class="frais-objet">Gros entretien</span>
+              <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/recYV0VCcArMjDjrU" target="_blank">9 600.00 €</a></span>
+            </div><div class="frais-row" data-ts="1787320709" data-section="frais">
+              <span class="frais-date">21/08/2026</span>
+              <span class="frais-objet">Cuir</span>
+              <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/recaaYJyMdnyxU7R7" target="_blank">2 400.00 €</a></span>
+            </div><div class="frais-row" data-ts="1787320730" data-section="frais">
+              <span class="frais-date">21/08/2026</span>
+              <span class="frais-objet">CT</span>
+              <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/rec1EUCJBiCGxg279" target="_blank">60.00 €</a></span>
+            </div><div class="frais-row" data-ts="1787320746" data-section="frais">
+              <span class="frais-date">21/08/2026</span>
+              <span class="frais-objet">pneus</span>
+              <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/recJwBljQaWvNKznD" target="_blank">960.00 €</a></span>
+            </div><div class="frais-row" data-ts="1788423904" data-section="frais">
+              <span class="frais-date">03/09/2026</span>
+              <span class="frais-objet">Jantes grises</span>
+              <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/recRUlyjW5dNiXWH2" target="_blank">480.00 €</a></span>
+            </div></div>
+        </div><div class="car-frais-block" data-max-ts="1788533766" data-statut="In stock 🚗">
+          <div class="car-frais-header">
+            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/57/57/1789293600000/NSlNX-Z17n9yVyn44nWH5Q/eSxjtMHCNaq_UchZjApgrzgwlw7Dma3-90W3LyPKiq3krJn55AiyTFRby1weM28OjKEAMvFQUHxpXMUx8yGEwGrXBjlz3If6itO7OFBPDVdGBGAcGwgVGfmUxj0P3W1mhj_3z3G-IoyyqVAbnHi4pg/XtS0tNOBh8Z4StTsLPUuLFq1CH1JPubkrGiKToAlsOI" alt="">
+            <span class="car-frais-name"><span class="car-frais-name-text">🚗 Ferrari 612 Scaglietti HGT2 - DP-709-XY</span></span>
+            <span class="car-frais-total">3 600.00 €</span>
+            <a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recKRau50DQ1aKVzD?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a>
+          </div>
+          <div class="frais-list"><div class="frais-row" data-ts="1788533766" data-section="frais">
+              <span class="frais-date">04/09/2026</span>
+              <span class="frais-objet">Joint de cache soupape</span>
+              <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/recv49MuOs2rDtZYO" target="_blank">3 600.00 €</a></span>
+            </div></div>
+        </div><div class="car-frais-block" data-max-ts="1788377634" data-statut="In stock 🚗">
+          <div class="car-frais-header">
+            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/57/57/1789293600000/4GQsDqkzKh3CARfMViJTyg/AbBbIT9aL8DiM9sZlk7UvqpF3MEw_dpi9ROQfsiAZeDzJNqXxWAcIVsuAb-bb0J_BrQm6sSvim0QlnyUfFez7JOvz7dGPpOANRtm_FJGYPclNDREr1Sjiw8mj27yZphP9nV8Giq8TawRS-A37mvSks8enmzZiYmcmaqj_M7P7zTJ9zQT8z4FObMUduPKM0XA/RVWQ_kpWIihw5ModIRlY7tyyEK7-Phmmywfdyb3SOXs" alt="">
+            <span class="car-frais-name"><span class="car-frais-name-text">🚗 Ferrari F430 Spider</span></span>
+            <span class="car-frais-total">6 000.00 €</span>
+            <a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recsBLXqNL4MKQ8OW?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a>
+          </div>
+          <div class="frais-list"><div class="frais-row" data-ts="1788377634" data-section="frais">
+              <span class="frais-date">02/09/2026</span>
+              <span class="frais-objet">Grosse révision</span>
+              <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/recNyMXLIfAn5b9RC" target="_blank">6 000.00 €</a></span>
+            </div></div>
+        </div><div class="car-frais-block" data-max-ts="1788189684" data-statut="Acompte 👍">
+          <div class="car-frais-header">
+            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/57/57/1789293600000/IYSUT_5XlrrAyuRHuu4EwQ/ypu_RE8bO-xa8VDrNq3j6A_sOSWgIpZBD3STnQybCAhkpQtLJrYWYm362ifBUpcEx8SMBAuIjVV-1apif82zS5Aq3Xx5E--cxcDy4RmeDteYXZbf2SEvAOtE7xSsywgTFE3odFDzJWPwrsKw3FmFBwXppWNp31COou5qc6ooEhg/YaiwFY60vJW6jPIkR8WwnWntzgc0bTn1KEIoRlRaRRQ" alt="">
+            <span class="car-frais-name"><span class="car-frais-name-text">🚗 Mclaren 720S Performance - HD-923-BJ</span></span>
+            <span class="car-frais-total">7 000.00 €</span>
+            <a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recR8EBK8FkvUen5o?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a>
+          </div>
+          <div class="frais-list"><div class="frais-row" data-ts="1788189684" data-section="frais">
+              <span class="frais-date">31/08/2026</span>
+              <span class="frais-objet">PPF</span>
+              <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/recTokuxdNREE4Og5" target="_blank">7 000.00 €</a></span>
+            </div></div>
+        </div><div class="car-frais-block" data-max-ts="1788967051" data-statut="In stock 🚗">
+          <div class="car-frais-header">
+            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/57/57/1789293600000/FyCtosQBvogJaZoH1RXVfA/ubW7aGwE-LWhFOPZ64X0-qB89Xlso8yB7Rfn_SlTOE8OngmhVXhtutAdr3hBEpKD6IfLMfRCsD1KRqu2BZAeoK7zY66r4-PtpV7FQ4waevlyDMuGOvudl7ByjJ_o2f83k8TMYUHH0_NbSXQIae949UZfU_HlEmznml5Tf9VAQ8M/JMU3uIleA5YAEBZwSTCci87yAa_9lcrBbyjwKFYmifs" alt="">
+            <span class="car-frais-name"><span class="car-frais-name-text">🚗 Porsche 911 991.1 Carrera S *Gris agate/blanc* - CW-202-AS</span></span>
+            <span class="car-frais-total">1 440.00 €</span>
+            <a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recaeqAjUGdnHGqIU?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a>
+          </div>
+          <div class="frais-list"><div class="frais-row" data-ts="1788966924" data-section="frais">
+              <span class="frais-date">09/09/2026</span>
+              <span class="frais-objet">4 pneus</span>
+              <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/rechdvpA6q5oLIZE3" target="_blank">960.00 €</a></span>
+            </div><div class="frais-row" data-ts="1788966958" data-section="frais">
+              <span class="frais-date">09/09/2026</span>
+              <span class="frais-objet">4 jantes</span>
+              <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/recJBbZi543O1cGSY" target="_blank">480.00 €</a></span>
+            </div><div class="frais-row" data-ts="1788966970" data-section="frais">
+              <span class="frais-date">09/09/2026</span>
+              <span class="frais-objet">Check des valves d’échappement</span>
+              <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/recobBmAK5NfJ8sJs" target="_blank">—</a></span>
+            </div><div class="frais-row" data-ts="1788967051" data-section="frais">
+              <span class="frais-date">09/09/2026</span>
+              <span class="frais-objet">Reteintage du cuir</span>
+              <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/recsZOGmzhlFtgcVF" target="_blank">—</a></span>
+            </div></div>
+        </div><div class="car-frais-block" data-max-ts="1788876872" data-statut="In stock 🚗">
+          <div class="car-frais-header">
+            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/57/57/1789293600000/wpr8jZbVHKcH_YV1DuVy4A/RK5EZ84auDf1TWuJ1G5I2JOdrsJ9BXYC8GrCumvtRSP4TXrclKHrNOZnWj54k8a5zswDTWqWg1ZVAHv3cuZhkF3b_yGbVK98oPGBrOEZiRs4Akrzguv7YWSP2ShgnLNMALKKS5NnnZOZHI63mU5f8w/bppvkU7MgKhfpQ_qMzvxB-sbmYrr-hbCIhXqZNhViII" alt="">
+            <span class="car-frais-name"><span class="car-frais-name-text">🚗 Porsche 911 993 4S - DA- 697-FT</span></span>
+            <span class="car-frais-total">1 800.00 €</span>
+            <a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recji67NQoD1UZ810?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a>
+          </div>
+          <div class="frais-list"><div class="frais-row" data-ts="1788876833" data-section="frais">
+              <span class="frais-date">08/09/2026</span>
+              <span class="frais-objet">Pneus arrières</span>
+              <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/recHZL0HZgNBnIwiF" target="_blank">600.00 €</a></span>
+            </div><div class="frais-row" data-ts="1788876872" data-section="frais">
+              <span class="frais-date">08/09/2026</span>
+              <span class="frais-objet">Traitement rouille lunette arrière</span>
+              <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/recvOvfZXvOsIVCpf" target="_blank">1 200.00 €</a></span>
+            </div></div>
+        </div><div class="car-frais-block" data-max-ts="1788535212" data-statut="Acompte 👍">
+          <div class="car-frais-header">
+            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/57/57/1789293600000/wLWiNNIAurykrRmunxfQEw/tQxNlP1q2aWljZuF8w4pwuTXjOeWk9FeuBlzG_iM76OfqMjNYCMD7cQlThPcDlf7R34dF7dW9p1aBVkDWg1KM0dhoy6Ea1ZHzuUAnu1muw6vUjwtmTvA7wkVg91XnzJYnCHJyzkqGiMYmq6AExYKP0yUOhOCrCMlAEMAYUyBTY0/efG4No4nXBGtwq-uzXIbW9pQUi_WQ7MPkMjHwcY8EmI" alt="">
+            <span class="car-frais-name"><span class="car-frais-name-text">🚗 Porsche 911 997.1 Turbo BVM Macadamia FX-245-FT</span></span>
+            <span class="car-frais-total">600.00 €</span>
+            <a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reczFWGEzgvb2HXXO?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a>
+          </div>
+          <div class="frais-list"><div class="frais-row" data-ts="1788535212" data-section="frais">
+              <span class="frais-date">04/09/2026</span>
+              <span class="frais-objet">Panneau de porte noir de phase 1 </span>
+              <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/recSUpVTLHUY4xL1Q" target="_blank">600.00 €</a></span>
+            </div></div>
+        </div><div class="car-frais-block" data-max-ts="1788526275" data-statut="In stock 🚗">
+          <div class="car-frais-header">
+            <img class="car-thumb" src="https://v5.airtableusercontent.com/v3/u/57/57/1789293600000/iliCVkqOGlTWKu1X1OyvAw/AZWGQkm4Wq7_GbczvFakytX2n76QkTPONX03qhpuihTDHlBzubTSql-AspHChtPzgcrS6-a5a6T7Bibgvx4sVtd-bjFTXXDtQu2LTLJ46QghyLQ3TIwlwqZaucmHmjY1Qe0XWJTp4356pjA2GMJa2Q/v6AYH6WLIa572u79HGyS5YZscGaEXrlgBYFMF8482-k" alt="">
+            <span class="car-frais-name"><span class="car-frais-name-text">🚗 Porsche 991.2 Carrera 4 - EC-218-VJ #2 </span></span>
+            <span class="car-frais-total">948.00 €</span>
+            <a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec9yhaS5fnGcbuUk?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a>
+          </div>
+          <div class="frais-list"><div class="frais-row" data-ts="1788526199" data-section="frais">
+              <span class="frais-date">04/09/2026</span>
+              <span class="frais-objet">Remplacement par soleil passager </span>
+              <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/recfIqzXsrTlz3d2P" target="_blank">600.00 €</a></span>
+            </div><div class="frais-row" data-ts="1788526230" data-section="frais">
+              <span class="frais-date">04/09/2026</span>
+              <span class="frais-objet">reparation par brise</span>
+              <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/recMoVXLhNZoERzv6" target="_blank">108.00 €</a></span>
+            </div><div class="frais-row" data-ts="1788526275" data-section="frais">
+              <span class="frais-date">04/09/2026</span>
+              <span class="frais-objet">remise en état poignée siège conducteur</span>
+              <span class="frais-montant"><a class="airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/tblK1cZkrKh8kFysK/viw4Bgr4ZT3BPJRRF/rec3bz63qXLBMP5vl" target="_blank">240.00 €</a></span>
+            </div></div>
+        </div></div>
       </div>
     </section>
 
@@ -638,7 +814,7 @@
       <div class="section-header collapsible-header" onclick="toggleSection('ct')">
         <span class="section-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
         <h2>Contrôle Technique</h2>
-        <span class="count-badge" id="ct-count">0</span>
+        <span class="count-badge" id="ct-count">45</span>
         <div class="header-filters" onclick="event.stopPropagation()">
           <div class="filter-bar ct-filter">
             <button class="filter-btn active" data-ct="tous">Tous</button>
@@ -662,7 +838,707 @@
             <button class="filter-btn" data-ct-status="3">OK</button>
           </div>
         </div>
-        <div class="empty-state">Aucune alerte CT</div>
+        <div class="ct-table-header">
+      <div>Véhicule</div><div>Statut</div><div>CT Status</div>
+      <div>Date CT</div><div>Échéance</div><div>Jours restants</div><div></div>
+    </div>
+    <div id="ct-table-body"><div class="ct-row ct-expire" data-ct-type="other" data-ct-crit="0">
+          <div class="ct-car"><span class="car-name">Porsche 911 930 Turbo Cabriolet G50 *Restauration complète - Française * - ET-949-BF</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-expire-badge">Expiré ⛔️ <span class="jul">✌🏼✌🏼</span></span></div>
+          <div class="ct-date">17/09/2025</div>
+          <div class="ct-date">17/03/2026</div>
+          <div class="ct-jours"><span class="jours-expire">Expiré (180j)</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec2Pzgwku3gkPD9d?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-expire" data-ct-type="other" data-ct-crit="0">
+          <div class="ct-car"><span class="car-name">Bentley Continental GT W12 Pack Mulliner - BT-342-JW</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-expire-badge">Expiré ⛔️ <span class="jul">✌🏼✌🏼</span></span></div>
+          <div class="ct-date">06/11/2025</div>
+          <div class="ct-date">06/05/2026</div>
+          <div class="ct-jours"><span class="jours-expire">Expiré (130j)</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recBerxJHE06diF8v?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-expire" data-ct-type="other" data-ct-crit="0">
+          <div class="ct-car"><span class="car-name">Audi RS6 C7 Noir - HJ-498-SQ #2</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-expire-badge">Expiré ⛔️ <span class="jul">✌🏼✌🏼</span></span></div>
+          <div class="ct-date">25/11/2025</div>
+          <div class="ct-date">25/05/2026</div>
+          <div class="ct-jours"><span class="jours-expire">Expiré (111j)</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recCXbeSowXHmKHRK?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-expire" data-ct-type="other" data-ct-crit="0">
+          <div class="ct-car"><span class="car-name">Porsche 964 C2 Midnight Blue & Blue - CZ-606-KF #2</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-expire-badge">Expiré ⛔️ <span class="jul">✌🏼✌🏼</span></span></div>
+          <div class="ct-date">16/06/2025</div>
+          <div class="ct-date">16/12/2025</div>
+          <div class="ct-jours"><span class="jours-expire">Expiré (271j)</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recHBdciPgPAlVKAw?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-expire" data-ct-type="other" data-ct-crit="0">
+          <div class="ct-car"><span class="car-name">Porsche Taycan Turbo S - Import</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-expire-badge">Expiré ⛔️ <span class="jul">✌🏼✌🏼</span></span></div>
+          <div class="ct-date">10/02/2026</div>
+          <div class="ct-date">10/08/2026</div>
+          <div class="ct-jours"><span class="jours-expire">Expiré (34j)</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recLEAKynBcehKmE6?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-expire" data-ct-type="other" data-ct-crit="0">
+          <div class="ct-car"><span class="car-name">Porsche 991.2 GTS / Bleu Nuit Métallisé / PCCB / Baquets</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-expire-badge">Expiré ⛔️ <span class="jul">✌🏼✌🏼</span></span></div>
+          <div class="ct-date">02/01/2025</div>
+          <div class="ct-date">02/07/2025</div>
+          <div class="ct-jours"><span class="jours-expire">Expiré (438j)</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recRrpfg88abYWGW9?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-expire" data-ct-type="other" data-ct-crit="0">
+          <div class="ct-car"><span class="car-name">Porsche 964 Turbo 3.3 * Moteur refait - Peinture neuve - Parfait état *</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-expire-badge">Expiré ⛔️ <span class="jul">✌🏼✌🏼</span></span></div>
+          <div class="ct-date">17/02/2024</div>
+          <div class="ct-date">17/08/2024</div>
+          <div class="ct-jours"><span class="jours-expire">Expiré (757j)</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reccGH1r0pkqBh3E1?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-expire" data-ct-type="other" data-ct-crit="0">
+          <div class="ct-car"><span class="car-name">Alpina B5 Biturbo Touring AzurSchwarz/Chocolat - HJ-748-JT #2</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-expire-badge">Expiré ⛔️ <span class="jul">✌🏼✌🏼</span></span></div>
+          <div class="ct-date">07/01/2026</div>
+          <div class="ct-date">07/07/2026</div>
+          <div class="ct-jours"><span class="jours-expire">Expiré (68j)</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rechGRz7kpAU4g1yr?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-expire" data-ct-type="other" data-ct-crit="0">
+          <div class="ct-car"><span class="car-name">Porsche 964 Carrera 2 Cabriolet * Faible kilométrage / Sièges sport* #2  HK-118-VA</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-expire-badge">Expiré ⛔️ <span class="jul">✌🏼✌🏼</span></span></div>
+          <div class="ct-date">20/02/2026</div>
+          <div class="ct-date">20/08/2026</div>
+          <div class="ct-jours"><span class="jours-expire">Expiré (24j)</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reclHf6NbmWPLkVs3?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-expire" data-ct-type="other" data-ct-crit="0">
+          <div class="ct-car"><span class="car-name">Range Rover SDV8 Autobiography SWB - CP-979-ZB  #2</span></div>
+          <div><span class="statut-pill">A envoyer en travaux </span></div>
+          <div><span class="ct-status-badge ct-expire-badge">Expiré ⛔️ <span class="jul">✌🏼✌🏼</span></span></div>
+          <div class="ct-date">17/09/2024</div>
+          <div class="ct-date">17/03/2025</div>
+          <div class="ct-jours"><span class="jours-expire">Expiré (545j)</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recm0Kajl6c7ZJxAU?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-expire" data-ct-type="other" data-ct-crit="0">
+          <div class="ct-car"><span class="car-name">Porsche 911 991.1 Cabriolet Gris Argent GT - ES-470-VC</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-expire-badge">Expiré ⛔️ <span class="jul">✌🏼✌🏼</span></span></div>
+          <div class="ct-date">19/07/2024</div>
+          <div class="ct-date">19/01/2025</div>
+          <div class="ct-jours"><span class="jours-expire">Expiré (602j)</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recp4hSZi8ZOFcWzS?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-expire" data-ct-type="other" data-ct-crit="0">
+          <div class="ct-car"><span class="car-name">Land Rover Range Rover Sport P400e - FF-502-WJ</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-expire-badge">Expiré ⛔️ <span class="jul">✌🏼✌🏼</span></span></div>
+          <div class="ct-date">11/06/2025</div>
+          <div class="ct-date">11/12/2025</div>
+          <div class="ct-jours"><span class="jours-expire">Expiré (276j)</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recptTpvkksEbV2W1?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-expire" data-ct-type="other" data-ct-crit="0">
+          <div class="ct-car"><span class="car-name">Porsche 996 4S Cabriolet BVM - BC-531-QE</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-expire-badge">Expiré ⛔️ <span class="jul">✌🏼✌🏼</span></span></div>
+          <div class="ct-date">11/03/2026</div>
+          <div class="ct-date">11/09/2026</div>
+          <div class="ct-jours"><span class="jours-expire">Expiré (2j)</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recrgbd8eIEzz7WvM?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-expire" data-ct-type="other" data-ct-crit="0">
+          <div class="ct-car"><span class="car-name">Chevrolet Camaro 50th Anniversary GG-762-FJ</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-expire-badge">Expiré ⛔️ <span class="jul">✌🏼✌🏼</span></span></div>
+          <div class="ct-date">13/11/2025</div>
+          <div class="ct-date">13/05/2026</div>
+          <div class="ct-jours"><span class="jours-expire">Expiré (123j)</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rectuGyHm9wM98i22?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-manquant" data-ct-type="other" data-ct-crit="1">
+          <div class="ct-car"><span class="car-name">Porsche 964 Carrera 2 Cab BVM Himber Rot Metallic - HB-390-LB #2</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-manquant-badge">Manquant ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec2gRW9WggkaqPqr?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-manquant" data-ct-type="other" data-ct-crit="1">
+          <div class="ct-car"><span class="car-name">Lotus Evora GT410 Sport Jaune</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-manquant-badge">Manquant ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec3EwD9o9uUAkXLy?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-manquant" data-ct-type="other" data-ct-crit="1">
+          <div class="ct-car"><span class="car-name">Porsche 991.1 Carrera S Cabriolet </span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-manquant-badge">Manquant ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec5fFkwr52vOrZHk?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-manquant" data-ct-type="other" data-ct-crit="1">
+          <div class="ct-car"><span class="car-name">Ferrari 550 Maranello *Bleu Le Mans* - BT-896-HK</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-manquant-badge">Manquant ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec81IYGQIEXhlQ4A?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-manquant" data-ct-type="other" data-ct-crit="1">
+          <div class="ct-car"><span class="car-name">Ferrari BB512 Bianco Polo Park</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-manquant-badge">Manquant ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec9bjYycyrZAUrqc?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-manquant" data-ct-type="other" data-ct-crit="1">
+          <div class="ct-car"><span class="car-name">Porsche 993 Targa - BY-208-VG #2</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-manquant-badge">Manquant ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recAcgqaZ55bcX0CY?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-manquant" data-ct-type="other" data-ct-crit="1">
+          <div class="ct-car"><span class="car-name">Ferrari Portofino - HF-056-KJ</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-manquant-badge">Manquant ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recBa8htKGh0zmM8D?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-manquant" data-ct-type="other" data-ct-crit="1">
+          <div class="ct-car"><span class="car-name">Porsche 991.1 GTS - PTS Grigiocampovolo - GC-051-KZ #3</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-manquant-badge">Manquant ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recBjqygxhHXrQm8C?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-manquant" data-ct-type="other" data-ct-crit="1">
+          <div class="ct-car"><span class="car-name">Mercedes-AMG C63 Break W204</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-manquant-badge">Manquant ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recCvORK9IBmoqhrq?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-manquant" data-ct-type="other" data-ct-crit="1">
+          <div class="ct-car"><span class="car-name">Jaguar F-Type SVR - EG-874-NW</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-manquant-badge">Manquant ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recFmNS4b1QvJ64AJ?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-manquant" data-ct-type="other" data-ct-crit="1">
+          <div class="ct-car"><span class="car-name">Ferrari California</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-manquant-badge">Manquant ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recGBb5EptGXTnMwZ?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-manquant" data-ct-type="other" data-ct-crit="1">
+          <div class="ct-car"><span class="car-name">Porsche 911 997.2 Carrera 4S Cabriolet - BH-092-QL</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-manquant-badge">Manquant ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recGHakZLbBQa0PFo?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-manquant" data-ct-type="other" data-ct-crit="1">
+          <div class="ct-car"><span class="car-name">Porsche 964 RS *Restauration Porsche Classic* - CC-056-DE</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-manquant-badge">Manquant ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recHNvAGLFXEav67s?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-manquant" data-ct-type="other" data-ct-crit="1">
+          <div class="ct-car"><span class="car-name">Ferrari 458 Italia Nero & Ciocolatto - CL-554-FT #2</span></div>
+          <div><span class="statut-pill">En travaux 🚧</span></div>
+          <div><span class="ct-status-badge ct-manquant-badge">Manquant ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recJFS8Ot1UE7h4JG?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-manquant" data-ct-type="other" data-ct-crit="1">
+          <div class="ct-car"><span class="car-name">Porsche 991.2 TARGA 4 GTS - GC-410-EP #2</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-manquant-badge">Manquant ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recKdPqtTkOFRuoTo?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-manquant" data-ct-type="other" data-ct-crit="1">
+          <div class="ct-car"><span class="car-name">Ferrari Daytona</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-manquant-badge">Manquant ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recNFP4HJJcoaYKRc?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-manquant" data-ct-type="other" data-ct-crit="1">
+          <div class="ct-car"><span class="car-name">Aston Martin DB9 - GN-666-BY</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-manquant-badge">Manquant ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recOVNwugKTbOjpOK?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-manquant" data-ct-type="acompte" data-ct-crit="1">
+          <div class="ct-car"><span class="car-name">Mclaren 720S Performance - HD-923-BJ</span></div>
+          <div><span class="statut-pill">Acompte 👍</span></div>
+          <div><span class="ct-status-badge ct-manquant-badge">Manquant ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recR8EBK8FkvUen5o?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-manquant" data-ct-type="other" data-ct-crit="1">
+          <div class="ct-car"><span class="car-name">Mercedes 190 SL</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-manquant-badge">Manquant ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recSdGR4VA2kKSlrQ?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-manquant" data-ct-type="other" data-ct-crit="1">
+          <div class="ct-car"><span class="car-name">Porsche 991.1 GT3RS FN-193-MJ</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-manquant-badge">Manquant ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recYojAAqvCBDlulG?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-manquant" data-ct-type="other" data-ct-crit="1">
+          <div class="ct-car"><span class="car-name">Porsche 911 997.2 Carrera S Cabriolet - BC-061-YN</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-manquant-badge">Manquant ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recbhTrSbwbNuMTLw?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-manquant" data-ct-type="other" data-ct-crit="1">
+          <div class="ct-car"><span class="car-name">Porsche 964 Targa - FV-469-LT</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-manquant-badge">Manquant ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reccUt82Rge7q7Vd6?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-manquant" data-ct-type="other" data-ct-crit="1">
+          <div class="ct-car"><span class="car-name">Chevrolet Corvette C2 Cabriolet - GG-796-NH</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-manquant-badge">Manquant ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rece8kCR6sqitjR1u?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-manquant" data-ct-type="other" data-ct-crit="1">
+          <div class="ct-car"><span class="car-name">Porsche 991 carrera T - EX-165-XJ</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-manquant-badge">Manquant ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recg4XTRJyz3qI66b?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-manquant" data-ct-type="acompte" data-ct-crit="1">
+          <div class="ct-car"><span class="car-name">ALFA ROMEO GT 1600 Junior</span></div>
+          <div><span class="statut-pill">Acompte 👍</span></div>
+          <div><span class="ct-status-badge ct-manquant-badge">Manquant ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reciEm3m8JJZaEfeG?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-manquant" data-ct-type="other" data-ct-crit="1">
+          <div class="ct-car"><span class="car-name">Porsche  3.8i - BV PDK TYPE 997 II 2009 COUPE Carrera GTS  - EL-725-RT</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-manquant-badge">Manquant ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recjoHeXNK0z4CIdT?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-manquant" data-ct-type="other" data-ct-crit="1">
+          <div class="ct-car"><span class="car-name">Porsche 964 Turbo 3.3 - Amazon Green</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-manquant-badge">Manquant ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recm9MZOedQsGV46R?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-manquant" data-ct-type="other" data-ct-crit="1">
+          <div class="ct-car"><span class="car-name">Porsche Panamera 4 E-Hybrid Sport Turismo - FK-380-TY</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-manquant-badge">Manquant ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recnrL6gkfCo1tDUa?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-manquant" data-ct-type="other" data-ct-crit="1">
+          <div class="ct-car"><span class="car-name">Porsche 356 C - CS-254-SZ</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-manquant-badge">Manquant ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rectFAbpGMtJYGuhE?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-manquant" data-ct-type="other" data-ct-crit="1">
+          <div class="ct-car"><span class="car-name">Ferrari FF Grise - GL-008-NS</span></div>
+          <div><span class="statut-pill">En travaux 🚧</span></div>
+          <div><span class="ct-status-badge ct-manquant-badge">Manquant ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rectpx22jqhxJb557?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-manquant" data-ct-type="acompte" data-ct-crit="1">
+          <div class="ct-car"><span class="car-name">Porsche 964 Turbo 3.6 - FS-046-DY</span></div>
+          <div><span class="statut-pill">Acompte 👍</span></div>
+          <div><span class="ct-status-badge ct-manquant-badge">Manquant ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recuGtJv8Y9XhioAH?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">Aston Martin DB9 Bambou - CA-882-EN #2</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">Non renseigné ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec0PmzDZJg2WC7gG?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">Porsche 991.1 Turbo S Cabriolet BRG - HF-386-MK #2</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">Non renseigné ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec1yUvYCexflsNVF?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="acompte-ok" data-ct-crit="3" style="display:none">
+          <div class="ct-car"><span class="car-name">Aston Martin V8 Vantage - GT-752-WY</span></div>
+          <div><span class="statut-pill">Acompte 👍</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
+          <div class="ct-date">07/09/2026</div>
+          <div class="ct-date">07/03/2027</div>
+          <div class="ct-jours"><span class="jours-ok">175j</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec3AbmdkQy293inO?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">Porsche 991.2 GT3 Touring - GC-156-KW</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
+          <div class="ct-date">09/09/2026</div>
+          <div class="ct-date">09/03/2027</div>
+          <div class="ct-jours"><span class="jours-ok">177j</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec3e2RcHcSBFuz37?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">Maserati Granturismo - BK-150-FV</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
+          <div class="ct-date">27/08/2026</div>
+          <div class="ct-date">27/02/2027</div>
+          <div class="ct-jours"><span class="jours-ok">167j</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec42fRjt3ONjtBbr?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">Porsche Macan GTS - GG-539-NP #2</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">Non renseigné ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec7fHlqKjgIv7nkd?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="acompte-ok" data-ct-crit="3" style="display:none">
+          <div class="ct-car"><span class="car-name">Ferrari 412i BVM Bleu / Tan EP-033-XT </span></div>
+          <div><span class="statut-pill">Acompte 👍</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
+          <div class="ct-date">15/05/2026</div>
+          <div class="ct-date">15/11/2026</div>
+          <div class="ct-jours"><span class="jours-ok">63j</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec98CfYjnlwnc6st?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">Porsche 991.2 Carrera 4 - EC-218-VJ #2 </span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">Non renseigné ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec9yhaS5fnGcbuUk?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">Lamborghini Huracan Performante Spyder *Rosso Mars - Française - 3e main* #2</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">Non renseigné ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recC3HvCbFEtBCHAz?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">Ferrari F12 Noire - EG-983-MT #2</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">Non renseigné ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recCT0YhSiZKwJjzm?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">Ferrari F360  Spider Noir/Tan  - FX-044-GM #3</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
+          <div class="ct-date">08/07/2026</div>
+          <div class="ct-date">08/01/2027</div>
+          <div class="ct-jours"><span class="jours-ok">117j</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recDWQrpC9uCIfj2Q?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">Ferrari 612 Scaglietti HGT2 - DP-709-XY</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
+          <div class="ct-date">01/09/2026</div>
+          <div class="ct-date">01/03/2027</div>
+          <div class="ct-jours"><span class="jours-ok">169j</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recKRau50DQ1aKVzD?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">Porsche 911 964 Carrera 2 coupé</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">Non renseigné ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recLtNZCGohOmDqtY?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">991.2 GTS Rouge / Covering vert FX-904-JL</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
+          <div class="ct-date">10/06/2026</div>
+          <div class="ct-date">10/12/2026</div>
+          <div class="ct-jours"><span class="jours-ok">88j</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recPgw2hPYqjbxooi?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">Cayenne Turbo S E-Hybrid - FS-179-RM #2</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">Non renseigné ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recQ5E3u5IgIVNRbL?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">Porsche 944 - FK-037-AD</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">Non renseigné ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recTGfsARiUIMafDb?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">BMW 745LE Peninsula Hotel</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
+          <div class="ct-date">17/06/2026</div>
+          <div class="ct-date">17/12/2026</div>
+          <div class="ct-jours"><span class="jours-ok">95j</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recTjH5WKzqMHudDI?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">Porsche 997.2 PDK Carrera S Cabriolet - GB-332-PA</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
+          <div class="ct-date">21/04/2026</div>
+          <div class="ct-date">21/10/2026</div>
+          <div class="ct-jours"><span class="jours-ok">38j</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recUXKpTPhnFjqM9k?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">Honda NSX 1991 - DM-511-NS</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
+          <div class="ct-date">16/06/2026</div>
+          <div class="ct-date">16/12/2026</div>
+          <div class="ct-jours"><span class="jours-ok">94j</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recXxhTV9YcAKEW1f?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">Porsche 911 991.1 Carrera S *Gris agate/blanc* - CW-202-AS</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
+          <div class="ct-date">15/07/2026</div>
+          <div class="ct-date">15/01/2027</div>
+          <div class="ct-jours"><span class="jours-ok">124j</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recaeqAjUGdnHGqIU?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">Porsche 911 997.2 Carrera GTS Cabriolet - CC-234-LF</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">Non renseigné ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recb6GpJyrjcfKdLE?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="acompte-ok" data-ct-crit="3" style="display:none">
+          <div class="ct-car"><span class="car-name">LAND ROVER RANGE ROVER SPORT II 5.0 V8 SVR - EC-154-GX #2</span></div>
+          <div><span class="statut-pill">Acompte 👍</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
+          <div class="ct-date">08/09/2026</div>
+          <div class="ct-date">08/03/2027</div>
+          <div class="ct-jours"><span class="jours-ok">176j</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reccGWkOOU3Gy1trv?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">Porsche 911 991.1 Targa 4S - GA-464-NH #2</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">Non renseigné ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recedIMHEHjGML34k?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name"> Ferrari 412i BVM *Restauration mécanique complète / Grigio Ferro & Intérieur Beige*</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
+          <div class="ct-date">21/04/2026</div>
+          <div class="ct-date">21/10/2026</div>
+          <div class="ct-jours"><span class="jours-ok">38j</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reciEHuysaEXKtltI?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">Porsche 991.2 C4 GTS BVM - FD-157-PZ #2</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
+          <div class="ct-date">02/09/2026</div>
+          <div class="ct-date">02/03/2027</div>
+          <div class="ct-jours"><span class="jours-ok">170j</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reciVcGKim3v6Te0E?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">Porsche 991.2 Turbo S Cabriolet *Options Exclusive - Burmester - Lift* - HE-741-NY</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
+          <div class="ct-date">24/08/2026</div>
+          <div class="ct-date">24/02/2027</div>
+          <div class="ct-jours"><span class="jours-ok">164j</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recjGlmrLdKKIBn19?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">Porsche 911 993 4S - DA- 697-FT</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
+          <div class="ct-date">17/07/2026</div>
+          <div class="ct-date">17/01/2027</div>
+          <div class="ct-jours"><span class="jours-ok">126j</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recji67NQoD1UZ810?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">Ferrari 612 Scaglietti BVM — Fiche Quentin</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
+          <div class="ct-date">02/09/2026</div>
+          <div class="ct-date">02/03/2027</div>
+          <div class="ct-jours"><span class="jours-ok">170j</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reckETeR4UPDHQ4gJ?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">BMW M3 CS #2 DJ-254-AF</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
+          <div class="ct-date">13/08/2026</div>
+          <div class="ct-date">13/02/2027</div>
+          <div class="ct-jours"><span class="jours-ok">153j</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recna2pU4ghMw9PhW?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="acompte-ok" data-ct-crit="3" style="display:none">
+          <div class="ct-car"><span class="car-name">Porsche 911 991 Carrera S Cirrus - CE-658-YZ</span></div>
+          <div><span class="statut-pill">Acompte 👍</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
+          <div class="ct-date">30/08/2026</div>
+          <div class="ct-date">28/02/2027</div>
+          <div class="ct-jours"><span class="jours-ok">168j</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recoqgrEmNQ88hWD4?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">Land Rover Range Rover P400E Autobiography SWB - FP-579-XW #2</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
+          <div class="ct-date">14/08/2026</div>
+          <div class="ct-date">14/02/2027</div>
+          <div class="ct-jours"><span class="jours-ok">154j</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recpbdnZbcSlms5F6?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">Porsche 911 991.2 Carrera 4 GTS - FC-067-TM</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
+          <div class="ct-date">16/07/2026</div>
+          <div class="ct-date">16/01/2027</div>
+          <div class="ct-jours"><span class="jours-ok">125j</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recqJYF6wo69eSrb0?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">Ferrari F430 Spider</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">Non renseigné ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recsBLXqNL4MKQ8OW?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">Ferrari 599 GTB *Rosso Monza / Full Carbone*</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
+          <div class="ct-date">28/05/2026</div>
+          <div class="ct-date">28/11/2026</div>
+          <div class="ct-jours"><span class="jours-ok">76j</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recujzCQrRDdgv6oy?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="acompte-ok" data-ct-crit="3" style="display:none">
+          <div class="ct-car"><span class="car-name">Porsche 911 991.2 Targa 4S *Configuration parfaite / PPF / Parfait état* #2</span></div>
+          <div><span class="statut-pill">Acompte 👍</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
+          <div class="ct-date">21/08/2026</div>
+          <div class="ct-date">21/02/2027</div>
+          <div class="ct-jours"><span class="jours-ok">161j</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recwGRllZ4KTCxJpH?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">Audi RS6 C7 Performance *Prisma SiIver - Full suivi Audi* </span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
+          <div class="ct-date">21/04/2026</div>
+          <div class="ct-date">21/10/2026</div>
+          <div class="ct-jours"><span class="jours-ok">38j</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recwwcZtAz2xTxSQT?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">Maserati GranTurismo S - FV-312-FM </span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">Non renseigné ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recwyh4QEBVBTJM1x?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">Porsche Cayenne GTS *Nordic Gold* #1</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">Non renseigné ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recxLFImbaz0T1emn?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">Aston Martin Vanquish Coupé 2+2 toutchtronic III - FT-960-JB</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
+          <div class="ct-date">11/08/2026</div>
+          <div class="ct-date">11/02/2027</div>
+          <div class="ct-jours"><span class="jours-ok">151j</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recybUtFCUE3VDFOj?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="acompte-ok" data-ct-crit="3" style="display:none">
+          <div class="ct-car"><span class="car-name">Porsche 911 997.1 Turbo BVM Macadamia FX-245-FT</span></div>
+          <div><span class="statut-pill">Acompte 👍</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
+          <div class="ct-date">05/08/2026</div>
+          <div class="ct-date">05/02/2027</div>
+          <div class="ct-jours"><span class="jours-ok">145j</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reczFWGEzgvb2HXXO?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">BMW M3 E36 GT - DT-399-AL</span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">OK ✅</span></div>
+          <div class="ct-date">04/06/2026</div>
+          <div class="ct-date">04/12/2026</div>
+          <div class="ct-jours"><span class="jours-ok">82j</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reczef1XQc7Lijfyu?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div><div class="ct-row ct-ok" data-ct-type="other" data-ct-crit="3">
+          <div class="ct-car"><span class="car-name">996 GT3 MK1 -  Cobalt Blue Metallic </span></div>
+          <div><span class="statut-pill">In stock 🚗</span></div>
+          <div><span class="ct-status-badge ct-ok-badge">Non renseigné ❌</span></div>
+          <div class="ct-date">—</div>
+          <div class="ct-date">—</div>
+          <div class="ct-jours"><span class="jours-manquant">—</span></div>
+          <div><a class="fiche-btn-sm" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reczm2x1OuWi4l8Oe?home=pagnonVqycMtn6zK4" target="_blank">Fiche →</a></div>
+        </div></div>
       </div>
     </section>
 
@@ -671,7 +1547,7 @@
       <div class="section-header collapsible-header" onclick="toggleSection('reservees')">
         <span class="section-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
         <h2>Voitures Réservées</h2>
-        <span class="count-badge">0</span>
+        <span class="count-badge">10</span>
         <div class="header-filters" onclick="event.stopPropagation()">
           <button class="sort-toggle-btn" id="sort-reservees" onclick="toggleSortReservees(this)">↓ Plus récent</button>
         </div>
@@ -683,7 +1559,197 @@
           <input type="text" class="section-search" id="search-reservees" placeholder="Rechercher une voiture…" oninput="filterBySearch('reservees', this.value)" autocomplete="off">
           <button class="search-clear-btn" onclick="clearSearch('reservees')">✕</button>
         </div>
-        <div class="empty-state">Aucune voiture réservée</div>
+        <div class="reservations-grid"><div class="reservation-card" data-ts="1008" data-voiture="ALFA ROMEO GT 1600 Junior" data-fck="" data-bc="BC0001008" data-prix="50 000 €" data-marge="10 000 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reciEm3m8JJZaEfeG?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reciEm3m8JJZaEfeG?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/57/57/1789293600000/4UZY9Rb-4tNCVBoS6Lz4cA/h_xXkbnShHy9hNKv41A-0IMJ9irI3fqGDaQMCHYxhTKawe3OP7gTTzxrI0mfetaoRwSqkGvCiXMijGJJ7INMLh7Ui8bG4Rk6Cg3TcN-eyb_Ab3tgIgZCyDafZtSK3ybzAnGeTIo2IZTQnpcV9CgyfeMtdhBflPxh6pme2IZmT6k/RRkMLR3orhnlbjBJeJgFVFIbJiCFqen8UOqoG3ZHBGU" data-commerciaux='["Victor"]' data-ct="Manquant ❌" data-ct-cls="ct-manquant-badge" onclick="openResModal(this)">
+          <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/57/57/1789293600000/4UZY9Rb-4tNCVBoS6Lz4cA/h_xXkbnShHy9hNKv41A-0IMJ9irI3fqGDaQMCHYxhTKawe3OP7gTTzxrI0mfetaoRwSqkGvCiXMijGJJ7INMLh7Ui8bG4Rk6Cg3TcN-eyb_Ab3tgIgZCyDafZtSK3ybzAnGeTIo2IZTQnpcV9CgyfeMtdhBflPxh6pme2IZmT6k/RRkMLR3orhnlbjBJeJgFVFIbJiCFqen8UOqoG3ZHBGU" alt="">
+          <div class="res-info">
+            <div class="res-header">
+              <div class="res-header-top">
+                <span class="car-name">ALFA ROMEO GT 1600 Junior</span>
+                <span class="bc-badge">BC0001008</span>
+              </div>
+              <span class="ct-res-badge ct-manquant-badge">Manquant ❌</span>
+            </div>
+            <div class="res-amounts">
+              <span class="res-prix">Prix : <strong>50 000 €</strong></span>
+              <span class="res-marge">Marge : <strong>10 000 €</strong></span>
+            </div>
+            <div class="res-footer">
+              <a class="fiche-btn" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reciEm3m8JJZaEfeG?home=pagnonVqycMtn6zK4" target="_blank" onclick="event.stopPropagation()">Accéder à la fiche →</a>
+              <span class="commercial-badge">Victor</span>
+            </div>
+          </div>
+        </div><div class="reservation-card" data-ts="1067" data-voiture="Alpine A110 S Bleu de France Pack Aero" data-fck="" data-bc="BC0001067" data-prix="79 900 €" data-marge="11 180 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec9J5RzlQYEzrFls?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec9J5RzlQYEzrFls?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/57/57/1789293600000/cmIV0BCgU7klmsHsxlVlTQ/Sq9BI3MQ9z0Ql-4VkOwZAJv2zoVGC1eKiGItKSXmmy1Qc5CJvCkz6QPZ4QkgHM1X1lrQydv8CCYgfqjBy-IfZqUhGXUgBhwHUy3IN67VHyHhpCAYiGVCd7Sjy1iH2ud06pIN7wgTCWNW_7DjjOlvHkkgn3bFhvHGs_dpsiWU3to/BqlkjplMDyn_EsrK868uYH5Cwaxy4uWpS9Quj35w-V4" data-commerciaux='["Pierre"]' data-ct="" data-ct-cls="" onclick="openResModal(this)">
+          <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/57/57/1789293600000/cmIV0BCgU7klmsHsxlVlTQ/Sq9BI3MQ9z0Ql-4VkOwZAJv2zoVGC1eKiGItKSXmmy1Qc5CJvCkz6QPZ4QkgHM1X1lrQydv8CCYgfqjBy-IfZqUhGXUgBhwHUy3IN67VHyHhpCAYiGVCd7Sjy1iH2ud06pIN7wgTCWNW_7DjjOlvHkkgn3bFhvHGs_dpsiWU3to/BqlkjplMDyn_EsrK868uYH5Cwaxy4uWpS9Quj35w-V4" alt="">
+          <div class="res-info">
+            <div class="res-header">
+              <div class="res-header-top">
+                <span class="car-name">Alpine A110 S Bleu de France Pack Aero</span>
+                <span class="bc-badge">BC0001067</span>
+              </div>
+              
+            </div>
+            <div class="res-amounts">
+              <span class="res-prix">Prix : <strong>79 900 €</strong></span>
+              <span class="res-marge">Marge : <strong>11 180 €</strong></span>
+            </div>
+            <div class="res-footer">
+              <a class="fiche-btn" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec9J5RzlQYEzrFls?home=pagnonVqycMtn6zK4" target="_blank" onclick="event.stopPropagation()">Accéder à la fiche →</a>
+              <span class="commercial-badge">Pierre</span>
+            </div>
+          </div>
+        </div><div class="reservation-card" data-ts="1069" data-voiture="Aston Martin V8 Vantage - GT-752-WY" data-fck="" data-bc="BC0001069" data-prix="117 000 €" data-marge="17 942 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec3AbmdkQy293inO?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec3AbmdkQy293inO?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/57/57/1789293600000/0UYuBML3hZYOtIJ4vrZDWw/FY1RHj-MVpXcFbdHlaYJNR2ASaDrw8XnTd7zlPJMUMNFkEHy6-RqyAhKH2KlrVoSSConpSeIZjdaEpo2PKdGKbA78m5jDnq2iRXRMC3ia9o5iJZRp9tx5rDzJS0eTCIdPdfOTvi1ei3PLQmtKF0Itw/DbQHoDO7mCdik1ztoBcBwpiAmZ_odaKmLmMwZkdlw8o" data-commerciaux='["Victor"]' data-ct="OK ✅" data-ct-cls="ct-ok-badge" onclick="openResModal(this)">
+          <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/57/57/1789293600000/0UYuBML3hZYOtIJ4vrZDWw/FY1RHj-MVpXcFbdHlaYJNR2ASaDrw8XnTd7zlPJMUMNFkEHy6-RqyAhKH2KlrVoSSConpSeIZjdaEpo2PKdGKbA78m5jDnq2iRXRMC3ia9o5iJZRp9tx5rDzJS0eTCIdPdfOTvi1ei3PLQmtKF0Itw/DbQHoDO7mCdik1ztoBcBwpiAmZ_odaKmLmMwZkdlw8o" alt="">
+          <div class="res-info">
+            <div class="res-header">
+              <div class="res-header-top">
+                <span class="car-name">Aston Martin V8 Vantage - GT-752-WY</span>
+                <span class="bc-badge">BC0001069</span>
+              </div>
+              <span class="ct-res-badge ct-ok-badge">OK ✅</span>
+            </div>
+            <div class="res-amounts">
+              <span class="res-prix">Prix : <strong>117 000 €</strong></span>
+              <span class="res-marge">Marge : <strong>17 942 €</strong></span>
+            </div>
+            <div class="res-footer">
+              <a class="fiche-btn" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec3AbmdkQy293inO?home=pagnonVqycMtn6zK4" target="_blank" onclick="event.stopPropagation()">Accéder à la fiche →</a>
+              <span class="commercial-badge">Victor</span>
+            </div>
+          </div>
+        </div><div class="reservation-card" data-ts="937" data-voiture="Ferrari 412i BVM Bleu / Tan EP-033-XT " data-fck="" data-bc="BC000937" data-prix="87 900 €" data-marge="9 550 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec98CfYjnlwnc6st?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec98CfYjnlwnc6st?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/57/57/1789293600000/F6MwY4ZszLQmOr3LQ97gdQ/2md7pS93v8T-TcflS1G1z4WOIUdSm1laZaUrWAe0lCBtRe5cKhjl2-wdCNsuoX8oIAal3JIXVDSi74k_Xr7GzH7LaAEAddjyr0J39Pr3rJSJSWbZ7qf4AGukJHyryluTYuA3DdjGuoUojfY5RWN-ZnK2pGAIp3u5A-gs2tZ35E8/1WwSa1ZvKcuyBFoWeRzFcPi8XILJSevamBR1cs3WJS4" data-commerciaux='["Victor", "Theodore"]' data-ct="OK ✅" data-ct-cls="ct-ok-badge" onclick="openResModal(this)">
+          <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/57/57/1789293600000/F6MwY4ZszLQmOr3LQ97gdQ/2md7pS93v8T-TcflS1G1z4WOIUdSm1laZaUrWAe0lCBtRe5cKhjl2-wdCNsuoX8oIAal3JIXVDSi74k_Xr7GzH7LaAEAddjyr0J39Pr3rJSJSWbZ7qf4AGukJHyryluTYuA3DdjGuoUojfY5RWN-ZnK2pGAIp3u5A-gs2tZ35E8/1WwSa1ZvKcuyBFoWeRzFcPi8XILJSevamBR1cs3WJS4" alt="">
+          <div class="res-info">
+            <div class="res-header">
+              <div class="res-header-top">
+                <span class="car-name">Ferrari 412i BVM Bleu / Tan EP-033-XT </span>
+                <span class="bc-badge">BC000937</span>
+              </div>
+              <span class="ct-res-badge ct-ok-badge">OK ✅</span>
+            </div>
+            <div class="res-amounts">
+              <span class="res-prix">Prix : <strong>87 900 €</strong></span>
+              <span class="res-marge">Marge : <strong>9 550 €</strong></span>
+            </div>
+            <div class="res-footer">
+              <a class="fiche-btn" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/rec98CfYjnlwnc6st?home=pagnonVqycMtn6zK4" target="_blank" onclick="event.stopPropagation()">Accéder à la fiche →</a>
+              <span class="commercial-badge">Victor</span><span class="commercial-badge">Theodore</span>
+            </div>
+          </div>
+        </div><div class="reservation-card" data-ts="1055" data-voiture="LAND ROVER RANGE ROVER SPORT II 5.0 V8 SVR - EC-154-GX #2" data-fck="" data-bc="BC0001055" data-prix="47 900 €" data-marge="840 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reccGWkOOU3Gy1trv?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reccGWkOOU3Gy1trv?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/57/57/1789293600000/hA_WszxNh_ngnoxja7-9sg/7F_BsIxgR7OEN-8uZfrUKFIadNt4YBEYFgn5XBV8a3f4iujf64MgBHLKCqiWnapC-hvN_gOl9W92T6Ylc6hnSMx4JOdjmUkEbobUW3sCOefuE5_MhLbe3N-dYF8Lwa-MuXT8VYWS5WekachYFs6eFA/9LKBlSskhIlaNQ_i0z3p8p7camZOtYqN_nIS1VUdKIE" data-commerciaux='["Victor"]' data-ct="OK ✅" data-ct-cls="ct-ok-badge" onclick="openResModal(this)">
+          <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/57/57/1789293600000/hA_WszxNh_ngnoxja7-9sg/7F_BsIxgR7OEN-8uZfrUKFIadNt4YBEYFgn5XBV8a3f4iujf64MgBHLKCqiWnapC-hvN_gOl9W92T6Ylc6hnSMx4JOdjmUkEbobUW3sCOefuE5_MhLbe3N-dYF8Lwa-MuXT8VYWS5WekachYFs6eFA/9LKBlSskhIlaNQ_i0z3p8p7camZOtYqN_nIS1VUdKIE" alt="">
+          <div class="res-info">
+            <div class="res-header">
+              <div class="res-header-top">
+                <span class="car-name">LAND ROVER RANGE ROVER SPORT II 5.0 V8 SVR - EC-154-GX #2</span>
+                <span class="bc-badge">BC0001055</span>
+              </div>
+              <span class="ct-res-badge ct-ok-badge">OK ✅</span>
+            </div>
+            <div class="res-amounts">
+              <span class="res-prix">Prix : <strong>47 900 €</strong></span>
+              <span class="res-marge">Marge : <strong>840 €</strong></span>
+            </div>
+            <div class="res-footer">
+              <a class="fiche-btn" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reccGWkOOU3Gy1trv?home=pagnonVqycMtn6zK4" target="_blank" onclick="event.stopPropagation()">Accéder à la fiche →</a>
+              <span class="commercial-badge">Victor</span>
+            </div>
+          </div>
+        </div><div class="reservation-card" data-ts="1053" data-voiture="Mclaren 720S Performance - HD-923-BJ" data-fck="" data-bc="BC0001053" data-prix="223 906 €" data-marge="13 139 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recR8EBK8FkvUen5o?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recR8EBK8FkvUen5o?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/57/57/1789293600000/IYSUT_5XlrrAyuRHuu4EwQ/ypu_RE8bO-xa8VDrNq3j6A_sOSWgIpZBD3STnQybCAhkpQtLJrYWYm362ifBUpcEx8SMBAuIjVV-1apif82zS5Aq3Xx5E--cxcDy4RmeDteYXZbf2SEvAOtE7xSsywgTFE3odFDzJWPwrsKw3FmFBwXppWNp31COou5qc6ooEhg/YaiwFY60vJW6jPIkR8WwnWntzgc0bTn1KEIoRlRaRRQ" data-commerciaux='["Pierre"]' data-ct="Manquant ❌" data-ct-cls="ct-manquant-badge" onclick="openResModal(this)">
+          <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/57/57/1789293600000/IYSUT_5XlrrAyuRHuu4EwQ/ypu_RE8bO-xa8VDrNq3j6A_sOSWgIpZBD3STnQybCAhkpQtLJrYWYm362ifBUpcEx8SMBAuIjVV-1apif82zS5Aq3Xx5E--cxcDy4RmeDteYXZbf2SEvAOtE7xSsywgTFE3odFDzJWPwrsKw3FmFBwXppWNp31COou5qc6ooEhg/YaiwFY60vJW6jPIkR8WwnWntzgc0bTn1KEIoRlRaRRQ" alt="">
+          <div class="res-info">
+            <div class="res-header">
+              <div class="res-header-top">
+                <span class="car-name">Mclaren 720S Performance - HD-923-BJ</span>
+                <span class="bc-badge">BC0001053</span>
+              </div>
+              <span class="ct-res-badge ct-manquant-badge">Manquant ❌</span>
+            </div>
+            <div class="res-amounts">
+              <span class="res-prix">Prix : <strong>223 906 €</strong></span>
+              <span class="res-marge">Marge : <strong>13 139 €</strong></span>
+            </div>
+            <div class="res-footer">
+              <a class="fiche-btn" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recR8EBK8FkvUen5o?home=pagnonVqycMtn6zK4" target="_blank" onclick="event.stopPropagation()">Accéder à la fiche →</a>
+              <span class="commercial-badge">Pierre</span>
+            </div>
+          </div>
+        </div><div class="reservation-card" data-ts="997" data-voiture="Porsche 911 991 Carrera S Cirrus - CE-658-YZ" data-fck="" data-bc="BC000997" data-prix="79 900 €" data-marge="10 998 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recoqgrEmNQ88hWD4?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recoqgrEmNQ88hWD4?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/57/57/1789293600000/3Sg0Y8ktCBVg5o_vKY4PLA/QIVhq3WAoI0sncrpVduXVME9zou5AWThPJv43coqbePmXwzUMkea3l7T7IdYiVkgTzBfyr2Ey3_6Q0Ab21PWCVnpsAdq3oXWOROalh8Ju3dHSATSjzHttT4ucGpPZ1KT71XI9aUlJeqSSRJ7n8diLV1lNw63NFjwKnhCscXffl0/rZUitV8zjfiDyNfx3wo51KOTbTlFXdiU0qQhW6N6dz4" data-commerciaux='["Pierre"]' data-ct="OK ✅" data-ct-cls="ct-ok-badge" onclick="openResModal(this)">
+          <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/57/57/1789293600000/3Sg0Y8ktCBVg5o_vKY4PLA/QIVhq3WAoI0sncrpVduXVME9zou5AWThPJv43coqbePmXwzUMkea3l7T7IdYiVkgTzBfyr2Ey3_6Q0Ab21PWCVnpsAdq3oXWOROalh8Ju3dHSATSjzHttT4ucGpPZ1KT71XI9aUlJeqSSRJ7n8diLV1lNw63NFjwKnhCscXffl0/rZUitV8zjfiDyNfx3wo51KOTbTlFXdiU0qQhW6N6dz4" alt="">
+          <div class="res-info">
+            <div class="res-header">
+              <div class="res-header-top">
+                <span class="car-name">Porsche 911 991 Carrera S Cirrus - CE-658-YZ</span>
+                <span class="bc-badge">BC000997</span>
+              </div>
+              <span class="ct-res-badge ct-ok-badge">OK ✅</span>
+            </div>
+            <div class="res-amounts">
+              <span class="res-prix">Prix : <strong>79 900 €</strong></span>
+              <span class="res-marge">Marge : <strong>10 998 €</strong></span>
+            </div>
+            <div class="res-footer">
+              <a class="fiche-btn" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recoqgrEmNQ88hWD4?home=pagnonVqycMtn6zK4" target="_blank" onclick="event.stopPropagation()">Accéder à la fiche →</a>
+              <span class="commercial-badge">Pierre</span>
+            </div>
+          </div>
+        </div><div class="reservation-card" data-ts="1051" data-voiture="Porsche 911 991.2 Targa 4S *Configuration parfaite / PPF / Parfait état* #2" data-fck="" data-bc="BC0001051" data-prix="130 900 €" data-marge="10 842 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recwGRllZ4KTCxJpH?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recwGRllZ4KTCxJpH?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/57/57/1789293600000/UfddB2kVhY_EbnTYuhzdqQ/vDdcWFB3dB-tKezyZ_33N0zgI-mh46h07DyVDPni9m77zEgL7I5aIM3CTgWlIUBPmOXxm9JG44IzKHefviePtct5ZpLVF7DNTvcuW4BUL2JmVLyHTpRJ_aQn5tUoAE9aMZasK74TFcmrxu85j6pytg/cPZduyN5dsOOuJMdvFTsQSFPl5tXVfIxChmrwXPW-Ko" data-commerciaux='["Pierre"]' data-ct="OK ✅" data-ct-cls="ct-ok-badge" onclick="openResModal(this)">
+          <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/57/57/1789293600000/UfddB2kVhY_EbnTYuhzdqQ/vDdcWFB3dB-tKezyZ_33N0zgI-mh46h07DyVDPni9m77zEgL7I5aIM3CTgWlIUBPmOXxm9JG44IzKHefviePtct5ZpLVF7DNTvcuW4BUL2JmVLyHTpRJ_aQn5tUoAE9aMZasK74TFcmrxu85j6pytg/cPZduyN5dsOOuJMdvFTsQSFPl5tXVfIxChmrwXPW-Ko" alt="">
+          <div class="res-info">
+            <div class="res-header">
+              <div class="res-header-top">
+                <span class="car-name">Porsche 911 991.2 Targa 4S *Configuration parfaite / PPF / Parfait état* #2</span>
+                <span class="bc-badge">BC0001051</span>
+              </div>
+              <span class="ct-res-badge ct-ok-badge">OK ✅</span>
+            </div>
+            <div class="res-amounts">
+              <span class="res-prix">Prix : <strong>130 900 €</strong></span>
+              <span class="res-marge">Marge : <strong>10 842 €</strong></span>
+            </div>
+            <div class="res-footer">
+              <a class="fiche-btn" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recwGRllZ4KTCxJpH?home=pagnonVqycMtn6zK4" target="_blank" onclick="event.stopPropagation()">Accéder à la fiche →</a>
+              <span class="commercial-badge">Pierre</span>
+            </div>
+          </div>
+        </div><div class="reservation-card" data-ts="1014" data-voiture="Porsche 911 997.1 Turbo BVM Macadamia FX-245-FT" data-fck="" data-bc="BC0001014" data-prix="102 500 €" data-marge="12 544 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reczFWGEzgvb2HXXO?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reczFWGEzgvb2HXXO?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/57/57/1789293600000/wLWiNNIAurykrRmunxfQEw/tQxNlP1q2aWljZuF8w4pwuTXjOeWk9FeuBlzG_iM76OfqMjNYCMD7cQlThPcDlf7R34dF7dW9p1aBVkDWg1KM0dhoy6Ea1ZHzuUAnu1muw6vUjwtmTvA7wkVg91XnzJYnCHJyzkqGiMYmq6AExYKP0yUOhOCrCMlAEMAYUyBTY0/efG4No4nXBGtwq-uzXIbW9pQUi_WQ7MPkMjHwcY8EmI" data-commerciaux='["Victor"]' data-ct="OK ✅" data-ct-cls="ct-ok-badge" onclick="openResModal(this)">
+          <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/57/57/1789293600000/wLWiNNIAurykrRmunxfQEw/tQxNlP1q2aWljZuF8w4pwuTXjOeWk9FeuBlzG_iM76OfqMjNYCMD7cQlThPcDlf7R34dF7dW9p1aBVkDWg1KM0dhoy6Ea1ZHzuUAnu1muw6vUjwtmTvA7wkVg91XnzJYnCHJyzkqGiMYmq6AExYKP0yUOhOCrCMlAEMAYUyBTY0/efG4No4nXBGtwq-uzXIbW9pQUi_WQ7MPkMjHwcY8EmI" alt="">
+          <div class="res-info">
+            <div class="res-header">
+              <div class="res-header-top">
+                <span class="car-name">Porsche 911 997.1 Turbo BVM Macadamia FX-245-FT</span>
+                <span class="bc-badge">BC0001014</span>
+              </div>
+              <span class="ct-res-badge ct-ok-badge">OK ✅</span>
+            </div>
+            <div class="res-amounts">
+              <span class="res-prix">Prix : <strong>102 500 €</strong></span>
+              <span class="res-marge">Marge : <strong>12 544 €</strong></span>
+            </div>
+            <div class="res-footer">
+              <a class="fiche-btn" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reczFWGEzgvb2HXXO?home=pagnonVqycMtn6zK4" target="_blank" onclick="event.stopPropagation()">Accéder à la fiche →</a>
+              <span class="commercial-badge">Victor</span>
+            </div>
+          </div>
+        </div><div class="reservation-card" data-ts="1025" data-voiture="Porsche 964 Turbo 3.6 - FS-046-DY" data-fck="" data-bc="BC0001025" data-prix="303 500 €" data-marge="-18 225 €" data-fiche="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recuGtJv8Y9XhioAH?home=pagnonVqycMtn6zK4" data-travaux="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recuGtJv8Y9XhioAH?BchDq=b%3AeyJZZUhDTSI6W1sxMSwiYXF1YSJdXSwiN1BXYnAiOltbOSxbInNlbElrSmY0amZ0UThobENwIiwic2VsV0x1amlzVWRXZGcwN3IiLCJzZWx1OE9lVjBKTUJjWkdxRiIsInNlbDFVc2hTVGZXdk0xS082Il1dXX0&home=pagnonVqycMtn6zK4" data-photo="https://v5.airtableusercontent.com/v3/u/57/57/1789293600000/yb9f2Z7RzV9GwYx0IThTYQ/KYXP4YHd2WdVmD4-vzGwIvRvcUfvW6slXbCxjDzFTjpMg30D0QDD-48GOLxXMYZQTMN3EaI3We6-nmcuu-Xbipo82UzqryhecSaYGtIa0fti11_Q3xjbb9jP_DKTf5m9IRX6SeacQuByoZTatg4wipJFzl8iMl05gW_PJCY-flE/ErJhoBtPcVPFD-bcUTUQAq0IV-z4lgt_C_ZVTmLaYUs" data-commerciaux='["Victor"]' data-ct="Manquant ❌" data-ct-cls="ct-manquant-badge" onclick="openResModal(this)">
+          <img class="res-photo" src="https://v5.airtableusercontent.com/v3/u/57/57/1789293600000/yb9f2Z7RzV9GwYx0IThTYQ/KYXP4YHd2WdVmD4-vzGwIvRvcUfvW6slXbCxjDzFTjpMg30D0QDD-48GOLxXMYZQTMN3EaI3We6-nmcuu-Xbipo82UzqryhecSaYGtIa0fti11_Q3xjbb9jP_DKTf5m9IRX6SeacQuByoZTatg4wipJFzl8iMl05gW_PJCY-flE/ErJhoBtPcVPFD-bcUTUQAq0IV-z4lgt_C_ZVTmLaYUs" alt="">
+          <div class="res-info">
+            <div class="res-header">
+              <div class="res-header-top">
+                <span class="car-name">Porsche 964 Turbo 3.6 - FS-046-DY</span>
+                <span class="bc-badge">BC0001025</span>
+              </div>
+              <span class="ct-res-badge ct-manquant-badge">Manquant ❌</span>
+            </div>
+            <div class="res-amounts">
+              <span class="res-prix">Prix : <strong>303 500 €</strong></span>
+              <span class="res-marge">Marge : <strong>-18 225 €</strong></span>
+            </div>
+            <div class="res-footer">
+              <a class="fiche-btn" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recuGtJv8Y9XhioAH?home=pagnonVqycMtn6zK4" target="_blank" onclick="event.stopPropagation()">Accéder à la fiche →</a>
+              <span class="commercial-badge">Victor</span>
+            </div>
+          </div>
+        </div></div>
       </div>
     </section>
 
@@ -702,7 +1768,7 @@
 <div class="livr-event">
   <div class="livr-event-time">11h → 13h</div>
   <div class="livr-event-body">
-    <div class="livr-event-car">Porsche 911 997.1 Turbo BVM Macadamia<span class="livr-plate">FX-245-FT</span><a class="livr-airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagIqvu7CJOqFMULj/recli2ftx8XicbvZb" target="_blank" rel="noopener" title="Ouvrir la fiche Airtable"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Fiche</a></div>
+    <div class="livr-event-car">Porsche 911 997.1 Turbo BVM Macadamia<span class="livr-plate">FX-245-FT</span><a class="livr-airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reczFWGEzgvb2HXXO?home=pagnonVqycMtn6zK4" target="_blank" rel="noopener" title="Ouvrir la fiche Airtable"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Fiche</a></div>
     <div class="livr-event-meta">
       <span class="livr-badge livr-badge-meca">🏢 Mecanicus</span><span class="livr-badge livr-badge-inspect">🔍 + Inspection</span><span class="livr-assignees">👤 Firmin</span><span class="livr-client">Client : Eric Gaucheron et GAUCHERON CHARLES</span>
     </div>
@@ -711,7 +1777,7 @@
 <div class="livr-event">
   <div class="livr-event-time">10h30 → 12h30</div>
   <div class="livr-event-body">
-    <div class="livr-event-car">LAND ROVER RANGE ROVER SPORT II 5.0 V8 SVR<span class="livr-plate">EC-154-GX</span><a class="livr-airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagIqvu7CJOqFMULj/recNSqb3FKS2bZeMh" target="_blank" rel="noopener" title="Ouvrir la fiche Airtable"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Fiche</a></div>
+    <div class="livr-event-car">LAND ROVER RANGE ROVER SPORT II 5.0 V8 SVR<span class="livr-plate">EC-154-GX</span><a class="livr-airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/reccGWkOOU3Gy1trv?home=pagnonVqycMtn6zK4" target="_blank" rel="noopener" title="Ouvrir la fiche Airtable"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Fiche</a></div>
     <div class="livr-event-meta">
       <span class="livr-badge livr-badge-meca">🏢 Mecanicus</span><span class="livr-assignees">👤 Stanislas</span><span class="livr-client">Client : Hervé Quinet</span>
     </div>
@@ -720,7 +1786,7 @@
 <div class="livr-event">
   <div class="livr-event-time">11h → 13h</div>
   <div class="livr-event-body">
-    <div class="livr-event-car">Porsche 964 C2 Midnight Blue & Blue<span class="livr-plate">CZ-606-KF</span><a class="livr-airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagIqvu7CJOqFMULj/recwSbPdxFszeCZVU" target="_blank" rel="noopener" title="Ouvrir la fiche Airtable"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Fiche</a></div>
+    <div class="livr-event-car">Porsche 964 C2 Midnight Blue & Blue<span class="livr-plate">CZ-606-KF</span><a class="livr-airtable-link" href="https://airtable.com/appNb6Bh5KUwwmBXL/pagcpxVe8Fr2ySxip/recHBdciPgPAlVKAw?home=pagnonVqycMtn6zK4" target="_blank" rel="noopener" title="Ouvrir la fiche Airtable"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Fiche</a></div>
     <div class="livr-event-meta">
       <span class="livr-badge livr-badge-meca">🏢 Mecanicus</span><span class="livr-badge livr-badge-inspect">🔍 + Inspection</span><span class="livr-assignees">👤 Nicolas · Stanislas</span><span class="livr-client">Client : Philippe DURAFFOURG</span>
     </div>
@@ -1315,7 +2381,7 @@
   </section>
 
   <footer class="footer">
-    Généré le Dimanche 13 septembre 2026 à 01:16 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
+    Généré le Dimanche 13 septembre 2026 à 06:21 · Données Slack & Airtable · Rafraîchissement quotidien à 19h
   </footer>
 </div>
 <div id="res-modal" class="res-modal-overlay" onclick="closeResModal(event)">
@@ -1426,7 +2492,7 @@
     </form>
   </div>
 </div>
-<script>var MARGES_DATA = [];</script>
+<script>var MARGES_DATA = [{"marge": 10000.0, "ts": 1775579498}, {"marge": 11179.850000000006, "ts": 1781078241}, {"marge": 17942.5, "ts": 1785838567}, {"marge": 9550.0, "ts": 1771423217}, {"marge": 840.4199999999983, "ts": 1772028433}, {"marge": 13139.349999999977, "ts": 1780507713}, {"marge": 10998.100000000006, "ts": 1781704713}, {"marge": 10842.5, "ts": 1786349019}, {"marge": 12544.5, "ts": 1783496020}, {"marge": -18225.03999999998, "ts": 1754057751}];</script>
 <script>var PREST_API_URL = "https://api.airtable.com/v0/appBQnpnbCXZkHnzS/tbl9Ut5t4NUA9hkoJ"; var PREST_TOKEN = "patGeRjMMwScA9naE.e8dc47dbca8bf709c420a7dda84ac086496335648f4163d21976fc0b8f6c8636";</script>
 <script>
 // ── Collapse sections ────────────────────────────────────────────────
