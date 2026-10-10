@@ -27,6 +27,20 @@ ACOMPTE_STATUT = "Acompte 👍"
 LOGISTIQUE_STATUTS_EXCLUS = {"Inspection 🕵️"}
 
 
+
+def _collab_names(v):
+    """Noms d'un champ collaborateur/select, quel que soit son format (dict, liste, texte)."""
+    if not v:
+        return []
+    if not isinstance(v, list):
+        v = [v]
+    out = []
+    for item in v:
+        name = item.get("name", "") if isinstance(item, dict) else str(item)
+        if name:
+            out.append(name)
+    return out
+
 def _get_records(table, params):
     if not AIRTABLE_TOKEN:
         return []
@@ -211,9 +225,9 @@ def fetch_reservees_airtable():
             created_ts = int(datetime.fromisoformat(created_raw.replace("Z", "+00:00")).timestamp()) if created_raw else 0
         except Exception:
             created_ts = 0
-        acheteurs_raw = f.get("Acheteur meca", [])
-        commerciaux = [a.get("name", "").split()[0].capitalize() for a in acheteurs_raw if a.get("name")]
-        is_francois = (len(acheteurs_raw) == 1 and any("françois" in a.get("name", "").lower() for a in acheteurs_raw))
+        acheteurs = _collab_names(f.get("Acheteur meca"))
+        commerciaux = [n.split()[0].capitalize() for n in acheteurs]
+        is_francois = (len(acheteurs) == 1 and "françois" in acheteurs[0].lower())
         bc_raw = f.get("N° bon commande (from Bon de commande)", "")
         if isinstance(bc_raw, list):
             bc_raw = bc_raw[0] if bc_raw else ""
@@ -268,9 +282,9 @@ def _fetch_all_cars_index():
         voiture = f.get("Voiture", "")
         statut_raw = f.get("Statut", {})
         statut = statut_raw.get("name", "") if isinstance(statut_raw, dict) else str(statut_raw)
-        acheteur_meca_raw = f.get("Acheteur meca", [])
-        acheteur_meca = acheteur_meca_raw[0].get("name", "") if acheteur_meca_raw else ""
-        is_francois = (len(acheteur_meca_raw) == 1 and "françois" in acheteur_meca.lower())
+        acheteurs = _collab_names(f.get("Acheteur meca"))
+        acheteur_meca = acheteurs[0] if acheteurs else ""
+        is_francois = (len(acheteurs) == 1 and "françois" in acheteur_meca.lower())
         immat = f.get("Immatriculation", "").strip().upper()
         index.append({
             "rec_id": rec["id"],
